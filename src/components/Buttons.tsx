@@ -46,9 +46,15 @@ const StyledButton = styled.button<{ fullWidth: boolean }>`
   color: #ffffff;
   border-radius: 6px;
   border: none;
-  font-size: 16px;
+  font-size: 1.1rem;
   font-weight: 700;
   cursor: pointer;
+  @media only screen and (max-width: 1440px) {
+    height: 50px;
+  }
+  @media only screen and (max-width: 1080px) {
+    height: 45px;
+  }
 `;
 
 export default Buttons;
