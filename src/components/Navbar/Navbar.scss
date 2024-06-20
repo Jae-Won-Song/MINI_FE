@@ -1,0 +1,25 @@
+@import '../../styles/constants/colors';
+
+.navbar {
+  height: 5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 0 4px 0 black;
+}
+.title {
+  display: flex;
+  margin-left: 3.125rem;
+}
+.nav-cat {
+    display: flex;
+    font-size: 1.25rem;
+    margin-right: 3.125rem;
+}
+li {
+  padding: 0 10px 0 10px;
+}
+h1 {
+  font-family: 'Cafe24Moyamoya-Face-v1.0';
+  color: $primary;
+}

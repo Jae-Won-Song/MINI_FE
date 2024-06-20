@@ -48,7 +48,14 @@ module.exports = {
     ],
     'react/react-in-jsx-scope': 'off',  
     '@typescript-eslint/no-use-before-define': 'off',
-    'react/require-default-props': 'off'
+    'react/require-default-props': 'off',
+    
+    'import/extensions': ['error', 'ignorePackages', {
+      js: 'never',
+      jsx: 'never',
+      ts: 'never',
+      tsx: 'never',
+    }]
   },
   settings: {
     react: {

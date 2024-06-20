@@ -118,6 +118,12 @@
   font-weight: 800;
   font-style: normal;
 }
+@font-face {
+  font-family: "Cafe24Moyamoya-Face-v1.0";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/Cafe24Moyamoya-Face-v1.0.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
 * {
   margin: 0;
   font-family: "Pretendard", Helvetica, "Apple SD Gothic Neo", Dotum, 돋움, sans-serif;
@@ -180,7 +186,8 @@ button {
 }
 
 ul,
-ol {
+ol,
+li {
   margin: 0;
   padding: 0;
   list-style: none;
