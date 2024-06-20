@@ -9,8 +9,8 @@ const page = () => {
   return (
     <>
       <Navbar />
-      <Footer />
       <MainBanner />
+      <Footer />
       <div>test</div>
     </>
   );

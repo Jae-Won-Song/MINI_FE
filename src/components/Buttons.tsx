@@ -36,7 +36,7 @@ const StyledButton = styled.button<{ fullWidth: boolean }>`
   /* 기본버튼 */
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: center;  
   align-items: center;
   padding: 16px;
   gap: 10px;
