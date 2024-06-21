@@ -35,7 +35,7 @@ const TravelPlaceKeywords = () => {
 }
 
 const KeywordsWrapper = styled.div`
-  width: 1440px;
+  width: 1500px;
   margin: auto;
   display: flex;
   flex-direction: column;  
@@ -80,7 +80,7 @@ const StyledLink = styled(Link)`
     border-left: 1px solid transparent;
   }
   &:last-child::after {    
-    right: -44px;
+    right: -57px;
     border-right: 1px solid black;
   }
 
