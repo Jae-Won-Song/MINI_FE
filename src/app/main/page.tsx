@@ -6,6 +6,10 @@ import Footer from '@/components/Footer';
 import MainBanner from '@/components/MainBanner';
 import MainSearchRegion from '@/components/MainSearchRegion';
 import MainSearchDate from '@/components/MainSearchDate';
+import PaginationButtons from '@/components/PaginationButtons';
+import SlideButtons from '@/components/SlideButtons';
+import CalendarMain from '@/components/Calendar/CalendarMain';
+import TravelPlaceKeywords from '@/components/TravelPlaceKeywords';
 
 const page = () => {
   return (
@@ -13,8 +17,13 @@ const page = () => {
       <Navbar />
       <MainBanner />
       <Footer />
-      <MainSearchRegion/>
+      {/* <MainSearchRegion/> */}
       <MainSearchDate/>
+      {/* <PaginationButtons/> */}
+      {/* <SlideButtons arrowDirection="left" size="smallCircle" active={true} />  필요한 속성 추가 */}
+      {/* <SlideButtons arrowDirection="right" size="smallCircle" active={true} />  필요한 속성 추가 */}
+      {/* <CalendarMain/> */}
+      <TravelPlaceKeywords/>
       <div>test</div>
     </>
   );
