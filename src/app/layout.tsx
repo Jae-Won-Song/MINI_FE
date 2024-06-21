@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import '../styles/base/_reset.scss';
 import '../styles/constants/_colors.scss';
+import Script from 'next/script';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,6 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>{children}</body>
+      <Script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ca1983a7e9ea0a0fb399052c7a1659cd&libraries=services,clusterer&autoload=false" />
     </html>
   );
 }
