@@ -10,7 +10,7 @@ const Calendar: React.FC = () => {
   const [currentMonth, setCurrentMonth] = useState(dayjs());
   const [nextMonth, setNextMonth] = useState(dayjs().add(1, 'month'));
 
-  const prevMonth = () => {
+const prevMonth = () => {
     setCurrentMonth(currentMonth.subtract(1, 'month'));
     setNextMonth(nextMonth.subtract(1, 'month'));
   };

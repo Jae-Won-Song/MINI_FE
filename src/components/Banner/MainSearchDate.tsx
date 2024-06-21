@@ -8,7 +8,7 @@ import ko from 'date-fns/locale/ko'
 import dayjs from 'dayjs'
 import 'dayjs/locale/ko'
 import { Locale } from 'date-fns'
-import Calendar from './Calendar/Calendar'
+import Calendar from '../Calendar/Calendar'
 
 dayjs.locale('ko')
 registerLocale('ko', ko as unknown as Locale)
@@ -32,40 +32,6 @@ const MainSearchDate = () => {
 
   return (
     <>
-      {/* <DateWrapperForStart>
-        <DatePickerWrapper>
-          <Label>숙박 시작일</Label>
-          <DatePicker 
-            selected={startDate} 
-            onChange={date => setStartDate(date)} 
-            selectsStart
-            startDate={startDate}
-            endDate={endDate}
-            inline
-            onMonthChange={handleStartMonthChange}
-            locale="ko" // locale prop 추가
-            dateFormat="yyyy년 MM월 dd일" // 한국어 형식으로 날짜 표시
-          />
-        </DatePickerWrapper>
-      </DateWrapperForStart>
-      <DateWrapperForEnd>
-        <DatePickerWrapper>
-          <Label>숙박 종료일</Label>
-          <DatePicker 
-            selected={endDate} 
-            onChange={date => setEndDate(date)} 
-            selectsEnd
-            startDate={startDate}
-            endDate={endDate}
-            minDate={startDate}
-            inline
-            onMonthChange={handleEndMonthChange}
-            openToDate={new Date(dayjs(startDate).year(), endMonth)}
-            locale="ko" // locale prop 추가
-            dateFormat="yyyy년 MM월 dd일" // 한국어 형식으로 날짜 표시
-          />
-        </DatePickerWrapper>
-      </DateWrapperForEnd> */}
       <DateWrapperForStart>
         <DatePickerWrapper>
           <Calendar />

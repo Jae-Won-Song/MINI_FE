@@ -3,9 +3,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
-import bannerImage from '../../public/images/mainBannerImage.jpg';
-import bannerText from '../../public/svgs/bannerText.svg';
-import MainSearch from '@/components/MainSearch';
+import bannerImage from '../../../public/images/mainBannerImage.jpg';
+import MainSearch from './MainSearch';
+
 
 function MainBanner(): React.JSX.Element {
   return (

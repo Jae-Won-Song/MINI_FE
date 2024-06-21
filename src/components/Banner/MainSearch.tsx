@@ -2,7 +2,8 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import Buttons from './Buttons';
+import Buttons from '../Buttons';
+
 
 function MainSearch(): React.JSX.Element {
   return (

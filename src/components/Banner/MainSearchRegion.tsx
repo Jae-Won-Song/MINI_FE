@@ -4,12 +4,12 @@ import React from 'react'
 import styled from 'styled-components'
 import Image from 'next/image'
 import Link from 'next/link'
-import seoul from '../../public/images/seoul.jpg'
-import jeonla from '../../public/images/jeonla.jpg'
-import gangwon from '../../public/images/gangwon.jpg'
-import gyeongi from '../../public/images/gyeongi.jpg'
-import gyeongsang from '../../public/images/gyeongsang.jpg'
-import chungcheong from '../../public/images/chungcheong.jpg'
+import seoul from '../../../public/images/seoul.jpg'
+import jeonla from '../../../public/images/jeonla.jpg'
+import gangwon from '../../../public/images/gangwon.jpg'
+import gyeongi from '../../../public/images/gyeongi.jpg'
+import gyeongsang from '../../../public/images/gyeongsang.jpg'
+import chungcheong from '../../../public/images/chungcheong.jpg'
 
 // 추후 백엔드 데이터에 따라 내용 다르게 설정할 것.
 // 지역에 따라 번호가 부여될 예정
