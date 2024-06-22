@@ -26,7 +26,7 @@ const DaysRowContainer = styled.div`
 const DaysColumn = styled.div`
   flex: 1;
   display: flex;
-  padding: 8px 11px;
+  padding: 8px 10.5px;
 `;
 
 export default DaysRow;

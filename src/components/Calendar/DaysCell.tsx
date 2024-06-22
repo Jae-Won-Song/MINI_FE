@@ -50,12 +50,12 @@ const CellWrapper = styled.div<{
   isPast: boolean;
   isInRange: boolean;
 }>`
-  flex: 1;
+  flex: 0 0 34.85px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 0.9rem;
-  height: 35px;  
+  height: 37px;  
   cursor: ${({ isPast }) => (isPast ? 'default' : 'pointer')};
   background-color: ${({ isStartDate, isEndDate, isInRange }) => 
     isStartDate ? '#f85b2b' : 
@@ -64,18 +64,30 @@ const CellWrapper = styled.div<{
   color: ${({ isStartDate, isEndDate }) => 
     isStartDate ? '#ffffff' : 
     isEndDate ? '#ffffff' : ''};
-  border-top-left-radius: ${({ isStartDate }) => (isStartDate ? '50%' : '')};
-  border-bottom-left-radius: ${({ isStartDate }) => (isStartDate ? '50%' : '')};
-  border-top-right-radius: ${({ isEndDate }) => (isEndDate ? '50%' : '')};
-  border-bottom-right-radius: ${({ isEndDate }) => (isEndDate ? '50%' : '')};  
+  border-top-left-radius: ${({ isStartDate }) => (isStartDate ? '6px' : '')};
+  border-bottom-left-radius: ${({ isStartDate }) => (isStartDate ? '6px' : '')};
+  border-top-right-radius: ${({ isEndDate }) => (isEndDate ? '6px' : '')};
+  border-bottom-right-radius: ${({ isEndDate }) => (isEndDate ? '6px' : '')};  
   font-weight: ${({ isToday }) => (isToday ? '900' : '')};
   color: ${({ isPast }) => (isPast ? '#A7A7A7' : '')};  
   border: 1px solid transparent;
   box-sizing: border-box;
   position: relative;
 
+  &::after {
+    content: ${({ isToday }) => (isToday ? "'오늘'" : "''")};    
+    position: absolute;
+    top: -1.5px;    
+    left: 0;
+    font-size: 0.7rem;
+    text-align: center;
+    font-weight: 400;
+    width: 100%;
+    height: 100%;
+  }
+
   &:hover {
-    border-color: #d3d3d3;
+    font-weight: 900;
   }
 `;
 

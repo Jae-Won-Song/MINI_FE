@@ -1,9 +1,10 @@
-'use client'
+'use client';
 
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import dayjs from 'dayjs';
 import Calendar from '../Calendar/Calendar';
+import Buttons from '../Buttons';
 
 const MainSearchDate: React.FC = () => {
   const [startDate, setStartDate] = useState<dayjs.Dayjs | null>(null);
@@ -32,24 +33,27 @@ const MainSearchDate: React.FC = () => {
     <>
       <DateWrapper>
         <Calendar startDate={startDate} endDate={endDate} onDateClick={handleDateClick} />
-        <LengthOfStayWrapper>
-          <LengthOfStay>
-            <p>체크인</p>
-            <p>{startDate && <SelectedDate>{startDate.format('YYYY년 M월 D일')}</SelectedDate>}</p>
-          </LengthOfStay>
-          <LengthOfStay>
-            <p>체크아웃</p>
-            <p>{endDate && <SelectedDate>{endDate.format('YYYY년 M월 D일')}</SelectedDate>}</p>
-          </LengthOfStay>
-        </LengthOfStayWrapper>
-        <TotalNightsWrapper>
-          <TotalNights>숙박일 수</TotalNights>
-          {startDate && endDate && (            
-            <TotalNights>
-              {calculateNights() === 0 ? '당일' : `${calculateNights()}박`}
-            </TotalNights>
-          )}
-        </TotalNightsWrapper>
+        <StayAndNightsWrapper>
+          <LengthOfStayWrapper>
+            <LengthOfStay>
+              <p>체크인</p>
+              <p>{startDate && <SelectedDate>{startDate.format('YYYY년 M월 D일')}</SelectedDate>}</p>
+            </LengthOfStay>
+            <LengthOfStay>
+              <p>체크아웃</p>
+              <p>{endDate && <SelectedDate>{endDate.format('YYYY년 M월 D일')}</SelectedDate>}</p>
+            </LengthOfStay>
+          </LengthOfStayWrapper>
+          <TotalNightsWrapper>
+            <TotalNights>숙박일 수</TotalNights>
+            {startDate && endDate && (            
+              <TotalNights>
+                {calculateNights() === 0 ? '당일' : `${calculateNights()}박`}
+              </TotalNights>
+            )}
+          </TotalNightsWrapper>
+          </StayAndNightsWrapper>
+        <Buttons label='확인' fullWidth={false} fullHeight={false}/>
       </DateWrapper>
     </>
   );
@@ -61,8 +65,14 @@ const DateWrapper = styled.div`
   border-radius: 6px;
   padding: 45px;
   display: flex;
-  flex-direction: column;  
+  flex-direction: column;
   margin: auto;
+  align-items: center;
+`;
+
+const StayAndNightsWrapper = styled.div`  
+  width: 100%;
+  margin-bottom: 25px;
 `;
 
 const LengthOfStayWrapper = styled.div`  
@@ -97,7 +107,7 @@ const TotalNightsWrapper = styled.div`
   justify-content: space-between;  
   width: 24%;
   padding-bottom: 2px;
-  border-bottom: 1px solid;
+  border-bottom: 1px solid;  
 `
 const TotalNights = styled.p`  
   margin-top: 10px;
