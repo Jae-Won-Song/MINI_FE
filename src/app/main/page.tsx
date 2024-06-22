@@ -16,9 +16,9 @@ const page = () => {
     <>
       {/* <Navbar /> */}
       {/* <MainBanner /> */}
-      {/* <TravelPlaceKeywords /> */}
-      {/* <Footer /> */}
-      {/* <MainSearchRegion/> */}
+      <TravelPlaceKeywords />
+      <Footer />
+      <MainSearchRegion/>
       <MainSearchDate />
       {/* <PaginationButtons/> */}
       {/* <SlideButtons arrowDirection="left" size="smallCircle" active={true} />  필요한 속성 추가 */}

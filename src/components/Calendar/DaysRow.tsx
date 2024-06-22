@@ -16,19 +16,17 @@ const DaysRow: React.FC = () => {
 };
 
 const DaysRowContainer = styled.div`
+  width: 100%;
   display: flex;
-  flex-direction: row;
-  gap: 3px;
-  background-color: #F6D6CD;
+  color: #F85B2B;
+  font-weight: 900;
+  justify-content: space-between;
 `;
 
 const DaysColumn = styled.div`
   flex: 1;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-  font-weight: bold;  
+  padding: 8px 11px;
 `;
 
 export default DaysRow;

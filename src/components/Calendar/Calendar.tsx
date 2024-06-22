@@ -1,16 +1,29 @@
-'use client';
+'use client'
 
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
 import Header from './Header';
 import Month from './DaysMonth';
 
-const Calendar: React.FC = () => {
-  const [currentMonth, setCurrentMonth] = useState(dayjs());
-  const [nextMonth, setNextMonth] = useState(dayjs().add(1, 'month'));
+dayjs.extend(utc);
+dayjs.extend(timezone);
+dayjs.tz.setDefault("Asia/Seoul");
 
-const prevMonth = () => {
+interface CalendarProps {
+  startDate: dayjs.Dayjs | null;
+  endDate: dayjs.Dayjs | null;
+  onDateClick: (date: dayjs.Dayjs) => void;
+}
+
+const Calendar: React.FC<CalendarProps> = ({ startDate, endDate, onDateClick }) => {
+  const [currentMonth, setCurrentMonth] = useState(dayjs().tz());
+  const [nextMonth, setNextMonth] = useState(dayjs().tz().add(1, 'month'));
+  const maxMonth = dayjs().tz().add(24, 'month');
+
+  const prevMonth = () => {
     setCurrentMonth(currentMonth.subtract(1, 'month'));
     setNextMonth(nextMonth.subtract(1, 'month'));
   };
@@ -20,40 +33,43 @@ const prevMonth = () => {
     setNextMonth(nextMonth.add(1, 'month'));
   };
 
-  const resetMonth = () => {
-    setCurrentMonth(dayjs());
-    setNextMonth(dayjs().add(1, 'month'));
-  };
-
   return (
     <CalendarContainer>
       <Header
         currentMonth={currentMonth}
         nextMonth={nextMonth}
+        maxMonth={maxMonth}
         prevMonth={prevMonth}
-        nextMonthFunc={nextMonthFunc}
-        resetMonth={resetMonth}
+        nextMonthFunc={nextMonthFunc}        
       />
       <MonthsContainer>
-        <Month month={currentMonth} />
-        <Month month={nextMonth} />
+        <Month 
+          month={currentMonth} 
+          startDate={startDate} 
+          endDate={endDate} 
+          onDateClick={onDateClick} 
+        />
+        <Month 
+          month={nextMonth} 
+          startDate={startDate} 
+          endDate={endDate} 
+          onDateClick={onDateClick} 
+        />
       </MonthsContainer>
     </CalendarContainer>
   );
 };
 
 const CalendarContainer = styled.div`
+  height: 305px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.85rem;
 `;
 
 const MonthsContainer = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 15px;
+  gap: 11px;
   justify-content: center;
 `;
 
