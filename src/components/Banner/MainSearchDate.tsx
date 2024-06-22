@@ -1,17 +1,17 @@
 'use client'
 
-import React, { useState } from 'react'
-import styled from 'styled-components'
-import DatePicker, { registerLocale } from 'react-datepicker'
-import '@/styles/stylesheetsfromdatepicker/datepicker.scss'
-import ko from 'date-fns/locale/ko'
-import dayjs from 'dayjs'
-import 'dayjs/locale/ko'
-import { Locale } from 'date-fns'
-import Calendar from '../Calendar/Calendar'
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import DatePicker, { registerLocale } from 'react-datepicker';
+import '@/styles/stylesheetsfromdatepicker/datepicker.scss';
+import ko from 'date-fns/locale/ko';
+import dayjs from 'dayjs';
+import 'dayjs/locale/ko';
+import { Locale } from 'date-fns';
+import Calendar from '../Calendar/Calendar';
 
-dayjs.locale('ko')
-registerLocale('ko', ko as unknown as Locale)
+dayjs.locale('ko');
+registerLocale('ko', ko as unknown as Locale);
 
 const MainSearchDate = () => {
   const [startDate, setStartDate] = useState(dayjs().toDate());
@@ -36,10 +36,11 @@ const MainSearchDate = () => {
         <DatePickerWrapper>
           <Calendar />
         </DatePickerWrapper>
+      <LengthOfStay>숙박 시작일</LengthOfStay>
       </DateWrapperForStart>
     </>
-  )
-}
+  );
+};
 
 const DateWrapperForStart = styled.div`
   width: 590px;
@@ -47,10 +48,10 @@ const DateWrapperForStart = styled.div`
   border-radius: 6px;
   padding: 45px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-`
+`;
 const DateWrapperForEnd = styled.div`
   width: 590px;
   height: 400px;
@@ -60,7 +61,7 @@ const DateWrapperForEnd = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-`
+`;
 
 const DatePickerWrapper = styled.div`
   display: flex;
@@ -68,11 +69,12 @@ const DatePickerWrapper = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-`
+`;
 
-const Label = styled.label`
-  margin-bottom: 8px;
+const LengthOfStay = styled.div`
+  margin-top: 20px;
+  padding: 8px;
   font-weight: bold;
-`
+`;
 
-export default MainSearchDate
+export default MainSearchDate;
