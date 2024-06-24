@@ -66,7 +66,6 @@ const DateWrapper = styled.div`
   padding: 45px;
   display: flex;
   flex-direction: column;
-  margin: auto;
   align-items: center;
 `;
 
