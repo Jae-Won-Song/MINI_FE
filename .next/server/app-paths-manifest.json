@@ -65,6 +65,8 @@
 >>>>>>> 2fa8992 (-)
 =======
 {
+  "/_not-found/page": "app/_not-found/page.js",
+  "/main/page": "app/main/page.js",
   "/search/page": "app/search/page.js"
 }
 >>>>>>> e335c11 (fix: merge conflict)

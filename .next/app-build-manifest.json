@@ -1,12 +1,27 @@
 {
   "pages": {
 <<<<<<< HEAD
+<<<<<<< HEAD
     "/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/page.css",
       "static/chunks/app/page.js"
 =======
+=======
+    "/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/layout.css",
+      "static/chunks/app/layout.js"
+    ],
+    "/main/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/main/page.css",
+      "static/chunks/app/main/page.js"
+    ],
+>>>>>>> b9a7269 (fix: merge conflict)
     "/search/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -14,9 +29,10 @@
       "static/chunks/app/search/page.js"
 >>>>>>> e335c11 (fix: merge conflict)
     ],
-    "/layout": [
+    "/_not-found/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
+<<<<<<< HEAD
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
 <<<<<<< HEAD
@@ -27,6 +43,9 @@
       "static/chunks/app/auth/register/page.js"
 =======
 >>>>>>> e335c11 (fix: merge conflict)
+=======
+      "static/chunks/app/_not-found/page.js"
+>>>>>>> b9a7269 (fix: merge conflict)
     ]
   }
 }
