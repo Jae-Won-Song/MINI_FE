@@ -14,19 +14,15 @@ const page = () => {
   return (
     <>
       <Navbar />
-<<<<<<< Updated upstream
       <MainBanner />
       <TravelPlaceKeywords />
       <Footer />
-      <MainSearchRegion/>
-=======
-      {/* <MainBanner /> */}
+      <MainSearchRegion />
       <TravelPlaceKeywords />
       <Footer />
       <MainSearchRegion />
->>>>>>> Stashed changes
       <MainSearchDate />
-      <PaginationButtons/>
+      <PaginationButtons />
       <SlideButtons arrowDirection="left" size="smallCircle" active={true} />  필요한 속성 추가
       <SlideButtons arrowDirection="right" size="smallCircle" active={true} />  필요한 속성 추가
       <div>test</div>

@@ -16,14 +16,16 @@ function MainBanner(): React.JSX.Element {
         layout="fill"
         objectFit="cover"
       />
-      <ComponentContainer>        
+      <ComponentContainer>
         <BannerTextWrapper>
-          <p><span>국내 숙박업소</span></p>
+          <p>
+            <span>국내 숙박업소</span>
+          </p>
           <p>정보를</p>
           <p>한눈에!</p>
         </BannerTextWrapper>
-        <MainSearch />        
-      </ComponentContainer>            
+        <MainSearch />
+      </ComponentContainer>
     </BannerWrapper>
   );
 }

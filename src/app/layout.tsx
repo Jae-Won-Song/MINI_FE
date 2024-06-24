@@ -3,6 +3,8 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import '../styles/base/_reset.scss';
 import '../styles/constants/_colors.scss';
+import StyledComponentsRegistry from './lib/registry';
+
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -18,7 +20,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
+    <body className={inter.className}>
+      <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+    </body>
+  </html>
   );
 }
