@@ -3,7 +3,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import Buttons from '../Buttons';
-
+import MainSearchRegion from '@/components/Banner/MainSearchRegion';
+import MainSearchDate from '@/components/Banner/MainSearchDate';
 
 function MainSearch(): React.JSX.Element {
   return (
@@ -30,6 +31,9 @@ function MainSearch(): React.JSX.Element {
           <Buttons label="검색" fullWidth={false} />
         </div>
       </SearchWrapper>
+      
+      <MainSearchRegion />
+      <MainSearchDate />
     </div>
   );
 }

@@ -53,7 +53,7 @@ const MainSearchDate: React.FC = () => {
             )}
           </TotalNightsWrapper>
           </StayAndNightsWrapper>
-        <Buttons label='확인' fullWidth={false} fullHeight={false}/>
+        <Buttons label='기간 확인' fullWidth={false} fullHeight={false}/>
       </DateWrapper>
     </>
   );
@@ -67,6 +67,7 @@ const DateWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: auto;
 `;
 
 const StayAndNightsWrapper = styled.div`  

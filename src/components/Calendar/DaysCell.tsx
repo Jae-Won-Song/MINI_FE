@@ -13,14 +13,14 @@ interface CellProps {
 }
 
 const Cell: React.FC<CellProps> = ({ 
-  isDisabled, 
-  isStartDate, 
-  isEndDate, 
-  isToday, 
-  isPast, 
-  isCurrentMonth, 
+  isDisabled,
+  isStartDate,
+  isEndDate,
+  isToday,
+  isPast,
+  isCurrentMonth,
   isInRange,
-  onClick, 
+  onClick,
   children
 }) => {
   if (!isCurrentMonth) {
@@ -57,13 +57,16 @@ const CellWrapper = styled.div<{
   font-size: 0.9rem;
   height: 37px;  
   cursor: ${({ isPast }) => (isPast ? 'default' : 'pointer')};
-  background-color: ${({ isStartDate, isEndDate, isInRange }) => 
+  background-color: ${({ isStartDate, isEndDate, isInRange }) =>
     isStartDate ? '#f85b2b' : 
     isEndDate ? '#F85B2B' : 
     isInRange ? '#E8E8E8' : ''};
-  color: ${({ isStartDate, isEndDate }) => 
+  color: ${({ isStartDate, isEndDate }) =>
     isStartDate ? '#ffffff' : 
     isEndDate ? '#ffffff' : ''};
+  font-weight: ${({ isStartDate, isEndDate }) =>
+    isStartDate ? '700' : 
+    isEndDate ? '700' : ''};
   border-top-left-radius: ${({ isStartDate }) => (isStartDate ? '6px' : '')};
   border-bottom-left-radius: ${({ isStartDate }) => (isStartDate ? '6px' : '')};
   border-top-right-radius: ${({ isEndDate }) => (isEndDate ? '6px' : '')};
@@ -75,9 +78,9 @@ const CellWrapper = styled.div<{
   position: relative;
 
   &::after {
-    content: ${({ isToday }) => (isToday ? "'오늘'" : "''")};    
+    content: ${({ isToday }) => (isToday ? "'오늘'" : "''")};
     position: absolute;
-    top: -1.5px;    
+    top: -1.5px;
     left: 0;
     font-size: 0.7rem;
     text-align: center;

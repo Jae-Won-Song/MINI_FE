@@ -63,6 +63,7 @@ const RegionWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: auto;
 `
 
 const RegionWithPhotoWrapper = styled.div`
