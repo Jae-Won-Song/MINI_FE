@@ -7,7 +7,6 @@ import mockData from '../app/lib/mockdata.json';
 import PaginationButtons from './PaginationButtons';
 import Categories from './Categories/Categories';
 import EmptyState from './EmptyState';
-import Container from './Container';
 
 interface Hotel {
   name: string;
@@ -37,17 +36,17 @@ const ThemeSearch: React.FC = () => {
   const currentPageData = hotels.slice(startIndex, startIndex + PRODUCTS_PER_PAGE);
 
   return (
-    <Container>
+    <ThemeWrapper>
       <Categories />
       {hotels.length === 0 ? (
         <EmptyState showReset />
       ) : (
         <>
-          <GridContainer>
+          <GridWrapper>
             {currentPageData.map((hotel) => (
               <AccomodationCard key={hotel.name} data={hotel} />
             ))}
-          </GridContainer>
+          </GridWrapper>
           <PaginationButtons
             page={page}
             totalItems={hotels.length}
@@ -56,11 +55,15 @@ const ThemeSearch: React.FC = () => {
           />
         </>
       )}
-    </Container>
+    </ThemeWrapper>
   );
 };
 
-const GridContainer = styled.div`  
+const ThemeWrapper = styled.div`
+  margin: 0 auto;
+`
+
+const GridWrapper = styled.div`  
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -68,14 +71,17 @@ const GridContainer = styled.div`
   padding-top: 50px;
 
   @media (min-width: 1080px) {
+    width: 1000px;
     grid-template-columns: repeat(3, 1fr);
   }
 
   @media (min-width: 1440px) {
+    width: 1300px;
     grid-template-columns: repeat(4, 1fr);
   }
 
   @media (min-width: 1920px) {
+    width: 1500px;
     grid-template-columns: repeat(5, 1fr);
   }
 `;
