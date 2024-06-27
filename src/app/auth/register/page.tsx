@@ -5,6 +5,29 @@ import styled from 'styled-components';
 import Link from 'next/link';
 import Inputs from '../../../components/Inputs';
 import Buttons from '../../../components/Buttons';
+import dayjs from 'dayjs';
+import RegisterBackground from '../../../../public/images/register_background.jpg';
+import Image from 'next/image';
+
+// 	"email": "abc@gmail.com",
+// 	"password": "password",
+// 	"name": "최병준",
+// 	"phoneNumber": "010-1234-5678"
+// }
+
+// {
+// 	"status": 201,
+// 	"message": "Created",
+// 	"data": [
+// 		{
+// 			"id": 1,
+// 			"email": "abc@gmail.com",
+// 			"name": "최병준",
+// 			"phoneNumber": "010-1234-5678"
+// 		}
+// 	]
+// }
+
 
 const RegisterPage: React.FC = function RegisterPage() {
   const validateEmail = (email: string) => {
@@ -53,6 +76,20 @@ const RegisterPage: React.FC = function RegisterPage() {
     }
   };
 
+  const validateBirthdate = (birthdate: string) => {
+    if (birthdate.length !== 8) {
+      return '생년월일 8자리를 모두 적어주세요.';
+    }
+    const birthDateObj = dayjs(birthdate, 'YYYYMMDD');
+    const today = dayjs();
+    const age = today.diff(birthDateObj, 'year');
+
+    if (age < 14) {
+      return '14세 미만은 가입할 수 없습니다.';
+    }
+    return '';
+  };
+
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState('');
   const [password, setPassword] = useState('');
@@ -62,6 +99,8 @@ const RegisterPage: React.FC = function RegisterPage() {
   const [fullName, setFullName] = useState('');
   const [username, setUsername] = useState('');
   const [birthdate, setBirthdate] = useState('');
+  const [birthdateError, setBirthdateError] = useState('');
+  const [termsChecked, setTermsChecked] = useState(false);
 
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newEmail = event.target.value;
@@ -84,6 +123,17 @@ const RegisterPage: React.FC = function RegisterPage() {
     const newConfirmPassword = event.target.value;
     setConfirmPassword(newConfirmPassword);
     validateConfirmPassword(password, newConfirmPassword);
+  };
+
+  const handleBirthdateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newBirthdate = event.target.value;
+    setBirthdate(newBirthdate);
+    const error = validateBirthdate(newBirthdate);
+    setBirthdateError(error);
+  };
+
+  const handleTermsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setTermsChecked(event.target.checked);
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -119,127 +169,154 @@ const RegisterPage: React.FC = function RegisterPage() {
       !email ||
       !password ||
       !confirmPassword ||
-      !birthdate
+      !birthdate ||
+      !termsChecked
     ) {
       alert('모든 필수 입력란을 채워주세요.');
     } else if (password !== confirmPassword) {
-      alert('비밀번호와 비밀번호 확인이 일치하지 않습니다.');
+      alert('비밀번호와 비밀번호 확인 내용이 일치하지 않습니다.');
+    } else if (birthdateError) {
+      alert(birthdateError);
     } else {
-      // Form submission logic here
-      alert('폼이 제출되었습니다.');
+      alert('회원가입 완료!');
     }
   };
 
   return (
-    <FormContainer>
-      <BigTitle>회원가입</BigTitle>
-      <Section>
-        <SmallTitle>
-          기본 정보
-          <SmallTitleSpan>(필수)</SmallTitleSpan>
-        </SmallTitle>
-        <Inputs
-          label="이름"
-          type="name"
-          placeholder="이름"
-          fullWidth
-          required
-        />
-        <Inputs
-          label="아이디"
-          type="username"
-          placeholder="아이디"
-          fullWidth
-          required
-        />
-        <Inputs
-          label="이메일"
-          type="email"
-          placeholder="이메일"
-          value={email}
-          onChange={handleEmailChange}
-          fullWidth
-          errorMessage={emailError}
-          isValid={emailError === ''}
-          required
-        />
-        <Inputs
-          label="비밀번호"
-          type="password"
-          placeholder="비밀번호"
-          value={password}
-          onChange={handlePasswordChange}
-          fullWidth
-          errorMessage={passwordError}
-          isValid={passwordError === '아주 좋은 비밀번호입니다!'}
-          required
-        />
-        <Inputs
-          label="비밀번호 확인"
-          type="password"
-          placeholder="비밀번호 확인"
-          value={confirmPassword}
-          onChange={handleConfirmPasswordChange}
-          fullWidth
-          errorMessage={confirmPasswordError}
-          isValid={confirmPasswordError === '입력한 비밀번호와 일치합니다!'}
-          required
-        />
-      </Section>
-      <Section>
-        <SmallTitle>
-          생년월일
-          <SmallTitleSpan>(필수)</SmallTitleSpan>
-        </SmallTitle>
-        <Inputs
-          label="생년월일"
-          type="text"
-          placeholder="생년월일 8자리를 입력해 주세요."
-          onKeyDown={handleKeyDown}
-          fullWidth
-          required
-        />
-      </Section>
-      <Section>
-        <SmallTitle>
-          성별
-          <SmallTitleSpan>(선택)</SmallTitleSpan>
-        </SmallTitle>
-        <CheckboxLabel>
-          <div>
-            <input type="radio" name="gender" value="female" /> 여성
-          </div>
-          <div>
-            <input type="radio" name="gender" value="male" /> 남성
-          </div>
-          <div>
-            <input type="radio" name="gender" value="other" /> 애매함
-          </div>
-        </CheckboxLabel>
-      </Section>
-      <Section>
-        <SmallTitle>
-          이용 약관
-          <SmallTitleSpan>(필수)</SmallTitleSpan>
-        </SmallTitle>
-        <Label>
-          <input type="checkbox" />
-          <span>[필수]</span> 이용 약관 및 개인정보 수집 관련 동의
-        </Label>
-        <Label>
-          <input type="checkbox" />
-          <span>[선택]</span> 마케팅 정보 수신 동의
-        </Label>
-      </Section>
-      <Buttons label="등록" onclick={handleSubmit} />
-      <LoginLink>
-        이미 회원가입을 하셨나요? <Link href="/auth/login">로그인</Link>
-      </LoginLink>
-    </FormContainer>
+    <RegisterPageWrapper>
+      <StyledImage 
+        src={RegisterBackground}
+        alt='회원가입 페이지 배경'
+      />
+      <FormContainer>
+        <BigTitle>회원가입</BigTitle>
+        <Section>
+          <SmallTitle>
+            기본 정보
+            <SmallTitleSpan>(필수)</SmallTitleSpan>
+          </SmallTitle>
+          <Inputs
+            label="이름"
+            type="name"
+            placeholder="이름"
+            required
+            value={fullName}
+            onChange={(e) => setFullName(e.target.value)}
+          />
+          <Inputs
+            label="아이디"
+            type="username"
+            placeholder="아이디"
+            required
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <Inputs
+            label="이메일"
+            type="email"
+            placeholder="이메일"
+            value={email}
+            onChange={handleEmailChange}
+            errorMessage={emailError}
+            isValid={emailError === ''}
+            required
+          />
+          <Inputs
+            label="비밀번호"
+            type="password"
+            placeholder="비밀번호"
+            value={password}
+            onChange={handlePasswordChange}
+            errorMessage={passwordError}
+            isValid={passwordError === '아주 좋은 비밀번호입니다!'}
+            required
+          />
+          <Inputs
+            label="비밀번호 확인"
+            type="password"
+            placeholder="비밀번호 확인"
+            value={confirmPassword}
+            onChange={handleConfirmPasswordChange}
+            errorMessage={confirmPasswordError}
+            isValid={confirmPasswordError === '입력한 비밀번호와 일치합니다!'}
+            required
+          />
+        </Section>
+        <Section>
+          <SmallTitle>
+            생년월일
+            <SmallTitleSpan>(필수)</SmallTitleSpan>
+          </SmallTitle>
+          <Inputs
+            label="생년월일(만 14세 미만은 가입할 수 없습니다.)"
+            type="text"
+            placeholder="생년월일 8자리를 입력해 주세요."
+            value={birthdate}
+            onChange={handleBirthdateChange}
+            onKeyDown={handleKeyDown}
+            errorMessage={birthdateError}
+            isValid={birthdateError === ''}
+            required
+          />
+        </Section>
+        <Section>
+          <SmallTitle>
+            이용 약관
+            <SmallTitleSpan>(필수)</SmallTitleSpan>
+          </SmallTitle>
+          <Label>
+            <input
+              type="checkbox" 
+              checked={termsChecked}
+              onChange={handleTermsChange}
+              required
+            />
+            <span>[필수]</span> 이용 약관 및 개인정보 수집 관련 동의
+          </Label>
+          <Label>
+            <input type="checkbox" />
+            <span>[선택]</span> 마케팅 정보 수신 동의
+          </Label>
+        </Section>
+        <Buttons label="등록" onclick={handleSubmit} />
+        <LoginLink>
+          이미 회원가입을 하셨나요? <Link href="/auth/login">로그인</Link>
+        </LoginLink>
+      </FormContainer>
+    </RegisterPageWrapper>
   );
 };
 
 export default RegisterPage;
+
+const RegisterPageWrapper = styled.div`
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+`;
+
+const StyledImage = styled(Image)`
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  filter: blur(3px) opacity(0.6);
+  position: fixed;
+`;
+
+const FormContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 500px;
+  padding: 40px;
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 70px 0;
+`;
 
 const BigTitle = styled.div`
   font-size: 24px;
@@ -257,14 +334,6 @@ const SmallTitleSpan = styled.span`
   color: #767676;
 `;
 
-const FormContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 500px;
-  gap: 20px;
-  margin: 0 auto;
-`;
-
 const Section = styled.div`
   display: flex;
   flex-direction: column;
@@ -276,11 +345,6 @@ const Label = styled.label`
   display: flex;
   align-items: center;
   gap: 8px;
-`;
-
-const CheckboxLabel = styled.label`
-  display: flex;
-  gap: 30px;
 `;
 
 const LoginLink = styled.div`
