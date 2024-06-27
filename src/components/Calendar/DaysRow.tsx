@@ -18,6 +18,7 @@ const DaysRow: React.FC = () => {
 const DaysRowContainer = styled.div`
   width: 100%;
   display: flex;
+  font-size: 1rem;
   color: #F85B2B;
   font-weight: 900;
   justify-content: space-between;

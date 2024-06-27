@@ -18,47 +18,48 @@ import yangdong from '../../public/images/Events/yangdong.jpg';
 
 const EventImage = [
   {
-    label: '북촌',
+    label: '북촌 주변 숙소 추천',
+    overview: '',
     src: buckchon,
     alt: 'Buckhon'
   },
   {
-    label: '주상절리',
+    label: '주상절리 주변 숙소 추천',
     src: jusangjoint,
     alt: 'JusangJoint'
   },
   {
-    label: '대나무숲',
+    label: '대나무숲이 보이는 풍경',
     src: koreabamboo,
     alt: 'Koreabamboo'
   },
   {
-    label: '포항',
+    label: '포항 호미곶 투어 패키지',
     src: pohang,
     alt: 'Pohang'
   },
   {
-    label: '샐러드',
+    label: '퓨전 한식을 만나보세요',
     src: salad,
     alt: 'Salad'
   },
   {
-    label: '수원',
+    label: '수원 역사 · 문화 투어',
     src: suwon,
     alt: 'Suwon'
   },
   {
-    label: '사찰체험',
+    label: '조계종 제공 템플스테이 패키지',
     src: temple,
     alt: 'TempleStay'
   },
   {
-    label: '사찰음식',
+    label: '사찰음식 패키지',
     src: temple2,
     alt: 'TempleFood'
   },
   {
-    label: '양동마을',
+    label: '양동마을 전통문화 체험',
     src: yangdong,
     alt: 'Yangdong'
   },
@@ -118,11 +119,12 @@ const Events = () => {
 };
 
 const SwiperWrapper = styled.div`
-  width: 1500px;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: auto;
+  position: relative;
 `;
 
 const SwiperContainer = styled.div`
@@ -142,7 +144,7 @@ const SwiperContainer = styled.div`
 
 const EventLabels = styled.div`
   position: absolute;
-  width: 200px;
+  width: 250px;
   display: flex;
   justify-content: center;
   top: 45%;
@@ -151,8 +153,10 @@ const EventLabels = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
   padding: 5px 10px;  
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 700;
+  word-break: keep-all;
+  text-align: center;
 `;
 
 export default Events;

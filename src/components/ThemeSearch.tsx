@@ -1,56 +1,80 @@
 'use client'
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import AccomodationCard from './AccomodationCard';
-import mockData from '../app/lib/mockdata.json';
-import PaginationButtons from './PaginationButtons';
+import PaginationButtons from './PaginationButtons copy';
 import Categories from './Categories/Categories';
 import EmptyState from './EmptyState';
+import useSWR from 'swr';
 
-interface Hotel {
-  name: string;
+interface Accomodation {
+  id: number;
+  title: string;
   address: string;
-  rooms: number;
-  contract: string;
+  category: string;
+  image: string;
+  thumbnail: string;
+  price: number;
   latitude: number;
-  longtitude: number;
-  photo: string;
+  longitude: number;
+  likeCount: number;
+  rating: number;
 }
 
-const ThemeSearch: React.FC = () => {
-  const [hotels, setHotels] = useState<Hotel[]>([]);
-  const [page, setPage] = useState(1);
-  const PRODUCTS_PER_PAGE = 15;
+interface APIResponse {
+  resultCode: number;
+  resultMessage: string;
+  data: {
+    totalElements: number;
+    totalPages: number;
+    size: number;
+    currentPage: number;
+    content: Accomodation[];
+  };
+}
 
-  useEffect(() => {
-    // 실제 데이터 로드
-    setHotels(mockData);
-  }, []);
+const fetcher = (url: string) => fetch(url).then(res => res.json());
+
+const ThemeSearch: React.FC = () => {
+  const [page, setPage] = useState(1);
+
+  const { data, error } = useSWR<APIResponse>(`https://yusuengdo.ddns.net/open-api/accommodation?page=${page}`, fetcher);
+  console.log('Accomodation Data', data)
+
+// 가져올 수 있는 데이터의 페이지 수 계산해서 페이지네이션에 반영하는 방법 알아보기
+  // const totalPages = Math.ceil(data.totalElements / data.size);
+  // console.log('totalPages', totalPages)
+  // 모든 데이터를 가져와서 숙박업소 종류별로 볼 수 있게 해야 함.
 
   const handlePageChange = (newPage: number) => {
     setPage(newPage);
   };
 
-  const startIndex = (page - 1) * PRODUCTS_PER_PAGE;
-  const currentPageData = hotels.slice(startIndex, startIndex + PRODUCTS_PER_PAGE);
+  if (error) return <div>Failed to load</div>;
+  if (!data) return <div>Loading...</div>;
+
+  // data.data가 undefined일 때를 대비해 기본값 설정. 이때는 '데이터 불러오기 실패' 문구만 출력되게 해야 함.
+  // 필터링했을 경우에만, 필터에 해당되는 데이터가 없으면 버튼이 EmptyState가 출력되게 함.
+  // 기본값은 전체 보기. 새로고침을 하면 기본값인 전체보기 필터링이 적용된다.
+  const { content: accomodations = [], totalElements = 0 } = data.data || {};
 
   return (
     <ThemeWrapper>
       <Categories />
-      {hotels.length === 0 ? (
+      {accomodations.length === 0 ? (
         <EmptyState showReset />
       ) : (
         <>
           <GridWrapper>
-            {currentPageData.map((hotel) => (
-              <AccomodationCard key={hotel.name} data={hotel} />
+            {accomodations.map((accomodation) => (
+              <AccomodationCard key={accomodation.id} data={accomodation} />
             ))}
           </GridWrapper>
           <PaginationButtons
             page={page}
-            totalItems={hotels.length}
-            perPage={PRODUCTS_PER_PAGE}
+            totalItems={totalElements}
+            perPage={data.data.size}
             onPageChange={handlePageChange}
           />
         </>
@@ -59,30 +83,19 @@ const ThemeSearch: React.FC = () => {
   );
 };
 
+
 const ThemeWrapper = styled.div`
   margin: 0 auto;
 `
 
 const GridWrapper = styled.div`  
-  margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
-  padding-top: 50px;
+  padding-top: 30px;
 
   @media (min-width: 1080px) {
-    width: 1000px;
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  @media (min-width: 1440px) {
-    width: 1300px;
     grid-template-columns: repeat(4, 1fr);
-  }
-
-  @media (min-width: 1920px) {
-    width: 1500px;
-    grid-template-columns: repeat(5, 1fr);
   }
 `;
 

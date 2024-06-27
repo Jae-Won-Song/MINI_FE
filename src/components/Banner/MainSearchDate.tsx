@@ -6,7 +6,11 @@ import dayjs from 'dayjs';
 import Calendar from '../Calendar/Calendar';
 import Buttons from '../Buttons';
 
-const MainSearchDate: React.FC = () => {
+interface MainSearchDateProps {
+  onConfirm: () => void;
+}
+
+const MainSearchDate: React.FC<MainSearchDateProps> = ({ onConfirm }) => {
   const [startDate, setStartDate] = useState<dayjs.Dayjs | null>(null);
   const [endDate, setEndDate] = useState<dayjs.Dayjs | null>(null);
 
@@ -29,45 +33,52 @@ const MainSearchDate: React.FC = () => {
     return 0;
   };
 
-  return (
-    <>
-      <DateWrapper>
-        <Calendar startDate={startDate} endDate={endDate} onDateClick={handleDateClick} />
-        <StayAndNightsWrapper>
-          <LengthOfStayWrapper>
-            <LengthOfStay>
-              <p>체크인</p>
-              <p>{startDate && <SelectedDate>{startDate.format('YYYY년 M월 D일')}</SelectedDate>}</p>
-            </LengthOfStay>
-            <LengthOfStay>
-              <p>체크아웃</p>
-              <p>{endDate && <SelectedDate>{endDate.format('YYYY년 M월 D일')}</SelectedDate>}</p>
-            </LengthOfStay>
-          </LengthOfStayWrapper>
-          <TotalNightsWrapper>
-            <TotalNights>숙박일 수</TotalNights>
-            {startDate && endDate && (            
-              <TotalNights>
-                {calculateNights() === 0 ? '당일' : `${calculateNights()}박`}
-              </TotalNights>
-            )}
-          </TotalNightsWrapper>
-          </StayAndNightsWrapper>
-        <Buttons label='기간 확인' fullWidth={false} fullHeight={false}/>
-      </DateWrapper>
-    </>
+  const handleWrapperClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+  };
+
+  return (   
+    <DateWrapper onClick={handleWrapperClick}>
+      <Calendar startDate={startDate} endDate={endDate} onDateClick={handleDateClick} />
+      <StayAndNightsWrapper>
+        <LengthOfStayWrapper>
+          <LengthOfStay>
+            <p>체크인</p>
+            <p>{startDate && <SelectedDate>{startDate.format('YYYY년 M월 D일')}</SelectedDate>}</p>
+          </LengthOfStay>
+          <LengthOfStay>
+            <p>체크아웃</p>
+            <p>{endDate && <SelectedDate>{endDate.format('YYYY년 M월 D일')}</SelectedDate>}</p>
+          </LengthOfStay>
+        </LengthOfStayWrapper>
+        <TotalNightsWrapper>
+          <TotalNights>숙박일 수</TotalNights>
+          {startDate && endDate && (            
+            <TotalNights style={{fontSize: '1rem'}}>
+              {calculateNights() === 0 ? '당일' : `${calculateNights()}박`}
+            </TotalNights>
+          )}
+        </TotalNightsWrapper>
+      </StayAndNightsWrapper>
+      <Buttons label='기간 확인' fullWidth={false} fullHeight={false} onClick={onConfirm}/>
+    </DateWrapper>
   );
 };
 
 const DateWrapper = styled.div`  
   width: 590px;
   box-shadow: 4px 4px 5px 5px rgba(0, 0, 0, 0.05);
+  background-color: #F7F7F7;
   border-radius: 6px;
   padding: 45px;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: auto;
+  position: absolute;
+  top: 70px;
+  right: 0;
+  z-index: 100;
 `;
 
 const StayAndNightsWrapper = styled.div`  
@@ -81,7 +92,8 @@ const LengthOfStayWrapper = styled.div`
   flex-direction: row;
   gap: 25px;
   align-items: center;
-`
+`;
+
 const LengthOfStay = styled.div`
   width: 40%;
   padding-bottom: 2px;
@@ -90,6 +102,9 @@ const LengthOfStay = styled.div`
   flex-direction: row;  
   justify-content: space-between;
   border-bottom: 1px solid;  
+  p {
+    font-size: 1rem;
+  }
 `;
 
 const SelectedDate = styled.div`
@@ -107,12 +122,16 @@ const TotalNightsWrapper = styled.div`
   justify-content: space-between;  
   width: 24%;
   padding-bottom: 2px;
-  border-bottom: 1px solid;  
-`
+  border-bottom: 1px solid #111111; 
+  font-size: 1rem; 
+`;
+
 const TotalNights = styled.p`  
   margin-top: 10px;
   font-weight: 700;  
+  font-size: 1rem;
   &:first-child {
+    font-size: 1rem;
     width: fit-content;
     font-weight: 400;
   }

@@ -13,7 +13,7 @@ const popularKeywords = [
 
 const TravelPlaceKeywords = () => {
   return (
-    <>
+    <TravelPlaceKeywordsWrapper>
       <KeywordsWrapper>    
         <p>국내 여행지</p>
         <RegionWithTextWrapper>
@@ -30,19 +30,25 @@ const TravelPlaceKeywords = () => {
           ))}
         </RegionWithTextWrapper>
       </KeywordsWrapper>
-    </>
+    </TravelPlaceKeywordsWrapper>
   )
 }
 
-const KeywordsWrapper = styled.div`
-  width: 1500px;
+const TravelPlaceKeywordsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+`
+
+const KeywordsWrapper = styled.div`  
+  width: 100%;
   margin: auto;
   display: flex;
   flex-direction: column;  
   p {
     font-size: 1.5rem;
     font-weight: 700;
-    margin-bottom: 20px;    
+    margin-bottom: 20px;
   }
 `
 
@@ -52,8 +58,7 @@ const RegionWithTextWrapper = styled.div`
   border-radius: 6px;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 18px;
-  margin-bottom: 62px;
+  gap: 18px;  
 `
 
 const StyledLink = styled(Link)`  

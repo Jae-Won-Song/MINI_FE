@@ -24,6 +24,7 @@ const StyledLink = styled(Link)<{ selected: boolean }>`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 110px;
   gap: 0.5rem;
   padding: 0.75rem;
   border-bottom: 2px solid;

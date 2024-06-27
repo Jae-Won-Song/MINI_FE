@@ -1,40 +1,60 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Buttons from '../Buttons';
 import MainSearchRegion from '@/components/Banner/MainSearchRegion';
 import MainSearchDate from '@/components/Banner/MainSearchDate';
 
 function MainSearch(): React.JSX.Element {
+  const [isRegionOpen, setIsRegionOpen] = useState(false);
+  const [isDateOpen, setIsDateOpen] = useState(false);
+
+  const toggleRegion = () => {
+    setIsRegionOpen(!isRegionOpen);
+    setIsDateOpen(false); // Close date picker if open
+  };
+
+  const toggleDate = () => {
+    setIsDateOpen(!isDateOpen);
+    setIsRegionOpen(false); // Close region picker if open
+  };
+
+  const closeDate = () => {
+    setIsDateOpen(false);
+  };
+
+  const handleWrapperClick = (e: React.MouseEvent) => {
+    e.stopPropagation(); // Prevent click from closing the picker
+  };
+
   return (
-    <div>
-      <SearchWrapper>
-        <SearchTitle>검색하기</SearchTitle>
-        <SearchElementsWrapper>
-          <p>지역</p>
-          <SelectorWrapper><p>지역 선택하기</p></SelectorWrapper>
-        </SearchElementsWrapper>
-        <SearchElementsWrapper>
-          <p>인원</p>
-          <SelectorWrapper><p>인원수 선택하기</p></SelectorWrapper>
-        </SearchElementsWrapper>
-        <SearchElementsWrapper>
-          <p>날짜</p>
-          <SelectorWrapper>
-            <SelectorDate>체크인</SelectorDate>
+    <SearchWrapper onClick={handleWrapperClick}>
+      <SearchTitle>검색하기</SearchTitle>
+      <SearchElementsWrapper>
+        <p>지역</p>
+        <SelectorWrapper onClick={toggleRegion}>
+          <p>지역 선택하기</p>
+        </SelectorWrapper>
+        {isRegionOpen && <MainSearchRegion />}
+      </SearchElementsWrapper>
+      <SearchElementsWrapper>
+        <p>인원</p>
+        <SelectorWrapper><p>인원수 선택하기</p></SelectorWrapper>
+      </SearchElementsWrapper>
+      <SearchElementsWrapper>
+        <p>날짜</p>
+        <SelectorWrapper onClick={toggleDate}>
+          <SelectorDate>체크인</SelectorDate>
             <p style={{textAlign: 'center'}}>~</p>
-            <SelectorDate>체크아웃</SelectorDate>
-          </SelectorWrapper>
-        </SearchElementsWrapper>
-        <div style={{display: 'flex', justifyContent: 'center'}}>
-          <Buttons label="검색" fullWidth={false} />
-        </div>
-      </SearchWrapper>
-      
-      <MainSearchRegion />
-      <MainSearchDate />
-    </div>
+          <SelectorDate>체크아웃</SelectorDate>
+          {isDateOpen && <MainSearchDate onConfirm={closeDate} />}
+        </SelectorWrapper>
+      </SearchElementsWrapper>
+      <div style={{display: 'flex', justifyContent: 'center'}}>
+        <Buttons label="검색" fullWidth={false} />
+      </div>
+    </SearchWrapper>
   );
 }
 
@@ -43,6 +63,9 @@ const SearchWrapper = styled.div`
   min-width: 500px;
   padding: 40px;
   background: rgba(255, 255, 255, 0.65);  
+  position: relative;
+  z-index: 20;
+  overflow: visible;
   @media only screen and (max-width: 1440px) {
     width: 600px;
     padding: 30px;
@@ -69,6 +92,8 @@ const SearchElementsWrapper = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  position: relative;
+
   @media only screen and (max-width: 1440px) {
     padding-bottom: 25px;
   }

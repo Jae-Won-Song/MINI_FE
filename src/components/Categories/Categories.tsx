@@ -2,7 +2,7 @@
 
 import { useSearchParams } from 'next/navigation';
 import React from 'react';
-import { FaHotel, FaSkiing } from 'react-icons/fa';
+import { FaHotel } from 'react-icons/fa';
 import {
   GiHouse,
   GiBlockHouse,
@@ -33,43 +33,43 @@ export const categories = [
   },
   {
     label: '관광호텔',
-    path: 'hotel',
+    path: '호텔',
     icon: FaHotel,
     descriptioin: '관광호텔 카테고리입니다.',
   },
   {
     label: '콘도미니엄',
-    path: 'condominium',
+    path: '콘도미니엄',
     icon: BsBuildingsFill,
     descriptioin: '콘도미니엄 카테고리입니다.',
   },
   {
     label: '유스호스텔',
-    path: 'youth-hostel',
+    path: '유스호스텔',
     icon: MdOutlineVilla,
     descriptioin: '유스호스텔 카테고리입니다.',
   },
   {
     label: '펜션',
-    path: 'pension',
+    path: '펜션',
     icon: GiBlockHouse,
     descriptioin: '펜션 카테고리입니다.',
   },
   {
     label: '모텔',
-    path: 'motel',
+    path: '모텔',
     icon: PiBuildingApartmentFill,
     descriptioin: '모텔 카테고리입니다.',
   },
   {
-    label: '민박',
-    path: 'bed-and-breakfast',
+    label: '리조트',
+    path: '리조트',
     icon: GiHouse,
-    descriptioin: '민박 카테고리입니다.',
+    descriptioin: '리조트 카테고리입니다.',
   },
   {
     label: '게스트하우스',
-    path: 'guest-house',
+    path: '게스트하우스',
     icon: GiFamilyHouse,
     descriptioin: '게스트하우스 카테고리입니다.',
   },
@@ -80,14 +80,14 @@ export const categories = [
     descriptioin: '홈스테이 카테고리입니다.',
   },
   {
-    label: '서비스드레지던스',
+    label: '레지던스',
     path: 'serviced-residence',
     icon: GiCoffeeCup,
-    descriptioin: '서비스드레지던스 카테고리입니다.',
+    descriptioin: '레지던스 카테고리입니다.',
   },
   {
     label: '한옥',
-    path: 'hanok',
+    path: '한옥',
     icon: HanokIcon,
     descriptioin: '한옥 카테고리입니다.',
   },
@@ -113,13 +113,11 @@ const Categories = () => {
   );
 };
 
-const CategoryWrapper = styled.div`
-  width: 1500px;
+const CategoryWrapper = styled.div`  
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
-  padding-top: 1rem;
+  justify-content: space-between;  
   overflow-x: auto;
   margin: auto;
 `;

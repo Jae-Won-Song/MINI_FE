@@ -58,13 +58,18 @@ const MainSearchRegion = () => {
 const RegionWrapper = styled.div`
   width: 590px;
   box-shadow: 4px 4px 5px 5px rgba(0, 0, 0, 0.05);
+  background-color: #F7F7F7;
   border-radius: 6px;
   padding: 45px;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: auto;
-`
+  position: absolute;
+  top: 70px;
+  right: 0;
+  z-index: 100;
+`;
 
 const RegionWithPhotoWrapper = styled.div`
   display: grid;
@@ -89,6 +94,11 @@ const ImageWrapper = styled.div`
   text-align: center;
   padding: 5px;
   transition: 0.2s;
+
+  p {
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
   
   &:hover {    
     background-color: #cccccc;
