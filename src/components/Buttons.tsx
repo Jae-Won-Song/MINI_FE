@@ -9,6 +9,7 @@ interface ButtonProps {
   disabled?: boolean;
   fullWidth?: boolean;
   fullHeight?: boolean;
+  buttonColor?: 'default' | 'black' | 'gray';
 }
 
 // fullWidth는 기본적으로 양옆을 가득 채웁니다. 
@@ -21,6 +22,7 @@ const Buttons: React.FC<ButtonProps> = function Buttons({
   disabled,
   fullWidth = true,
   fullHeight = true,
+  buttonColor = 'default',
 }) {
   return (
     <StyledButton
@@ -29,13 +31,14 @@ const Buttons: React.FC<ButtonProps> = function Buttons({
       onClick={onclick}
       fullWidth={fullWidth}
       fullHeight={fullHeight}
+      buttonColor={buttonColor}
       >      
       {label}
     </StyledButton>
   );
 };
 
-const StyledButton = styled.button<{ fullWidth: boolean, fullHeight: boolean }>`
+const StyledButton = styled.button<{ fullWidth: boolean, fullHeight: boolean, buttonColor: 'default' | 'black' | 'gray' }>`
   /* 기본버튼 */
   display: flex;
   flex-direction: row;
@@ -44,9 +47,15 @@ const StyledButton = styled.button<{ fullWidth: boolean, fullHeight: boolean }>`
   padding: 16px;
   gap: 10px;
   width: ${({ fullWidth }) => (fullWidth ? 'auto' : '128px')};
-  height: ${({ fullHeight }) => (fullHeight ? '56px' : '40px')};  
-  background: #f85b2b;
-  color: #ffffff;
+  height: ${({ fullHeight }) => (fullHeight ? '56px' : '40px')};
+  background: ${({ buttonColor }) =>
+    buttonColor === 'black' ? '#111111' :
+    buttonColor === 'gray' ? '#D3D3D3' :
+    '#f85b2b'};
+  color: ${({ buttonColor }) =>
+    buttonColor === 'black' ? '#ffffff' :
+    buttonColor === 'gray' ? '#111111' :
+    '#ffffff'};
   border-radius: 6px;
   border: none;
   font-size: 1.1rem;
