@@ -1,13 +1,22 @@
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
   "/_not-found/page": "app/_not-found/page.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",
   "/search/page": "app/search/page.js"
 =======
+=======
+>>>>>>> 61603be (fix: merge confilct)
 <<<<<<< HEAD
 =======
   "/search/page": "app/search/page.js",
 >>>>>>> 7bb81dc (feat: add map marker)
   "/page": "app/page.js"
+<<<<<<< HEAD
 >>>>>>> 9765429 (fix: merge confilct)
+=======
+=======
+  "/search/page": "app/search/page.js"
+>>>>>>> 14227b1 (feat: add map marker)
+>>>>>>> 61603be (fix: merge confilct)
 }

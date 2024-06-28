@@ -22,12 +22,15 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
 <<<<<<< HEAD
+<<<<<<< HEAD
     ],
     "/_not-found/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/_not-found/page.js"
 =======
+=======
+>>>>>>> 61603be (fix: merge confilct)
 <<<<<<< HEAD
 =======
     ],
@@ -37,7 +40,12 @@
       "static/css/app/page.css",
       "static/chunks/app/page.js"
 >>>>>>> 7bb81dc (feat: add map marker)
+<<<<<<< HEAD
 >>>>>>> 9765429 (fix: merge confilct)
+=======
+=======
+>>>>>>> 14227b1 (feat: add map marker)
+>>>>>>> 61603be (fix: merge confilct)
     ]
   }
 }
