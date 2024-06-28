@@ -11,16 +11,21 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
-    "/placedetail/page": [
+    "/complete/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/placedetail/page.css",
-      "static/chunks/app/placedetail/page.js"
+      "static/chunks/app/complete/page.js"
     ],
     "/detail/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/detail/page.js"
+    ],
+    "/placedetail/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/placedetail/page.css",
+      "static/chunks/app/placedetail/page.js"
     ]
   }
 }
