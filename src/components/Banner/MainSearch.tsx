@@ -42,10 +42,6 @@ function MainSearch(): React.JSX.Element {
     setIsDateOpen(false); // 날짜 선택기 닫기
   };
 
-  const closeDate = () => {
-    setIsDateOpen(false);
-  };
-
   const handleWrapperClick = (e: React.MouseEvent) => {
     e.stopPropagation(); // 클릭이 선택기를 닫지 않도록 함
   };
@@ -67,6 +63,11 @@ function MainSearch(): React.JSX.Element {
       setIsPeopleOpen(false);
       setIsDateOpen(false);
     }
+  };
+
+  const handlePeopleConfirm = (peopleCount) => {
+    setSelectedPeople(`${peopleCount}`);
+    setIsPeopleOpen(false);
   };
 
   useEffect(() => {
@@ -98,9 +99,9 @@ function MainSearch(): React.JSX.Element {
       <SearchElementsWrapper>
         <p>인원</p>
         <SelectorWrapper onClick={togglePeople}>
-          <p>인원수 선택하기</p>
+          <p>{selectedPeople || '인원 수 선택하기'}</p>
         </SelectorWrapper>
-        {isPeopleOpen && <MainSearchPeopleNumber />}
+        {isPeopleOpen && <MainSearchPeopleNumber onConfirm={handlePeopleConfirm} />}
       </SearchElementsWrapper>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <Buttons label="검색" fullWidth={false} />
