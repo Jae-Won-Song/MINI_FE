@@ -7,7 +7,7 @@ import Calendar from '../Calendar/Calendar';
 import Buttons from '../Buttons';
 
 interface MainSearchDateProps {
-  onConfirm: () => void;
+  onConfirm: (startDate: dayjs.Dayjs | null, endDate: dayjs.Dayjs | null) => void;
 }
 
 const MainSearchDate: React.FC<MainSearchDateProps> = ({ onConfirm }) => {
@@ -37,6 +37,10 @@ const MainSearchDate: React.FC<MainSearchDateProps> = ({ onConfirm }) => {
     e.stopPropagation();
   };
 
+  const handleConfirmClick = () => {
+    onConfirm(startDate, endDate);
+  };
+
   return (   
     <DateWrapper onClick={handleWrapperClick}>
       <Calendar startDate={startDate} endDate={endDate} onDateClick={handleDateClick} />
@@ -60,7 +64,7 @@ const MainSearchDate: React.FC<MainSearchDateProps> = ({ onConfirm }) => {
           )}
         </TotalNightsWrapper>
       </StayAndNightsWrapper>
-      <Buttons label='기간 확인' fullWidth={false} fullHeight={false} onClick={onConfirm}/>
+      <Buttons label='기간 확인' fullWidth={false} fullHeight={false} onClick={handleConfirmClick}/>
     </DateWrapper>
   );
 };

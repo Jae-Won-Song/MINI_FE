@@ -1,23 +1,45 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import Buttons from '../Buttons';
+// import { FaUmbrellaBeach } from "react-icons/fa";
+// import { MdPeopleAlt } from "react-icons/md";
+// import { FaRegCalendarAlt } from "react-icons/fa";
 import MainSearchRegion from '@/components/Banner/MainSearchRegion';
 import MainSearchDate from '@/components/Banner/MainSearchDate';
+import MainSearchPeopleNumber from './MainSearchPeopleNumber';
 
+// 아이콘 넣기
 function MainSearch(): React.JSX.Element {
   const [isRegionOpen, setIsRegionOpen] = useState(false);
+  const [selectedRegion, setSelectedRegion] = useState('');
+
+  const [isPeopleOpen, setIsPeopleOpen] = useState(false);
+  const [selectedPeople, setSelectedPeople] = useState('');
+
   const [isDateOpen, setIsDateOpen] = useState(false);
+  const [selectedStartDate, setSelectedStartDate] = useState<dayjs.Dayjs | null>(null);
+  const [selectedEndDate, setSelectedEndDate] = useState<dayjs.Dayjs | null>(null);
+
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
   const toggleRegion = () => {
     setIsRegionOpen(!isRegionOpen);
-    setIsDateOpen(false); // Close date picker if open
+    setIsDateOpen(false); // 날짜 선택기 닫기
+    setIsPeopleOpen(false); // 인원 선택기 닫기
   };
 
   const toggleDate = () => {
     setIsDateOpen(!isDateOpen);
-    setIsRegionOpen(false); // Close region picker if open
+    setIsRegionOpen(false); // 지역 선택기 닫기
+    setIsPeopleOpen(false); // 인원 선택기 닫기
+  };
+
+  const togglePeople = () => {
+    setIsPeopleOpen(!isPeopleOpen);
+    setIsRegionOpen(false); // 지역 선택기 닫기
+    setIsDateOpen(false); // 날짜 선택기 닫기
   };
 
   const closeDate = () => {
@@ -25,33 +47,62 @@ function MainSearch(): React.JSX.Element {
   };
 
   const handleWrapperClick = (e: React.MouseEvent) => {
-    e.stopPropagation(); // Prevent click from closing the picker
+    e.stopPropagation(); // 클릭이 선택기를 닫지 않도록 함
   };
 
+  const handleRegionSelect = (region: string) => {
+    setSelectedRegion(region); // 선택된 지역 상태 업데이트
+    setIsRegionOpen(false); // 선택 후 드롭다운 닫기
+  };
+
+  const handleDateConfirm = (startDate: dayjs.Dayjs | null, endDate: dayjs.Dayjs | null) => {
+    setSelectedStartDate(startDate);
+    setSelectedEndDate(endDate);
+    setIsDateOpen(false);
+  };
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) {
+      setIsRegionOpen(false);
+      setIsPeopleOpen(false);
+      setIsDateOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
-    <SearchWrapper onClick={handleWrapperClick}>
+    <SearchWrapper ref={wrapperRef} onClick={handleWrapperClick}>
       <SearchTitle>검색하기</SearchTitle>
       <SearchElementsWrapper>
         <p>지역</p>
         <SelectorWrapper onClick={toggleRegion}>
-          <p>지역 선택하기</p>
+          <p>{selectedRegion || '지역 선택하기'}</p>
         </SelectorWrapper>
-        {isRegionOpen && <MainSearchRegion />}
-      </SearchElementsWrapper>
-      <SearchElementsWrapper>
-        <p>인원</p>
-        <SelectorWrapper><p>인원수 선택하기</p></SelectorWrapper>
+        {isRegionOpen && <MainSearchRegion onSelectRegion={handleRegionSelect} />}
       </SearchElementsWrapper>
       <SearchElementsWrapper>
         <p>날짜</p>
         <SelectorWrapper onClick={toggleDate}>
-          <SelectorDate>체크인</SelectorDate>
-            <p style={{textAlign: 'center'}}>~</p>
-          <SelectorDate>체크아웃</SelectorDate>
-          {isDateOpen && <MainSearchDate onConfirm={closeDate} />}
+          <SelectorDate>{selectedStartDate ? selectedStartDate.format('YYYY년 M월 D일') : '체크인'}</SelectorDate>
+          <p style={{ textAlign: 'center' }}>~</p>
+          <SelectorDate>{selectedEndDate ? selectedEndDate.format('YYYY년 M월 D일') : '체크아웃'}</SelectorDate>
+          {isDateOpen && <MainSearchDate onConfirm={handleDateConfirm} />}
         </SelectorWrapper>
       </SearchElementsWrapper>
-      <div style={{display: 'flex', justifyContent: 'center'}}>
+      <SearchElementsWrapper>
+        <p>인원</p>
+        <SelectorWrapper onClick={togglePeople}>
+          <p>인원수 선택하기</p>
+        </SelectorWrapper>
+        {isPeopleOpen && <MainSearchPeopleNumber />}
+      </SearchElementsWrapper>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
         <Buttons label="검색" fullWidth={false} />
       </div>
     </SearchWrapper>
