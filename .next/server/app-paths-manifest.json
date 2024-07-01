@@ -1,28 +1,4 @@
 {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-  "/_not-found/page": "app/_not-found/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/page": "app/page.js",
   "/search/page": "app/search/page.js"
-=======
-=======
->>>>>>> 61603be (fix: merge confilct)
-<<<<<<< HEAD
-=======
-=======
->>>>>>> bebda03 (fix: fix the pagination)
-  "/search/page": "app/search/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/page": "app/page.js"
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 9765429 (fix: merge confilct)
-=======
-=======
-  "/search/page": "app/search/page.js"
->>>>>>> 14227b1 (feat: add map marker)
->>>>>>> 61603be (fix: merge confilct)
-=======
->>>>>>> bebda03 (fix: fix the pagination)
 }

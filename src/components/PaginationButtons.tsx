@@ -55,7 +55,7 @@ const PaginationButtons: React.FC<PaginationButtonsProps> = ({
           onClick={() => handleClick(i)}
         >
           {i}
-        </PaginationButton>
+        </PaginationButton>,
       );
     }
 

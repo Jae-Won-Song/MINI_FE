@@ -30,7 +30,7 @@
 /******/ 		// Execute the module function
 /******/ 		var threw = true;
 /******/ 		try {
-/******/ 			__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 			__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
 /******/ 			threw = false;
 /******/ 		} finally {
 /******/ 			if(threw) delete __webpack_module_cache__[moduleId];
@@ -47,11 +47,6 @@
 /******/ 	__webpack_require__.m = __webpack_modules__;
 /******/ 	
 /************************************************************************/
-/******/ 	/* webpack/runtime/amd options */
-/******/ 	(() => {
-/******/ 		__webpack_require__.amdO = {};
-/******/ 	})();
-/******/ 	
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
 /******/ 		// getDefaultExport function for compatibility with non-harmony modules
@@ -130,28 +125,7 @@
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-/******/ 		__webpack_require__.h = () => ("862adb68c38669c2")
-=======
-=======
->>>>>>> 61603be (fix: merge confilct)
-<<<<<<< HEAD
-/******/ 		__webpack_require__.h = () => ("c22aa30c9bac0011")
-=======
-/******/ 		__webpack_require__.h = () => ("0099cb3a27a30c2d")
->>>>>>> 7bb81dc (feat: add map marker)
-<<<<<<< HEAD
->>>>>>> 9765429 (fix: merge confilct)
-=======
-=======
-/******/ 		__webpack_require__.h = () => ("1ea6354ff66e57c3")
->>>>>>> 14227b1 (feat: add map marker)
->>>>>>> 61603be (fix: merge confilct)
-=======
-/******/ 		__webpack_require__.h = () => ("2469f7a6917f6e49")
->>>>>>> bebda03 (fix: fix the pagination)
+/******/ 		__webpack_require__.h = () => ("852c361823db176a")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
