@@ -8,6 +8,7 @@ interface ButtonProps {
   onclick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   disabled?: boolean;
   fullWidth?: boolean;
+  fullHeight?: boolean;
 }
 
 // fullWidth는 기본적으로 양옆을 가득 채웁니다.
@@ -19,6 +20,7 @@ const Buttons: React.FC<ButtonProps> = function Buttons({
   onclick,
   disabled,
   fullWidth = true,
+  fullHeight = true,
 }) {
   return (
     <StyledButton
@@ -26,13 +28,18 @@ const Buttons: React.FC<ButtonProps> = function Buttons({
       disabled={disabled}
       onClick={onclick}
       fullWidth={fullWidth}
+<<<<<<< HEAD
     >
+=======
+      fullHeight={fullHeight}
+      >      
+>>>>>>> cd0c691 (perf: 달력 기간 설정 수정, 버튼 높이 추가)
       {label}
     </StyledButton>
   );
 };
 
-const StyledButton = styled.button<{ fullWidth: boolean }>`
+const StyledButton = styled.button<{ fullWidth: boolean, fullHeight: boolean }>`
   /* 기본버튼 */
   display: flex;
   flex-direction: row;
@@ -41,7 +48,7 @@ const StyledButton = styled.button<{ fullWidth: boolean }>`
   padding: 16px;
   gap: 10px;
   width: ${({ fullWidth }) => (fullWidth ? 'auto' : '128px')};
-  height: 56px;
+  height: ${({ fullHeight }) => (fullHeight ? '56px' : '40px')};  
   background: #f85b2b;
   color: #ffffff;
   border-radius: 6px;

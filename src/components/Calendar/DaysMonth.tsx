@@ -66,7 +66,6 @@ const Month: React.FC<MonthProps> = ({ month, startDate, endDate, onDateClick })
 const MonthWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
   position: relative;
 
  &:first-child {
@@ -74,7 +73,7 @@ const MonthWrapper = styled.div`
     content: '';
     position: absolute;    
     height: 92%;
-    right: -5px;
+    right: -6px;
     bottom: 9px;
     border-right: 1px solid #D3D3D3;
   }
