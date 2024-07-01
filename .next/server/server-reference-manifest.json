@@ -1,5 +1,9 @@
 {
   "node": {},
   "edge": {},
+<<<<<<< HEAD
   "encryptionKey": "Cd41OGa6MZ+eldegWUpLQwCDeOdogYU62W1VWdbwY54="
+=======
+  "encryptionKey": "PLAcyAZT/Qbt3c36brigHpSIocU3HvTvH51KxWghQmU="
+>>>>>>> 20a01e5 (feat: Region Selector, Checkin and Checkout Selector)
 }

@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 self.__RSC_SERVER_MANIFEST="{\n  \"node\": {},\n  \"edge\": {},\n  \"encryptionKey\": \"Cd41OGa6MZ+eldegWUpLQwCDeOdogYU62W1VWdbwY54=\"\n}"
+=======
+self.__RSC_SERVER_MANIFEST="{\n  \"node\": {},\n  \"edge\": {},\n  \"encryptionKey\": \"PLAcyAZT/Qbt3c36brigHpSIocU3HvTvH51KxWghQmU=\"\n}"
+>>>>>>> 20a01e5 (feat: Region Selector, Checkin and Checkout Selector)
