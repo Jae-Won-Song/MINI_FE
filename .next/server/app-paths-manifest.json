@@ -1,6 +1,7 @@
 <<<<<<< HEAD
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
   "/_not-found/page": "app/_not-found/page.js",
   "/search/page": "app/search/page.js"
 =======
@@ -12,3 +13,8 @@
 =======
 {}
 >>>>>>> 5050c65 (feat: add slidebutton, paginationbutton)
+=======
+  "/page": "app/page.js",
+  "/main/page": "app/main/page.js"
+}
+>>>>>>> 60c071e (comment: 주석 정리)
