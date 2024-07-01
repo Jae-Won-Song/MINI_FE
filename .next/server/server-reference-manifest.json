@@ -4,6 +4,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   "encryptionKey": "Cd41OGa6MZ+eldegWUpLQwCDeOdogYU62W1VWdbwY54="
 =======
   "encryptionKey": "PLAcyAZT/Qbt3c36brigHpSIocU3HvTvH51KxWghQmU="
@@ -14,4 +15,7 @@
 =======
   "encryptionKey": "qPDvIkLobMlWlpitJrMwCFYxBy/zuXc0gTycwQvf/Mo="
 >>>>>>> 60c071e (comment: 주석 정리)
+=======
+  "encryptionKey": "qPDvIkLobMlWlpitJrMwCFYxBy/zuXc0gTycwQvf/Mo="
+>>>>>>> 5db209a (rename: banner component들 Banner 폴더로 이동.)
 }

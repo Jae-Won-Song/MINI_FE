@@ -1,6 +1,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 self.__RSC_SERVER_MANIFEST="{\n  \"node\": {},\n  \"edge\": {},\n  \"encryptionKey\": \"Cd41OGa6MZ+eldegWUpLQwCDeOdogYU62W1VWdbwY54=\"\n}"
 =======
 self.__RSC_SERVER_MANIFEST="{\n  \"node\": {},\n  \"edge\": {},\n  \"encryptionKey\": \"PLAcyAZT/Qbt3c36brigHpSIocU3HvTvH51KxWghQmU=\"\n}"
@@ -11,3 +12,6 @@ self.__RSC_SERVER_MANIFEST="{\n  \"node\": {},\n  \"edge\": {},\n  \"encryptionK
 =======
 self.__RSC_SERVER_MANIFEST="{\n  \"node\": {},\n  \"edge\": {},\n  \"encryptionKey\": \"qPDvIkLobMlWlpitJrMwCFYxBy/zuXc0gTycwQvf/Mo=\"\n}"
 >>>>>>> 60c071e (comment: 주석 정리)
+=======
+self.__RSC_SERVER_MANIFEST="{\n  \"node\": {},\n  \"edge\": {},\n  \"encryptionKey\": \"qPDvIkLobMlWlpitJrMwCFYxBy/zuXc0gTycwQvf/Mo=\"\n}"
+>>>>>>> 5db209a (rename: banner component들 Banner 폴더로 이동.)

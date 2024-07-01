@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 {
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -24,3 +25,10 @@
   "/favicon.ico/route": "app/favicon.ico/route.js"
 }
 >>>>>>> b0926d1 (rename: component의 banner 폴더 추가)
+=======
+{
+  "/page": "app/page.js",
+  "/main/page": "app/main/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js"
+}
+>>>>>>> 5db209a (rename: banner component들 Banner 폴더로 이동.)
