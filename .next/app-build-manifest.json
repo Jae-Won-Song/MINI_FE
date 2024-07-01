@@ -1,41 +1,16 @@
 {
-<<<<<<< HEAD
   "pages": {
-<<<<<<< HEAD
-=======
-    "/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/page.js"
-    ],
->>>>>>> 20a01e5 (feat: Region Selector, Checkin and Checkout Selector)
-    "/layout": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/layout.css",
-      "static/chunks/app/layout.js"
-    ],
-<<<<<<< HEAD
-    "/search/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/search/page.css",
-      "static/chunks/app/search/page.js"
-    ],
-    "/_not-found/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/_not-found/page.js"
-=======
     "/main/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/main/page.css",
       "static/chunks/app/main/page.js"
->>>>>>> 20a01e5 (feat: Region Selector, Checkin and Checkout Selector)
+    ],
+    "/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/layout.css",
+      "static/chunks/app/layout.js"
     ]
   }
-=======
-  "pages": {}
->>>>>>> 5050c65 (feat: add slidebutton, paginationbutton)
 }
