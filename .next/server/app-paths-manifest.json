@@ -5,6 +5,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   "/_not-found/page": "app/_not-found/page.js",
   "/search/page": "app/search/page.js"
 =======
@@ -50,3 +51,8 @@
   "/favicon.ico/route": "app/favicon.ico/route.js"
 }
 >>>>>>> 39b333c (gitignore test)
+=======
+  "/page": "app/page.js",
+  "/auth/register/page": "app/auth/register/page.js"
+}
+>>>>>>> b7f20e2 (fix: layout 출력 오류 수정)

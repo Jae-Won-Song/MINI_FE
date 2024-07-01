@@ -14,7 +14,10 @@ const page = () => {
   return (
     <>
       <Navbar />
-      {/* <MainBanner /> */}
+      <MainBanner />
+      <TravelPlaceKeywords />
+      <Footer />
+      <MainSearchRegion />
       <TravelPlaceKeywords />
       <Footer />
       <MainSearchRegion />

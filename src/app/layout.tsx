@@ -4,6 +4,7 @@ import './globals.css';
 import '../styles/base/_reset.scss';
 import '../styles/constants/_colors.scss';
 import Script from 'next/script';
+import StyledComponentsRegistry from './lib/registry';
 
 const inter = Inter({ subsets: ['latin'] });
 

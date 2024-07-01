@@ -1,13 +1,27 @@
 import React from 'react';
-import SlideButton from '../components/SlideButtons';
-import PaginationButtons from '../components/PaginationButtons';
+import Navbar from '@/components/Navbar/Navbar';
+import Footer from '@/components/Footer';
+import MainBanner from '@/components/Banner/MainBanner';
+import MainSearchRegion from '@/components/Banner/MainSearchRegion';
+import MainSearchDate from '@/components/Banner/MainSearchDate';
+import PaginationButtons from '@/components/PaginationButtons';
+import SlideButtons from '@/components/SlideButtons';
+import TravelPlaceKeywords from '@/components/TravelPlaceKeywords';
 
-export default function Home() {
+const Home: React.FC = () => {
   return (
     <div>
-      <SlideButton arrowDirection="left" active={false} size="square" />
-      <SlideButton arrowDirection="right" active={true} size="smallCircle" />
+      <Navbar />
+      <MainBanner />
+      <TravelPlaceKeywords />
+      <Footer />
+      <MainSearchRegion />
+      <MainSearchDate />
       <PaginationButtons />
+      <SlideButtons arrowDirection="left" size="smallCircle" active={true} />
+      <SlideButtons arrowDirection="right" size="smallCircle" active={true} />
     </div>
   );
-}
+};
+
+export default Home;
