@@ -35,17 +35,21 @@ const Buttons: React.FC<ButtonProps> = function Buttons({
 =======
       fullHeight={fullHeight}
       buttonColor={buttonColor}
-      >      
->>>>>>> cd0c691 (perf: 달력 기간 설정 수정, 버튼 높이 추가)
+    >
       {label}
     </StyledButton>
   );
 };
 
-const StyledButton = styled.button<{ fullWidth: boolean, fullHeight: boolean, buttonColor: 'default' | 'black' | 'gray' }>`
+const StyledButton = styled.button<{
+  fullWidth: boolean;
+  fullHeight: boolean;
+  buttonColor: 'default' | 'black' | 'gray';
+}>`
   /* 기본버튼 */
   display: flex;
   flex-direction: row;
+  justify-content: center;
   justify-content: center;
   align-items: center;
   padding: 16px;
@@ -53,13 +57,17 @@ const StyledButton = styled.button<{ fullWidth: boolean, fullHeight: boolean, bu
   width: ${({ fullWidth }) => (fullWidth ? 'auto' : '128px')};
   height: ${({ fullHeight }) => (fullHeight ? '56px' : '40px')};
   background: ${({ buttonColor }) =>
-    buttonColor === 'black' ? '#111111' :
-    buttonColor === 'gray' ? '#D3D3D3' :
-    '#f85b2b'};
+    buttonColor === 'black'
+      ? '#111111'
+      : buttonColor === 'gray'
+        ? '#D3D3D3'
+        : '#f85b2b'};
   color: ${({ buttonColor }) =>
-    buttonColor === 'black' ? '#ffffff' :
-    buttonColor === 'gray' ? '#111111' :
-    '#ffffff'};
+    buttonColor === 'black'
+      ? '#ffffff'
+      : buttonColor === 'gray'
+        ? '#111111'
+        : '#ffffff'};
   border-radius: 6px;
   border: none;
   font-size: 1.1rem;

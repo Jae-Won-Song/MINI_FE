@@ -1,65 +1,21 @@
 {
   "pages": {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    "/page": [
+    "/search/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/page.css",
-      "static/chunks/app/page.js"
-=======
-=======
-=======
-    "/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/page.js"
+      "static/css/app/search/page.css",
+      "static/chunks/app/search/page.js"
     ],
->>>>>>> 70d35d0 (fix: merge conflict)
     "/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
-<<<<<<< HEAD
-    "/main/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/main/page.css",
-      "static/chunks/app/main/page.js"
-    ],
->>>>>>> b9a7269 (fix: merge conflict)
-=======
->>>>>>> 70d35d0 (fix: merge conflict)
-    "/search/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/search/page.css",
-      "static/chunks/app/search/page.js"
-<<<<<<< HEAD
->>>>>>> e335c11 (fix: merge conflict)
-    ],
     "/_not-found/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-<<<<<<< HEAD
-      "static/css/app/layout.css",
-      "static/chunks/app/layout.js"
-<<<<<<< HEAD
-    ],
-    "/auth/register/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/auth/register/page.js"
-=======
->>>>>>> e335c11 (fix: merge conflict)
-=======
       "static/chunks/app/_not-found/page.js"
->>>>>>> b9a7269 (fix: merge conflict)
-=======
->>>>>>> 70d35d0 (fix: merge conflict)
     ]
   }
 }

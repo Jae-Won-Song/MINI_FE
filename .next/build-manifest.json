@@ -8,14 +8,10 @@
     "static/development/_buildManifest.js",
     "static/development/_ssgManifest.js"
   ],
-<<<<<<< HEAD
-  "rootMainFiles": [],
-=======
   "rootMainFiles": [
     "static/chunks/webpack.js",
     "static/chunks/main-app.js"
   ],
->>>>>>> 70d35d0 (fix: merge conflict)
   "pages": {
     "/_app": []
   },
