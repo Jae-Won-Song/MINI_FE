@@ -20,8 +20,7 @@ function MainBanner(): React.JSX.Element {
         <BannerTextWrapper
           src={bannerText}
           alt="Banner Text"
-          objectFit="cover"
-        />
+        />        
         <MainSearch />
       </ComponentContainer>
     </BannerWrapper>
@@ -31,14 +30,14 @@ function MainBanner(): React.JSX.Element {
 const BannerWrapper = styled.div`
   position: relative;
   width: 100vw;
-  height: 800px;
+  height: 600px;
   overflow: hidden;
+  padding: 50px;
   display: flex;
-  align-items: center;
+  justify-content: space-between;
   @media only screen and (max-width: 1440px) {
     height: 600px;
   }
-  z-index: -5;
 `;
 
 const ComponentContainer = styled.div`
@@ -46,16 +45,17 @@ const ComponentContainer = styled.div`
   margin: auto;
   position: relative;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between;  
   z-index: 1;
 `;
 
 const BannerImageWrapper = styled(Image)`
   object-fit: cover;
 `;
+
 const BannerTextWrapper = styled(Image)`
-  object-fit: fill;
-  width: 600px;
+  width: 500px;
+  object-fit: contain;
   @media only screen and (max-width: 1440px) {
     width: 400px;
   }

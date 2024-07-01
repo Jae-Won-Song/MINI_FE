@@ -84,16 +84,12 @@ const FooterWrapper = styled.div`
 `;
 
 const FooterText = styled.div`  
-  ul {
-    list-style: none;
-    padding-left: 0px;
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-    li {      
+  ul {    
+    li {
       color: #111111;
       line-height: 1.6;
       font-size: 0.874rem;
+      padding: 0;
     }
   }
   p {
@@ -110,8 +106,6 @@ const FooterContent1 = styled.div`
 
 const FooterContent2 = styled.div`
   ul {
-    list-style: none;
-    padding-left: 0px;
     display: flex;
     flex-direction: row;
     gap: 1rem;
@@ -150,8 +144,8 @@ const ApplicationContent = styled.div`
   font-size: 0.824rem;
   p {
     color: #111111;
+    text-align: left;
   }
-
 `
 
 const PartWrapper = styled.div`
