@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
 <<<<<<< HEAD
   "/_not-found/page": "app/_not-found/page.js",
@@ -8,3 +9,6 @@
   "/favicon.ico/route": "app/favicon.ico/route.js"
 >>>>>>> 20a01e5 (feat: Region Selector, Checkin and Checkout Selector)
 }
+=======
+{}
+>>>>>>> 5050c65 (feat: add slidebutton, paginationbutton)

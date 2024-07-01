@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "pages": {
 <<<<<<< HEAD
 =======
@@ -34,4 +35,7 @@
 >>>>>>> 20a01e5 (feat: Region Selector, Checkin and Checkout Selector)
     ]
   }
+=======
+  "pages": {}
+>>>>>>> 5050c65 (feat: add slidebutton, paginationbutton)
 }
