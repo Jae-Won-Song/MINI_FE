@@ -22,6 +22,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>{children}</body>
       <Script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ca1983a7e9ea0a0fb399052c7a1659cd&libraries=services,clusterer&autoload=false" />
+      <body className={inter.className}>
+        <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+      </body>
     </html>
   );
 }
