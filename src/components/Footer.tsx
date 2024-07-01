@@ -2,9 +2,9 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import qrCode from '../../public/images/qrCode.png';
 import Image from 'next/image';
 import Link from 'next/link';
+import qrCode from '../../public/images/qrCode.png';
 
 const Footer = () => {
   return (

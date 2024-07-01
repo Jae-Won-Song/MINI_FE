@@ -3,19 +3,41 @@
     "/search/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
+<<<<<<< HEAD
       "static/css/app/search/page.css",
       "static/chunks/app/search/page.js"
+=======
+<<<<<<< HEAD
+      "static/css/app/page.css",
+      "static/chunks/app/page.js"
+=======
+      "static/css/app/search/page.css",
+      "static/chunks/app/search/page.js"
+>>>>>>> 7bb81dc (feat: add map marker)
+>>>>>>> 9765429 (fix: merge confilct)
     ],
     "/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
+<<<<<<< HEAD
     ],
     "/_not-found/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/_not-found/page.js"
+=======
+<<<<<<< HEAD
+=======
+    ],
+    "/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/page.css",
+      "static/chunks/app/page.js"
+>>>>>>> 7bb81dc (feat: add map marker)
+>>>>>>> 9765429 (fix: merge confilct)
     ]
   }
 }

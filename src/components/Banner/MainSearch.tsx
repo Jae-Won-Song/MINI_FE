@@ -35,7 +35,7 @@ const MainSearch = (): React.JSX.Element => {
       </SearchWrapper>
     </div>
   );
-}
+};
 
 const SearchWrapper = styled.div`
   width: 750px;
