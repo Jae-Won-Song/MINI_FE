@@ -4,7 +4,6 @@ import React from 'react';
 import styled from 'styled-components';
 import Buttons from '../Buttons';
 
-
 function MainSearch(): React.JSX.Element {
   return (
     <div>
@@ -12,17 +11,21 @@ function MainSearch(): React.JSX.Element {
         <SearchTitle>검색하기</SearchTitle>
         <SearchElementsWrapper>
           <p>지역</p>
-          <SelectorWrapper><p>지역 선택하기</p></SelectorWrapper>
+          <SelectorWrapper>
+            <p>지역 선택하기</p>
+          </SelectorWrapper>
         </SearchElementsWrapper>
         <SearchElementsWrapper>
           <p>인원</p>
-          <SelectorWrapper><p>인원수 선택하기</p></SelectorWrapper>
+          <SelectorWrapper>
+            <p>인원수 선택하기</p>
+          </SelectorWrapper>
         </SearchElementsWrapper>
         <SearchElementsWrapper>
           <p>날짜</p>
           <SelectorWrapper>
             <SelectorDate>체크인</SelectorDate>
-            <p style={{textAlign: 'center'}}>~</p>
+            <p style={{ textAlign: 'center' }}>~</p>
             <SelectorDate>체크아웃</SelectorDate>
           </SelectorWrapper>
         </SearchElementsWrapper>
@@ -111,13 +114,13 @@ const SelectorWrapper = styled.div`
       font-size: 1.1rem;
     }
     @media only screen and (max-width: 1080px) {
-    font-size: 1rem;
+      font-size: 1rem;
     }
   }
 `;
 
 const SelectorDate = styled.div`
-  width: 45%;  
+  width: 45%;
   font-size: 1.2rem;
   display: flex;
   align-items: center;

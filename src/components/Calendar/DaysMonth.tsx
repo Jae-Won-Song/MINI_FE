@@ -11,7 +11,12 @@ interface MonthProps {
   onDateClick: (date: dayjs.Dayjs) => void;
 }
 
-const Month: React.FC<MonthProps> = ({ month, startDate, endDate, onDateClick }) => {
+const Month: React.FC<MonthProps> = ({
+  month,
+  startDate,
+  endDate,
+  onDateClick,
+}) => {
   const renderCells = (month: dayjs.Dayjs) => {
     const monthStart = month.startOf('month');
     const monthEnd = month.endOf('month');
@@ -30,12 +35,16 @@ const Month: React.FC<MonthProps> = ({ month, startDate, endDate, onDateClick })
         const isStartDate = startDate && day.isSame(startDate, 'day');
         const isEndDate = endDate && day.isSame(endDate, 'day');
         const isCurrentMonth = day.isSame(month, 'month');
-        const isInRange = startDate && endDate && day.isAfter(startDate, 'day') && day.isBefore(endDate, 'day');
+        const isInRange =
+          startDate &&
+          endDate &&
+          day.isAfter(startDate, 'day') &&
+          day.isBefore(endDate, 'day');
 
         days.push(
           <Cell
             key={day.toString()}
-            isDisabled={!isCurrentMonth}            
+            isDisabled={!isCurrentMonth}
             isStartDate={isStartDate}
             isEndDate={isEndDate}
             isToday={day.isSame(dayjs(), 'day')}
@@ -45,7 +54,7 @@ const Month: React.FC<MonthProps> = ({ month, startDate, endDate, onDateClick })
             onClick={() => onDateClick(cloneDay)}
           >
             <span>{formattedDate}</span>
-          </Cell>
+          </Cell>,
         );
         day = day.add(1, 'day');
       }
@@ -68,16 +77,16 @@ const MonthWrapper = styled.div`
   flex-direction: column;
   position: relative;
 
- &:first-child {
-  &::after {
-    content: '';
-    position: absolute;    
-    height: 92%;
-    right: -6px;
-    bottom: 9px;
-    border-right: 1px solid #D3D3D3;
+  &:first-child {
+    &::after {
+      content: '';
+      position: absolute;
+      height: 92%;
+      right: -6px;
+      bottom: 9px;
+      border-right: 1px solid #d3d3d3;
+    }
   }
- }
 `;
 
 const MonthContainer = styled.div`

@@ -1,4 +1,4 @@
-"use client"
+'use client';
 
 import React from 'react';
 import styled from 'styled-components';
@@ -18,15 +18,19 @@ interface slideButtonsProps {
 }
 
 function ArrowLeft() {
-  return <svg width="24" height="24" viewBox="0 0 24 24">
-    <path d="M15 6l-6 6 6 6V6z" />
-  </svg>
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24">
+      <path d="M15 6l-6 6 6 6V6z" />
+    </svg>
+  );
 }
 
 function ArrowRight() {
-  return <svg width="24" height="24" viewBox="0 0 24 24">
-    <path d="M9 18l6-6-6-6v12z" />
-  </svg>
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24">
+      <path d="M9 18l6-6-6-6v12z" />
+    </svg>
+  );
 }
 
 const getDimensions = (size: string) => {
@@ -83,7 +87,8 @@ const CreateBtn = styled.button<slideButtonsProps>`
   justify-content: center;
   background-color: ${(props) => (props.active ? '#555555' : '#cccccc')};
   border: none;
-  border-radius: ${(props) => getBorderRadius(props.size || 'rectangle', props.arrowDirection)};
+  border-radius: ${(props) =>
+    getBorderRadius(props.size || 'rectangle', props.arrowDirection)};
   cursor: 'pointer';
 
   &:hover {

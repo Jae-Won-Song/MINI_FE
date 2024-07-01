@@ -6,7 +6,6 @@ import Image from 'next/image';
 import bannerImage from '../../../public/images/mainBannerImage.jpg';
 import MainSearch from './MainSearch';
 
-
 function MainBanner(): React.JSX.Element {
   return (
     <BannerWrapper>

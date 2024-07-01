@@ -1,15 +1,15 @@
-'use client'
+'use client';
 
-import React from 'react'
-import styled from 'styled-components'
-import Image from 'next/image'
-import Link from 'next/link'
-import seoul from '../../../public/images/seoul.jpg'
-import jeonla from '../../../public/images/jeonla.jpg'
-import gangwon from '../../../public/images/gangwon.jpg'
-import gyeongi from '../../../public/images/gyeongi.jpg'
-import gyeongsang from '../../../public/images/gyeongsang.jpg'
-import chungcheong from '../../../public/images/chungcheong.jpg'
+import React from 'react';
+import styled from 'styled-components';
+import Image from 'next/image';
+import Link from 'next/link';
+import seoul from '../../../public/images/seoul.jpg';
+import jeonla from '../../../public/images/jeonla.jpg';
+import gangwon from '../../../public/images/gangwon.jpg';
+import gyeongi from '../../../public/images/gyeongi.jpg';
+import gyeongsang from '../../../public/images/gyeongsang.jpg';
+import chungcheong from '../../../public/images/chungcheong.jpg';
 
 // 추후 백엔드 데이터에 따라 내용 다르게 설정할 것.
 // 지역에 따라 번호가 부여될 예정
@@ -24,7 +24,21 @@ const regionImages = [
 ];
 
 const regionNames = [
-  '서울', '부산', '속초', '강릉', '양양', '전주', '대구', '경주', '여수', '천안', '서귀포', '대전', '제주', '인천', '가평'
+  '서울',
+  '부산',
+  '속초',
+  '강릉',
+  '양양',
+  '전주',
+  '대구',
+  '경주',
+  '여수',
+  '천안',
+  '서귀포',
+  '대전',
+  '제주',
+  '인천',
+  '가평',
 ];
 
 const MainSearchRegion = () => {
@@ -34,12 +48,12 @@ const MainSearchRegion = () => {
         {regionImages.map((region, index) => (
           <Link key={index} href={`/search?region=${region.name}`} passHref>
             <ImageWrapper>
-              <Image 
+              <Image
                 src={region.src}
                 alt={region.alt}
                 width={75}
                 height={75}
-                objectFit='cover'
+                objectFit="cover"
               />
               <p>{region.name}</p>
             </ImageWrapper>
@@ -48,12 +62,14 @@ const MainSearchRegion = () => {
       </RegionWithPhotoWrapper>
       <RegionWithTextWrapper>
         {regionNames.map((region, index) => (
-          <StyledLink key={index} href={`/search?region=${region}`} passHref>{region}</StyledLink>
+          <StyledLink key={index} href={`/search?region=${region}`} passHref>
+            {region}
+          </StyledLink>
         ))}
       </RegionWithTextWrapper>
     </RegionWrapper>
-  )
-}
+  );
+};
 
 const RegionWrapper = styled.div`
   width: 590px;
@@ -63,7 +79,7 @@ const RegionWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-`
+`;
 
 const RegionWithPhotoWrapper = styled.div`
   display: grid;
@@ -80,27 +96,27 @@ const RegionWithPhotoWrapper = styled.div`
     bottom: 0;
     left: 6px;
     width: 98%;
-    border-bottom: 1px solid #CCCCCC;
+    border-bottom: 1px solid #cccccc;
   }
-`
+`;
 
 const ImageWrapper = styled.div`
   text-align: center;
   padding: 5px;
   transition: 0.2s;
-  
-  &:hover {    
+
+  &:hover {
     background-color: #cccccc;
   }
-`
+`;
 
 const RegionWithTextWrapper = styled.div`
-  display: grid;  
+  display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 18px;
-`
+`;
 
-const StyledLink = styled(Link)`  
+const StyledLink = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -109,7 +125,7 @@ const StyledLink = styled(Link)`
   border: 1px solid #cccccc;
   transition: 0.2s;
 
-  &:hover {    
+  &:hover {
     background-color: #cccccc;
   }
 
@@ -117,6 +133,6 @@ const StyledLink = styled(Link)`
     outline: none;
     box-shadow: 0 0 0 2px rgba(0, 112, 243, 0.6);
   }
-`
+`;
 
-export default MainSearchRegion
+export default MainSearchRegion;

@@ -1,11 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const EventSwiper = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+  return <div></div>;
+};
 
-export default EventSwiper
+export default EventSwiper;

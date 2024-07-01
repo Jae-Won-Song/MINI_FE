@@ -8,6 +8,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   "encryptionKey": "Cd41OGa6MZ+eldegWUpLQwCDeOdogYU62W1VWdbwY54="
 =======
   "encryptionKey": "PLAcyAZT/Qbt3c36brigHpSIocU3HvTvH51KxWghQmU="
@@ -30,4 +31,7 @@
 =======
   "encryptionKey": "nQim1UnF8MVgYT2tQDTmqzszrmd7czqDSSEi3cHq05A="
 >>>>>>> cd0c691 (perf: 달력 기간 설정 수정, 버튼 높이 추가)
+=======
+  "encryptionKey": "Pwqu2DnQDrhXrDUvOouHf6rKrfxtuzQKgnRCdl4vJSo="
+>>>>>>> 39b333c (gitignore test)
 }

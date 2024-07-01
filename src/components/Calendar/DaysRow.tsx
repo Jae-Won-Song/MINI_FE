@@ -7,9 +7,7 @@ const DaysRow: React.FC = () => {
   return (
     <DaysRowContainer>
       {dayNames.map((day, index) => (
-        <DaysColumn key={index}>
-          {day}
-        </DaysColumn>
+        <DaysColumn key={index}>{day}</DaysColumn>
       ))}
     </DaysRowContainer>
   );
@@ -18,7 +16,7 @@ const DaysRow: React.FC = () => {
 const DaysRowContainer = styled.div`
   width: 100%;
   display: flex;
-  color: #F85B2B;
+  color: #f85b2b;
   font-weight: 900;
   justify-content: space-between;
 `;

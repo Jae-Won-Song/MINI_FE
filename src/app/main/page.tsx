@@ -13,16 +13,25 @@ import TravelPlaceKeywords from '@/components/TravelPlaceKeywords';
 const page = () => {
   return (
     <>
-      {/* <Navbar /> */}
+      <Navbar />
       {/* <MainBanner /> */}
       <TravelPlaceKeywords />
       <Footer />
-      {/* <MainSearchRegion/> */}
+      <MainSearchRegion />
       <MainSearchDate />
-      {/* <PaginationButtons/> */}
-      {/* <SlideButtons arrowDirection="left" size="smallCircle" active={true} />  필요한 속성 추가 */}
-      {/* <SlideButtons arrowDirection="right" size="smallCircle" active={true} />  필요한 속성 추가 */}
-      {/* <CalendarMain/> */}
+      <PaginationButtons />
+      <SlideButtons
+        arrowDirection="left"
+        size="smallCircle"
+        active={true}
+      />{' '}
+      필요한 속성 추가
+      <SlideButtons
+        arrowDirection="right"
+        size="smallCircle"
+        active={true}
+      />{' '}
+      필요한 속성 추가
       <div>test</div>
     </>
   );

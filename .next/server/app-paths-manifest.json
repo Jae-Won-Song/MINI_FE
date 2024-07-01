@@ -4,6 +4,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   "/_not-found/page": "app/_not-found/page.js",
   "/search/page": "app/search/page.js"
 =======
@@ -44,3 +45,8 @@
   "/main/page": "app/main/page.js"
 }
 >>>>>>> 66e8a51 (temporary save)
+=======
+  "/main/page": "app/main/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js"
+}
+>>>>>>> 39b333c (gitignore test)
