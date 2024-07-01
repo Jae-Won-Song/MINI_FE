@@ -16,7 +16,7 @@ interface InputProps {
   onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
-const Inputs: React.FC<InputProps> = function Inputs({
+const Inputs: React.FC<InputProps> = ({
   label,
   type,
   placeholder,
@@ -27,26 +27,24 @@ const Inputs: React.FC<InputProps> = function Inputs({
   onKeyDown,
   isValid = true,
   required = true,
-}) {
-  return (
-    <FormGroup>
-      <Label>{label}</Label>
-      <StyledInput
-        type={type}
-        placeholder={placeholder}
-        value={value}
-        onChange={onChange}
-        fullWidth={fullWidth}
-        isValid={isValid}
-        required={required}
-        onKeyDown={onKeyDown}
-      />
-      {errorMessage && (
-        <ErrorMessage isValid={isValid}>{errorMessage}</ErrorMessage>
-      )}
-    </FormGroup>
-  );
-};
+}) => (
+  <FormGroup>
+    <Label>{label}</Label>
+    <StyledInput
+      type={type}
+      placeholder={placeholder}
+      value={value}
+      onChange={onChange}
+      fullWidth={fullWidth}
+      isValid={isValid}
+      required={required}
+      onKeyDown={onKeyDown}
+    />
+    {errorMessage && (
+      <ErrorMessage isValid={isValid}>{errorMessage}</ErrorMessage>
+    )}
+  </FormGroup>
+);
 
 export default Inputs;
 

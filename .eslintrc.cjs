@@ -46,7 +46,7 @@ module.exports = {
         jsx: 'never',
       },
     ],
-    'react/react-in-jsx-scope': 'off',  
+    'react/react-in-jsx-scope': 'off',
     'react/function-component-definition': [
       'error',
       {
@@ -60,7 +60,8 @@ module.exports = {
       version: 'detect',
     },
     'import/resolver': {
-      node: {
+      alias: {
+        map: [['@', './src']],
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
       },
     },

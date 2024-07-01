@@ -6,7 +6,7 @@ import Link from 'next/link';
 import Inputs from '../../../components/Inputs';
 import Buttons from '../../../components/Buttons';
 
-const RegisterPage: React.FC = function RegisterPage() {
+const RegisterPage: React.FC = () => {
   const validateEmail = (email: string) => {
     const hasAtSign = /@/.test(email);
     if (!hasAtSign) {

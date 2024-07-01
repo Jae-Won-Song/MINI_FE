@@ -6,28 +6,26 @@ import Image from 'next/image';
 import bannerImage from '../../../public/images/mainBannerImage.jpg';
 import MainSearch from './MainSearch';
 
-function MainBanner(): React.JSX.Element {
-  return (
-    <BannerWrapper>
-      <BannerImageWrapper
-        src={bannerImage}
-        alt="Main Banner"
-        layout="fill"
-        objectFit="cover"
-      />
-      <ComponentContainer>
-        <BannerTextWrapper>
-          <p>
-            <span>국내 숙박업소</span>
-          </p>
-          <p>정보를</p>
-          <p>한눈에!</p>
-        </BannerTextWrapper>
-        <MainSearch />
-      </ComponentContainer>
-    </BannerWrapper>
-  );
-}
+const MainBanner: React.FC = () => (
+  <BannerWrapper>
+    <BannerImageWrapper
+      src={bannerImage}
+      alt="Main Banner"
+      layout="fill"
+      objectFit="cover"
+    />
+    <ComponentContainer>
+      <BannerTextWrapper>
+        <p>
+          <span>국내 숙박업소</span>
+        </p>
+        <p>정보를</p>
+        <p>한눈에!</p>
+      </BannerTextWrapper>
+      <MainSearch />
+    </ComponentContainer>
+  </BannerWrapper>
+);
 
 const BannerWrapper = styled.div`
   position: relative;
@@ -68,9 +66,6 @@ const BannerTextWrapper = styled.div`
   @media only screen and (max-width: 1080px) {
     width: 370px;
   }
-  @media only screen and (max-width: 1080px) {
-    width: 370px;
-  }
   p {
     font-family: 'Cafe24Moyamoya-Face-v1.0';
     font-size: 5.5rem;
@@ -89,4 +84,5 @@ const BannerTextWrapper = styled.div`
     }
   }
 `;
+
 export default MainBanner;

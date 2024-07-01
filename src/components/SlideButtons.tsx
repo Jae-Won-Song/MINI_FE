@@ -3,7 +3,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-interface slideButtonsProps {
+interface SlideButtonsProps {
   arrowDirection: 'left' | 'right';
   size?:
     | 'rectangle'
@@ -17,21 +17,17 @@ interface slideButtonsProps {
   active?: boolean;
 }
 
-function ArrowLeft() {
-  return (
-    <svg width="24" height="24" viewBox="0 0 24 24">
-      <path d="M15 6l-6 6 6 6V6z" />
-    </svg>
-  );
-}
+const ArrowLeft = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24">
+    <path d="M15 6l-6 6 6 6V6z" />
+  </svg>
+);
 
-function ArrowRight() {
-  return (
-    <svg width="24" height="24" viewBox="0 0 24 24">
-      <path d="M9 18l6-6-6-6v12z" />
-    </svg>
-  );
-}
+const ArrowRight = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24">
+    <path d="M9 18l6-6-6-6v12z" />
+  </svg>
+);
 
 const getDimensions = (size: string) => {
   switch (size) {
@@ -48,6 +44,7 @@ const getDimensions = (size: string) => {
     case 'smallCircle':
       return { width: '48px', height: '48px' };
     default:
+      return { width: '56px', height: '80px' }; // default size
   }
 };
 
@@ -64,24 +61,22 @@ const getBorderRadius = (size: string, arrowDirection: string) => {
   return '0';
 };
 
-const slideButtons = ({
+const SlideButtons = ({
   arrowDirection,
   onClick,
   active,
   size,
-}: slideButtonsProps) => {
-  return (
-    <CreateBtn active={active} size={size} arrowDirection={arrowDirection}>
-      {arrowDirection === 'left' ? <ArrowLeft /> : <ArrowRight />}
-    </CreateBtn>
-  );
-};
+}: SlideButtonsProps) => (
+  <CreateBtn active={active} size={size} arrowDirection={arrowDirection}>
+    {arrowDirection === 'left' ? <ArrowLeft /> : <ArrowRight />}
+  </CreateBtn>
+);
 
-export default slideButtons;
+export default SlideButtons;
 
-const CreateBtn = styled.button<slideButtonsProps>`
-  width: ${(props) => getDimensions(props.size).width};
-  height: ${(props) => getDimensions(props.size).height};
+const CreateBtn = styled.button<SlideButtonsProps>`
+  width: ${(props) => getDimensions(props.size || 'rectangle').width};
+  height: ${(props) => getDimensions(props.size || 'rectangle').height};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -89,7 +84,7 @@ const CreateBtn = styled.button<slideButtonsProps>`
   border: none;
   border-radius: ${(props) =>
     getBorderRadius(props.size || 'rectangle', props.arrowDirection)};
-  cursor: 'pointer';
+  cursor: pointer;
 
   &:hover {
     background-color: ${(props) => (props.active ? '#333333' : '#aaaaaa')};
