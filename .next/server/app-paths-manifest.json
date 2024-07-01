@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 {
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -62,3 +63,8 @@
   "/favicon.ico/route": "app/favicon.ico/route.js"
 }
 >>>>>>> 2fa8992 (-)
+=======
+{
+  "/search/page": "app/search/page.js"
+}
+>>>>>>> e335c11 (fix: merge conflict)
