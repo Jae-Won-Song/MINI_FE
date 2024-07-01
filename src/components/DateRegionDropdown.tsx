@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import styled, { keyframes, css } from 'styled-components';
 import MainSearchDate from './Banner/MainSearchDate';
 import MainSearchRegion from './Banner/MainSearchRegion';
+import MainSearchPeople from './Banner/MainSearchPeople';
 import '../styles/constants/_colors.scss';
 
 interface DateRegionDropdownProps {
@@ -55,8 +56,11 @@ const DateRegionDropdown: React.FC<DateRegionDropdownProps> = ({ onClose }) => {
             isOpen={isOpen}
             onAnimationEnd={() => setIsAnimating(false)}
           >
-            <MainSearchDate />
-            <MainSearchRegion />
+            <DropdownContent>
+              <MainSearchRegion />
+              <MainSearchDate />
+              <MainSearchPeople />
+            </DropdownContent>
           </DropdownContentWrapper>
         )}
       </DropdownWrapper>
@@ -103,9 +107,13 @@ const DropdownButton = styled.button`
 
 const DropdownContentWrapper = styled.div<{ isOpen: boolean }>`
   display: flex;
-  position: absolute;
-  top: 100%;
-  left: 0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: auto;
   background-color: #ffffff;
   z-index: 11;
@@ -117,6 +125,14 @@ const DropdownContentWrapper = styled.div<{ isOpen: boolean }>`
       : css`
           ${fadeOut} 0.3s ease-out
         `};
+`;
+
+const DropdownContent = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 `;
 
 const Overlay = styled.div<{ isOpen: boolean }>`

@@ -3,6 +3,7 @@
   "edge": {},
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   "encryptionKey": "OZmmJ21Q1dfsP5159EI75ryS7B2bnTLMSitO5i8z4QI="
 =======
 =======
@@ -19,4 +20,7 @@
   "encryptionKey": "OLHL77s9v4BSzfEobVDmC8OeoYfEP6r0mPY+0mqlANE="
 >>>>>>> 14227b1 (feat: add map marker)
 >>>>>>> 61603be (fix: merge confilct)
+=======
+  "encryptionKey": "q7FlijpTaE73BwzZL6XgBHCVSkvTWwmfXtVO9b25WIU="
+>>>>>>> bebda03 (fix: fix the pagination)
 }

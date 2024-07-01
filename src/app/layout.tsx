@@ -23,7 +23,7 @@ export default function RootLayout({
       <body className={inter.className}>{children}</body>
       <Script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ca1983a7e9ea0a0fb399052c7a1659cd&libraries=services,clusterer&autoload=false" />
       <body className={inter.className}>
-        <Script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ca1983a7e9ea0a0fb399052c7a1659cd&libraries=services,clusterer&autoload=false" />
+        <Script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7348549d944021f80d8b686e2d06850a&libraries=services,clusterer&autoload=false" />
         <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
       </body>
     </html>

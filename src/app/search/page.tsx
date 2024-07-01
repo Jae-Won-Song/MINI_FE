@@ -6,12 +6,10 @@ import Navbar from '../../components/Navbar/Navbar';
 import Footer from '../../components/Footer';
 import DateRegionDropdown from '../../components/DateRegionDropdown';
 
-
 const Page = () => {
   const KakaoMap = dynamic(() => import('../../components/KakaoMap/KakaoMap'), {
     ssr: false,
   });
-
 
   const handleClose = () => {
     console.log('Dropdown closed');

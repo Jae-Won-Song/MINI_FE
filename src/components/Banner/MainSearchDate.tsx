@@ -34,48 +34,44 @@ const MainSearchDate: React.FC = () => {
   };
 
   return (
-    <>
-      <DateWrapper>
-        <Calendar
-          startDate={startDate}
-          endDate={endDate}
-          onDateClick={handleDateClick}
-        />
-        <StayAndNightsWrapper>
-          <LengthOfStayWrapper>
-            <LengthOfStay>
-              <p>체크인</p>
-              <p>
-                {startDate && (
-                  <SelectedDate>
-                    {startDate.format('YYYY년 M월 D일')}
-                  </SelectedDate>
-                )}
-              </p>
-            </LengthOfStay>
-            <LengthOfStay>
-              <p>체크아웃</p>
-              <p>
-                {endDate && (
-                  <SelectedDate>
-                    {endDate.format('YYYY년 M월 D일')}
-                  </SelectedDate>
-                )}
-              </p>
-            </LengthOfStay>
-          </LengthOfStayWrapper>
-          <TotalNightsWrapper>
-            <TotalNights>숙박일 수</TotalNights>
-            {startDate && endDate && (
-              <TotalNights>
-                {calculateNights() === 0 ? '당일' : `${calculateNights()}박`}
-              </TotalNights>
-            )}
-          </TotalNightsWrapper>
-        </StayAndNightsWrapper>
-        <Buttons label="확인" fullWidth={false} fullHeight={false} />
-      </DateWrapper>
-    </>
+    <DateWrapper>
+      <Calendar
+        startDate={startDate}
+        endDate={endDate}
+        onDateClick={handleDateClick}
+      />
+      <StayAndNightsWrapper>
+        <LengthOfStayWrapper>
+          <LengthOfStay>
+            <p>체크인</p>
+            <p>
+              {startDate && (
+                <SelectedDate>
+                  {startDate.format('YYYY년 M월 D일')}
+                </SelectedDate>
+              )}
+            </p>
+          </LengthOfStay>
+          <LengthOfStay>
+            <p>체크아웃</p>
+            <p>
+              {endDate && (
+                <SelectedDate>{endDate.format('YYYY년 M월 D일')}</SelectedDate>
+              )}
+            </p>
+          </LengthOfStay>
+        </LengthOfStayWrapper>
+        <TotalNightsWrapper>
+          <TotalNights>숙박일 수</TotalNights>
+          {startDate && endDate && (
+            <TotalNights>
+              {calculateNights() === 0 ? '당일' : `${calculateNights()}박`}
+            </TotalNights>
+          )}
+        </TotalNightsWrapper>
+      </StayAndNightsWrapper>
+      <Buttons label="확인" fullWidth={false} fullHeight={false} />
+    </DateWrapper>
   );
 };
 

@@ -132,6 +132,7 @@
 /******/ 	(() => {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /******/ 		__webpack_require__.h = () => ("862adb68c38669c2")
 =======
 =======
@@ -148,6 +149,9 @@
 /******/ 		__webpack_require__.h = () => ("1ea6354ff66e57c3")
 >>>>>>> 14227b1 (feat: add map marker)
 >>>>>>> 61603be (fix: merge confilct)
+=======
+/******/ 		__webpack_require__.h = () => ("2469f7a6917f6e49")
+>>>>>>> bebda03 (fix: fix the pagination)
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */

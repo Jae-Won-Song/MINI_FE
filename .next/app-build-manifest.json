@@ -1,8 +1,9 @@
 {
   "pages": {
-    "/search/page": [
+    "/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
+<<<<<<< HEAD
 <<<<<<< HEAD
       "static/css/app/search/page.css",
       "static/chunks/app/search/page.js"
@@ -15,12 +16,17 @@
       "static/chunks/app/search/page.js"
 >>>>>>> 7bb81dc (feat: add map marker)
 >>>>>>> 9765429 (fix: merge confilct)
+=======
+      "static/css/app/page.css",
+      "static/chunks/app/page.js"
+>>>>>>> bebda03 (fix: fix the pagination)
     ],
     "/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     ],
@@ -33,10 +39,13 @@
 >>>>>>> 61603be (fix: merge confilct)
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> bebda03 (fix: fix the pagination)
     ],
-    "/page": [
+    "/search/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
+<<<<<<< HEAD
       "static/css/app/page.css",
       "static/chunks/app/page.js"
 >>>>>>> 7bb81dc (feat: add map marker)
@@ -46,6 +55,10 @@
 =======
 >>>>>>> 14227b1 (feat: add map marker)
 >>>>>>> 61603be (fix: merge confilct)
+=======
+      "static/css/app/search/page.css",
+      "static/chunks/app/search/page.js"
+>>>>>>> bebda03 (fix: fix the pagination)
     ]
   }
 }

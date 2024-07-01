@@ -20,7 +20,6 @@ interface Accommodation {
 interface KakaoMapProps {
   latitude: number;
   longitude: number;
-  accommodations: Accommodation[];
 }
 
 const KakaoMap: React.FC<KakaoMapProps> = ({ latitude, longitude }) => {
@@ -30,7 +29,7 @@ const KakaoMap: React.FC<KakaoMapProps> = ({ latitude, longitude }) => {
   const [mapCenter, setMapCenter] = useState({ lat: latitude, lng: longitude });
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const mapRef = useRef<any>(null);
+  const mapRef = useRef<never>(null);
 
   const fetchAccommodations = async (page: number) => {
     try {

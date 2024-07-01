@@ -1,1 +1,1 @@
-self.__REACT_LOADABLE_MANIFEST="{}"
+self.__REACT_LOADABLE_MANIFEST="{\"app/search/page.tsx -> ../../components/KakaoMap/KakaoMap\":{\"id\":\"app/search/page.tsx -> ../../components/KakaoMap/KakaoMap\",\"files\":[\"static/chunks/_app-pages-browser_src_components_KakaoMap_KakaoMap_tsx.js\"]}}"

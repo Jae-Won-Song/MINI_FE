@@ -41,6 +41,27 @@ const PaginationButtons: React.FC<PaginationButtonsProps> = ({
     }
   };
 
+  const renderPaginationButtons = () => {
+    const visiblePages = 10;
+    const startPage = Math.max(1, currentPage - Math.floor(visiblePages / 2));
+    const endPage = Math.min(totalPages, startPage + visiblePages - 1);
+
+    const pages = [];
+    for (let i = startPage; i <= endPage; i++) {
+      pages.push(
+        <PaginationButton
+          key={i}
+          active={currentPage === i}
+          onClick={() => handleClick(i)}
+        >
+          {i}
+        </PaginationButton>
+      );
+    }
+
+    return pages;
+  };
+
   return (
     <PaginationContainer>
       <PaginationButton onClick={() => handleClick(1)}>
@@ -49,15 +70,7 @@ const PaginationButtons: React.FC<PaginationButtonsProps> = ({
       <PaginationButton onClick={() => handleClick(currentPage - 1)}>
         &lt;
       </PaginationButton>
-      {[...Array(totalPages)].map((_, index) => (
-        <PaginationButton
-          key={index + 1}
-          active={currentPage === index + 1}
-          onClick={() => handleClick(index + 1)}
-        >
-          {index + 1}
-        </PaginationButton>
-      ))}
+      {renderPaginationButtons()}
       <PaginationButton onClick={() => handleClick(currentPage + 1)}>
         &gt;
       </PaginationButton>
