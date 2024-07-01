@@ -40,7 +40,7 @@ function Page() {
       title: `숙소명 ${newId}`,
       rating: 4.3,
       description: `숙소 설명 ${newId}`,
-      price: `$${100 + newId}`,
+      price: `₩${100 + newId}`,
       imageUrl:
         'https://a0.muscache.com/im/pictures/miso/Hosting-1069973180436354015/original/6efa2246-7fe8-4f78-8b3a-7fcefde7a880.jpeg?im_w=720',
     };
