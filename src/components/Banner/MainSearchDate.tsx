@@ -1,17 +1,17 @@
 'use client'
 
-import React, { useState } from 'react'
-import styled from 'styled-components'
-import DatePicker, { registerLocale } from 'react-datepicker'
-import '@/styles/stylesheetsfromdatepicker/datepicker.scss'
-import ko from 'date-fns/locale/ko'
-import dayjs from 'dayjs'
-import 'dayjs/locale/ko'
-import { Locale } from 'date-fns'
-import Calendar from '../Calendar/Calendar'
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import DatePicker, { registerLocale } from 'react-datepicker';
+import '@/styles/stylesheetsfromdatepicker/datepicker.scss';
+import ko from 'date-fns/locale/ko';
+import dayjs from 'dayjs';
+import 'dayjs/locale/ko';
+import { Locale } from 'date-fns';
+import Calendar from '../Calendar/Calendar';
 
-dayjs.locale('ko')
-registerLocale('ko', ko as unknown as Locale)
+dayjs.locale('ko');
+registerLocale('ko', ko as unknown as Locale);
 
 const MainSearchDate = () => {
   const [startDate, setStartDate] = useState(dayjs().toDate());
@@ -47,6 +47,7 @@ const MainSearchDate = () => {
             dateFormat="yyyy년 MM월 dd일" // 한국어 형식으로 날짜 표시
           />
         </DatePickerWrapper>
+      <LengthOfStay>숙박 시작일</LengthOfStay>
       </DateWrapperForStart>
       <DateWrapperForEnd>
         <DatePickerWrapper>
@@ -67,8 +68,8 @@ const MainSearchDate = () => {
         </DatePickerWrapper>
       </DateWrapperForEnd>
     </>
-  )
-}
+  );
+};
 
 const DateWrapperForStart = styled.div`
   width: fit-content;
@@ -76,9 +77,10 @@ const DateWrapperForStart = styled.div`
   border-radius: 6px;
   padding: 45px;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-`
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+`;
 const DateWrapperForEnd = styled.div`
   width: fit-content;
   box-shadow: 4px 4px 5px 5px rgba(0, 0, 0, 0.05);
@@ -87,7 +89,7 @@ const DateWrapperForEnd = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-`
+`;
 
 const DatePickerWrapper = styled.div`
   display: flex;
@@ -95,11 +97,12 @@ const DatePickerWrapper = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-`
+`;
 
-const Label = styled.label`
-  margin-bottom: 8px;
+const LengthOfStay = styled.div`
+  margin-top: 20px;
+  padding: 8px;
   font-weight: bold;
-`
+`;
 
-export default MainSearchDate
+export default MainSearchDate;

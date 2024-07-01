@@ -28,7 +28,12 @@
 =======
 {
   "/page": "app/page.js",
+<<<<<<< HEAD
   "/main/page": "app/main/page.js",
   "/favicon.ico/route": "app/favicon.ico/route.js"
 }
 >>>>>>> 5db209a (rename: banner component들 Banner 폴더로 이동.)
+=======
+  "/main/page": "app/main/page.js"
+}
+>>>>>>> 66e8a51 (temporary save)
