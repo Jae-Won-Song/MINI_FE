@@ -3,9 +3,13 @@ import './main.scss';
 import '../../styles/base/_reset.scss';
 import Navbar from '@/components/Navbar/Navbar';
 import Footer from '@/components/Footer';
-import MainBanner from '@/components/MainBanner';
-import MainSearchRegion from '@/components/MainSearchRegion';
-import MainSearchDate from '@/components/MainSearchDate';
+import MainBanner from '@/components/Banner/MainBanner';
+import MainSearchRegion from '@/components/Banner/MainSearchRegion';
+import MainSearchDate from '@/components/Banner/MainSearchDate';
+import PaginationButtons from '@/components/PaginationButtons';
+import SlideButtons from '@/components/SlideButtons';
+import CalendarMain from '@/components/Calendar/CalendarMain';
+import TravelPlaceKeywords from '@/components/TravelPlaceKeywords';
 
 const page = () => {
   return (
