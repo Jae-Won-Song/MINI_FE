@@ -1,5 +1,9 @@
 {
   "node": {},
   "edge": {},
+<<<<<<< HEAD
   "encryptionKey": "J/BriD64VW7Wa3w9CDhCmo08fgpxTCfbq/MNmTv3eCk="
+=======
+  "encryptionKey": "TaApCvLxuNFzQiI/cN9qKHdbRcGqkAg2Z4oYQcFMN1M="
+>>>>>>> 763de88 (feat: add search function by region)
 }

@@ -11,9 +11,6 @@ import gyeongi from '../../../public/images/gyeongi.jpg';
 import gyeongsang from '../../../public/images/gyeongsang.jpg';
 import chungcheong from '../../../public/images/chungcheong.jpg';
 
-// 추후 백엔드 데이터에 따라 내용 다르게 설정할 것.
-// 지역에 따라 번호가 부여될 예정
-
 const regionImages = [
   { src: seoul, alt: 'Seoul', name: '서울' },
   { src: gyeongi, alt: 'Gyeongi', name: '경기' },
@@ -84,7 +81,6 @@ const RegionWrapper = styled.div`
 const RegionWithPhotoWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  /* gap: 3px; */
   text-align: center;
   padding-bottom: 24px;
   margin-bottom: 24px;

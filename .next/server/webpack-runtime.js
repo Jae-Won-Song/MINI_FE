@@ -125,7 +125,11 @@
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
+<<<<<<< HEAD
 /******/ 		__webpack_require__.h = () => ("fab13c1f165eab21")
+=======
+/******/ 		__webpack_require__.h = () => ("843709a13c717390")
+>>>>>>> 763de88 (feat: add search function by region)
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
