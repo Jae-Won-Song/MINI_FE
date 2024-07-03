@@ -1,48 +1,61 @@
-'use client'
-
-import React from 'react'
-// import Heading from './Heading'
-import { useRouter } from 'next/navigation'
-import Buttons from './Buttons'
+import React from 'react';
+import styled from 'styled-components';
+import Buttons from './Buttons';
 
 interface EmptyStateProps {
-  title?: string
-  subtitle?: string
-  showReset?: boolean
+  title?: string;
+  subtitle?: string;
+  showReset?: boolean;
+  onResetFilters?: () => void;
 }
 
-const EmptyState = ({
+const EmptyState: React.FC<EmptyStateProps> = ({
   title = "일치하는 것이 없습니다.",
   subtitle = "일부 필터를 변경하거나 제거해 주십시오.",
-  showReset
-}: EmptyStateProps) => {
-
-  const router = useRouter()
+  showReset,
+  onResetFilters
+}) => {
   return (
-    <div className='
-      h-[60]
-      flex
-      flex-col
-      gap-2
-      justify-center
-      items-center      
-      '
-    >
-      {/* <Heading 
-        center
-        title={title}
-        subtitle={subtitle}        
-      /> */}
-      <div className='w-48 mt-4'>
-        {showReset &&
-          <Buttons            
-            label='모든 필터 제거'
-            onclick={() => router.push('/')}
+    <Container>
+      <StyledHeading>
+        <h3>{title}</h3>
+        <p>{subtitle}</p>
+      </StyledHeading>      
+        {showReset && (
+          <Buttons
+            label="전체 보기"
+            onClick={onResetFilters}
+            fullHeight={false}
           />
-        }
-      </div>
-    </div>
-  )
-}
+        )}
+    </Container>
+  );
+};
 
-export default EmptyState
+
+const Container = styled.div`
+  height: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+`;
+
+const StyledHeading = styled.div`
+  text-align: center;
+  margin-bottom: 20px;
+
+  h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 16px;
+    color: #555;
+  }
+`;
+
+export default EmptyState;

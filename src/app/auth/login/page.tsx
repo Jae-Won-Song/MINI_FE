@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import Inputs from '@/components/Inputs';
 import Buttons from '@/components/Buttons';
 import Image from 'next/image';
@@ -26,55 +26,12 @@ import useSWR from 'swr';
 
 const LoginPage: React.FC = function LoginPage() {
 
-  // const { data, error } = useSWR<APIResponse>(`https://yusuengdo.ddns.net/open-api/user/login`, fetcher);
-  // console.log('Login Data', data)
+  const { register, handleSubmit, formState: { errors } } = useForm<FieldValues>();
 
-  const validateEmail = (email: string) => {
-  //  이 부분에는 아이디와 일치하는지 확인하는 내용이 들어가야 함
+  const onSubmit: SubmitHandler<FieldValues> = data => {
+    // const { data, error } = useSWR<APIResponse>(`https://yusuengdo.ddns.net/open-api/user/login`, fetcher);
+    console.log('Login Data', data);
   };
-
-  const validatePassword = (password: string) => {
-    // 이 부분에는 토큰의 비밀번호와 일치하는지 확인하는 내용이 들어가야 함
-  };
-
-  const [email, setEmail] = useState('');
-  const [emailError, setEmailError] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordError, setPasswordError] = useState('');
-  const [fullName, setFullName] = useState('');
-  const [username, setUsername] = useState('');
-
-  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newEmail = event.target.value;
-    setEmail(newEmail);
-    const error = validateEmail(newEmail);
-    setEmailError(error);
-  };
-
-  const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newPassword = event.target.value;
-    setPassword(newPassword);
-    const error = validatePassword(newPassword);
-    setPasswordError(error);
-  };
-
-  const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-    if (
-      !fullName ||
-      !username ||
-      !email ||
-      !password
-    ) {
-      alert('모든 입력란을 채워주세요.');
-    } else if (password !== data.password) {
-      alert('비밀번호가 일치하지 않습니다.');
-    } else {
-      alert('로그인 성공!');
-    }
-  };
-
-  // 로그인 유지, 아이디 저장 여부 선택 시 해당 내용이 유지될 수 있게 해야 함.
 
 
   return (
@@ -83,29 +40,28 @@ const LoginPage: React.FC = function LoginPage() {
         src={LoginBackground}
         alt='로그인 페이지 배경'
       />
-      <FormContainer>      
+      <FormContainer  onSubmit={handleSubmit(onSubmit)}>      
         <BigTitle>로그인</BigTitle>
         <Section>
           <Inputs
-            label="아이디"
-            type="username"
-            placeholder="아이디"
+            id='email'
+            label="이메일"
+            placeholder="이메일"
             fullWidth
             required
+            register={register}
           />
           <Inputs
+            id="password"
             label="비밀번호"
-            type="password"
-            placeholder="비밀번호"
-            value={password}
-            onChange={handlePasswordChange}
+            type='password'
+            placeholder="비밀번호"            
             fullWidth
-            errorMessage={passwordError}
-            isValid={passwordError === '아주 좋은 비밀번호입니다!'}
             required
+            register={register}
           />
         </Section>
-        <Section>
+        {/* <Section>
           <CheckboxWrapper>
             <Label>
               <input type="checkbox" />
@@ -116,8 +72,8 @@ const LoginPage: React.FC = function LoginPage() {
               로그인 유지
             </Label>
           </CheckboxWrapper>
-        </Section>
-        <Buttons label="로그인" onclick={handleSubmit} />
+        </Section> */}
+        <Buttons label="로그인" />
         <RegisterLink>
           아직 아이디가 없다면? <Link href="/auth/register" style={{fontWeight: 700, borderBottom: '1px solid #111111'}}>회원가입</Link>
         </RegisterLink>

@@ -1,25 +1,25 @@
-import Link from 'next/link';
 import React from 'react';
-import { IconType } from 'react-icons';
 import styled from 'styled-components';
+import { IconType } from 'react-icons';
 
 interface CategoryBoxProps {
   icon: IconType;
   label: string;
   path: string;
+  onClick: () => void;
   selected?: boolean;
 }
 
-const CategoryBox: React.FC<CategoryBoxProps> = ({ icon: Icon, label, path, selected = false }) => {
+const CategoryBox: React.FC<CategoryBoxProps> = ({ icon: Icon, label, onClick, selected = false }) => {
   return (
-    <StyledLink href={`/?category=${path}`} selected={selected}>
+    <StyledCategoryBox onClick={onClick} selected={selected}>
       <Icon size={26} />
       <div>{label}</div>
-    </StyledLink>
+    </StyledCategoryBox>
   );
 };
 
-const StyledLink = styled(Link)<{ selected: boolean }>`
+const StyledCategoryBox = styled.div<{ selected: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: center;

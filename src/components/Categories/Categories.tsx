@@ -1,6 +1,5 @@
 'use client';
 
-import { useSearchParams } from 'next/navigation';
 import React from 'react';
 import { FaHotel } from 'react-icons/fa';
 import {
@@ -93,11 +92,12 @@ export const categories = [
   },
 ];
 
-const Categories = () => {
-  const params = useSearchParams();
-  console.log(params?.get('category'));
-  const category = params?.get('category');
+interface CategoriesProps {  
+  onCategoryChange: (category: string) => void;
+  selectedCategory: string;
+}
 
+const Categories: React.FC<CategoriesProps> = ({ onCategoryChange, selectedCategory }) => {
   return (
     <CategoryWrapper>
       {categories.map((item) => (
@@ -106,12 +106,14 @@ const Categories = () => {
           label={item.label}
           path={item.path}
           icon={item.icon}
-          selected={category === item.path}
+          onClick={() => onCategoryChange(item.path)}
+          selected={selectedCategory === item.path}
         />
       ))}
     </CategoryWrapper>
   );
 };
+
 
 const CategoryWrapper = styled.div`  
   display: flex;

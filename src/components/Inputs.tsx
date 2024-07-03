@@ -16,7 +16,8 @@ interface InputProps {
   required?: boolean;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
-  register: UseFormRegister<FieldValues>;
+  register?: UseFormRegister<FieldValues>;
+  maxLength?: number;
 }
 
 const Inputs: React.FC<InputProps> = function Inputs({
@@ -32,6 +33,7 @@ const Inputs: React.FC<InputProps> = function Inputs({
   isValid = true,
   required = true,
   register,
+  maxLength,
 }) {
   return (
     <FormGroup>
@@ -39,7 +41,7 @@ const Inputs: React.FC<InputProps> = function Inputs({
       <StyledInput
         id={id}
         type={type}
-        // {...register(id, {required})}
+        {...register(id, { required })}
         placeholder={placeholder}
         value={value}
         onChange={onChange}
@@ -47,6 +49,7 @@ const Inputs: React.FC<InputProps> = function Inputs({
         isValid={isValid}
         required={required}
         onKeyDown={onKeyDown}
+        maxLength={maxLength}
       />
       {errorMessage && (
         <ErrorMessage isValid={isValid}>{errorMessage}</ErrorMessage>
