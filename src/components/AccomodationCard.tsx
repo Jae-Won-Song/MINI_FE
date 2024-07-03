@@ -52,7 +52,7 @@ const AccomodationCard: React.FC<AccomodationCardProps> = ({ data }) => {
       <TextContainer>
         <h3>{data.title}</h3>
         <p>{data.address}</p>
-        <p>{data.price}원 / 1박</p>
+        <p><span>{data.price.toLocaleString()}원</span> / 1박</p>
         <Rating>{RatingStars(data.rating)}<span>({data.rating})</span></Rating>
       </TextContainer>
     </Card>
@@ -89,6 +89,9 @@ const TextContainer = styled.div`
   width: 100%;
   padding: 15px;
   overflow: hidden;
+  span {
+    font-weight: 700;
+  }
 `;
 
 const RatingContainer = styled.div`
@@ -105,6 +108,7 @@ const Rating = styled.div`
   span {
     margin-left: 0.3rem;
     font-size: 0.9rem;
+    font-weight: 400;
   }
 `;
 

@@ -27,10 +27,12 @@ const LoginPage: React.FC = function LoginPage() {
       const response = await axios.post('http://yusuengdo.ddns.net/open-api/user/login', data);
       console.log('response', response);
       if (response.status === 200 && response.data) {
-        // const { accessToken, refreshToken } = response.data.data;
-        // console.log(accessToken, refreshToken);
-        // localStorage.setItem('accessToken', accessToken);
-        // localStorage.setItem('refreshToken', refreshToken);
+        const { accessToken, refreshToken } = response.data.data;
+        console.log('accessToken', accessToken);
+        console.log('refreshToken', refreshToken);        
+        localStorage.setItem('accessToken', accessToken);
+        localStorage.setItem('refreshToken', refreshToken);
+        alert('로그인 성공! 메인 페이지로 이동합니다.')
         router.push(`/`);
       }
     } catch (error) {
