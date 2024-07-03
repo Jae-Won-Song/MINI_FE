@@ -59,7 +59,7 @@ const TravelPlaceKeywords = () => {
         <p>국내 여행지</p>
         <RegionWithTextWrapper>
           {travelPlaceKeywords.map((region, index) => (
-            <StyledLink key={index} href={`/search?region=${region}`} passHref>
+            <StyledLink key={index} href={`/search?keyword=${region}`} passHref>
               {region}
             </StyledLink>
           ))}
@@ -69,7 +69,7 @@ const TravelPlaceKeywords = () => {
         <p>인기 검색 키워드</p>
         <RegionWithTextWrapper>
           {popularKeywords.map((region, index) => (
-            <StyledLink key={index} href={`/search?region=${region}`} passHref>
+            <StyledLink key={index} href={`/search?keyword=${region}`} passHref>
               {region}
             </StyledLink>
           ))}

@@ -1,4 +1,5 @@
-import type { Metadata } from 'next';
+import React from 'react';
+import { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import '../styles/base/_reset.scss';
@@ -17,7 +18,9 @@ const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <html lang="en">
       <head>
-        <Script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9617704f51f55b663f25209e2fc06b15&libraries=services,clusterer&autoload=false" />
+        <Script
+          src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_MAP_KEY}&libraries=services,clusterer&autoload=false`}
+        />
       </head>
       <body className={inter.className}>
         <StyledComponentsRegistry>{children}</StyledComponentsRegistry>

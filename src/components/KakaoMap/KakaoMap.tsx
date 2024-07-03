@@ -68,11 +68,11 @@ const KakaoMap: React.FC<KakaoMapProps> = ({ latitude, longitude }) => {
 
   useEffect(() => {
     setAccommodationData([]);
-    const region = searchParams.get('region');
-    if (region) {
-      setSelectedArea(region);
+    const keyword = searchParams.get('keyword');
+    if (keyword) {
+      setSelectedArea(keyword);
     }
-    fetchAccommodations(currentPage, region as string);
+    fetchAccommodations(currentPage, keyword as string);
   }, [currentPage, searchParams]);
 
   useEffect(() => {

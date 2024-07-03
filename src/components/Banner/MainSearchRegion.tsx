@@ -43,7 +43,7 @@ const MainSearchRegion = () => {
     <RegionWrapper>
       <RegionWithPhotoWrapper>
         {regionImages.map((region, index) => (
-          <Link key={index} href={`/search?region=${region.name}`} passHref>
+          <Link key={index} href={`/search?keyword=${region.name}`} passHref>
             <ImageWrapper>
               <Image
                 src={region.src}
@@ -59,7 +59,7 @@ const MainSearchRegion = () => {
       </RegionWithPhotoWrapper>
       <RegionWithTextWrapper>
         {regionNames.map((region, index) => (
-          <StyledLink key={index} href={`/search?region=${region}`} passHref>
+          <StyledLink key={index} href={`/search?keyword=${region}`} passHref>
             {region}
           </StyledLink>
         ))}
