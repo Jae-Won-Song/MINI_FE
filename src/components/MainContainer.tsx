@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ThemeSearch = () => {
+const MainContainer = () => {
   return (
     <div>
       
@@ -8,4 +8,4 @@ const ThemeSearch = () => {
   )
 }
 
-export default ThemeSearch
+export default MainContainer

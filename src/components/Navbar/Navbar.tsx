@@ -30,11 +30,11 @@ export default function Navbar() {
               <CiHeart />
             </li>
           </Link>
-          <Link href="login">
+          <Link href="auth/login">
             <li>로그인</li>
           </Link>
           <div>/</div>
-          <Link href="register">
+          <Link href="auth/register">
             <li>회원가입</li>
           </Link>
         </div>

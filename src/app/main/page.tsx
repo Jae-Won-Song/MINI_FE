@@ -21,8 +21,7 @@ const page = () => {
       <TravelPlaceKeywords />
       <Footer />
       <MainSearchRegion />
-      <MainSearchDate />
-      <PaginationButtons />
+      <MainSearchDate />      
       <SlideButtons arrowDirection="left" size="smallCircle" active={true} />  필요한 속성 추가
       <SlideButtons arrowDirection="right" size="smallCircle" active={true} />  필요한 속성 추가
       <div>test</div>

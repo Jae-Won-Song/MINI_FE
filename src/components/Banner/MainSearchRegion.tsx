@@ -1,15 +1,18 @@
-'use client'
+'use client';
 
-import React from 'react'
-import styled from 'styled-components'
-import Image from 'next/image'
-import Link from 'next/link'
-import seoul from '../../../public/images/seoul.jpg'
-import jeonla from '../../../public/images/jeonla.jpg'
-import gangwon from '../../../public/images/gangwon.jpg'
-import gyeongi from '../../../public/images/gyeongi.jpg'
-import gyeongsang from '../../../public/images/gyeongsang.jpg'
-import chungcheong from '../../../public/images/chungcheong.jpg'
+import React from 'react';
+import styled from 'styled-components';
+import Image from 'next/image';
+import seoul from '../../../public/images/seoul.jpg';
+import jeonla from '../../../public/images/jeonla.jpg';
+import gangwon from '../../../public/images/gangwon.jpg';
+import gyeongi from '../../../public/images/gyeongi.jpg';
+import gyeongsang from '../../../public/images/gyeongsang.jpg';
+import chungcheong from '../../../public/images/chungcheong.jpg';
+
+interface MainSearchRegionProps {
+  onSelectRegion: (region: string) => void; // 선택된 지역을 전달하는 함수 prop
+}
 
 // 추후 백엔드 데이터에 따라 내용 다르게 설정할 것.
 // 지역에 따라 번호가 부여될 예정
@@ -27,12 +30,12 @@ const regionNames = [
   '서울', '부산', '속초', '강릉', '양양', '전주', '대구', '경주', '여수', '천안', '서귀포', '대전', '제주', '인천', '가평'
 ];
 
-const MainSearchRegion = () => {
+const MainSearchRegion: React.FC<MainSearchRegionProps> = ({ onSelectRegion }) => {
   return (
     <RegionWrapper>
       <RegionWithPhotoWrapper>
         {regionImages.map((region, index) => (
-          <Link key={index} href={`/search?region=${region.name}`} passHref>
+          <div key={index} onClick={() => onSelectRegion(region.name)}>
             <ImageWrapper>
               <Image 
                 src={region.src}
@@ -43,12 +46,12 @@ const MainSearchRegion = () => {
               />
               <p>{region.name}</p>
             </ImageWrapper>
-          </Link>
+          </div>
         ))}
       </RegionWithPhotoWrapper>
       <RegionWithTextWrapper>
         {regionNames.map((region, index) => (
-          <StyledLink key={index} href={`/search?region=${region}`} passHref>{region}</StyledLink>
+          <StyledRegion key={index} onClick={() => onSelectRegion(region)}>{region}</StyledRegion>
         ))}
       </RegionWithTextWrapper>
     </RegionWrapper>
@@ -58,17 +61,22 @@ const MainSearchRegion = () => {
 const RegionWrapper = styled.div`
   width: 590px;
   box-shadow: 4px 4px 5px 5px rgba(0, 0, 0, 0.05);
+  background-color: #F7F7F7;
   border-radius: 6px;
   padding: 45px;
   display: flex;
   flex-direction: column;
   align-items: center;
-`
+  margin: auto;
+  position: absolute;
+  top: 70px;
+  right: 0;
+  z-index: 100;
+`;
 
 const RegionWithPhotoWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  /* gap: 3px; */
   text-align: center;
   padding-bottom: 24px;
   margin-bottom: 24px;
@@ -88,6 +96,12 @@ const ImageWrapper = styled.div`
   text-align: center;
   padding: 5px;
   transition: 0.2s;
+  cursor: pointer;
+
+  p {
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
   
   &:hover {    
     background-color: #cccccc;
@@ -100,7 +114,7 @@ const RegionWithTextWrapper = styled.div`
   gap: 18px;
 `
 
-const StyledLink = styled(Link)`  
+const StyledRegion = styled.div`  
   display: flex;
   align-items: center;
   justify-content: center;
@@ -108,6 +122,7 @@ const StyledLink = styled(Link)`
   height: 40px;
   border: 1px solid #cccccc;
   transition: 0.2s;
+  cursor: pointer;
 
   &:hover {    
     background-color: #cccccc;
@@ -119,4 +134,4 @@ const StyledLink = styled(Link)`
   }
 `
 
-export default MainSearchRegion
+export default MainSearchRegion;

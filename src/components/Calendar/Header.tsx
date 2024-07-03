@@ -35,9 +35,9 @@ const HeaderContainer = styled.div`
   align-items: center;  
   margin-bottom: 20px;
   font-size: 1.2rem;
-  font-weight: 700;
   position: relative;
   p {
+    font-weight: 700;
     margin: auto;
     display: flex;
     justify-content: space-between;

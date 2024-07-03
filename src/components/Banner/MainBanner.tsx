@@ -30,11 +30,12 @@ function MainBanner(): React.JSX.Element {
   );
 }
 
-const BannerWrapper = styled.div`
-  position: relative;
-  width: 100vw;
+const BannerWrapper = styled.div`  
+  width: 100%;
+  margin: auto;
+  position: relative;  
   height: 700px;
-  overflow: hidden;
+  overflow: visible;
   padding: 50px;
   display: flex;
   justify-content: space-between;
@@ -45,15 +46,17 @@ const BannerWrapper = styled.div`
 
 const ComponentContainer = styled.div`
   width: 1500px;
-  margin: auto;
-  position: relative;
+  margin: auto;  
+  position: relative; 
+  overflow: visible;
   display: flex;
   justify-content: space-between;  
-  z-index: 1;
+  z-index: 10;
   @media only screen and (max-width: 1440px) {
     width: 1250px;
   }
 `;
+
 
 const BannerImageWrapper = styled(Image)`
   object-fit: cover;
