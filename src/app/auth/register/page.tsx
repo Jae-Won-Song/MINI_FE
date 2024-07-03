@@ -9,8 +9,12 @@ import Buttons from '../../../components/Buttons';
 import RegisterBackground from '../../../../public/images/register_background.jpg';
 import Image from 'next/image';
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 const RegisterPage: React.FC = function RegisterPage() {
+
+  const router = useRouter()
+
   const validateEmail = (email: string) => {
     const hasAtSign = /@/.test(email);
     if (!hasAtSign) {
@@ -137,6 +141,11 @@ const RegisterPage: React.FC = function RegisterPage() {
           name: data.name,
           password: data.password,
           phoneNumber: data.phoneNumber,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',         
+          },
         });
   
         const result = response.data;
@@ -144,14 +153,15 @@ const RegisterPage: React.FC = function RegisterPage() {
         console.log('result', result);
         console.log('response', response);
         if (response.status === 201) {
-          alert('회원가입 완료!');
+          alert('회원가입 완료! 이제 로그인해 주세요.');
+          router.push(`/auth/login`)
         } else {
           console.error('회원가입 실패:', result.message);
-          throw new Error(result.message || '회원가입 실패.');
+          throw new Error(result.message || '회원가입 실패!');
         }
       } catch (error) {
         console.error('회원가입 오류:', error);
-        alert(`회원가입에 실패했습니다. 다시 시도해 주세요. 오류 메시지: ${error.message}`);
+        alert(`회원가입을 다시 시도해 주세요. 오류 메시지: ${error.message}`);
       }
     }
   };
@@ -194,6 +204,7 @@ const RegisterPage: React.FC = function RegisterPage() {
               label="비밀번호"
               placeholder="비밀번호 입력(영문 소문자, 숫자, 특수문자 필수, 8자 이상)"
               value={password}
+              type='password'
               onChange={handlePasswordChange}
               errorMessage={passwordError}
               isValid={passwordError === '아주 좋은 비밀번호입니다!'}
@@ -205,6 +216,7 @@ const RegisterPage: React.FC = function RegisterPage() {
               label="비밀번호 확인"
               placeholder="비밀번호 한 번 더 입력"
               value={confirmPassword}
+              type='password'
               onChange={handleConfirmPasswordChange}
               errorMessage={confirmPasswordError}
               isValid={confirmPasswordError === '입력한 비밀번호와 일치합니다!'}
