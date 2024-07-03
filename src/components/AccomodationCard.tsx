@@ -1,6 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
+import { TiStarFullOutline, TiStarHalfOutline, TiStarOutline } from "react-icons/ti";
 
 interface Accomodation {
   id: number;
@@ -22,6 +23,27 @@ interface AccomodationCardProps {
 const AccomodationCard: React.FC<AccomodationCardProps> = ({ data }) => {
   const router = useRouter();
 
+
+  const RatingStars = (rating: number) => {
+    const fullStars = Math.floor(rating);
+    const halfStars = rating % 1 > 0? 1 : 0;
+    const emptyStars = 5 - fullStars - halfStars;
+
+    return (
+      <RatingContainer>
+        {[...Array(fullStars)].map((_, index) => (
+          <TiStarFullOutline key={`full-${index}`} />
+        ))}
+        {[...Array(halfStars)].map((_, index) => (
+          <TiStarHalfOutline key={`half-${index}`} />
+        ))}
+        {[...Array(emptyStars)].map((_, index) => (
+          <TiStarOutline key={`empty-${index}`} />
+        ))}
+      </RatingContainer>
+    )
+  }
+
   return (
     <Card onClick={() => router.push(`/placedetail=${data.id}`)}>
       <ImageContainer>
@@ -31,6 +53,7 @@ const AccomodationCard: React.FC<AccomodationCardProps> = ({ data }) => {
         <h3>{data.title}</h3>
         <p>{data.address}</p>
         <p>{data.price}원 / 1박</p>
+        <Rating>{RatingStars(data.rating)}<span>({data.rating})</span></Rating>
       </TextContainer>
     </Card>
   );
@@ -66,6 +89,23 @@ const TextContainer = styled.div`
   width: 100%;
   padding: 15px;
   overflow: hidden;
+`;
+
+const RatingContainer = styled.div`
+  display: flex;  
+  margin-top: 0.5rem;
+  font-size: 1.1rem;
+  color: #ffaa00;
+`;
+
+const Rating = styled.div`
+  display: flex;
+  align-items: end;  
+  color: #A7A7A7;
+  span {
+    margin-left: 0.3rem;
+    font-size: 0.9rem;
+  }
 `;
 
 export default AccomodationCard;

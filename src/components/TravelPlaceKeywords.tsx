@@ -2,7 +2,6 @@
 
 import React from 'react'
 import styled from 'styled-components'
-import Link from 'next/link'
 import { useRouter } from 'next/navigation';
 
 const travelPlaceKeywords = [
@@ -13,7 +12,7 @@ const popularKeywords = [
 ];
 
 const TravelPlaceKeywords = () => {
-  
+
   const router = useRouter()
 
   return (
@@ -22,7 +21,7 @@ const TravelPlaceKeywords = () => {
         <p>국내 여행지</p>
         <RegionWithTextWrapper>
           {travelPlaceKeywords.map((region, index) => (
-            <StyledLink key={index} onClick={() => router.push(`/search?keyword=${region}`)}>{region}</StyledLink>
+            <RegionSearch key={index} onClick={() => router.push(`/search?keyword=${region}`)}>{region}</RegionSearch>
           ))}
         </RegionWithTextWrapper>
       </KeywordsWrapper>
@@ -30,7 +29,7 @@ const TravelPlaceKeywords = () => {
         <p>인기 검색 키워드</p>
         <RegionWithTextWrapper>
           {popularKeywords.map((region, index) => (
-            <StyledLink key={index} onClick={() => router.push(`/search?keyword=${region}`)}>{region}</StyledLink>
+            <RegionSearch key={index} onClick={() => router.push(`/search?keyword=${region}`)}>{region}</RegionSearch>
           ))}
         </RegionWithTextWrapper>
       </KeywordsWrapper>
@@ -65,7 +64,7 @@ const RegionWithTextWrapper = styled.div`
   gap: 18px;  
 `
 
-const StyledLink = styled.div`  
+const RegionSearch = styled.div`  
   display: flex;  
   align-items: center;
   justify-content: center;
