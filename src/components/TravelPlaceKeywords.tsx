@@ -3,6 +3,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation';
 
 const travelPlaceKeywords = [
   '경기', '제주', '충남', '인천', '대구', '대전', '서울', '경남', '부산', '전북', '울산', '광주', '강원', '경북', '전남', '충북', '세종'
@@ -12,13 +13,16 @@ const popularKeywords = [
 ];
 
 const TravelPlaceKeywords = () => {
+  
+  const router = useRouter()
+
   return (
     <TravelPlaceKeywordsWrapper>
       <KeywordsWrapper>    
         <p>국내 여행지</p>
         <RegionWithTextWrapper>
           {travelPlaceKeywords.map((region, index) => (
-            <StyledLink key={index} href={`/search?region=${region}`} passHref>{region}</StyledLink>
+            <StyledLink key={index} onClick={() => router.push(`/search?keyword=${region}`)}>{region}</StyledLink>
           ))}
         </RegionWithTextWrapper>
       </KeywordsWrapper>
@@ -26,7 +30,7 @@ const TravelPlaceKeywords = () => {
         <p>인기 검색 키워드</p>
         <RegionWithTextWrapper>
           {popularKeywords.map((region, index) => (
-            <StyledLink key={index} href={`/search?region=${region}`} passHref>{region}</StyledLink>
+            <StyledLink key={index} onClick={() => router.push(`/search?keyword=${region}`)}>{region}</StyledLink>
           ))}
         </RegionWithTextWrapper>
       </KeywordsWrapper>
@@ -61,8 +65,8 @@ const RegionWithTextWrapper = styled.div`
   gap: 18px;  
 `
 
-const StyledLink = styled(Link)`  
-  display: flex;
+const StyledLink = styled.div`  
+  display: flex;  
   align-items: center;
   justify-content: center;
   justify-self: center;
@@ -70,6 +74,7 @@ const StyledLink = styled(Link)`
   height: 40px;
   transition: 0.2s;
   position: relative;
+  cursor: pointer;
 
   &::after {
     content: '';    

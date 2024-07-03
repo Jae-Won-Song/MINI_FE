@@ -2,37 +2,41 @@
 
 import styled from 'styled-components';
 import Link from 'next/link';
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import Inputs from '@/components/Inputs';
 import Buttons from '@/components/Buttons';
 import Image from 'next/image';
 import LoginBackground from '../../../../public/images/login_background.jpg';
-import useSWR from 'swr';
-
-// /open-api/user/login을 통해 로그인
-// {
-  // {
-  //   "email": "abc@gmail.com",
-  //   "password" : "samplepassword"
-  // }
-  // {
-  //   "status": 200,
-  //   "message": "OK",
-  //   "data": {
-  //     "accessToken": "token",
-  //     "refreshToken": "token"
-  //   }
-  // }
+import { useRouter } from 'next/navigation';
+import axios from 'axios';
 
 const LoginPage: React.FC = function LoginPage() {
-
+  const router = useRouter();
   const { register, handleSubmit, formState: { errors } } = useForm<FieldValues>();
 
-  const onSubmit: SubmitHandler<FieldValues> = data => {
-    // const { data, error } = useSWR<APIResponse>(`https://yusuengdo.ddns.net/open-api/user/login`, fetcher);
-    console.log('Login Data', data);
+  const onSubmit: SubmitHandler<FieldValues> = async data => {
+    console.log('Form submitted with data:', data);  // Debug log
+    // if (
+    //   // !name ||
+    //   // !email
+    // ){
+    //   alert('모든 필수 입력란을 채워주세요.');
+    // } else if
+    
+    try {
+      const response = await axios.post('http://yusuengdo.ddns.net/open-api/user/login', data);
+      console.log('response', response);
+      if (response.status === 200 && response.data) {
+        // const { accessToken, refreshToken } = response.data.data;
+        // console.log(accessToken, refreshToken);
+        // localStorage.setItem('accessToken', accessToken);
+        // localStorage.setItem('refreshToken', refreshToken);
+        router.push(`/`);
+      }
+    } catch (error) {
+      console.error('Login failed:', error);
+    }
   };
-
 
   return (
     <LoginPageWrapper>
@@ -40,7 +44,7 @@ const LoginPage: React.FC = function LoginPage() {
         src={LoginBackground}
         alt='로그인 페이지 배경'
       />
-      <FormContainer  onSubmit={handleSubmit(onSubmit)}>      
+      <FormContainer onSubmit={handleSubmit(onSubmit)}>
         <BigTitle>로그인</BigTitle>
         <Section>
           <Inputs
@@ -55,24 +59,12 @@ const LoginPage: React.FC = function LoginPage() {
             id="password"
             label="비밀번호"
             type='password'
-            placeholder="비밀번호"            
+            placeholder="비밀번호"
             fullWidth
             required
             register={register}
           />
         </Section>
-        {/* <Section>
-          <CheckboxWrapper>
-            <Label>
-              <input type="checkbox" />
-              아이디 저장
-            </Label>
-            <Label>
-              <input type="checkbox" />
-              로그인 유지
-            </Label>
-          </CheckboxWrapper>
-        </Section> */}
         <Buttons label="로그인" />
         <RegisterLink>
           아직 아이디가 없다면? <Link href="/auth/register" style={{fontWeight: 700, borderBottom: '1px solid #111111'}}>회원가입</Link>
@@ -98,7 +90,7 @@ const StyledImage = styled(Image)`
   filter: blur(3px) opacity(0.5);
 `;
 
-const FormContainer = styled.div`
+const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -143,4 +135,4 @@ const CheckboxWrapper = styled.div`
   justify-content: center;
   flex-direction: row;
   gap: 20px;
-`
+`;

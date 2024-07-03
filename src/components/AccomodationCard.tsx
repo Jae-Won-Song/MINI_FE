@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
 
 interface Accomodation {
@@ -19,8 +20,10 @@ interface AccomodationCardProps {
 }
 
 const AccomodationCard: React.FC<AccomodationCardProps> = ({ data }) => {
+  const router = useRouter();
+
   return (
-    <Card>
+    <Card onClick={() => router.push(`/placedetail=${data.id}`)}>
       <ImageContainer>
         <img src={data.thumbnail} alt={data.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
       </ImageContainer>
@@ -37,6 +40,12 @@ const Card = styled.div`
   border: 1px solid #ddd;
   border-radius: 6px;
   overflow: hidden;
+  cursor: pointer;  /* 마우스 커서를 포인터로 변경 */
+  transition: box-shadow 0.2s;
+
+  &:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
 
   h3 {
     font-size: 1.2rem;
