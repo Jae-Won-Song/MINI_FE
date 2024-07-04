@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
@@ -7,37 +8,18 @@ import Inputs from '@/components/Inputs';
 import Buttons from '@/components/Buttons';
 import Image from 'next/image';
 import LoginBackground from '../../../../public/images/login_background.jpg';
-import { useRouter } from 'next/navigation';
-import axios from 'axios';
+import { useAuth } from 'src/contexts/AuthContext';
 
 const LoginPage: React.FC = function LoginPage() {
-  const router = useRouter();
+  const { login } = useAuth();
   const { register, handleSubmit, formState: { errors } } = useForm<FieldValues>();
 
-  const onSubmit: SubmitHandler<FieldValues> = async data => {
-    console.log('Form submitted with data:', data);  // Debug log
-    // if (
-    //   // !name ||
-    //   // !email
-    // ){
-    //   alert('모든 필수 입력란을 채워주세요.');
-    // } else if
-    
-    try {
-      const response = await axios.post('http://yusuengdo.ddns.net/open-api/user/login', data);
-      console.log('response', response);
-      if (response.status === 200 && response.data) {
-        const { accessToken, refreshToken } = response.data.data;
-        console.log('accessToken', accessToken);
-        console.log('refreshToken', refreshToken);        
-        localStorage.setItem('accessToken', accessToken);
-        localStorage.setItem('refreshToken', refreshToken);
-        alert('로그인 성공! 메인 페이지로 이동합니다.')
-        router.push(`/`);
-      }
-    } catch (error) {
-      console.error('Login failed:', error);
+  const onSubmit: SubmitHandler<FieldValues> = data => {
+    if (!data.email || !data.password) {
+      alert('모든 필수 입력란을 채워주세요.');
+      return;
     }
+    login(data as { email: string; password: string });
   };
 
   return (
@@ -119,22 +101,9 @@ const Section = styled.div`
   margin-bottom: 10px;
 `;
 
-const Label = styled.label`
-  display: flex;
-  align-items: center;
-  gap: 8px;
-`;
-
 const RegisterLink = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-`;
-
-const CheckboxWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-  gap: 20px;
 `;

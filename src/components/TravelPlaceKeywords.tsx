@@ -21,7 +21,7 @@ const TravelPlaceKeywords = () => {
         <p>국내 여행지</p>
         <RegionWithTextWrapper>
           {travelPlaceKeywords.map((region, index) => (
-            <RegionSearch key={index} onClick={() => router.push(`/search?keyword=${region}`)}>{region}</RegionSearch>
+            <RegionSearch key={index} onClick={() => router.push(`/search?region=${region}`)}>{region}</RegionSearch>
           ))}
         </RegionWithTextWrapper>
       </KeywordsWrapper>
@@ -29,7 +29,7 @@ const TravelPlaceKeywords = () => {
         <p>인기 검색 키워드</p>
         <RegionWithTextWrapper>
           {popularKeywords.map((region, index) => (
-            <RegionSearch key={index} onClick={() => router.push(`/search?keyword=${region}`)}>{region}</RegionSearch>
+            <RegionSearch key={index} onClick={() => router.push(`/search?region=${region}`)}>{region}</RegionSearch>
           ))}
         </RegionWithTextWrapper>
       </KeywordsWrapper>

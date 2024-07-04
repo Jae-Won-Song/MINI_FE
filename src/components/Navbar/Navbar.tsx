@@ -1,11 +1,16 @@
+'use client';
+
 import React from 'react';
 import './Navbar.scss';
 import { BsFillPersonFill } from 'react-icons/bs';
 import { HiOutlineShoppingBag } from 'react-icons/hi2';
 import { CiHeart } from 'react-icons/ci';
 import Link from 'next/link';
+import { useAuth } from 'src/contexts/AuthContext';
 
 export default function Navbar() {
+  const { isLoggedIn, logout } = useAuth();
+
   return (
     <header>
       <div className="navbar">
@@ -30,13 +35,19 @@ export default function Navbar() {
               <CiHeart />
             </li>
           </Link>
-          <Link href="auth/login">
-            <li>로그인</li>
-          </Link>
-          <div>/</div>
-          <Link href="auth/register">
-            <li>회원가입</li>
-          </Link>
+          {isLoggedIn ? (
+            <li onClick={logout} style={{ cursor: 'pointer' }}>로그아웃</li>
+          ) : (
+            <>
+              <Link href="auth/login">
+                <li>로그인</li>
+              </Link>
+              <div>/</div>
+              <Link href="auth/register">
+                <li>회원가입</li>
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </header>

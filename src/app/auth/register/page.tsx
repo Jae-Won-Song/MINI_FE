@@ -8,12 +8,23 @@ import Inputs from '../../../components/Inputs';
 import Buttons from '../../../components/Buttons';
 import RegisterBackground from '../../../../public/images/register_background.jpg';
 import Image from 'next/image';
-import axios from 'axios';
-import { useRouter } from 'next/navigation';
+import { useAuth } from 'src/contexts/AuthContext';
 
 const RegisterPage: React.FC = function RegisterPage() {
+  const { register: registerUser } = useAuth();
 
-  const router = useRouter()
+  const { register, handleSubmit, formState: { errors } } = useForm<FieldValues>();
+
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [confirmPasswordError, setConfirmPasswordError] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [phoneNumberError, setPhoneNumberError] = useState('');
+  const [termsChecked, setTermsChecked] = useState(false);
 
   const validateEmail = (email: string) => {
     const hasAtSign = /@/.test(email);
@@ -25,7 +36,7 @@ const RegisterPage: React.FC = function RegisterPage() {
 
   const validatePassword = (password: string) => {
     const minLength = 8;
-    const hasLowerCase = /[a-z]/.test(password);    
+    const hasLowerCase = /[a-z]/.test(password);
     const hasNumber = /\d/.test(password);
     const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
 
@@ -44,10 +55,7 @@ const RegisterPage: React.FC = function RegisterPage() {
     return '아주 좋은 비밀번호입니다!';
   };
 
-  const validateConfirmPassword = (
-    password: string,
-    confirmPassword: string,
-  ) => {
+  const validateConfirmPassword = (password: string, confirmPassword: string) => {
     if (confirmPassword === '') {
       setConfirmPasswordError('');
     } else if (password === confirmPassword) {
@@ -61,18 +69,8 @@ const RegisterPage: React.FC = function RegisterPage() {
     if (phoneNumber.length !== 13) {
       return '전화번호 13자리를 모두 적어주세요.';
     }
+    return '';
   };
-
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [emailError, setEmailError] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [passwordError, setPasswordError] = useState('');
-  const [confirmPasswordError, setConfirmPasswordError] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [phoneNumberError, setPhoneNumberError] = useState('');
-  const [termsChecked, setTermsChecked] = useState(false);
 
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newEmail = event.target.value;
@@ -119,51 +117,21 @@ const RegisterPage: React.FC = function RegisterPage() {
     setTermsChecked(event.target.checked);
   };
 
-  const { register, handleSubmit } = useForm<FieldValues>();
-
-  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    console.log('data', data);
-    if (
-      !name ||
-      !email ||
-      !password ||
-      !confirmPassword ||
-      !phoneNumber ||
-      !termsChecked
-    ) {
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    if (!name || !email || !password || !confirmPassword || !phoneNumber || !termsChecked) {
       alert('모든 필수 입력란을 채워주세요.');
-    } else if (password !== confirmPassword) {
-      alert('비밀번호와 비밀번호 확인 내용이 일치하지 않습니다.');
-    } else {
-      try {
-        const response = await axios.post('http://yusuengdo.ddns.net/open-api/user/register', {
-          email: data.email,
-          name: data.name,
-          password: data.password,
-          phoneNumber: data.phoneNumber,
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json',         
-          },
-        });
-  
-        const result = response.data;
-        
-        console.log('result', result);
-        console.log('response', response);
-        if (response.status === 201) {
-          alert('회원가입 완료! 이제 로그인해 주세요.');
-          router.push(`/auth/login`)
-        } else {
-          console.error('회원가입 실패:', result.message);
-          throw new Error(result.message || '회원가입 실패!');
-        }
-      } catch (error) {
-        console.error('회원가입 오류:', error);
-        alert(`회원가입을 다시 시도해 주세요. 오류 메시지: ${error.message}`);
-      }
+      return;
     }
+    if (password !== confirmPassword) {
+      alert('비밀번호와 비밀번호 확인 내용이 일치하지 않습니다.');
+      return;
+    }
+    registerUser({
+      email,
+      name,
+      password,
+      phoneNumber,
+    });
   };
 
   return (

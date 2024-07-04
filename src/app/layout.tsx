@@ -4,6 +4,9 @@ import './globals.css';
 import '../styles/base/_reset.scss';
 import '../styles/constants/_colors.scss';
 import StyledComponentsRegistry from './lib/registry';
+import Navbar from '@/components/Navbar/Navbar';
+import Footer from '@/components/Footer';
+import { AuthProvider } from 'src/contexts/AuthContext';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -20,7 +23,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+        <StyledComponentsRegistry>
+          <AuthProvider>
+            <Navbar />
+            {children}
+            <Footer />
+          </AuthProvider>
+        </StyledComponentsRegistry>
       </body>
     </html>
   );
