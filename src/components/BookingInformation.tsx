@@ -1,7 +1,10 @@
 "use client"
 
 import styled from "styled-components";
+import Image from "next/image";
 import PaymentButton from "./PaymentButton";
+import Buttons from "./Buttons";
+import Banner from '../../public/icons/elite_img_PC.png'
 
 const BookingInformation = () => {
   return (
@@ -15,27 +18,38 @@ const BookingInformation = () => {
           <Text>2024년 6월 18일 (화) 14:00 ~ 2024년 6월 19일 (수) 11:00</Text>
         </TextBox>
         <TextBox>
-        <TextTitle>인원</TextTitle>
-        <Text>4명</Text>
+          <TextTitle>인원</TextTitle>
+          <Text>4명</Text>
         </TextBox>
-        <EventBannerBox></EventBannerBox>
+        <EventBannerBox>
+          <EventBannerTextBox>
+            <EventBannerTexth3>
+              회원가입만 해도 받는 엘리트 멤버십 혜택
+            </EventBannerTexth3>
+            <EventBannerText>
+              로그인 하면 멤버십 할인가로 예약할 수 있어요.
+            </EventBannerText>
+            <Buttons label="로그인/회원가입" fullWidth={true} />
+          </EventBannerTextBox>
+          <EventBanner src={Banner} />
+        </EventBannerBox>
       </TextBoxContainer>
       <PaymentMethodContainer>
         <PaymentMethodText>결제 수단</PaymentMethodText>
         <PaymetMethodButtonContainer>
-          <PaymentButton></PaymentButton>
+          <PaymentButton />
         </PaymetMethodButtonContainer>
       </PaymentMethodContainer>
     </BookingInformationContainer>
-  )
-}
+  );
+};
 
 export default BookingInformation;
 
 const BookingInformationContainer = styled.div`
   width: 1080px;
-  height: 1010px;
-  border: 1px solid #7d7d7d;
+  /* height: 1010px;
+  border: 1px solid #7d7d7d; */
 `;
 
 const TitleContainer = styled.div`
@@ -74,7 +88,34 @@ const EventBannerBox = styled.div`
   border: 1px solid #7d7d7d;
   margin: 30px auto;
   box-shadow: 5px 5px 10px 0 #e5e5ec;
-  background-color: #d9d9d9;
+  background-color: #EDEBFF;
+  position: relative;
+  display: flex;
+`;
+
+const EventBanner = styled(Image)`
+  width: 400px;
+  height: 270px;
+  position: absolute;
+  right: 0;
+`;
+
+const EventBannerTextBox = styled.div`
+  width: 500px;
+  height: 150px;
+  justify-content: center;
+  align-content: center;
+  margin: 60px 30px;
+  line-height: 50px;
+  /* border: 1px solid #7d7d7d; */
+`;
+
+const EventBannerTexth3 = styled.h3`
+  font-size: 30px;
+`;
+
+const EventBannerText = styled.div`
+  font-size: 22px;
 `;
 
 const PaymentMethodContainer = styled.div`

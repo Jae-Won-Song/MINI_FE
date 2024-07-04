@@ -2,28 +2,62 @@
 
 import { useState } from 'react';
 import styled from 'styled-components';
-import Image from 'next/image';
 import DatePicker from 'react-datepicker';
-import src from '../../public/images/mainBannerImage.jpg';
+import Link from 'next/link';
 import 'react-datepicker/dist/react-datepicker.css';
+import Buttons from './Buttons';
 import ImageModal from './ImageModal';
+import IconsImport from './IconsImport';
+
+interface SelectRoomProps {
+  title: string;
+  MaxCount: number;
+  fee: number;
+  images: string[];
+  icons: {
+    bath: string;
+    hometheater: string;
+    aircondition: string;
+    tv: string;
+    pc: string;
+    cable: string;
+    internet: string;
+    refrigerator: string;
+    toiletries: string;
+    sofa: string;
+    cook: string;
+    table: string;
+    hairdryer: string;
+  };
+}
+
+const LinkTo = ({ accommodationId, roomId }) => {
+  return (
+    <Link href={`/detail`}>
+      <Buttons label="예약하기" fullWidth={false} />
+    </Link>
+  );
+};
 
 // eslint-disable-next-line react/function-component-definition
-const SelectRoom = () => {
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
-  const [selectPerson, setSelectPerson] = useState(1);
+const SelectRoom = ({ accommodationId, roomId, title, MaxCount, fee, images, icons }: SelectRoomProps) => {
+  const [startDate, setStartDate] = useState<Date>(new Date());
+  const [endDate, setEndDate] = useState<Date>(new Date());
+  const [selectPerson, setSelectPerson] = useState<number>(2);
   const [ModalOpen, setModalOpen] = useState<boolean>(false);
+  const [currentPrice, setcurrentPrice] = useState<number>(fee);
 
   const handlePlus = () => {
-    if (selectPerson < 10) {
+    if (selectPerson < MaxCount) {
       setSelectPerson(selectPerson + 1);
+      setcurrentPrice(currentPrice + 50000);
     }
   };
 
   const handleMinus = () => {
-    if (selectPerson > 1) {
+    if (selectPerson > 2) {
       setSelectPerson(selectPerson - 1);
+      setcurrentPrice(currentPrice - 50000);
     }
   };
 
@@ -38,30 +72,28 @@ const SelectRoom = () => {
   return (
     <Container>
       <ImageContainer>
-        <StyledImage src={src} alt="임시 이미지" />
-        <StyledImage src={src} alt="임시 이미지" />
-        <StyledImage src={src} alt="임시 이미지" />
+        {images.slice(0, 3).map((image, index) => (
+          <StyledImage key={index} image={image} blur={false} />
+        ))}
         <BlurImageContainer onClick={handleModalOpen}>
-          <StyledImage src={src} alt="임시 이미지" />
+          <StyledImage image={images[3]} blur={true} />
           <PlusBox>
             <PlusSign>+</PlusSign>
           </PlusBox>
         </BlurImageContainer>
       </ImageContainer>
+
       <Content>
-        <Title>게스트하우스</Title>
-        <Subtitle>2인 기준, 최대 10인</Subtitle>
+        <Title>{title}</Title>
+        <Subtitle>2인 기준, 최대 {MaxCount}인</Subtitle>
         <Description>기준 인원 초과 시 1인 50,000원 추가</Description>
         <Amenities>
-          <span>(아이콘) Wi-Fi (무료)</span>
-          <span>(아이콘) 객실 내 안전 금고</span>
-          <span>(아이콘) 거실</span>
-          <span>(아이콘) 금연</span>
-          <span>(아이콘) 냉장고</span>
+          편의시설:
+          <IconsImport icons={icons} />
         </Amenities>
       </Content>
       <PriceSection>
-        <Price>500,000원</Price>
+        <Price>{currentPrice.toLocaleString()}원</Price>
         <DateSelection>
           <StyledDatePicker
             selected={startDate}
@@ -69,7 +101,7 @@ const SelectRoom = () => {
             selectsStart
             startDate={startDate}
             endDate={endDate}
-            dateFormat="yyyy.MM.dd"
+            dateFormat="yy년 MM월 dd일"
           />
           <span>~</span>
           <StyledDatePicker
@@ -79,19 +111,25 @@ const SelectRoom = () => {
             startDate={startDate}
             endDate={endDate}
             minDate={startDate}
-            dateFormat="yyyy.MM.dd"
+            dateFormat="yy년 MM월 dd일"
           />
         </DateSelection>
         <GuestSelection>
-          <span>(아이콘)</span>
           <GuestCounter>
             <Button onClick={handleMinus}>-</Button>
-            <GuestCount>{selectPerson}</GuestCount>
+            <GuestCount>{selectPerson} 인</GuestCount>
             <Button onClick={handlePlus}>+</Button>
           </GuestCounter>
         </GuestSelection>
+        <PaymentButtonContainer>
+          <LinkTo accommodationId={accommodationId} roomId={roomId} />
+        </PaymentButtonContainer>
       </PriceSection>
-      <ImageModal isOpen={ModalOpen} onClose={handleModalClose} src={src} />
+      <ImageModal
+        isOpen={ModalOpen}
+        onClose={handleModalClose}
+        images={images}
+      />
     </Container>
   );
 };
@@ -123,10 +161,13 @@ const BlurImageContainer = styled.div`
   cursor: pointer;
 `;
 
-const StyledImage = styled(Image)`
+const StyledImage = styled.div`
   width: 250px;
   height: 130px;
-  filter: blur(1px);
+  background-image: url(${(props) => props.image});
+  background-size: cover;
+  background-position: center;
+  filter: ${(props) => (props.blur ? 'blur(1px)' : 'none')};
 `;
 
 const PlusBox = styled.div`
@@ -134,8 +175,8 @@ const PlusBox = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 100px;
-  height: 80px;
+  width: 80px;
+  height: 60px;
   background-color: white;
   display: flex;
   align-items: center;
@@ -178,6 +219,8 @@ const Amenities = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  font-size: 20px;
+  line-height: 50px;
 `;
 
 const PriceSection = styled.div`
@@ -208,6 +251,10 @@ const GuestSelection = styled.div`
   align-items: center;
 `;
 
+const PaymentButtonContainer = styled.div`
+  margin: 10px;
+`;
+
 const GuestCounter = styled.div`
   display: flex;
   align-items: center;
@@ -222,6 +269,10 @@ const Button = styled.button`
   font-size: 16px;
   margin: 0 10px;
   padding: 5px 10px;
+  &:hover{
+    background-color: #0070f3;
+    color: white;
+  }
 `;
 
 const GuestCount = styled.div`
@@ -244,6 +295,7 @@ const StyledDatePicker = styled(DatePicker)`
   border-radius: 4px;
   font-size: 16px;
   margin: 0 10px;
+  cursor: pointer;
 
   .react-datepicker__input-container input {
     width: 100%;

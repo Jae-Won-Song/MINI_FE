@@ -33,6 +33,7 @@ const AccommodationNameContainer = styled.div`
   width: 650px;
   height: 530px;
   border: 1px solid #7d7d7d;
+  border-radius: 25px;
   margin: 0 20px 0;
 `;
 
