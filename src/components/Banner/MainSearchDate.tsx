@@ -7,7 +7,10 @@ import Calendar from '../Calendar/Calendar';
 import Buttons from '../Buttons';
 
 interface MainSearchDateProps {
-  onConfirm: (startDate: dayjs.Dayjs | null, endDate: dayjs.Dayjs | null) => void;
+  onConfirm: (
+    startDate: dayjs.Dayjs | null,
+    endDate: dayjs.Dayjs | null,
+  ) => void;
 }
 
 const MainSearchDate: React.FC<MainSearchDateProps> = ({ onConfirm }) => {
@@ -18,7 +21,11 @@ const MainSearchDate: React.FC<MainSearchDateProps> = ({ onConfirm }) => {
     if (!startDate || (startDate && endDate)) {
       setStartDate(date);
       setEndDate(null);
-    } else if (startDate && !endDate && (date.isSame(startDate, 'day') || date.isAfter(startDate))) {
+    } else if (
+      startDate &&
+      !endDate &&
+      (date.isSame(startDate, 'day') || date.isAfter(startDate))
+    ) {
       setEndDate(date);
     } else {
       setStartDate(date);
@@ -41,38 +48,57 @@ const MainSearchDate: React.FC<MainSearchDateProps> = ({ onConfirm }) => {
     onConfirm(startDate, endDate);
   };
 
-  return (   
+  return (
     <DateWrapper onClick={handleWrapperClick}>
-      <Calendar startDate={startDate} endDate={endDate} onDateClick={handleDateClick} />
+      <Calendar
+        startDate={startDate}
+        endDate={endDate}
+        onDateClick={handleDateClick}
+      />
       <StayAndNightsWrapper>
         <LengthOfStayWrapper>
           <LengthOfStay>
             <p>체크인</p>
-            <p>{startDate && <SelectedDate>{startDate.format('YYYY년 M월 D일')}</SelectedDate>}</p>
+            <p>
+              {startDate && (
+                <SelectedDate>
+                  {startDate.format('YYYY년 M월 D일')}
+                </SelectedDate>
+              )}
+            </p>
           </LengthOfStay>
           <LengthOfStay>
             <p>체크아웃</p>
-            <p>{endDate && <SelectedDate>{endDate.format('YYYY년 M월 D일')}</SelectedDate>}</p>
+            <p>
+              {endDate && (
+                <SelectedDate>{endDate.format('YYYY년 M월 D일')}</SelectedDate>
+              )}
+            </p>
           </LengthOfStay>
         </LengthOfStayWrapper>
         <TotalNightsWrapper>
           <TotalNights>숙박일 수</TotalNights>
-          {startDate && endDate && (            
-            <TotalNights style={{fontSize: '1rem'}}>
+          {startDate && endDate && (
+            <TotalNights style={{ fontSize: '1rem' }}>
               {calculateNights() === 0 ? '당일' : `${calculateNights()}박`}
             </TotalNights>
           )}
         </TotalNightsWrapper>
       </StayAndNightsWrapper>
-      <Buttons label='기간 확인' fullWidth={false} fullHeight={false} onClick={handleConfirmClick}/>
+      <Buttons
+        label="기간 확인"
+        fullWidth={false}
+        fullHeight={false}
+        onClick={handleConfirmClick}
+      />
     </DateWrapper>
   );
 };
 
-const DateWrapper = styled.div`  
+const DateWrapper = styled.div`
   width: 590px;
   box-shadow: 4px 4px 5px 5px rgba(0, 0, 0, 0.05);
-  background-color: #F7F7F7;
+  background-color: #f7f7f7;
   border-radius: 6px;
   padding: 45px;
   display: flex;
@@ -85,12 +111,12 @@ const DateWrapper = styled.div`
   z-index: 100;
 `;
 
-const StayAndNightsWrapper = styled.div`  
+const StayAndNightsWrapper = styled.div`
   width: 100%;
   margin-bottom: 25px;
 `;
 
-const LengthOfStayWrapper = styled.div`  
+const LengthOfStayWrapper = styled.div`
   margin-top: 30px;
   display: flex;
   flex-direction: row;
@@ -103,9 +129,9 @@ const LengthOfStay = styled.div`
   padding-bottom: 2px;
   font-weight: 400;
   display: flex;
-  flex-direction: row;  
+  flex-direction: row;
   justify-content: space-between;
-  border-bottom: 1px solid;  
+  border-bottom: 1px solid;
   p {
     font-size: 1rem;
   }
@@ -123,16 +149,16 @@ const TotalNightsWrapper = styled.div`
   font-weight: 400;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;  
+  justify-content: space-between;
   width: 24%;
   padding-bottom: 2px;
-  border-bottom: 1px solid #111111; 
-  font-size: 1rem; 
+  border-bottom: 1px solid #111111;
+  font-size: 1rem;
 `;
 
-const TotalNights = styled.p`  
+const TotalNights = styled.p`
   margin-top: 10px;
-  font-weight: 700;  
+  font-weight: 700;
   font-size: 1rem;
   &:first-child {
     font-size: 1rem;

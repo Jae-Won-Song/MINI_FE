@@ -34,7 +34,8 @@ const CategoryContainer = styled.div<{ selected: boolean }>`
   gap: 0.75rem;
   transition: all 0.3s ease;
   cursor: pointer;
-  border-color: ${(props) => (props.selected ? 'orange' : 'rgba(0, 0, 0, 0.2)')};
+  border-color: ${(props) =>
+    props.selected ? 'orange' : 'rgba(0, 0, 0, 0.2)'};
 
   &:hover {
     border-color: orange;

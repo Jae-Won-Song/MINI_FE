@@ -10,28 +10,27 @@ interface EmptyStateProps {
 }
 
 const EmptyState: React.FC<EmptyStateProps> = ({
-  title = "일치하는 것이 없습니다.",
-  subtitle = "일부 필터를 변경하거나 제거해 주십시오.",
+  title = '일치하는 것이 없습니다.',
+  subtitle = '일부 필터를 변경하거나 제거해 주십시오.',
   showReset,
-  onResetFilters
+  onResetFilters,
 }) => {
   return (
     <Container>
       <StyledHeading>
         <h3>{title}</h3>
         <p>{subtitle}</p>
-      </StyledHeading>      
-        {showReset && (
-          <Buttons
-            label="전체 보기"
-            onClick={onResetFilters}
-            fullHeight={false}
-          />
-        )}
+      </StyledHeading>
+      {showReset && (
+        <Buttons
+          label="전체 보기"
+          onClick={onResetFilters}
+          fullHeight={false}
+        />
+      )}
     </Container>
   );
 };
-
 
 const Container = styled.div`
   height: 60px;

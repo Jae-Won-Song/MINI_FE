@@ -7,23 +7,32 @@ interface HeaderProps {
   nextMonth: dayjs.Dayjs;
   maxMonth: dayjs.Dayjs;
   prevMonth: () => void;
-  nextMonthFunc: () => void;  
+  nextMonthFunc: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ currentMonth, nextMonth, maxMonth, prevMonth, nextMonthFunc, }) => {
-  
+const Header: React.FC<HeaderProps> = ({
+  currentMonth,
+  nextMonth,
+  maxMonth,
+  prevMonth,
+  nextMonthFunc,
+}) => {
   const isNextMonthDisabled = nextMonth.isAfter(maxMonth, 'month');
   const isPrevMonthDisabled = currentMonth.isSame(dayjs(), 'month');
 
   return (
-    <HeaderContainer>      
-      <Button onClick={prevMonth} disabled={isPrevMonthDisabled}>&lt;</Button>
-        <p>
-          {currentMonth.format('YYYY년 M월')}
-          <span>~</span>
-          {nextMonth.format('YYYY년 M월')}
-        </p>
-      <Button onClick={nextMonthFunc} disabled={isNextMonthDisabled}>&gt;</Button>
+    <HeaderContainer>
+      <Button onClick={prevMonth} disabled={isPrevMonthDisabled}>
+        &lt;
+      </Button>
+      <p>
+        {currentMonth.format('YYYY년 M월')}
+        <span>~</span>
+        {nextMonth.format('YYYY년 M월')}
+      </p>
+      <Button onClick={nextMonthFunc} disabled={isNextMonthDisabled}>
+        &gt;
+      </Button>
     </HeaderContainer>
   );
 };
@@ -32,7 +41,7 @@ const HeaderContainer = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
-  align-items: center;  
+  align-items: center;
   margin-bottom: 20px;
   font-size: 1.2rem;
   position: relative;
@@ -45,10 +54,9 @@ const HeaderContainer = styled.div`
   span {
     padding: 0 10px;
   }
-
 `;
 
-const Button = styled.button<{ disabled?: boolean }>`  
+const Button = styled.button<{ disabled?: boolean }>`
   width: 20px;
   height: 100%;
   font-size: 1.1rem;

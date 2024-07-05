@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Navbar.scss';
 import { BsFillPersonFill } from 'react-icons/bs';
 import { HiOutlineShoppingBag } from 'react-icons/hi2';
@@ -20,30 +20,32 @@ export default function Navbar() {
           </Link>
         </div>
         <div className="nav-cat">
-          <Link href="mypage">
+          <Link href="/mypage">
             <li>
               <BsFillPersonFill />
             </li>
           </Link>
-          <Link href="myreservation">
+          <Link href="/myreservation">
             <li>
               <HiOutlineShoppingBag />
             </li>
           </Link>
-          <Link href="wishlist">
+          <Link href="/wishlist">
             <li>
               <CiHeart />
             </li>
           </Link>
           {isLoggedIn ? (
-            <li onClick={logout} style={{ cursor: 'pointer' }}>로그아웃</li>
+            <li onClick={logout} style={{ cursor: 'pointer' }}>
+              로그아웃
+            </li>
           ) : (
             <>
-              <Link href="auth/login">
+              <Link href="/auth/login">
                 <li>로그인</li>
               </Link>
               <div>/</div>
-              <Link href="auth/register">
+              <Link href="/auth/register">
                 <li>회원가입</li>
               </Link>
             </>

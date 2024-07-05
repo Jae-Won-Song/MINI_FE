@@ -10,9 +10,10 @@ interface CellProps {
   isCurrentMonth: boolean;
   isInRange: boolean;
   onClick: () => void;
+  children: React.ReactNode;
 }
 
-const Cell: React.FC<CellProps> = ({ 
+const Cell: React.FC<CellProps> = ({
   isDisabled,
   isStartDate,
   isEndDate,
@@ -21,10 +22,10 @@ const Cell: React.FC<CellProps> = ({
   isCurrentMonth,
   isInRange,
   onClick,
-  children
+  children,
 }) => {
   if (!isCurrentMonth) {
-    return <CellWrapperInvisible />;
+    return <div style={{ display: 'flex', flex: 1 }} />;
   }
 
   return (
@@ -42,11 +43,13 @@ const Cell: React.FC<CellProps> = ({
   );
 };
 
-const CellWrapper = styled.div<{ 
+export default Cell;
+
+const CellWrapper = styled.div<{
   isDisabled: boolean;
   isStartDate: boolean;
   isEndDate: boolean;
-  isToday: boolean; 
+  isToday: boolean;
   isPast: boolean;
   isInRange: boolean;
 }>`
@@ -55,24 +58,26 @@ const CellWrapper = styled.div<{
   justify-content: center;
   align-items: center;
   font-size: 0.9rem;
-  height: 37px;  
+  height: 37px;
   cursor: ${({ isPast }) => (isPast ? 'default' : 'pointer')};
   background-color: ${({ isStartDate, isEndDate, isInRange }) =>
-    isStartDate ? '#f85b2b' : 
-    isEndDate ? '#F85B2B' : 
-    isInRange ? '#E8E8E8' : ''};
+    isStartDate
+      ? '#f85b2b'
+      : isEndDate
+        ? '#F85B2B'
+        : isInRange
+          ? '#E8E8E8'
+          : ''};
   color: ${({ isStartDate, isEndDate }) =>
-    isStartDate ? '#ffffff' : 
-    isEndDate ? '#ffffff' : ''};
+    isStartDate ? '#ffffff' : isEndDate ? '#ffffff' : ''};
   font-weight: ${({ isStartDate, isEndDate }) =>
-    isStartDate ? '700' : 
-    isEndDate ? '700' : ''};
+    isStartDate ? '700' : isEndDate ? '700' : ''};
   border-top-left-radius: ${({ isStartDate }) => (isStartDate ? '6px' : '')};
   border-bottom-left-radius: ${({ isStartDate }) => (isStartDate ? '6px' : '')};
   border-top-right-radius: ${({ isEndDate }) => (isEndDate ? '6px' : '')};
-  border-bottom-right-radius: ${({ isEndDate }) => (isEndDate ? '6px' : '')};  
+  border-bottom-right-radius: ${({ isEndDate }) => (isEndDate ? '6px' : '')};
   font-weight: ${({ isToday }) => (isToday ? '900' : '')};
-  color: ${({ isPast }) => (isPast ? '#A7A7A7' : '')};  
+  color: ${({ isPast }) => (isPast ? '#A7A7A7' : '')};
   border: 1px solid transparent;
   box-sizing: border-box;
   position: relative;
@@ -93,10 +98,3 @@ const CellWrapper = styled.div<{
     font-weight: 900;
   }
 `;
-
-const CellWrapperInvisible = styled.div`
-  flex: 1;
-  display: flex;
-`;
-
-export default Cell;

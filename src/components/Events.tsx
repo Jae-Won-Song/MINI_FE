@@ -1,11 +1,12 @@
-'use client'
+'use client';
+
 import React, { useEffect, useRef } from 'react';
 import Swiper from 'swiper';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import styled from 'styled-components';
-import SlideButtons from '@/components/SlideButtons';
 import Image from 'next/image';
+import SlideButtons from '@/components/SlideButtons';
 import buckchon from '../../public/images/Events/bukchon.jpg';
 import jusangjoint from '../../public/images/Events/jusang-joint.jpg';
 import koreabamboo from '../../public/images/Events/korea-bamboo.jpg';
@@ -21,47 +22,47 @@ const EventImage = [
     label: '북촌 주변 숙소 추천',
     overview: '',
     src: buckchon,
-    alt: 'Buckhon'
+    alt: 'Buckhon',
   },
   {
     label: '주상절리 주변 숙소 추천',
     src: jusangjoint,
-    alt: 'JusangJoint'
+    alt: 'JusangJoint',
   },
   {
     label: '대나무숲이 보이는 풍경',
     src: koreabamboo,
-    alt: 'Koreabamboo'
+    alt: 'Koreabamboo',
   },
   {
     label: '포항 호미곶 투어 패키지',
     src: pohang,
-    alt: 'Pohang'
+    alt: 'Pohang',
   },
   {
     label: '퓨전 한식을 만나보세요',
     src: salad,
-    alt: 'Salad'
+    alt: 'Salad',
   },
   {
     label: '수원 역사 · 문화 투어',
     src: suwon,
-    alt: 'Suwon'
+    alt: 'Suwon',
   },
   {
     label: '조계종 제공 템플스테이 패키지',
     src: temple,
-    alt: 'TempleStay'
+    alt: 'TempleStay',
   },
   {
     label: '사찰음식 패키지',
     src: temple2,
-    alt: 'TempleFood'
+    alt: 'TempleFood',
   },
   {
     label: '양동마을 전통문화 체험',
     src: yangdong,
-    alt: 'Yangdong'
+    alt: 'Yangdong',
   },
 ];
 
@@ -83,7 +84,7 @@ const Events = () => {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev',
         },
-        pagination: { clickable: true }
+        pagination: { clickable: true },
       });
     }
   }, []);
@@ -97,7 +98,11 @@ const Events = () => {
         <div className="swiper-container" ref={swiperContainerRef}>
           <div className="swiper-wrapper">
             {EventImage.map((image, index) => (
-              <div className="swiper-slide" key={index} style={{position: 'relative'}}>
+              <div
+                className="swiper-slide"
+                key={index}
+                style={{ position: 'relative' }}
+              >
                 <Image
                   src={image.src}
                   alt={image.alt}
@@ -135,9 +140,10 @@ const SwiperContainer = styled.div`
   .swiper-slide {
     width: 300px !important;
     height: 300px !important;
-    position: relative;    
+    position: relative;
   }
-  .swiper-button-next, .swiper-button-prev {
+  .swiper-button-next,
+  .swiper-button-prev {
     color: #000;
   }
 `;
@@ -149,10 +155,10 @@ const EventLabels = styled.div`
   justify-content: center;
   top: 45%;
   left: 50%;
-  transform: translateX(-50%);  
+  transform: translateX(-50%);
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
-  padding: 5px 10px;  
+  padding: 5px 10px;
   font-size: 1.2rem;
   font-weight: 700;
   word-break: keep-all;

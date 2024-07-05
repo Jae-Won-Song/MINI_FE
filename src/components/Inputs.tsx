@@ -41,7 +41,7 @@ const Inputs: React.FC<InputProps> = function Inputs({
       <StyledInput
         id={id}
         type={type}
-        {...register(id, { required })}
+        {...(register ? register(id, { required }) : {})}
         placeholder={placeholder}
         value={value}
         onChange={onChange}

@@ -18,10 +18,10 @@ import CategoryBox from './CategoryBox';
 import hanok from '../../../public/svgs/Hanok.svg';
 import hot from '../../../public/svgs/hot.svg';
 
-const HanokIcon = () => 
-  <Image src={hanok} alt="Hanok Icon" width={26} height={26} />;
-const HotIcon = () => 
-  <Image src={hot} alt="hot Icon" width={26} height={26} />;
+const HanokIcon = () => (
+  <Image src={hanok} alt="Hanok Icon" width={26} height={26} />
+);
+const HotIcon = () => <Image src={hot} alt="hot Icon" width={26} height={26} />;
 
 export const categories = [
   {
@@ -92,12 +92,15 @@ export const categories = [
   },
 ];
 
-interface CategoriesProps {  
+interface CategoriesProps {
   onCategoryChange: (category: string) => void;
   selectedCategory: string;
 }
 
-const Categories: React.FC<CategoriesProps> = ({ onCategoryChange, selectedCategory }) => {
+const Categories: React.FC<CategoriesProps> = ({
+  onCategoryChange,
+  selectedCategory,
+}) => {
   return (
     <CategoryWrapper>
       {categories.map((item) => (
@@ -114,12 +117,11 @@ const Categories: React.FC<CategoriesProps> = ({ onCategoryChange, selectedCateg
   );
 };
 
-
-const CategoryWrapper = styled.div`  
+const CategoryWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;  
+  justify-content: space-between;
   overflow-x: auto;
   margin: auto;
 `;

@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import React, { useState } from 'react';
 import styled from 'styled-components';
@@ -10,7 +10,7 @@ import Month from './DaysMonth';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
-dayjs.tz.setDefault("Asia/Seoul");
+dayjs.tz.setDefault('Asia/Seoul');
 
 interface CalendarProps {
   startDate: dayjs.Dayjs | null;
@@ -18,7 +18,11 @@ interface CalendarProps {
   onDateClick: (date: dayjs.Dayjs) => void;
 }
 
-const Calendar: React.FC<CalendarProps> = ({ startDate, endDate, onDateClick }) => {
+const Calendar: React.FC<CalendarProps> = ({
+  startDate,
+  endDate,
+  onDateClick,
+}) => {
   const [currentMonth, setCurrentMonth] = useState(dayjs().tz());
   const [nextMonth, setNextMonth] = useState(dayjs().tz().add(1, 'month'));
   const maxMonth = dayjs().tz().add(24, 'month');
@@ -40,20 +44,20 @@ const Calendar: React.FC<CalendarProps> = ({ startDate, endDate, onDateClick }) 
         nextMonth={nextMonth}
         maxMonth={maxMonth}
         prevMonth={prevMonth}
-        nextMonthFunc={nextMonthFunc}        
+        nextMonthFunc={nextMonthFunc}
       />
       <MonthsContainer>
-        <Month 
-          month={currentMonth} 
-          startDate={startDate} 
-          endDate={endDate} 
-          onDateClick={onDateClick} 
+        <Month
+          month={currentMonth}
+          startDate={startDate}
+          endDate={endDate}
+          onDateClick={onDateClick}
         />
-        <Month 
-          month={nextMonth} 
-          startDate={startDate} 
-          endDate={endDate} 
-          onDateClick={onDateClick} 
+        <Month
+          month={nextMonth}
+          startDate={startDate}
+          endDate={endDate}
+          onDateClick={onDateClick}
         />
       </MonthsContainer>
     </CalendarContainer>

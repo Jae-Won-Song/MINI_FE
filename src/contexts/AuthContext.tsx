@@ -1,6 +1,12 @@
 'use client';
 
-import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useEffect,
+} from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 
@@ -42,7 +48,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const login = async (data: LoginData) => {
     try {
-      const response = await axios.post(`${API_BASE_URL}/login`, data);
+      const response = await axios.post(`${API_BASE_URL}/user/login`, data);
       if (response.status === 200 && response.data) {
         const { accessToken, refreshToken } = response.data.data;
         setAccessToken(accessToken);
@@ -59,7 +65,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         if (error.response.status === 400) {
           if (errorMessage.includes('해당 이메일을 가진 유저가 없습니다')) {
             alert('이메일 주소가 잘못되었습니다. 다시 확인해주세요.');
-          } else if (errorMessage.includes('로그인 기한 만료. 다시 로그인해 주세요.')) {
+          } else if (
+            errorMessage.includes('로그인 기한 만료. 다시 로그인해 주세요.')
+          ) {
             alert('비밀번호가 잘못되었습니다. 다시 확인해주세요.');
           } else {
             alert(`로그인 실패: ${errorMessage}`);
@@ -75,7 +83,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const register = async (data: RegisterData) => {
     try {
-      const response = await axios.post(`${API_BASE_URL}/register`, data);
+      const response = await axios.post(`${API_BASE_URL}/user/register`, data);
       if (response.status === 201) {
         alert('회원가입 완료! 이제 로그인해 주세요.');
         router.push(`/auth/login`);
@@ -87,7 +95,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       console.error('회원가입 오류:', error);
       if (axios.isAxiosError(error) && error.response) {
         const errorMessage = error.response.data.data.message;
-        if (error.response.status === 400 && errorMessage.includes('이미 가입되어 있습니다')) {
+        if (
+          error.response.status === 400 &&
+          errorMessage.includes('이미 가입되어 있습니다')
+        ) {
           alert('이미 가입되어 있습니다. 로그인 페이지로 이동합니다.');
           router.push('/auth/login');
         } else {
@@ -102,21 +113,20 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const logout = async () => {
     try {
       const token = localStorage.getItem('accessToken');
-      const refreshToken = localStorage.getItem('refreshToken');
+      // const refreshToken = localStorage.getItem('refreshToken');
       if (!token) {
         alert('이미 로그아웃 상태입니다.');
         return;
       }
 
-      await axios.post(`${API_BASE_URL}/logout`, {}, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'x-refresh-token': `${refreshToken}`,
-        },
-      });
+      // await axios.post(`http://yusuengdo.ddns.net/api/user/logout`, {}, {
+      //   headers: {
+      //     Authorization: `${token}`
+      //   },
+      // });
 
-      setAccessToken(null);
-      setIsLoggedIn(false);
+      // setAccessToken(null);
+      // setIsLoggedIn(false);
       localStorage.removeItem('accessToken');
       localStorage.removeItem('refreshToken');
       alert('로그아웃 되었습니다.');
@@ -124,10 +134,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     } catch (error) {
       console.error('Logout failed:', error);
       if (axios.isAxiosError(error) && error.response) {
-        const errorMessage = error.response.data.data.message;
+        const errorMessage =
+          error.response.data?.data?.message || error.response.data?.message;
         if (error.response.status === 404) {
           alert('해당하는 유저는 없습니다.');
-        } else if (error.response.status === 400 && errorMessage.includes('이미 로그아웃이 되어있습니다')) {
+        } else if (
+          error.response.status === 400 &&
+          errorMessage.includes('이미 로그아웃이 되어 있습니다')
+        ) {
           alert('이미 로그아웃 상태입니다.');
         } else {
           alert('로그아웃 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
@@ -139,7 +153,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, accessToken, login, register, logout }}>
+    <AuthContext.Provider
+      value={{ isLoggedIn, accessToken, login, register, logout }}
+    >
       {children}
     </AuthContext.Provider>
   );

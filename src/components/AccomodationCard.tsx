@@ -1,7 +1,11 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
-import { TiStarFullOutline, TiStarHalfOutline, TiStarOutline } from "react-icons/ti";
+import {
+  TiStarFullOutline,
+  TiStarHalfOutline,
+  TiStarOutline,
+} from 'react-icons/ti';
 
 interface Accomodation {
   id: number;
@@ -23,10 +27,9 @@ interface AccomodationCardProps {
 const AccomodationCard: React.FC<AccomodationCardProps> = ({ data }) => {
   const router = useRouter();
 
-
   const RatingStars = (rating: number) => {
     const fullStars = Math.floor(rating);
-    const halfStars = rating % 1 > 0? 1 : 0;
+    const halfStars = rating % 1 > 0 ? 1 : 0;
     const emptyStars = 5 - fullStars - halfStars;
 
     return (
@@ -41,19 +44,28 @@ const AccomodationCard: React.FC<AccomodationCardProps> = ({ data }) => {
           <TiStarOutline key={`empty-${index}`} />
         ))}
       </RatingContainer>
-    )
-  }
+    );
+  };
 
   return (
     <Card onClick={() => router.push(`/placedetail=${data.id}`)}>
       <ImageContainer>
-        <img src={data.thumbnail} alt={data.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+        <img
+          src={data.thumbnail}
+          alt={data.title}
+          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+        />
       </ImageContainer>
       <TextContainer>
         <h3>{data.title}</h3>
         <p>{data.address}</p>
-        <p><span>{data.price.toLocaleString()}원</span> / 1박</p>
-        <Rating>{RatingStars(data.rating)}<span>({data.rating})</span></Rating>
+        <p>
+          <span>{data.price.toLocaleString()}원</span> / 1박
+        </p>
+        <Rating>
+          {RatingStars(data.rating)}
+          <span>({data.rating})</span>
+        </Rating>
       </TextContainer>
     </Card>
   );
@@ -63,7 +75,7 @@ const Card = styled.div`
   border: 1px solid #ddd;
   border-radius: 6px;
   overflow: hidden;
-  cursor: pointer;  /* 마우스 커서를 포인터로 변경 */
+  cursor: pointer; /* 마우스 커서를 포인터로 변경 */
   transition: box-shadow 0.2s;
 
   &:hover {
@@ -95,7 +107,7 @@ const TextContainer = styled.div`
 `;
 
 const RatingContainer = styled.div`
-  display: flex;  
+  display: flex;
   margin-top: 0.5rem;
   font-size: 1.1rem;
   color: #ffaa00;
@@ -103,8 +115,8 @@ const RatingContainer = styled.div`
 
 const Rating = styled.div`
   display: flex;
-  align-items: end;  
-  color: #A7A7A7;
+  align-items: end;
+  color: #a7a7a7;
   span {
     margin-left: 0.3rem;
     font-size: 0.9rem;

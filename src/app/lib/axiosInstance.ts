@@ -9,7 +9,7 @@ axiosInstance.interceptors.request.use(
     const accessToken = localStorage.getItem('accessToken');
     const refreshToken = localStorage.getItem('refreshToken');
     if (accessToken) {
-      config.headers['Authorization'] = `Bearer ${accessToken}`;
+      config.headers.Authorization = `Bearer ${accessToken}`;
     }
     if (refreshToken) {
       config.headers['x-refresh-token'] = refreshToken;
@@ -18,7 +18,7 @@ axiosInstance.interceptors.request.use(
   },
   (error) => {
     return Promise.reject(error);
-  }
+  },
 );
 
 // Response Interceptor 추가
@@ -31,11 +31,10 @@ axiosInstance.interceptors.response.use(
       alert('Unauthorized');
     }
     return Promise.reject(error);
-  }
+  },
 );
 
 export default axiosInstance;
-
 
 // import axiosInstance from '../path/to/axiosInstance';
 

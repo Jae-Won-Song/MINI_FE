@@ -1,24 +1,22 @@
-'use client'
+'use client';
 
-import React from 'react'
+import React from 'react';
+import styled from 'styled-components';
 import TravelPlaceKeywords from '@/components/TravelPlaceKeywords';
 import ThemeSearch from '@/components/ThemeSearch';
 import Events from '@/components/Events';
-import styled from 'styled-components';
 
 const UnderMainBanner = () => {
   return (
-
-      <UnderMainBannerWrapper>
-        <Events />
-        <Hr />
-        <ThemeSearch />
-        <Hr />
-        <TravelPlaceKeywords /> 
-      </UnderMainBannerWrapper>
-
-  )
-}
+    <UnderMainBannerWrapper>
+      <Events />
+      <Hr />
+      <ThemeSearch />
+      <Hr />
+      <TravelPlaceKeywords />
+    </UnderMainBannerWrapper>
+  );
+};
 
 const UnderMainBannerWrapper = styled.div`
   width: auto;
@@ -37,9 +35,9 @@ const UnderMainBannerWrapper = styled.div`
   @media (min-width: 1920px) {
     width: 1500px;
   }
-`
+`;
 
 const Hr = styled.hr`
-  border-color: #F7F7FB;
-`
-export default UnderMainBanner
+  border-color: #f7f7fb;
+`;
+export default UnderMainBanner;

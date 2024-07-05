@@ -27,22 +27,38 @@ const regionImages = [
 ];
 
 const regionNames = [
-  '서울', '부산', '속초', '강릉', '양양', '전주', '대구', '경주', '여수', '천안', '서귀포', '대전', '제주', '인천', '가평'
+  '서울',
+  '부산',
+  '속초',
+  '강릉',
+  '양양',
+  '전주',
+  '대구',
+  '경주',
+  '여수',
+  '천안',
+  '서귀포',
+  '대전',
+  '제주',
+  '인천',
+  '가평',
 ];
 
-const MainSearchRegion: React.FC<MainSearchRegionProps> = ({ onSelectRegion }) => {
+const MainSearchRegion: React.FC<MainSearchRegionProps> = ({
+  onSelectRegion,
+}) => {
   return (
     <RegionWrapper>
       <RegionWithPhotoWrapper>
         {regionImages.map((region, index) => (
           <div key={index} onClick={() => onSelectRegion(region.name)}>
             <ImageWrapper>
-              <Image 
+              <Image
                 src={region.src}
                 alt={region.alt}
                 width={75}
                 height={75}
-                objectFit='cover'
+                objectFit="cover"
               />
               <p>{region.name}</p>
             </ImageWrapper>
@@ -51,17 +67,19 @@ const MainSearchRegion: React.FC<MainSearchRegionProps> = ({ onSelectRegion }) =
       </RegionWithPhotoWrapper>
       <RegionWithTextWrapper>
         {regionNames.map((region, index) => (
-          <StyledRegion key={index} onClick={() => onSelectRegion(region)}>{region}</StyledRegion>
+          <StyledRegion key={index} onClick={() => onSelectRegion(region)}>
+            {region}
+          </StyledRegion>
         ))}
       </RegionWithTextWrapper>
     </RegionWrapper>
-  )
-}
+  );
+};
 
 const RegionWrapper = styled.div`
   width: 590px;
   box-shadow: 4px 4px 5px 5px rgba(0, 0, 0, 0.05);
-  background-color: #F7F7F7;
+  background-color: #f7f7f7;
   border-radius: 6px;
   padding: 45px;
   display: flex;
@@ -88,9 +106,9 @@ const RegionWithPhotoWrapper = styled.div`
     bottom: 0;
     left: 6px;
     width: 98%;
-    border-bottom: 1px solid #CCCCCC;
+    border-bottom: 1px solid #cccccc;
   }
-`
+`;
 
 const ImageWrapper = styled.div`
   text-align: center;
@@ -102,19 +120,19 @@ const ImageWrapper = styled.div`
     font-size: 1.1rem;
     font-weight: 700;
   }
-  
-  &:hover {    
+
+  &:hover {
     background-color: #cccccc;
   }
-`
+`;
 
 const RegionWithTextWrapper = styled.div`
-  display: grid;  
+  display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 18px;
-`
+`;
 
-const StyledRegion = styled.div`  
+const StyledRegion = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -124,7 +142,7 @@ const StyledRegion = styled.div`
   transition: 0.2s;
   cursor: pointer;
 
-  &:hover {    
+  &:hover {
     background-color: #cccccc;
   }
 
@@ -132,6 +150,6 @@ const StyledRegion = styled.div`
     outline: none;
     box-shadow: 0 0 0 2px rgba(0, 112, 243, 0.6);
   }
-`
+`;
 
 export default MainSearchRegion;

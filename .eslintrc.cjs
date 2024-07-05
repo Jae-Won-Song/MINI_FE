@@ -46,23 +46,25 @@ module.exports = {
         jsx: 'never',
       },
     ],
-    'react/react-in-jsx-scope': 'off',  
-    '@typescript-eslint/no-use-before-define': 'off',
-    'react/require-default-props': 'off',
-    
-    'import/extensions': ['error', 'ignorePackages', {
-      js: 'never',
-      jsx: 'never',
-      ts: 'never',
-      tsx: 'never',
-    }]
+    'react/react-in-jsx-scope': 'off',
+    'react/function-component-definition': [
+      'error',
+      {
+        namedComponents: 'arrow-function',
+        unnamedComponents: 'arrow-function',
+      },
+    ],
   },
   settings: {
     react: {
       version: 'detect',
     },
     'import/resolver': {
-      node: {
+      alias: {
+        map: [
+          ['@components', './src/components'],
+          ['@utils', './src/utils'],
+        ],
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
       },
     },

@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
+import dayjs, { Dayjs } from 'dayjs';
 import Buttons from '../Buttons';
 // import { FaUmbrellaBeach } from "react-icons/fa";
 // import { MdPeopleAlt } from "react-icons/md";
@@ -11,7 +12,7 @@ import MainSearchDate from '@/components/Banner/MainSearchDate';
 import MainSearchPeopleNumber from './MainSearchPeopleNumber';
 
 // 아이콘 넣기
-function MainSearch(): React.JSX.Element {
+const MainSearch = (): React.JSX.Element => {
   const [isRegionOpen, setIsRegionOpen] = useState(false);
   const [selectedRegion, setSelectedRegion] = useState('');
 
@@ -19,8 +20,10 @@ function MainSearch(): React.JSX.Element {
   const [selectedPeople, setSelectedPeople] = useState('');
 
   const [isDateOpen, setIsDateOpen] = useState(false);
-  const [selectedStartDate, setSelectedStartDate] = useState<dayjs.Dayjs | null>(null);
-  const [selectedEndDate, setSelectedEndDate] = useState<dayjs.Dayjs | null>(null);
+  const [selectedStartDate, setSelectedStartDate] = useState<Dayjs | null>(
+    null,
+  );
+  const [selectedEndDate, setSelectedEndDate] = useState<Dayjs | null>(null);
 
   const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -51,14 +54,20 @@ function MainSearch(): React.JSX.Element {
     setIsRegionOpen(false); // 선택 후 드롭다운 닫기
   };
 
-  const handleDateConfirm = (startDate: dayjs.Dayjs | null, endDate: dayjs.Dayjs | null) => {
+  const handleDateConfirm = (
+    startDate: dayjs.Dayjs | null,
+    endDate: dayjs.Dayjs | null,
+  ) => {
     setSelectedStartDate(startDate);
     setSelectedEndDate(endDate);
     setIsDateOpen(false);
   };
 
   const handleClickOutside = (event: MouseEvent) => {
-    if (wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) {
+    if (
+      wrapperRef.current &&
+      !wrapperRef.current.contains(event.target as Node)
+    ) {
       setIsRegionOpen(false);
       setIsPeopleOpen(false);
       setIsDateOpen(false);
@@ -85,14 +94,24 @@ function MainSearch(): React.JSX.Element {
         <SelectorWrapper onClick={toggleRegion}>
           <p>{selectedRegion || '지역 선택하기'}</p>
         </SelectorWrapper>
-        {isRegionOpen && <MainSearchRegion onSelectRegion={handleRegionSelect} />}
+        {isRegionOpen && (
+          <MainSearchRegion onSelectRegion={handleRegionSelect} />
+        )}
       </SearchElementsWrapper>
       <SearchElementsWrapper>
         <p>날짜</p>
         <SelectorWrapper onClick={toggleDate}>
-          <SelectorDate>{selectedStartDate ? selectedStartDate.format('YYYY년 M월 D일') : '체크인'}</SelectorDate>
+          <SelectorDate>
+            {selectedStartDate
+              ? selectedStartDate.format('YYYY년 M월 D일')
+              : '체크인'}
+          </SelectorDate>
           <p style={{ textAlign: 'center' }}>~</p>
-          <SelectorDate>{selectedEndDate ? selectedEndDate.format('YYYY년 M월 D일') : '체크아웃'}</SelectorDate>
+          <SelectorDate>
+            {selectedEndDate
+              ? selectedEndDate.format('YYYY년 M월 D일')
+              : '체크아웃'}
+          </SelectorDate>
           {isDateOpen && <MainSearchDate onConfirm={handleDateConfirm} />}
         </SelectorWrapper>
       </SearchElementsWrapper>
@@ -101,20 +120,22 @@ function MainSearch(): React.JSX.Element {
         <SelectorWrapper onClick={togglePeople}>
           <p>{selectedPeople || '인원 수 선택하기'}</p>
         </SelectorWrapper>
-        {isPeopleOpen && <MainSearchPeopleNumber onConfirm={handlePeopleConfirm} />}
+        {isPeopleOpen && (
+          <MainSearchPeopleNumber onConfirm={handlePeopleConfirm} />
+        )}
       </SearchElementsWrapper>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <Buttons label="검색" fullWidth={false} />
       </div>
     </SearchWrapper>
   );
-}
+};
 
 const SearchWrapper = styled.div`
   width: 750px;
   min-width: 500px;
   padding: 40px;
-  background: rgba(255, 255, 255, 0.65);  
+  background: rgba(255, 255, 255, 0.65);
   position: relative;
   z-index: 20;
   overflow: visible;
@@ -192,13 +213,13 @@ const SelectorWrapper = styled.div`
       font-size: 1.1rem;
     }
     @media only screen and (max-width: 1080px) {
-    font-size: 1rem;
+      font-size: 1rem;
     }
   }
 `;
 
 const SelectorDate = styled.div`
-  width: 45%;  
+  width: 45%;
   font-size: 1.2rem;
   display: flex;
   align-items: center;

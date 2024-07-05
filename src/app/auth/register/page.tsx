@@ -4,16 +4,20 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 import { useForm, SubmitHandler, FieldValues } from 'react-hook-form';
+import Image from 'next/image';
+import { useAuth } from 'src/contexts/AuthContext';
 import Inputs from '../../../components/Inputs';
 import Buttons from '../../../components/Buttons';
 import RegisterBackground from '../../../../public/images/register_background.jpg';
-import Image from 'next/image';
-import { useAuth } from 'src/contexts/AuthContext';
 
 const RegisterPage: React.FC = function RegisterPage() {
   const { register: registerUser } = useAuth();
 
-  const { register, handleSubmit, formState: { errors } } = useForm<FieldValues>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FieldValues>();
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -55,7 +59,10 @@ const RegisterPage: React.FC = function RegisterPage() {
     return '아주 좋은 비밀번호입니다!';
   };
 
-  const validateConfirmPassword = (password: string, confirmPassword: string) => {
+  const validateConfirmPassword = (
+    password: string,
+    confirmPassword: string,
+  ) => {
     if (confirmPassword === '') {
       setConfirmPasswordError('');
     } else if (password === confirmPassword) {
@@ -87,13 +94,17 @@ const RegisterPage: React.FC = function RegisterPage() {
     validateConfirmPassword(newPassword, confirmPassword);
   };
 
-  const handleConfirmPasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleConfirmPasswordChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     const newConfirmPassword = event.target.value;
     setConfirmPassword(newConfirmPassword);
     validateConfirmPassword(password, newConfirmPassword);
   };
 
-  const handlePhoneNumberChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handlePhoneNumberChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     const input = event.target.value.replace(/\D/g, '');
     const formattedInput = formatPhoneNumber(input);
     setPhoneNumber(formattedInput);
@@ -104,13 +115,14 @@ const RegisterPage: React.FC = function RegisterPage() {
   const formatPhoneNumber = (input: string) => {
     if (input.length <= 3) {
       return input;
-    } else if (input.length <= 7) {
+    }
+    if (input.length <= 7) {
       return `${input.slice(0, 3)}-${input.slice(3)}`;
-    } else if (input.length <= 11) {
-      return `${input.slice(0, 3)}-${input.slice(3, 7)}-${input.slice(7, 11)}`;
-    } else {
+    }
+    if (input.length <= 11) {
       return `${input.slice(0, 3)}-${input.slice(3, 7)}-${input.slice(7, 11)}`;
     }
+    return `${input.slice(0, 3)}-${input.slice(3, 7)}-${input.slice(7, 11)}`;
   };
 
   const handleTermsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -118,7 +130,14 @@ const RegisterPage: React.FC = function RegisterPage() {
   };
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    if (!name || !email || !password || !confirmPassword || !phoneNumber || !termsChecked) {
+    if (
+      !name ||
+      !email ||
+      !password ||
+      !confirmPassword ||
+      !phoneNumber ||
+      !termsChecked
+    ) {
       alert('모든 필수 입력란을 채워주세요.');
       return;
     }
@@ -136,95 +155,98 @@ const RegisterPage: React.FC = function RegisterPage() {
 
   return (
     <RegisterPageWrapper>
-      <StyledImage 
-        src={RegisterBackground}
-        alt='회원가입 페이지 배경'
-      />
+      <StyledImage src={RegisterBackground} alt="회원가입 페이지 배경" />
       <FormContainer onSubmit={handleSubmit(onSubmit)}>
         <BigTitle>회원가입</BigTitle>
-          <Section>
-            <SmallTitle>
-              기본 정보
-              <SmallTitleSpan>(필수)</SmallTitleSpan>
-            </SmallTitle>
-            <Inputs
-              id="name"
-              label="이름"              
-              placeholder="이름"
+        <Section>
+          <SmallTitle>
+            기본 정보
+            <SmallTitleSpan>(필수)</SmallTitleSpan>
+          </SmallTitle>
+          <Inputs
+            id="name"
+            label="이름"
+            placeholder="이름"
+            required
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            register={register}
+          />
+          <Inputs
+            id="email"
+            label="이메일"
+            placeholder="이메일 입력(@ 포함)"
+            value={email}
+            onChange={handleEmailChange}
+            errorMessage={emailError}
+            isValid={emailError === ''}
+            required
+            register={register}
+          />
+          <Inputs
+            id="password"
+            label="비밀번호"
+            placeholder="비밀번호 입력(영문 소문자, 숫자, 특수문자 필수, 8자 이상)"
+            value={password}
+            type="password"
+            onChange={handlePasswordChange}
+            errorMessage={passwordError}
+            isValid={passwordError === '아주 좋은 비밀번호입니다!'}
+            required
+            register={register}
+          />
+          <Inputs
+            id="confirmPassword"
+            label="비밀번호 확인"
+            placeholder="비밀번호 한 번 더 입력"
+            value={confirmPassword}
+            type="password"
+            onChange={handleConfirmPasswordChange}
+            errorMessage={confirmPasswordError}
+            isValid={confirmPasswordError === '입력한 비밀번호와 일치합니다!'}
+            required
+            register={register}
+          />
+          <Inputs
+            id="phoneNumber"
+            label="전화번호"
+            placeholder="전화번호 입력(하이픈은 자동 입력됩니다)"
+            value={phoneNumber}
+            onChange={handlePhoneNumberChange}
+            errorMessage={phoneNumberError}
+            isValid={phoneNumberError === ''}
+            maxLength={13}
+            register={register}
+          />
+        </Section>
+        <Section>
+          <SmallTitle>
+            이용 약관
+            <SmallTitleSpan>(필수)</SmallTitleSpan>
+          </SmallTitle>
+          <Label>
+            <input
+              type="checkbox"
+              checked={termsChecked}
+              onChange={handleTermsChange}
               required
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              register={register}
             />
-            <Inputs
-              id="email"
-              label="이메일"
-              placeholder="이메일 입력(@ 포함)"
-              value={email}
-              onChange={handleEmailChange}
-              errorMessage={emailError}
-              isValid={emailError === ''}
-              required
-              register={register}
-            />
-            <Inputs
-              id="password"
-              label="비밀번호"
-              placeholder="비밀번호 입력(영문 소문자, 숫자, 특수문자 필수, 8자 이상)"
-              value={password}
-              type='password'
-              onChange={handlePasswordChange}
-              errorMessage={passwordError}
-              isValid={passwordError === '아주 좋은 비밀번호입니다!'}
-              required
-              register={register}
-            />
-            <Inputs
-              id="confirmPassword"
-              label="비밀번호 확인"
-              placeholder="비밀번호 한 번 더 입력"
-              value={confirmPassword}
-              type='password'
-              onChange={handleConfirmPasswordChange}
-              errorMessage={confirmPasswordError}
-              isValid={confirmPasswordError === '입력한 비밀번호와 일치합니다!'}
-              required
-              register={register}
-            />
-            <Inputs
-              id="phoneNumber"
-              label="전화번호"
-              placeholder="전화번호 입력(하이픈은 자동 입력됩니다)"
-              value={phoneNumber}
-              onChange={handlePhoneNumberChange}
-              errorMessage={phoneNumberError}
-              isValid={phoneNumberError === ''}
-              maxLength={13}
-              register={register}
-            />
-          </Section>
-          <Section>
-            <SmallTitle>
-              이용 약관
-              <SmallTitleSpan>(필수)</SmallTitleSpan>
-            </SmallTitle>
-            <Label>
-              <input
-                type="checkbox" 
-                checked={termsChecked}
-                onChange={handleTermsChange}
-                required
-              />
-              <span>[필수]</span> 이용 약관 및 개인정보 수집 관련 동의
-            </Label>
-            <Label>
-              <input type="checkbox" />
-              <span>[선택]</span> 마케팅 정보 수신 동의
-            </Label>
-          </Section>
-          <Buttons label="등록" />        
+            <span>[필수]</span> 이용 약관 및 개인정보 수집 관련 동의
+          </Label>
+          <Label>
+            <input type="checkbox" />
+            <span>[선택]</span> 마케팅 정보 수신 동의
+          </Label>
+        </Section>
+        <Buttons label="등록" />
         <LoginLink>
-          이미 회원가입을 하셨나요? <Link href="/auth/login" style={{fontWeight: 700, borderBottom: '1px solid #111111'}}>로그인</Link>
+          이미 회원가입을 하셨나요?{' '}
+          <Link
+            href="/auth/login"
+            style={{ fontWeight: 700, borderBottom: '1px solid #111111' }}
+          >
+            로그인
+          </Link>
         </LoginLink>
       </FormContainer>
     </RegisterPageWrapper>

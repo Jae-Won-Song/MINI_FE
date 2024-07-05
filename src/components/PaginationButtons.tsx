@@ -1,4 +1,4 @@
-"use client"
+'use client';
 
 import React, { useState } from 'react';
 import styled from 'styled-components';
@@ -24,7 +24,7 @@ const PaginationButton = styled.button<{ active?: boolean }>`
   }
 `;
 
-function PaginationButtons() {
+const PaginationButtons = () => {
   const [currentPage, setCurrentPage] = useState(1);
   // const totalPages = 10; // 마지막 페이지 수 수정 예정
 
@@ -36,8 +36,12 @@ function PaginationButtons() {
 
   return (
     <PaginationContainer>
-      <PaginationButton onClick={() => handleClick(1)}>&laquo;</PaginationButton>
-      <PaginationButton onClick={() => handleClick(currentPage - 1)}>&lt;</PaginationButton>
+      <PaginationButton onClick={() => handleClick(1)}>
+        &laquo;
+      </PaginationButton>
+      <PaginationButton onClick={() => handleClick(currentPage - 1)}>
+        &lt;
+      </PaginationButton>
       {[...Array(10)].map((_, index) => (
         <PaginationButton
           key={index + 1}
@@ -47,10 +51,14 @@ function PaginationButtons() {
           {index + 1}
         </PaginationButton>
       ))}
-      <PaginationButton onClick={() => handleClick(currentPage + 1)}>&gt;</PaginationButton>
-      <PaginationButton onClick={() => handleClick(10)}>&raquo;</PaginationButton>
+      <PaginationButton onClick={() => handleClick(currentPage + 1)}>
+        &gt;
+      </PaginationButton>
+      <PaginationButton onClick={() => handleClick(10)}>
+        &raquo;
+      </PaginationButton>
     </PaginationContainer>
   );
-}
+};
 
 export default PaginationButtons;

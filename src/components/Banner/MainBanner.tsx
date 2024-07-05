@@ -6,8 +6,7 @@ import Image from 'next/image';
 import bannerImage from '../../../public/images/mainBannerImage.jpg';
 import MainSearch from './MainSearch';
 
-
-function MainBanner(): React.JSX.Element {
+const MainBanner = (): React.JSX.Element => {
   return (
     <BannerWrapper>
       <BannerImageWrapper
@@ -28,12 +27,12 @@ function MainBanner(): React.JSX.Element {
       </ComponentContainer>
     </BannerWrapper>
   );
-}
+};
 
-const BannerWrapper = styled.div`  
+const BannerWrapper = styled.div`
   width: 100%;
   margin: auto;
-  position: relative;  
+  position: relative;
   height: 700px;
   overflow: visible;
   padding: 50px;
@@ -46,17 +45,16 @@ const BannerWrapper = styled.div`
 
 const ComponentContainer = styled.div`
   width: 1500px;
-  margin: auto;  
-  position: relative; 
+  margin: auto;
+  position: relative;
   overflow: visible;
   display: flex;
-  justify-content: space-between;  
+  justify-content: space-between;
   z-index: 10;
   @media only screen and (max-width: 1440px) {
     width: 1250px;
   }
 `;
-
 
 const BannerImageWrapper = styled(Image)`
   object-fit: cover;
@@ -75,7 +73,7 @@ const BannerTextWrapper = styled.div`
   @media only screen and (max-width: 1080px) {
     width: 370px;
   }
-  p{
+  p {
     font-family: 'Cafe24Moyamoya-Face-v1.0';
     font-size: 5.5rem;
     white-space: none;
@@ -89,8 +87,8 @@ const BannerTextWrapper = styled.div`
     }
     span {
       font-family: 'Cafe24Moyamoya-Face-v1.0';
-      color: #F85B2B;
+      color: #f85b2b;
     }
   }
-`
+`;
 export default MainBanner;

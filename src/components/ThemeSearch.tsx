@@ -1,12 +1,12 @@
-'use client'
+'use client';
 
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import AccomodationCard from './AccomodationCard';
+import useSWR from 'swr';
 import PaginationButtons from './PaginationButtons copy';
 import Categories from './Categories/Categories';
 import EmptyState from './EmptyState';
-import useSWR from 'swr';
+import AccomodationCard from './AccomodationCard';
 
 interface Accomodation {
   id: number;
@@ -34,12 +34,13 @@ interface APIResponse {
   };
 }
 
-const fetcher = (url: string) => fetch(url).then(res => res.json());
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const ThemeSearch: React.FC = () => {
   const [page, setPage] = useState(1);
   const [currentPageGroup, setCurrentPageGroup] = useState(1);
   const [selectedCategory, setSelectedCategory] = useState('');
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
   const apiUrl = selectedCategory
     ? `http://yusuengdo.ddns.net/open-api/accommodation?category=${selectedCategory}&page=${page}`
@@ -63,9 +64,13 @@ const ThemeSearch: React.FC = () => {
   };
 
   if (error) return <LoadingFail>로딩 실패!</LoadingFail>;
-  if (!data) return <Loading></Loading>;
+  if (!data) return <Loading />;
 
-  const { content: accomodations = [], totalElements = 0, totalPages = 0 } = data.data || {};
+  const {
+    content: accomodations = [],
+    totalElements = 0,
+    totalPages = 0,
+  } = data.data || {};
   const showEmptyState = data.resultCode === 404 || accomodations.length === 0;
 
   console.log('Total Pages:', totalPages);
@@ -73,7 +78,10 @@ const ThemeSearch: React.FC = () => {
 
   return (
     <ThemeWrapper>
-      <Categories onCategoryChange={handleCategoryChange} selectedCategory={selectedCategory} />
+      <Categories
+        onCategoryChange={handleCategoryChange}
+        selectedCategory={selectedCategory}
+      />
       {showEmptyState ? (
         <EmptyState showReset onResetFilters={handleResetFilters} />
       ) : (
@@ -113,44 +121,125 @@ const GridWrapper = styled.div`
   }
 `;
 
-
 const Loading = styled.div`
   width: 80px;
   aspect-ratio: 2;
   margin: auto;
-  --c:linear-gradient(#FFD412 25%,#ABD406 0 50%,#FF821C 0 75%,#FFD412 0);
+  --c: linear-gradient(#ffd412 25%, #abd406 0 50%, #ff821c 0 75%, #ffd412 0);
   background: var(--c), var(--c), var(--c), var(--c);
   background-size: 26% 400%;
-  background-position: calc(0*100%/3) 100%,calc(1*100%/3) 100%,calc(2*100%/3) 100%,calc(3*100%/3) 100%;
+  background-position:
+    calc(0 * 100% / 3) 100%,
+    calc(1 * 100% / 3) 100%,
+    calc(2 * 100% / 3) 100%,
+    calc(3 * 100% / 3) 100%;
   background-repeat: no-repeat;
-  animation: l10 2s infinite; 
+  animation: l10 2s infinite;
 
   @keyframes l10 {
-    0%     {background-position: calc(0*100%/3) calc(3*100%/3),calc(1*100%/3) calc(3*100%/3),calc(2*100%/3) calc(3*100%/3),calc(3*100%/3) calc(3*100%/3)}
-    8.33%  {background-position: calc(0*100%/3) calc(2*100%/3),calc(1*100%/3) calc(3*100%/3),calc(2*100%/3) calc(3*100%/3),calc(3*100%/3) calc(3*100%/3)}
-    16.67% {background-position: calc(0*100%/3) calc(2*100%/3),calc(1*100%/3) calc(2*100%/3),calc(2*100%/3) calc(3*100%/3),calc(3*100%/3) calc(3*100%/3)}
-    25%    {background-position: calc(0*100%/3) calc(2*100%/3),calc(1*100%/3) calc(2*100%/3),calc(2*100%/3) calc(2*100%/3),calc(3*100%/3) calc(3*100%/3)}
+    0% {
+      background-position:
+        calc(0 * 100% / 3) calc(3 * 100% / 3),
+        calc(1 * 100% / 3) calc(3 * 100% / 3),
+        calc(2 * 100% / 3) calc(3 * 100% / 3),
+        calc(3 * 100% / 3) calc(3 * 100% / 3);
+    }
+    8.33% {
+      background-position:
+        calc(0 * 100% / 3) calc(2 * 100% / 3),
+        calc(1 * 100% / 3) calc(3 * 100% / 3),
+        calc(2 * 100% / 3) calc(3 * 100% / 3),
+        calc(3 * 100% / 3) calc(3 * 100% / 3);
+    }
+    16.67% {
+      background-position:
+        calc(0 * 100% / 3) calc(2 * 100% / 3),
+        calc(1 * 100% / 3) calc(2 * 100% / 3),
+        calc(2 * 100% / 3) calc(3 * 100% / 3),
+        calc(3 * 100% / 3) calc(3 * 100% / 3);
+    }
+    25% {
+      background-position:
+        calc(0 * 100% / 3) calc(2 * 100% / 3),
+        calc(1 * 100% / 3) calc(2 * 100% / 3),
+        calc(2 * 100% / 3) calc(2 * 100% / 3),
+        calc(3 * 100% / 3) calc(3 * 100% / 3);
+    }
     30%,
-    33.33% {background-position: calc(0*100%/3) calc(2*100%/3),calc(1*100%/3) calc(2*100%/3),calc(2*100%/3) calc(2*100%/3),calc(3*100%/3) calc(2*100%/3)}
-    41.67% {background-position: calc(0*100%/3) calc(1*100%/3),calc(1*100%/3) calc(2*100%/3),calc(2*100%/3) calc(2*100%/3),calc(3*100%/3) calc(2*100%/3)}
-    50%    {background-position: calc(0*100%/3) calc(1*100%/3),calc(1*100%/3) calc(1*100%/3),calc(2*100%/3) calc(2*100%/3),calc(3*100%/3) calc(2*100%/3)}
-    58.33% {background-position: calc(0*100%/3) calc(1*100%/3),calc(1*100%/3) calc(1*100%/3),calc(2*100%/3) calc(1*100%/3),calc(3*100%/3) calc(2*100%/3)}
+    33.33% {
+      background-position:
+        calc(0 * 100% / 3) calc(2 * 100% / 3),
+        calc(1 * 100% / 3) calc(2 * 100% / 3),
+        calc(2 * 100% / 3) calc(2 * 100% / 3),
+        calc(3 * 100% / 3) calc(2 * 100% / 3);
+    }
+    41.67% {
+      background-position:
+        calc(0 * 100% / 3) calc(1 * 100% / 3),
+        calc(1 * 100% / 3) calc(2 * 100% / 3),
+        calc(2 * 100% / 3) calc(2 * 100% / 3),
+        calc(3 * 100% / 3) calc(2 * 100% / 3);
+    }
+    50% {
+      background-position:
+        calc(0 * 100% / 3) calc(1 * 100% / 3),
+        calc(1 * 100% / 3) calc(1 * 100% / 3),
+        calc(2 * 100% / 3) calc(2 * 100% / 3),
+        calc(3 * 100% / 3) calc(2 * 100% / 3);
+    }
+    58.33% {
+      background-position:
+        calc(0 * 100% / 3) calc(1 * 100% / 3),
+        calc(1 * 100% / 3) calc(1 * 100% / 3),
+        calc(2 * 100% / 3) calc(1 * 100% / 3),
+        calc(3 * 100% / 3) calc(2 * 100% / 3);
+    }
     63%,
-    66.67% {background-position: calc(0*100%/3) calc(1*100%/3),calc(1*100%/3) calc(1*100%/3),calc(2*100%/3) calc(1*100%/3),calc(3*100%/3) calc(1*100%/3)}
-    75%    {background-position: calc(0*100%/3) calc(0*100%/3),calc(1*100%/3) calc(1*100%/3),calc(2*100%/3) calc(1*100%/3),calc(3*100%/3) calc(1*100%/3)}
-    83.33% {background-position: calc(0*100%/3) calc(0*100%/3),calc(1*100%/3) calc(0*100%/3),calc(2*100%/3) calc(1*100%/3),calc(3*100%/3) calc(1*100%/3)}
-    91.67% {background-position: calc(0*100%/3) calc(0*100%/3),calc(1*100%/3) calc(0*100%/3),calc(2*100%/3) calc(0*100%/3),calc(3*100%/3) calc(1*100%/3)}
+    66.67% {
+      background-position:
+        calc(0 * 100% / 3) calc(1 * 100% / 3),
+        calc(1 * 100% / 3) calc(1 * 100% / 3),
+        calc(2 * 100% / 3) calc(1 * 100% / 3),
+        calc(3 * 100% / 3) calc(1 * 100% / 3);
+    }
+    75% {
+      background-position:
+        calc(0 * 100% / 3) calc(0 * 100% / 3),
+        calc(1 * 100% / 3) calc(1 * 100% / 3),
+        calc(2 * 100% / 3) calc(1 * 100% / 3),
+        calc(3 * 100% / 3) calc(1 * 100% / 3);
+    }
+    83.33% {
+      background-position:
+        calc(0 * 100% / 3) calc(0 * 100% / 3),
+        calc(1 * 100% / 3) calc(0 * 100% / 3),
+        calc(2 * 100% / 3) calc(1 * 100% / 3),
+        calc(3 * 100% / 3) calc(1 * 100% / 3);
+    }
+    91.67% {
+      background-position:
+        calc(0 * 100% / 3) calc(0 * 100% / 3),
+        calc(1 * 100% / 3) calc(0 * 100% / 3),
+        calc(2 * 100% / 3) calc(0 * 100% / 3),
+        calc(3 * 100% / 3) calc(1 * 100% / 3);
+    }
     97%,
-    100%   {background-position: calc(0*100%/3) calc(0*100%/3),calc(1*100%/3) calc(0*100%/3),calc(2*100%/3) calc(0*100%/3),calc(3*100%/3) calc(0*100%/3)}
+    100% {
+      background-position:
+        calc(0 * 100% / 3) calc(0 * 100% / 3),
+        calc(1 * 100% / 3) calc(0 * 100% / 3),
+        calc(2 * 100% / 3) calc(0 * 100% / 3),
+        calc(3 * 100% / 3) calc(0 * 100% / 3);
+    }
   }
 `;
 
-const LoadingFail = styled.div`  
+const LoadingFail = styled.div`
   font-size: 1.3rem;
   font-weight: 700;
   width: fit-content;
   margin: auto;
-  color: #A7A7A7;
-`
+  color: #a7a7a7;
+`;
 
 export default ThemeSearch;
