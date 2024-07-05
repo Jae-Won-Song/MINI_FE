@@ -6,9 +6,7 @@ import Buttons from './Buttons';
 const PaymentInformation = () => {
   return (
     <PaymentInformationContainer>
-        <Information>
-          결제 정보
-        </Information>      
+      <Information>결제 정보</Information>
       <InformationContainer>
         <InformationTitle>객실 가격 (1박)</InformationTitle>
         <InformationText>250,000원</InformationText>
@@ -19,8 +17,8 @@ const PaymentInformation = () => {
         <TotalInformationText>250,000원</TotalInformationText>
       </TotalInformationContainer>
       <ButtonContainer>
-        <Buttons label="뒤로가기"  fullWidth={false}/>
-        <Buttons label="등록"  fullWidth={false}/>        
+        <Buttons label="뒤로가기" fullWidth={false} />
+        <Buttons label="등록" fullWidth={false} />
       </ButtonContainer>
     </PaymentInformationContainer>
   )
@@ -61,7 +59,7 @@ const InformationText = styled.div`
   text-align: right;
 `;
 
-const DivisionLine = styled.div `
+const DivisionLine = styled.div`
   border-top: 1px solid #7d7d7d;
   margin: 10px auto;
   width: 600px;

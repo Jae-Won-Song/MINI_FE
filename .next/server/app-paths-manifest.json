@@ -1,6 +1,11 @@
 {
+  "/_not-found/page": "app/_not-found/page.js",
+  "/auth/login/page": "app/auth/login/page.js",
+  "/detail/page": "app/detail/page.js",
+  "/main/page": "app/main/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
   "/page": "app/page.js",
   "/placedetail/page": "app/placedetail/page.js",
-  "/detail/page": "app/detail/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js"
+  "/complete/page": "app/complete/page.js",
+  "/auth/register/page": "app/auth/register/page.js"
 }

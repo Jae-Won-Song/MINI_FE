@@ -1,4 +1,5 @@
-'use client'
+'use client';
+
 import React from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
@@ -10,7 +11,7 @@ const AccommodationName = () => {
       <TitleContainer>
         <Title>숙소 이름</Title>
       </TitleContainer>
-      <AccommodationImage src={src}></AccommodationImage>
+      <AccommodationImage src={src} alt="숙소이미지" />
       <InformationContainer>
         <InformationTitle>객실명</InformationTitle>
         <InformationText>A-1</InformationText>
@@ -21,10 +22,13 @@ const AccommodationName = () => {
       </InformationContainer>
       <InformationContainer>
         <InformationTitle>편의 시설</InformationTitle>
-        <InformationText>Tv, 냉장고, 전기주전자, 찻잔, 티백, 물컵, 전화기, 금고, 슬리퍼, 욕실용품, 드라이기</InformationText>
+        <InformationText>
+          Tv, 냉장고, 전기주전자, 찻잔, 티백, 물컵, 전화기, 금고, 슬리퍼,
+          욕실용품, 드라이기
+        </InformationText>
       </InformationContainer>
     </AccommodationNameContainer>
-  )
+  );
 };
 
 export default AccommodationName;

@@ -32,6 +32,7 @@ interface IconsImportProps {
     cook: string;
     table: string;
     hairdryer: string;
+    [key: string]: string;
   };
 }
 
@@ -58,9 +59,14 @@ const IconsImport = ({ icons }: IconsImportProps) => {
         (key) =>
           icons[key] === 'Y' && (
             <IconWrapper key={key}>
-              <StyledImage src={iconMapping[key]} alt={key} width={40} height={40} />
+              <StyledImage
+                src={iconMapping[key as keyof typeof iconMapping]}
+                alt={key}
+                width={25}
+                height={25}
+              />
             </IconWrapper>
-          )
+          ),
       )}
     </IconsContainer>
   );
@@ -71,7 +77,7 @@ export default IconsImport;
 const IconsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 10px;
   justify-content: center;
   align-items: center;
 `;

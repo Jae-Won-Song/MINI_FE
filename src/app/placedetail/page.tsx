@@ -9,6 +9,8 @@ import SelectRoom from '../../components/SelectRoom';
 import Star from '../../../public/icons/star.png'
 
 interface Accommodation {
+  id: number;
+  rating: number;
   category: string;
   title: string;
   tel: string;
@@ -44,8 +46,7 @@ interface Room {
   roomHairdryer: string;
 }
 
-
-const fetcher = (url) => fetch(url).then((res) => res.json());
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 const accommodationURL = `https://yusuengdo.ddns.net/open-api/accommodation/`;
 
 const page = () => {
@@ -66,7 +67,8 @@ const page = () => {
   const { data: rooms } = roomData;
 
   const handleCopyAddress = () => {
-    navigator.clipboard.writeText(accommodation.address)
+    navigator.clipboard
+      .writeText(accommodation.address)
       .then(() => alert('주소가 클립보드에 복사되었습니다!'))
       .catch(() => alert('주소 복사에 실패했습니다.'));
   };
@@ -87,7 +89,7 @@ const page = () => {
           <h3>{accommodation.category}</h3>
           <h2>{accommodation.title}</h2>
           <div>
-            <StarImage src={Star} /> {accommodation.rating}
+            <StarImage src={Star} alt="평점이미지" /> {accommodation.rating}
           </div>
           <div>전화번호: {accommodation.tel}</div>
         </div>
@@ -114,8 +116,6 @@ const page = () => {
           title={room.roomTitle}
           MaxCount={room.roomMaxCount}
           fee={room.roomOffseasonMinfee1}
-          accommodationId={accommodation.id}
-          roomId={room.roomId}
           images={[
             room.roomImg1,
             room.roomImg2,

@@ -1,7 +1,21 @@
-'use client'
+'use client';
 
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import Image from 'next/image';
+import KbLogo from '../../public/icons/1200x600wa.png';
+import TossLogo from '../../public/icons/images.png';
+
+interface PaymentButtonProps {
+  font?: string;
+  fontSize?: string;
+  fontColor?: string;
+  fontWeight?: string;
+  text: string;
+  isActive: boolean;
+  onClick: () => void;
+  hasBenefit: boolean;
+}
 
 const PaymentButton = ({
   font,
@@ -12,7 +26,7 @@ const PaymentButton = ({
   isActive,
   onClick,
   hasBenefit,
-}) => {
+}: PaymentButtonProps) => {
   return (
     <Button
       font={font}
@@ -21,19 +35,48 @@ const PaymentButton = ({
       fontColor={fontColor}
       isActive={isActive}
       onClick={onClick}
+      text={text}
+      hasBenefit={hasBenefit}
     >
       {hasBenefit && <BenefitBadge>혜택</BenefitBadge>}
-      {text}
+      {text === 'KB Pay' ? (
+        <>
+          <LogoImageWrapper>
+            <Image
+              src={KbLogo}
+              alt="KB Pay Logo"
+              layout="fill"
+              objectFit="contain"
+            />
+          </LogoImageWrapper>
+          {text}
+        </>
+      ) : text === 'toss pay' ? (
+        <>
+          <LogoImageWrapper>
+            <Image
+              src={TossLogo}
+              alt="Toss Pay Logo"
+              layout="fill"
+              objectFit="contain"
+            />
+          </LogoImageWrapper>
+          {text}
+        </>
+      ) : (
+        text
+      )}
     </Button>
   );
 };
 
-export default function PaymentButtons() {
-  const [activeIndex, setActiveIndex] = useState(null);
-  const [isDropdownOpen1, setIsDropdownOpen1] = useState(false);
-  const [isDropdownOpen2, setIsDropdownOpen2] = useState(false);
-  const [selectedDropdown1, setSelectedDropdown1] = useState('카드를 선택해주세요.');
-  const [selectedDropdown2, setSelectedDropdown2] = useState('일시불');
+const PaymentButtons = () => {
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [isDropdownOpen1, setIsDropdownOpen1] = useState<boolean>(false);
+  const [isDropdownOpen2, setIsDropdownOpen2] = useState<boolean>(false);
+  const [selectedDropdown1, setSelectedDropdown1] =
+    useState<string>('카드를 선택해주세요.');
+  const [selectedDropdown2, setSelectedDropdown2] = useState<string>('일시불');
 
   const buttons = [
     {
@@ -55,14 +98,16 @@ export default function PaymentButtons() {
       hasBenefit: true,
     },
     {
-      text: '토스페이',
+      text: 'toss pay',
       font: 'Arial',
       fontSize: '14px',
       fontColor: '#000',
       fontWeight: 'bold',
       message: (
         <>
-          <p><Tag>선착순</Tag> 토스페이</p>
+          <p>
+            <Tag>선착순</Tag> 토스페이
+          </p>
           <p>3만원 이상, 10% 최대 1만원 할인 (오전10시, 일 500명)</p>
           <p>2만원 이상, 2천원 할인 (오후 4시, 일 1200명)</p>
           <p>+생애 첫결제 시, 5천원 캐시백</p>
@@ -78,7 +123,9 @@ export default function PaymentButtons() {
       fontWeight: 'bold',
       message: (
         <>
-          <p><Tag>선착순</Tag> 신용/체크 카드</p>
+          <p>
+            <Tag>선착순</Tag> 신용/체크 카드
+          </p>
           <p>국내숙소 - 7만원 이상, 5천원 할인</p>
           <p>오전 0시 우리 (일 80명), 농협 (일 300명)</p>
           <p>삼성 (일 220명), 하나 (일 100명)</p>
@@ -131,12 +178,8 @@ export default function PaymentButtons() {
       font: 'Arial',
       fontSize: '14px',
       fontColor: '#000',
-      fontWeight: 'bold',
-      message: (
-        <>
-          <p>'KB Pay를 선택했습니다'</p>
-        </>
-      ),
+      fontWeight: 'normal',
+      message: <p>'KB Pay를 선택했습니다'</p>,
       hasBenefit: false,
       hasDropdown: true,
       dropdownItems2: [
@@ -155,14 +198,16 @@ export default function PaymentButtons() {
       ],
     },
     {
-      text: 'N Pay',
-      font: 'Arial',
+      text: '🅝 Pay',
+      font: 'Yu Gothic',
       fontSize: '14px',
       fontColor: '#000',
       fontWeight: 'bold',
       message: (
         <>
-          <p><Tag>선착순</Tag> 네이버페이</p>
+          <p>
+            <Tag>선착순</Tag> 네이버페이
+          </p>
           <p>국내숙소 - 10만원 이상, 7% 최대 1만원 할일</p>
           <p>(오전 0시, 일700명)</p>
         </>
@@ -173,13 +218,9 @@ export default function PaymentButtons() {
       text: 'PAYCO',
       font: 'Arial',
       fontSize: '14px',
-      fontColor: '#000',
+      fontColor: '#FA2928',
       fontWeight: 'bold',
-      message: (
-        <>
-          <p>'PAYCO를 선택했습니다'</p>
-        </>
-      ),
+      message: <p>'PAYCO를 선택했습니다'</p>,
       hasBenefit: false,
     },
     {
@@ -188,11 +229,7 @@ export default function PaymentButtons() {
       fontSize: '14px',
       fontColor: '#000',
       fontWeight: 'bold',
-      message: (
-        <>
-          <p>'법인 카드를 선택했습니다'</p>
-        </>
-      ),
+      message: <p>'법인 카드를 선택했습니다'</p>,
       hasBenefit: false,
     },
     {
@@ -201,16 +238,12 @@ export default function PaymentButtons() {
       fontSize: '14px',
       fontColor: '#000',
       fontWeight: 'bold',
-      message: (
-        <>
-          <p>'휴대폰 결제를 선택했습니다'</p>
-        </>
-      ),
+      message: <p>'휴대폰 결제를 선택했습니다'</p>,
       hasBenefit: false,
-    }
+    },
   ];
 
-  const handleClick = (index) => {
+  const handleClick = (index: number) => {
     if (activeIndex === index) {
       setActiveIndex(null);
       setIsDropdownOpen1(false);
@@ -232,12 +265,12 @@ export default function PaymentButtons() {
     setIsDropdownOpen2(!isDropdownOpen2);
   };
 
-  const handleDropdownSelect1 = (item) => {
+  const handleDropdownSelect1 = (item: string) => {
     setSelectedDropdown1(item);
     setIsDropdownOpen1(false);
   };
 
-  const handleDropdownSelect2 = (item) => {
+  const handleDropdownSelect2 = (item: string) => {
     setSelectedDropdown2(item);
     setIsDropdownOpen2(false);
   };
@@ -266,13 +299,14 @@ export default function PaymentButtons() {
                   </DropdownButton>
                   {isDropdownOpen1 && (
                     <Dropdown>
-                      {buttons[activeIndex].dropdownItems1.map((item, index) => (
-                        <DropdownItem
-                          key={index}
-                          onClick={() => handleDropdownSelect1(item)}
-                        >
-                          {item}
-                        </DropdownItem>
+                      {buttons[activeIndex]?.dropdownItems1?.map(
+                        (item, index) => (
+                          <DropdownItem
+                            key={index}
+                            onClick={() => handleDropdownSelect1(item)}
+                          >
+                            {item}
+                          </DropdownItem>
                       ))}
                     </Dropdown>
                   )}
@@ -284,13 +318,14 @@ export default function PaymentButtons() {
                 </DropdownButton>
                 {isDropdownOpen2 && (
                   <Dropdown>
-                    {buttons[activeIndex].dropdownItems2.map((item, index) => (
-                      <DropdownItem
-                        key={index}
-                        onClick={() => handleDropdownSelect2(item)}
-                      >
-                        {item}
-                      </DropdownItem>
+                    {buttons[activeIndex]?.dropdownItems2?.map(
+                      (item, index) => (
+                        <DropdownItem
+                          key={index}
+                          onClick={() => handleDropdownSelect2(item)}
+                        >
+                          {item}
+                        </DropdownItem>
                     ))}
                   </Dropdown>
                 )}
@@ -301,7 +336,7 @@ export default function PaymentButtons() {
       )}
     </div>
   );
-}
+};
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -309,12 +344,50 @@ const ButtonContainer = styled.div`
   gap: 10px;
 `;
 
-const Button = styled.button.attrs((props) => ({
-  style: {
-    backgroundColor: props.isActive ? '#f2f8ff' : '#fff',
-    borderColor: props.isActive ? '#b7d5f6' : '#d9d9d9',
-  },
-}))`
+// const Button = styled.button.attrs((props) => ({
+//   style: {
+//     backgroundColor: props.isActive ? '#f2f8ff' : '#fff',
+//     borderColor: props.isActive ? '#b7d5f6' : '#d9d9d9',
+//   },
+// }))`
+//   width: 165px;
+//   height: 50px;
+//   margin: 20px 0;
+//   border: 1px solid;
+//   padding: 10px;
+//   border-radius: 5px;
+//   font-family: ${(props) => props.font};
+//   font-size: ${(props) => props.fontSize};
+//   font-weight: ${(props) => props.fontWeight};
+//   color: ${(props) => props.fontColor};
+//   cursor: pointer;
+//   position: relative;
+// `;
+// const Button = styled.button.attrs((props) => ({
+//   style: {
+//     backgroundColor: props.isActive ? '#f2f8ff' : '#fff',
+//     borderColor: props.isActive ? '#b7d5f6' : '#d9d9d9',
+//     font: props.font,
+//     fontSize: props.fontSize,
+//     fontWeight: props.fontWeight,
+//     color: props.fontColor,
+//   },
+// }))<{
+//   isActive: boolean;
+//   font?: string;
+//   fontSize?: string;
+//   fontWeight?: string;
+//   fontColor?: string;
+// }>`
+//   width: 165px;
+//   height: 50px;
+//   margin: 20px 0;
+//   border: 1px solid;
+//   padding: 10px;
+//   border-radius: 5px;
+//   cursor: pointer;
+// `;
+const Button = styled.button<PaymentButtonProps>`
   width: 165px;
   height: 50px;
   margin: 20px 0;
@@ -327,6 +400,16 @@ const Button = styled.button.attrs((props) => ({
   color: ${(props) => props.fontColor};
   cursor: pointer;
   position: relative;
+
+  background-color: #fff;
+  border-color: #d9d9d9;
+
+  ${(props) =>
+    props.isActive &&
+    css`
+      background-color: #f2f8ff;
+      border-color: #b7d5f6;
+    `}
 `;
 
 const BenefitBadge = styled.span`
@@ -411,7 +494,7 @@ const MessageContainer = styled.div`
   padding: 10px;
   border: 1px solid #d9d9d9;
   border-radius: 15px;
-  background-color: #F5F7FA;
+  background-color: #f5f7fa;
   font-size: 14px;
   color: #333;
   display: flex;
@@ -430,3 +513,14 @@ const Tag = styled.span`
   margin-bottom: 5px;
   margin-right: 10px;
 `;
+
+const LogoImageWrapper = styled.div`
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 50%;
+  left: 25%;
+  transform: translate(-50%, -50%);
+`;
+
+export default PaymentButtons;

@@ -45,15 +45,25 @@ const ImageModal = ({ isOpen, onClose, images }: ImageModalProps) => {
   return (
     <Overlay onClick={handleOverlayClick}>
       <ModalContainer ref={modalRef}>
-        <SlideButtonsWrapper onClick={handleImageClickLeft} disabled={currentImageNum === 0}>
-          <SlideButtons arrowDirection="left" active={false} size="smallCircle" />
+        <SlideButtonsWrapper
+          onClick={handleImageClickLeft}
+          disabled={currentImageNum === 0}
+        >
+          <SlideButtons
+            arrowDirection="left"
+            active={false}
+            size="smallCircle"
+          />
         </SlideButtonsWrapper>
         <ModalImageWrapper>
           <ModalImage key={currentImageNum} image={images[currentImageNum]} />
         </ModalImageWrapper>
         <CloseButton onClick={onClose}>X</CloseButton>
-        <SlideButtonsWrapper onClick={handleImageClickRight} disabled={currentImageNum === images.length - 1}>
-          <SlideButtons arrowDirection="right" active={true} size="smallCircle" />
+        <SlideButtonsWrapper
+          onClick={handleImageClickRight}
+          disabled={currentImageNum === images.length - 1}
+        >
+          <SlideButtons arrowDirection="right" active size="smallCircle" />
         </SlideButtonsWrapper>
       </ModalContainer>
     </Overlay>
@@ -91,9 +101,8 @@ const ModalContainer = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 10;
-  padding: 10px;
+  padding: 60px 10px;
   background-color: rgba(255, 255, 255, 0.9);
-  border-radius: 15px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   position: relative;
 `;
@@ -129,18 +138,16 @@ const CloseButton = styled.button`
   position: absolute;
   top: 10px;
   right: 10px;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   border: none;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
+  color: black;
   font-size: 20px;
   font-weight: bold;
-  border-radius: 50%;
   cursor: pointer;
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: rgba(0, 0, 0, 0.8);
+    color: #f85b2b;
   }
 `;

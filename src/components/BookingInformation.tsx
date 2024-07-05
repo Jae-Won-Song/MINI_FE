@@ -1,10 +1,10 @@
-"use client"
+'use client';
 
-import styled from "styled-components";
-import Image from "next/image";
-import PaymentButton from "./PaymentButton";
-import Buttons from "./Buttons";
-import Banner from '../../public/icons/elite_img_PC.png'
+import styled from 'styled-components';
+import Image from 'next/image';
+import PaymentButton from './PaymentButton';
+import Buttons from './Buttons';
+import Banner from '../../public/icons/elite_img_PC.png';
 
 const BookingInformation = () => {
   return (
@@ -31,7 +31,7 @@ const BookingInformation = () => {
             </EventBannerText>
             <Buttons label="로그인/회원가입" fullWidth={true} />
           </EventBannerTextBox>
-          <EventBanner src={Banner} />
+          <EventBanner src={Banner} alt="프로모션 이미지" />
         </EventBannerBox>
       </TextBoxContainer>
       <PaymentMethodContainer>
@@ -48,8 +48,6 @@ export default BookingInformation;
 
 const BookingInformationContainer = styled.div`
   width: 1080px;
-  /* height: 1010px;
-  border: 1px solid #7d7d7d; */
 `;
 
 const TitleContainer = styled.div`
@@ -88,7 +86,7 @@ const EventBannerBox = styled.div`
   border: 1px solid #7d7d7d;
   margin: 30px auto;
   box-shadow: 5px 5px 10px 0 #e5e5ec;
-  background-color: #EDEBFF;
+  background-color: #edebff;
   position: relative;
   display: flex;
 `;
@@ -107,7 +105,6 @@ const EventBannerTextBox = styled.div`
   align-content: center;
   margin: 60px 30px;
   line-height: 50px;
-  /* border: 1px solid #7d7d7d; */
 `;
 
 const EventBannerTexth3 = styled.h3`
