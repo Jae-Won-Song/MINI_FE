@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import styled from 'styled-components';
 
-export default function NotFound() {
+const NotFound = () => {
   return (
     <Container>
       <Title>
@@ -13,7 +13,9 @@ export default function NotFound() {
       <StyledLink href="/">메인 페이지로 돌아가기</StyledLink>
     </Container>
   );
-}
+};
+
+export default NotFound;
 
 const Container = styled.div`
   display: flex;

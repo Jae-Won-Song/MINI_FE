@@ -12,13 +12,9 @@ import LoginBackground from '../../../../public/images/login_background.jpg';
 
 // 로그인, 회원가입 페이지에 진입했을 때는 NavBar의 로그인, 회원 가입 링크가 보이지 않게 만들기
 
-const LoginPage: React.FC = function LoginPage() {
+const LoginPage: React.FC = () => {
   const { login } = useAuth();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FieldValues>();
+  const { register, handleSubmit } = useForm<FieldValues>();
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     if (!data.email || !data.password) {

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import './Navbar.scss';
 import { BsFillPersonFill } from 'react-icons/bs';
 import { HiOutlineShoppingBag } from 'react-icons/hi2';
@@ -8,7 +8,7 @@ import { CiHeart } from 'react-icons/ci';
 import Link from 'next/link';
 import { useAuth } from 'src/contexts/AuthContext';
 
-export default function Navbar() {
+const Navbar: React.FC = () => {
   const { isLoggedIn, logout } = useAuth();
 
   return (
@@ -21,32 +21,41 @@ export default function Navbar() {
         </div>
         <div className="nav-cat">
           <Link href="/mypage">
-            <li>
+            <button className="icon-button" aria-label="My Page">
               <BsFillPersonFill />
-            </li>
+            </button>
           </Link>
           <Link href="/myreservation">
-            <li>
+            <button className="icon-button" aria-label="My Reservation">
               <HiOutlineShoppingBag />
-            </li>
+            </button>
           </Link>
           <Link href="/wishlist">
-            <li>
+            <button className="icon-button" aria-label="Wishlist">
               <CiHeart />
-            </li>
+            </button>
           </Link>
           {isLoggedIn ? (
-            <li onClick={logout} style={{ cursor: 'pointer' }}>
+            <button
+              onClick={logout}
+              className="icon-button"
+              style={{ cursor: 'pointer' }}
+              aria-label="Logout"
+            >
               로그아웃
-            </li>
+            </button>
           ) : (
             <>
               <Link href="/auth/login">
-                <li>로그인</li>
+                <button className="icon-button" aria-label="Login">
+                  로그인
+                </button>
               </Link>
               <div>/</div>
               <Link href="/auth/register">
-                <li>회원가입</li>
+                <button className="icon-button" aria-label="Register">
+                  회원가입
+                </button>
               </Link>
             </>
           )}
@@ -54,4 +63,6 @@ export default function Navbar() {
       </div>
     </header>
   );
-}
+};
+
+export default Navbar;

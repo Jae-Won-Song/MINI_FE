@@ -16,14 +16,14 @@ interface ButtonProps {
 // 사용하시는 페이지 또는 컴포넌트에서 fullWidth={false}로 설정하면 128px로 자동 조정됩니다.
 // 예시: <Buttons label="등록" onClick={handleSubmit} fullWidth={false}/>
 
-const Buttons: React.FC<ButtonProps> = function Buttons({
+const Buttons: React.FC<ButtonProps> = ({
   label,
   onClick,
   disabled,
   fullWidth = true,
   fullHeight = true,
   buttonColor = 'default',
-}) {
+}) => {
   return (
     <StyledButton
       type="submit"

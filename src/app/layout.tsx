@@ -16,11 +16,11 @@ export const metadata: Metadata = {
     '패스트캠퍼스 부트캠프 미니프로젝트: 문화관광부 제공 API를 활용한 숙소 예약 시스템',
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
+type RootLayoutProps = {
   children: React.ReactNode;
-}>) {
+};
+
+const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
   return (
     <html lang="en">
       <body className={inter.className}>
@@ -34,4 +34,6 @@ export default function RootLayout({
       </body>
     </html>
   );
-}
+};
+
+export default RootLayout;

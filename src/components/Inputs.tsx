@@ -20,7 +20,7 @@ interface InputProps {
   maxLength?: number;
 }
 
-const Inputs: React.FC<InputProps> = function Inputs({
+const Inputs: React.FC<InputProps> = ({
   id,
   label,
   type = 'text',
@@ -34,7 +34,7 @@ const Inputs: React.FC<InputProps> = function Inputs({
   required = true,
   register,
   maxLength,
-}) {
+}) => {
   return (
     <FormGroup>
       <Label>{label}</Label>

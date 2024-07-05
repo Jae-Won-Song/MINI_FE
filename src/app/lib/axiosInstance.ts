@@ -6,15 +6,16 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   (config) => {
+    const newConfig = { ...config };
     const accessToken = localStorage.getItem('accessToken');
     const refreshToken = localStorage.getItem('refreshToken');
     if (accessToken) {
-      config.headers.Authorization = `Bearer ${accessToken}`;
+      newConfig.headers.Authorization = `Bearer ${accessToken}`;
     }
     if (refreshToken) {
-      config.headers['x-refresh-token'] = refreshToken;
+      newConfig.headers['x-refresh-token'] = refreshToken;
     }
-    return config;
+    return newConfig;
   },
   (error) => {
     return Promise.reject(error);

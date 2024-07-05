@@ -10,14 +10,10 @@ import Inputs from '../../../components/Inputs';
 import Buttons from '../../../components/Buttons';
 import RegisterBackground from '../../../../public/images/register_background.jpg';
 
-const RegisterPage: React.FC = function RegisterPage() {
+const RegisterPage: React.FC = () => {
   const { register: registerUser } = useAuth();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FieldValues>();
+  const { register, handleSubmit } = useForm<FieldValues>();
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -129,7 +125,7 @@ const RegisterPage: React.FC = function RegisterPage() {
     setTermsChecked(event.target.checked);
   };
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+  const onSubmit: SubmitHandler<FieldValues> = () => {
     if (
       !name ||
       !email ||

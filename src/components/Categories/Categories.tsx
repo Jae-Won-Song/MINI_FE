@@ -107,7 +107,6 @@ const Categories: React.FC<CategoriesProps> = ({
         <CategoryBox
           key={item.label}
           label={item.label}
-          path={item.path}
           icon={item.icon}
           onClick={() => onCategoryChange(item.path)}
           selected={selectedCategory === item.path}

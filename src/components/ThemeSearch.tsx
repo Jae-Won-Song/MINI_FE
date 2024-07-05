@@ -40,7 +40,6 @@ const ThemeSearch: React.FC = () => {
   const [page, setPage] = useState(1);
   const [currentPageGroup, setCurrentPageGroup] = useState(1);
   const [selectedCategory, setSelectedCategory] = useState('');
-  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
   const apiUrl = selectedCategory
     ? `http://yusuengdo.ddns.net/open-api/accommodation?category=${selectedCategory}&page=${page}`
