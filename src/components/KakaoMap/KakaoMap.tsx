@@ -25,6 +25,7 @@ interface Accommodation {
 interface KakaoMapProps {
   latitude: number;
   longitude: number;
+  accommodations: Accommodation[];
 }
 
 const KakaoMap: React.FC<KakaoMapProps> = ({ latitude, longitude }) => {
