@@ -18,6 +18,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       "static/css/app/page.css",
 =======
 >>>>>>> 28c44d6 (fix: merge conflict-45abe6d7)
@@ -47,6 +48,10 @@
       "static/chunks/app/page.js"
 >>>>>>> 1bb3c16 (fix: merge conflict-7e79a474)
 >>>>>>> 03e3d64 (fix: merge conflict)
+=======
+      "static/css/app/page.css",
+      "static/chunks/app/page.js"
+>>>>>>> f51c0b9 (fix: merge conflict-72ad3c71)
     ],
     "/_not-found/page": [
       "static/chunks/webpack.js",
@@ -67,10 +72,6 @@
       "static/chunks/main-app.js",
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     ],
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -157,8 +158,8 @@
     "/not-found": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-<<<<<<< HEAD
       "static/chunks/app/not-found.js"
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> 4dbdf78 (fix: merge conflict)
 =======
@@ -173,10 +174,13 @@
 =======
 =======
 =======
+=======
+>>>>>>> f51c0b9 (fix: merge conflict-72ad3c71)
     ],
-    "/main/page": [
+    "/search/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
+<<<<<<< HEAD
       "static/css/app/main/page.css",
       "static/chunks/app/main/page.js"
 >>>>>>> cd0c691 (perf: 달력 기간 설정 수정, 버튼 높이 추가)
@@ -203,6 +207,10 @@
 >>>>>>> b7f20e2 (fix: layout 출력 오류 수정)
 >>>>>>> 1bb3c16 (fix: merge conflict-7e79a474)
 >>>>>>> 03e3d64 (fix: merge conflict)
+=======
+      "static/css/app/search/page.css",
+      "static/chunks/app/search/page.js"
+>>>>>>> f51c0b9 (fix: merge conflict-72ad3c71)
     ]
   }
 =======

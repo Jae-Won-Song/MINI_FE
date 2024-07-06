@@ -4,10 +4,6 @@ import Footer from '@/components/Footer';
 import MainBanner from '@/components/Banner/MainBanner';
 import UnderMainBanner from '@/components/UnderMainBanner';
 
-import SlideButtons from '@/components/SlideButtons';
-import TravelPlaceKeywords from '@/components/TravelPlaceKeywords';
-import ThemeSearch from '@/components/ThemeSearch';
-
 const Home: React.FC = () => {
   return (
     <>
@@ -18,4 +14,5 @@ const Home: React.FC = () => {
     </>
   );
 };
+
 export default Home;
