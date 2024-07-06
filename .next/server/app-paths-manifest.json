@@ -248,13 +248,19 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> cb6e721 (fix: merge conflict-cache)
 <<<<<<< HEAD
 >>>>>>> 35be5d7 (fix: merge conflict-0853e47a)
 =======
 =======
 >>>>>>> f50910c (fix: merge conflict-cache)
+<<<<<<< HEAD
 >>>>>>> 6bbc6ec (fix: merge conflict-cache)
+=======
+=======
+>>>>>>> 965cdd7 (fix: merge conflict-cache)
+>>>>>>> 45f1dbd (fix: merge conflict-d1d6cb14)
   "/main/page": "app/main/page.js",
   "/page": "app/page.js"
 >>>>>>> 60d8694 (fix: merge conflict)
@@ -386,7 +392,12 @@
 =======
 =======
 >>>>>>> f04f5a6 (fix: merge conflict-7fe0589a)
+<<<<<<< HEAD
 >>>>>>> f50910c (fix: merge conflict-cache)
+=======
+=======
+>>>>>>> f939ea9 (fix: merge conflict-7cac16cc)
+>>>>>>> 965cdd7 (fix: merge conflict-cache)
   "/auth/register/page": "app/auth/register/page.js",
   "/page": "app/page.js",
   "/auth/login/page": "app/auth/login/page.js"
@@ -422,7 +433,26 @@
   "/_not-found/page": "app/_not-found/page.js",
   "/search/page": "app/search/page.js"
 >>>>>>> 2f4a577 (test)
+<<<<<<< HEAD
 }
 >>>>>>> f04f5a6 (fix: merge conflict-7fe0589a)
+<<<<<<< HEAD
 >>>>>>> f50910c (fix: merge conflict-cache)
+<<<<<<< HEAD
 >>>>>>> 6bbc6ec (fix: merge conflict-cache)
+=======
+=======
+=======
+=======
+  "/_not-found/page": "app/_not-found/page.js",
+  "/search/page": "app/search/page.js"
+=======
+  "/page": "app/page.js",
+  "/main/page": "app/main/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js"
+>>>>>>> 20a01e5 (feat: Region Selector, Checkin and Checkout Selector)
+>>>>>>> 17dc99d (fix: merge conflict search->search)
+}
+>>>>>>> f939ea9 (fix: merge conflict-7cac16cc)
+>>>>>>> 965cdd7 (fix: merge conflict-cache)
+>>>>>>> 45f1dbd (fix: merge conflict-d1d6cb14)
