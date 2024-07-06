@@ -1,16 +1,18 @@
 {
 <<<<<<< HEAD
   "pages": {
-    "/main/page": [
+    "/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/main/page.js"
+      "static/css/app/page.css",
+      "static/chunks/app/page.js"
     ],
     "/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -24,11 +26,14 @@
       "static/chunks/app/main/page.js"
 <<<<<<< HEAD
 <<<<<<< HEAD
+=======
+>>>>>>> b7f20e2 (fix: layout 출력 오류 수정)
     ],
     "/auth/register/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/auth/register/page.js"
+<<<<<<< HEAD
 =======
 >>>>>>> 20a01e5 (feat: Region Selector, Checkin and Checkout Selector)
 =======
@@ -37,6 +42,8 @@
 >>>>>>> cd0c691 (perf: 달력 기간 설정 수정, 버튼 높이 추가)
 =======
 >>>>>>> 39b333c (gitignore test)
+=======
+>>>>>>> b7f20e2 (fix: layout 출력 오류 수정)
     ]
   }
 =======

@@ -8,6 +8,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   "encryptionKey": "vfa1xgWuLWbDcWiU/aHfB/8+7RxpGTRFkNC7CZAT0Zo="
 =======
   "encryptionKey": "PLAcyAZT/Qbt3c36brigHpSIocU3HvTvH51KxWghQmU="
@@ -30,4 +31,7 @@
 =======
   "encryptionKey": "Pwqu2DnQDrhXrDUvOouHf6rKrfxtuzQKgnRCdl4vJSo="
 >>>>>>> 39b333c (gitignore test)
+=======
+  "encryptionKey": "jxOjLYad+eGB8ruHKzzNJT6vIT/hCITzHqTn+qIVN8g="
+>>>>>>> b7f20e2 (fix: layout 출력 오류 수정)
 }

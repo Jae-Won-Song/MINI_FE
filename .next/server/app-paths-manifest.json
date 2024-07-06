@@ -3,6 +3,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   "/page": "app/page.js",
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -40,3 +41,8 @@
   "/favicon.ico/route": "app/favicon.ico/route.js"
 }
 >>>>>>> 39b333c (gitignore test)
+=======
+  "/page": "app/page.js",
+  "/auth/register/page": "app/auth/register/page.js"
+}
+>>>>>>> b7f20e2 (fix: layout 출력 오류 수정)
