@@ -2,27 +2,23 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import { FieldValues, UseFormRegister } from 'react-hook-form';
 
 interface InputProps {
-  id: string;
   label: string;
   type?: string;
   placeholder?: string;
   value?: string;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   fullWidth?: boolean;
   errorMessage?: string;
   isValid?: boolean;
   required?: boolean;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
-  register?: UseFormRegister<FieldValues>;
-  maxLength?: number;
 }
 
 const Inputs: React.FC<InputProps> = ({
   label,
-  type = 'text',
+  type,
   placeholder,
   value,
   onChange,

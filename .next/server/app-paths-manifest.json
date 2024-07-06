@@ -2,6 +2,13 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> dcc29c8 (fix: merge conflict-79a661b2)
+>>>>>>> f67aa9b (fix: merge conflict-4f0edc5a)
 {
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -264,5 +271,17 @@
   "/auth/register/page": "app/auth/register/page.js"
 }
 >>>>>>> b7f20e2 (fix: layout 출력 오류 수정)
+<<<<<<< HEAD
 >>>>>>> 1bb3c16 (fix: merge conflict-7e79a474)
+<<<<<<< HEAD
 >>>>>>> 03e3d64 (fix: merge conflict)
+=======
+=======
+=======
+{
+  "/page": "app/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js"
+}
+>>>>>>> 5f864cb (feat: 숙박업소 종류별 확인 추가)
+>>>>>>> dcc29c8 (fix: merge conflict-79a661b2)
+>>>>>>> f67aa9b (fix: merge conflict-4f0edc5a)
