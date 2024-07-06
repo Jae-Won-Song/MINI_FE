@@ -6,7 +6,6 @@ import Image from 'next/image';
 import bannerImage from '../../../public/images/mainBannerImage.jpg';
 import MainSearch from './MainSearch';
 
-<<<<<<< HEAD
 const MainBanner: React.FC = () => (
   <BannerWrapper>
     <BannerImageWrapper
@@ -27,29 +26,6 @@ const MainBanner: React.FC = () => (
     </ComponentContainer>
   </BannerWrapper>
 );
-=======
-
-function MainBanner(): React.JSX.Element {
-  return (
-    <BannerWrapper>
-      <BannerImageWrapper
-        src={bannerImage}
-        alt="Main Banner"
-        layout="fill"
-        objectFit="cover"
-      />
-      <ComponentContainer>        
-        <BannerTextWrapper>
-          <p><span>국내 숙박업소</span></p>
-          <p>정보를</p>
-          <p>한눈에!</p>
-        </BannerTextWrapper>
-        <MainSearch />        
-      </ComponentContainer>            
-    </BannerWrapper>
-  );
-}
->>>>>>> b0926d1 (rename: component의 banner 폴더 추가)
 
 const BannerWrapper = styled.div`
   position: relative;
@@ -69,11 +45,7 @@ const ComponentContainer = styled.div`
   margin: auto;
   position: relative;
   display: flex;
-<<<<<<< HEAD
   justify-content: space-between;
-=======
-  justify-content: space-between;  
->>>>>>> b0926d1 (rename: component의 banner 폴더 추가)
   z-index: 1;
   @media only screen and (max-width: 1440px) {
     width: 1250px;
@@ -94,14 +66,7 @@ const BannerTextWrapper = styled.div`
   @media only screen and (max-width: 1080px) {
     width: 370px;
   }
-<<<<<<< HEAD
   p {
-=======
-  @media only screen and (max-width: 1080px) {
-    width: 370px;
-  }
-  p{
->>>>>>> b0926d1 (rename: component의 banner 폴더 추가)
     font-family: 'Cafe24Moyamoya-Face-v1.0';
     font-size: 5.5rem;
     white-space: none;
@@ -115,16 +80,9 @@ const BannerTextWrapper = styled.div`
     }
     span {
       font-family: 'Cafe24Moyamoya-Face-v1.0';
-<<<<<<< HEAD
       color: #f85b2b;
     }
   }
 `;
 
-=======
-      color: #F85B2B;
-    }
-  }
-`
->>>>>>> b0926d1 (rename: component의 banner 폴더 추가)
 export default MainBanner;

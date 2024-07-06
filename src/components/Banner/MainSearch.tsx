@@ -4,19 +4,13 @@ import React from 'react';
 import styled from 'styled-components';
 import Buttons from '../Buttons';
 
-<<<<<<< HEAD
 const MainSearch = (): React.JSX.Element => {
-=======
-
-function MainSearch(): React.JSX.Element {
->>>>>>> b0926d1 (rename: component의 banner 폴더 추가)
   return (
     <div>
       <SearchWrapper>
         <SearchTitle>검색하기</SearchTitle>
         <SearchElementsWrapper>
           <p>지역</p>
-<<<<<<< HEAD
           <SelectorWrapper>
             <p>지역 선택하기</p>
           </SelectorWrapper>
@@ -26,51 +20,28 @@ function MainSearch(): React.JSX.Element {
           <SelectorWrapper>
             <p>인원수 선택하기</p>
           </SelectorWrapper>
-=======
-          <SelectorWrapper><p>지역 선택하기</p></SelectorWrapper>
-        </SearchElementsWrapper>
-        <SearchElementsWrapper>
-          <p>인원</p>
-          <SelectorWrapper><p>인원수 선택하기</p></SelectorWrapper>
->>>>>>> b0926d1 (rename: component의 banner 폴더 추가)
         </SearchElementsWrapper>
         <SearchElementsWrapper>
           <p>날짜</p>
           <SelectorWrapper>
             <SelectorDate>체크인</SelectorDate>
-<<<<<<< HEAD
             <p style={{ textAlign: 'center' }}>~</p>
             <SelectorDate>체크아웃</SelectorDate>
           </SelectorWrapper>
         </SearchElementsWrapper>
         <div style={{ display: 'flex', justifyContent: 'center' }}>
-=======
-            <p style={{textAlign: 'center'}}>~</p>
-            <SelectorDate>체크아웃</SelectorDate>
-          </SelectorWrapper>
-        </SearchElementsWrapper>
-        <div style={{display: 'flex', justifyContent: 'center'}}>
->>>>>>> b0926d1 (rename: component의 banner 폴더 추가)
           <Buttons label="검색" fullWidth={false} />
         </div>
       </SearchWrapper>
     </div>
   );
-<<<<<<< HEAD
 };
-=======
-}
->>>>>>> b0926d1 (rename: component의 banner 폴더 추가)
 
 const SearchWrapper = styled.div`
   width: 750px;
   min-width: 500px;
   padding: 40px;
-<<<<<<< HEAD
   background: rgba(255, 255, 255, 0.65);
-=======
-  background: rgba(255, 255, 255, 0.65);  
->>>>>>> b0926d1 (rename: component의 banner 폴더 추가)
   @media only screen and (max-width: 1440px) {
     width: 600px;
     padding: 30px;
@@ -143,21 +114,13 @@ const SelectorWrapper = styled.div`
       font-size: 1.1rem;
     }
     @media only screen and (max-width: 1080px) {
-<<<<<<< HEAD
       font-size: 1rem;
-=======
-    font-size: 1rem;
->>>>>>> b0926d1 (rename: component의 banner 폴더 추가)
     }
   }
 `;
 
 const SelectorDate = styled.div`
-<<<<<<< HEAD
   width: 45%;
-=======
-  width: 45%;  
->>>>>>> b0926d1 (rename: component의 banner 폴더 추가)
   font-size: 1.2rem;
   display: flex;
   align-items: center;
