@@ -9,6 +9,18 @@
       "static/chunks/app/page.js"
 =======
   "pages": {
+    "/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/layout.css",
+      "static/chunks/app/layout.js"
+    ],
+    "/main/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/main/page.css",
+      "static/chunks/app/main/page.js"
+    ],
     "/search/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -16,9 +28,10 @@
       "static/chunks/app/search/page.js"
 >>>>>>> 53d1f13 (fix: merge conflict)
     ],
-    "/layout": [
+    "/_not-found/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
+<<<<<<< HEAD
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
 <<<<<<< HEAD
@@ -54,6 +67,9 @@
 >>>>>>> 39b333c (gitignore test)
 =======
 >>>>>>> b7f20e2 (fix: layout 출력 오류 수정)
+=======
+      "static/chunks/app/_not-found/page.js"
+>>>>>>> fe00e34 (fix: merge conflict-cache)
     ]
   }
 =======
