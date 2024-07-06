@@ -15,6 +15,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 self.__RSC_SERVER_MANIFEST="{\n  \"node\": {},\n  \"edge\": {},\n  \"encryptionKey\": \"vfa1xgWuLWbDcWiU/aHfB/8+7RxpGTRFkNC7CZAT0Zo=\"\n}"
 =======
 self.__RSC_SERVER_MANIFEST="{\n  \"node\": {},\n  \"edge\": {},\n  \"encryptionKey\": \"PLAcyAZT/Qbt3c36brigHpSIocU3HvTvH51KxWghQmU=\"\n}"
@@ -67,3 +68,6 @@ self.__RSC_SERVER_MANIFEST="{\n  \"node\": {},\n  \"edge\": {},\n  \"encryptionK
 =======
 self.__RSC_SERVER_MANIFEST="{\n  \"node\": {},\n  \"edge\": {},\n  \"encryptionKey\": \"6rbB3o2KUdY1W2ywcGAGvM7IOsuUmvR5+tjGqAM0mgE=\"\n}"
 >>>>>>> e55c054 (perf: 로그인 로직 개선 중)
+=======
+self.__RSC_SERVER_MANIFEST="{\n  \"node\": {},\n  \"edge\": {},\n  \"encryptionKey\": \"FB1yMHsgw97fMfpMCWnXZZek7zRWvjjZoonh1Fs4YdI=\"\n}"
+>>>>>>> 7fef63b (feat: add detailpage)
