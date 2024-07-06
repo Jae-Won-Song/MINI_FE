@@ -42,8 +42,8 @@ const ThemeSearch: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState('');
 
   const apiUrl = selectedCategory
-    ? `http://yusuengdo.ddns.net/open-api/accommodation?category=${selectedCategory}&page=${page}`
-    : `http://yusuengdo.ddns.net/open-api/accommodation?page=${page}`;
+    ? `https://yusuengdo.ddns.net/open-api/accommodation?category=${selectedCategory}&page=${page}`
+    : `https://yusuengdo.ddns.net/open-api/accommodation?page=${page}`;
 
   const { data, error } = useSWR<APIResponse>(apiUrl, fetcher);
   console.log('Accomodation Data', data);

@@ -119,7 +119,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         return;
       }
 
-      // await axios.post(`http://yusuengdo.ddns.net/api/user/logout`, {}, {
+      // await axios.post(`https://yusuengdo.ddns.net/api/user/logout`, {}, {
       //   headers: {
       //     Authorization: `${token}`
       //   },
