@@ -1,8 +1,0 @@
-{
-  "app/search/page.tsx -> ../../components/KakaoMap/KakaoMap": {
-    "id": "app/search/page.tsx -> ../../components/KakaoMap/KakaoMap",
-    "files": [
-      "static/chunks/_app-pages-browser_src_components_KakaoMap_KakaoMap_tsx.js"
-    ]
-  }
-}

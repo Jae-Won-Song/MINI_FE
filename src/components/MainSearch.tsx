@@ -1,43 +1,35 @@
 'use client';
 
+// import { FaUmbrellaBeach, FaRegCalendarAlt } from "react-icons/fa";
+// import { MdPeopleAlt } from "react-icons/md";
+import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import dayjs, { Dayjs } from 'dayjs';
 import Buttons from '../Buttons';
-// import { FaUmbrellaBeach } from "react-icons/fa";
-// import { MdPeopleAlt } from "react-icons/md";
-// import { FaRegCalendarAlt } from "react-icons/fa";
 import MainSearchRegion from '@/components/Banner/MainSearchRegion';
 import MainSearchDate from '@/components/Banner/MainSearchDate';
 import MainSearchPeopleNumber from './MainSearchPeopleNumber';
+import { useRouter } from 'next/navigation';
 
-function MainSearch(): React.JSX.Element {
-  return (
-    <div>
-      <SearchWrapper>
-        <SearchTitle>검색하기</SearchTitle>
-        <SearchElementsWrapper>
-          <p>지역</p>
-          <SelectorWrapper><p>지역 선택하기</p></SelectorWrapper>
-        </SearchElementsWrapper>
-        <SearchElementsWrapper>
-          <p>인원</p>
-          <SelectorWrapper><p>인원수 선택하기</p></SelectorWrapper>
-        </SearchElementsWrapper>
-        <SearchElementsWrapper>
-          <p>날짜</p>
-          <SelectorWrapper>
-            <SelectorDate>체크인</SelectorDate>
-            <p style={{textAlign: 'center'}}>~</p>
-            <SelectorDate>체크아웃</SelectorDate>
-          </SelectorWrapper>
-        </SearchElementsWrapper>
-      </SearchWrapper>
-    </div>
+const MainSearch = (): React.JSX.Element => {
+  const router = useRouter();
+
+  const [isRegionOpen, setIsRegionOpen] = useState(false);
+  const [selectedRegion, setSelectedRegion] = useState('');
+
+  const [isPeopleOpen, setIsPeopleOpen] = useState(false);
+  const [selectedPeople, setSelectedPeople] = useState('');
+
+  const [isDateOpen, setIsDateOpen] = useState(false);
+  const [selectedStartDate, setSelectedStartDate] = useState<Dayjs | null>(
+    null,
   );
   const [selectedEndDate, setSelectedEndDate] = useState<Dayjs | null>(null);
 
   const wrapperRef = useRef<HTMLDivElement>(null);
+
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
   const toggleRegion = () => {
     setIsRegionOpen(!isRegionOpen);
@@ -75,6 +67,11 @@ function MainSearch(): React.JSX.Element {
     setIsDateOpen(false);
   };
 
+  const handlePeopleConfirm = (peopleCount: number) => {
+    setSelectedPeople(`${peopleCount}`);
+    setIsPeopleOpen(false);
+  };
+
   const handleClickOutside = (event: MouseEvent) => {
     if (
       wrapperRef.current &&
@@ -86,10 +83,19 @@ function MainSearch(): React.JSX.Element {
     }
   };
 
-  const handlePeopleConfirm = (peopleCount) => {
-    setSelectedPeople(`${peopleCount}`);
-    setIsPeopleOpen(false);
-  };
+  // 상태가 변경될 때마다 콘솔에 출력
+  useEffect(() => {
+    console.log('Selected Region:', selectedRegion);
+  }, [selectedRegion]);
+
+  useEffect(() => {
+    console.log('Selected Start Date:', selectedStartDate);
+    console.log('Selected End Date:', selectedEndDate);
+  }, [selectedStartDate, selectedEndDate]);
+
+  useEffect(() => {
+    console.log('Selected People:', selectedPeople);
+  }, [selectedPeople]);
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
@@ -98,13 +104,20 @@ function MainSearch(): React.JSX.Element {
     };
   }, []);
 
+  const handleSubmit = () => {
+    router.push(
+      `${API_BASE_URL}/accommodation?area=${selectedRegion}&startDate=${selectedStartDate?.format('YYYY:MM:DD')}&endDate=${selectedEndDate?.format('YYYY:MM:DD')}&headcount=${selectedPeople}`,
+    );
+  };
+
   return (
     <SearchWrapper ref={wrapperRef} onClick={handleWrapperClick}>
       <SearchTitle>검색하기</SearchTitle>
       <SearchElementsWrapper>
         <p>지역</p>
         <SelectorWrapper onClick={toggleRegion}>
-          <p>{selectedRegion || '지역 선택하기'}</p>
+          <p>{selectedRegion || '지역을 선택하세요'}</p>
+          <p>{isRegionOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}</p>
         </SelectorWrapper>
         {isRegionOpen && (
           <MainSearchRegion onSelectRegion={handleRegionSelect} />
@@ -124,6 +137,7 @@ function MainSearch(): React.JSX.Element {
               ? selectedEndDate.format('YYYY년 M월 D일')
               : '체크아웃'}
           </SelectorDate>
+          <p>{isDateOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}</p>
           {isDateOpen && <MainSearchDate onConfirm={handleDateConfirm} />}
         </SelectorWrapper>
       </SearchElementsWrapper>
@@ -131,13 +145,14 @@ function MainSearch(): React.JSX.Element {
         <p>인원</p>
         <SelectorWrapper onClick={togglePeople}>
           <p>{selectedPeople || '인원 수 선택하기'}</p>
+          <p>{isPeopleOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}</p>
         </SelectorWrapper>
         {isPeopleOpen && (
           <MainSearchPeopleNumber onConfirm={handlePeopleConfirm} />
         )}
       </SearchElementsWrapper>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <Buttons label="검색" fullWidth={false} />
+        <Buttons label="검색" fullWidth={false} onClick={handleSubmit} />
       </div>
     </SearchWrapper>
   );
