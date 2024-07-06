@@ -70,6 +70,7 @@ module.exports = {
     'react/prop-types': 'off',
     '@typescript-eslint/no-unused-vars': 'off',
     'jsx-a11y/control-has-associated-label': 'off',
+    '@typescript-eslint/no-return-await': 'off',
   },
   settings: {
     react: {

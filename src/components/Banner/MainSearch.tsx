@@ -1,10 +1,8 @@
 'use client';
 
-// import { FaUmbrellaBeach } from "react-icons/fa";
+// import { FaUmbrellaBeach, FaRegCalendarAlt } from "react-icons/fa";
 // import { MdPeopleAlt } from "react-icons/md";
-// import { FaRegCalendarAlt } from "react-icons/fa";
-import { IoIosArrowDown } from "react-icons/io";
-import { IoIosArrowUp } from "react-icons/io";
+import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import dayjs, { Dayjs } from 'dayjs';
@@ -14,7 +12,6 @@ import MainSearchDate from '@/components/Banner/MainSearchDate';
 import MainSearchPeopleNumber from './MainSearchPeopleNumber';
 import { useRouter } from 'next/navigation';
 
-// 아이콘 넣기
 const MainSearch = (): React.JSX.Element => {
   const router = useRouter();
 
@@ -37,7 +34,7 @@ const MainSearch = (): React.JSX.Element => {
   const toggleRegion = () => {
     setIsRegionOpen(!isRegionOpen);
     setIsDateOpen(false); // 날짜 선택기 닫기
-    setIsPeopleOpen(false); // 인원 선택기 닫기    
+    setIsPeopleOpen(false); // 인원 선택기 닫기
   };
 
   const toggleDate = () => {
@@ -74,7 +71,7 @@ const MainSearch = (): React.JSX.Element => {
     setSelectedPeople(`${peopleCount}`);
     setIsPeopleOpen(false);
   };
-  
+
   const handleClickOutside = (event: MouseEvent) => {
     if (
       wrapperRef.current &&
@@ -86,19 +83,19 @@ const MainSearch = (): React.JSX.Element => {
     }
   };
 
-    // 상태가 변경될 때마다 콘솔에 출력
-    useEffect(() => {
-      console.log('Selected Region:', selectedRegion);
-    }, [selectedRegion]);
-  
-    useEffect(() => {
-      console.log('Selected Start Date:', selectedStartDate);
-      console.log('Selected End Date:', selectedEndDate);
-    }, [selectedStartDate, selectedEndDate]);
-  
-    useEffect(() => {
-      console.log('Selected People:', selectedPeople);
-    }, [selectedPeople]);
+  // 상태가 변경될 때마다 콘솔에 출력
+  useEffect(() => {
+    console.log('Selected Region:', selectedRegion);
+  }, [selectedRegion]);
+
+  useEffect(() => {
+    console.log('Selected Start Date:', selectedStartDate);
+    console.log('Selected End Date:', selectedEndDate);
+  }, [selectedStartDate, selectedEndDate]);
+
+  useEffect(() => {
+    console.log('Selected People:', selectedPeople);
+  }, [selectedPeople]);
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
