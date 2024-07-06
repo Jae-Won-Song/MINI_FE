@@ -193,10 +193,14 @@
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	!function() {
 <<<<<<< HEAD
+<<<<<<< HEAD
 /******/ 		__webpack_require__.h = function() { return "63f1531032f5c029"; }
 =======
 /******/ 		__webpack_require__.h = function() { return "f22909e5414e22e6"; }
 >>>>>>> a45a7d7 (test)
+=======
+/******/ 		__webpack_require__.h = function() { return "1885a00e1e052293"; }
+>>>>>>> 3ca8fe4 (Save local changes before applying stash)
 /******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
