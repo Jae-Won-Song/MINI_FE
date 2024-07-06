@@ -9,6 +9,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   "/auth/login/page": "app/auth/login/page.js",
   "/auth/register/page": "app/auth/register/page.js",
@@ -78,6 +79,12 @@
 <<<<<<< HEAD
 =======
 >>>>>>> 81af92b (feat: 404 에러 페이지 제작 완료)
+=======
+  "/_not-found/page": "app/_not-found/page.js",
+  "/auth/login/page": "app/auth/login/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/auth/register/page": "app/auth/register/page.js",
+>>>>>>> 5db7c1d (build: 빌드 관련 코드 수정 중)
   "/page": "app/page.js"
 }
 >>>>>>> 410063f (feat: MainSearch에 People Counter 추가)

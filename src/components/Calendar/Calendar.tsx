@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import React, { useState } from 'react';
 import styled from 'styled-components';
@@ -33,7 +33,11 @@ interface CalendarProps {
   onDateClick: (date: dayjs.Dayjs) => void;
 }
 
-const Calendar: React.FC<CalendarProps> = ({ startDate, endDate, onDateClick }) => {
+const Calendar: React.FC<CalendarProps> = ({
+  startDate,
+  endDate,
+  onDateClick,
+}) => {
   const [currentMonth, setCurrentMonth] = useState(dayjs().tz());
   const [nextMonth, setNextMonth] = useState(dayjs().tz().add(1, 'month'));
   const maxMonth = dayjs().tz().add(24, 'month');

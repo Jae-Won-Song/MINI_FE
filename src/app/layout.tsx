@@ -11,7 +11,8 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: '여기 죽이지?: 패캠 미니프로젝트 숙소 예약 시스템',
-  description: '패스트캠퍼스 부트캠프 미니프로젝트: 문화관광부 제공 API를 활용한 숙소 예약 시스템',
+  description:
+    '패스트캠퍼스 부트캠프 미니프로젝트: 문화관광부 제공 API를 활용한 숙소 예약 시스템',
 };
 
 const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {

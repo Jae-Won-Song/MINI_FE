@@ -23,8 +23,8 @@ const Month: React.FC<MonthProps> = ({
     const startDateOfMonth = monthStart.startOf('week');
     const endDateOfMonth = monthEnd.endOf('week');
 
-    const rows = [];
-    let days = [];
+    const rows: JSX.Element[] = [];
+    let days: JSX.Element[] = [];
     let day = startDateOfMonth;
 
     while (day.isBefore(endDateOfMonth, 'day')) {
@@ -32,8 +32,8 @@ const Month: React.FC<MonthProps> = ({
         const formattedDate = day.format('D');
         const cloneDay = day;
         const isPast = day.isBefore(dayjs(), 'day');
-        const isStartDate = startDate && day.isSame(startDate, 'day');
-        const isEndDate = endDate && day.isSame(endDate, 'day');
+        const isStartDate = startDate ? day.isSame(startDate, 'day') : false;
+        const isEndDate = endDate ? day.isSame(endDate, 'day') : false;
         const isCurrentMonth = day.isSame(month, 'month');
         const isInRange =
           startDate &&

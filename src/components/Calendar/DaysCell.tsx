@@ -10,6 +10,7 @@ interface CellProps {
   isCurrentMonth: boolean;
   isInRange: boolean;
   onClick: () => void;
+  children: React.ReactNode;
 }
 
 const Cell: React.FC<CellProps> = ({
@@ -24,7 +25,7 @@ const Cell: React.FC<CellProps> = ({
   children,
 }) => {
   if (!isCurrentMonth) {
-    return <CellWrapperInvisible />;
+    return <div style={{ display: 'flex', flex: 1 }} />;
   }
 
   return (
@@ -93,10 +94,3 @@ const CellWrapper = styled.div<{
     font-weight: 900;
   }
 `;
-
-const CellWrapperInvisible = styled.div`
-  flex: 1;
-  display: flex;
-`;
-
-export default Cell;

@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 import { useForm, SubmitHandler, FieldValues } from 'react-hook-form';
+import Image from 'next/image';
+import { useAuth } from 'src/contexts/AuthContext';
 import Inputs from '../../../components/Inputs';
 import Buttons from '../../../components/Buttons';
 
@@ -75,7 +77,9 @@ const RegisterPage: React.FC = () => {
     validateConfirmPassword(newPassword, confirmPassword);
   };
 
-  const handleConfirmPasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleConfirmPasswordChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     const newConfirmPassword = event.target.value;
     setConfirmPassword(newConfirmPassword);
     validateConfirmPassword(password, newConfirmPassword);

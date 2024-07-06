@@ -27,10 +27,10 @@ const MainBanner: React.FC = () => (
   </BannerWrapper>
 );
 
-const BannerWrapper = styled.div`  
+const BannerWrapper = styled.div`
   width: 100%;
   margin: auto;
-  position: relative;  
+  position: relative;
   height: 700px;
   overflow: visible;
   padding: 50px;
@@ -43,8 +43,8 @@ const BannerWrapper = styled.div`
 
 const ComponentContainer = styled.div`
   width: 1500px;
-  margin: auto;  
-  position: relative; 
+  margin: auto;
+  position: relative;
   overflow: visible;
   display: flex;
   justify-content: space-between;
@@ -53,7 +53,6 @@ const ComponentContainer = styled.div`
     width: 1250px;
   }
 `;
-
 
 const BannerImageWrapper = styled(Image)`
   object-fit: cover;
@@ -87,5 +86,4 @@ const BannerTextWrapper = styled.div`
     }
   }
 `;
-
 export default MainBanner;

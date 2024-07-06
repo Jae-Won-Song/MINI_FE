@@ -83,9 +83,9 @@ const TravelPlaceKeywordsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 50px;
-`
+`;
 
-const KeywordsWrapper = styled.div`  
+const KeywordsWrapper = styled.div`
   width: 100%;
   margin: auto;
   display: flex;

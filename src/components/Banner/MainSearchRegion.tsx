@@ -38,7 +38,9 @@ const regionNames = [
   '가평',
 ];
 
-const MainSearchRegion: React.FC<MainSearchRegionProps> = ({ onSelectRegion }) => {
+const MainSearchRegion: React.FC<MainSearchRegionProps> = ({
+  onSelectRegion,
+}) => {
   return (
     <RegionWrapper>
       <RegionWithPhotoWrapper>
@@ -71,7 +73,7 @@ const MainSearchRegion: React.FC<MainSearchRegionProps> = ({ onSelectRegion }) =
 const RegionWrapper = styled.div`
   width: 590px;
   box-shadow: 4px 4px 5px 5px rgba(0, 0, 0, 0.05);
-  background-color: #F7F7F7;
+  background-color: #f7f7f7;
   border-radius: 6px;
   padding: 45px;
   display: flex;

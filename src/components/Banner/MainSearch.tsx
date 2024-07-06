@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
+import dayjs, { Dayjs } from 'dayjs';
 import Buttons from '../Buttons';
 
 const MainSearch = (): React.JSX.Element => {

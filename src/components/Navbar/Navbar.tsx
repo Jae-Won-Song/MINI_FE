@@ -15,17 +15,17 @@ export default function Navbar() {
           </Link>
         </div>
         <div className="nav-cat">
-          <Link href="mypage">
+          <Link href="/mypage">
             <li>
               <BsFillPersonFill />
             </li>
           </Link>
-          <Link href="myreservation">
+          <Link href="/myreservation">
             <li>
               <HiOutlineShoppingBag />
             </li>
           </Link>
-          <Link href="wishlist">
+          <Link href="/wishlist">
             <li>
               <CiHeart />
             </li>
