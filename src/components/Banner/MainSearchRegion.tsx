@@ -34,9 +34,7 @@ const regionNames = [
   '세종',
 ];
 
-const MainSearchRegion: React.FC<MainSearchRegionProps> = ({
-  onSelectRegion,
-}) => {
+const MainSearchRegion = () => {
   return (
     <RegionWrapper>
       <RegionWithPhotoWrapper>
@@ -52,7 +50,7 @@ const MainSearchRegion: React.FC<MainSearchRegionProps> = ({
               />
               <p>{region.name}</p>
             </ImageWrapper>
-          </div>
+          </Link>
         ))}
       </RegionWithPhotoWrapper>
       <RegionWithTextWrapper>
@@ -69,7 +67,6 @@ const MainSearchRegion: React.FC<MainSearchRegionProps> = ({
 const RegionWrapper = styled.div`
   width: 590px;
   box-shadow: 4px 4px 5px 5px rgba(0, 0, 0, 0.05);
-  background-color: #f7f7f7;
   border-radius: 6px;
   padding: 45px;
   display: flex;
@@ -120,7 +117,6 @@ const StyledLink = styled(Link)`
   height: 40px;
   border: 1px solid #cccccc;
   transition: 0.2s;
-  cursor: pointer;
 
   &:hover {
     background-color: #cccccc;

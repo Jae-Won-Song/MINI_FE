@@ -4,13 +4,21 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> dcc29c8 (fix: merge conflict-79a661b2)
 >>>>>>> f67aa9b (fix: merge conflict-4f0edc5a)
+=======
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 60d8694 (fix: merge conflict)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -230,6 +238,10 @@
 <<<<<<< HEAD
 }
 =======
+=======
+  "/main/page": "app/main/page.js",
+  "/page": "app/page.js"
+>>>>>>> 60d8694 (fix: merge conflict)
 }
 =======
 {}
@@ -251,16 +263,20 @@
 }
 >>>>>>> b0926d1 (rename: component의 banner 폴더 추가)
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> def0923 (fix: merge conflict-40b2293b)
 <<<<<<< HEAD
 >>>>>>> 7328930 (fix: merge conflict)
 =======
 =======
 =======
+>>>>>>> 60d8694 (fix: merge conflict)
+=======
   "/main/page": "app/main/page.js",
   "/favicon.ico/route": "app/favicon.ico/route.js"
 }
 >>>>>>> 39b333c (gitignore test)
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> 7e79a47 (fix: merge conflict-28c44d60)
 <<<<<<< HEAD
@@ -268,10 +284,13 @@
 =======
 =======
 =======
+>>>>>>> 60d8694 (fix: merge conflict)
+=======
   "/page": "app/page.js",
   "/auth/register/page": "app/auth/register/page.js"
 }
 >>>>>>> b7f20e2 (fix: layout 출력 오류 수정)
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> 1bb3c16 (fix: merge conflict-7e79a474)
 <<<<<<< HEAD
@@ -287,6 +306,10 @@
 >>>>>>> dcc29c8 (fix: merge conflict-79a661b2)
 >>>>>>> f67aa9b (fix: merge conflict-4f0edc5a)
 =======
+=======
+=======
+>>>>>>> 16d2da6 (fix: merge conflict-bcd13d1f)
+>>>>>>> 60d8694 (fix: merge conflict)
 {
   "/page": "app/page.js",
 <<<<<<< HEAD
@@ -311,5 +334,16 @@
   "/favicon.ico/route": "app/favicon.ico/route.js"
 }
 >>>>>>> c66a15e (perf: 로그인 페이지 유효성 검사 작성 중)
+<<<<<<< HEAD
 >>>>>>> bcd13d1 (fix: merge conflict-417dfc0a)
+<<<<<<< HEAD
 >>>>>>> 5adf0f2 (fix: merge conflict)
+=======
+=======
+=======
+{
+  "/page": "app/page.js"
+}
+>>>>>>> 410063f (feat: MainSearch에 People Counter 추가)
+>>>>>>> 16d2da6 (fix: merge conflict-bcd13d1f)
+>>>>>>> 60d8694 (fix: merge conflict)
