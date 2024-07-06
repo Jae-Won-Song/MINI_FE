@@ -11,6 +11,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   "/auth/login/page": "app/auth/login/page.js",
   "/auth/register/page": "app/auth/register/page.js",
@@ -103,3 +104,8 @@
   "/page": "app/page.js"
 }
 >>>>>>> 993550b (Perf: 로그인 페이지 개선)
+=======
+  "/page": "app/page.js",
+  "/auth/login/page": "app/auth/login/page.js"
+}
+>>>>>>> e55c054 (perf: 로그인 로직 개선 중)

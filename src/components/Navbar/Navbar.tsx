@@ -11,7 +11,7 @@ export default function Navbar() {
       <div className="navbar">
         <div className="title">
           <Link href="/">
-            <h1>여기 죽이지</h1>
+            <h1>여기 죽이지?</h1>
           </Link>
         </div>
         <div className="nav-cat">

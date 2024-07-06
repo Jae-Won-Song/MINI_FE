@@ -68,6 +68,11 @@
 {
   "node": {},
   "edge": {},
+<<<<<<< HEAD
   "encryptionKey": "oUnCvr6qPOQNZ9kiw2c/X/XbwVBbggR+puujteTRPyI="
 }
 >>>>>>> 2b26d5c (build: build 관련 eslint 에러 수정)
+=======
+  "encryptionKey": "6rbB3o2KUdY1W2ywcGAGvM7IOsuUmvR5+tjGqAM0mgE="
+}
+>>>>>>> e55c054 (perf: 로그인 로직 개선 중)

@@ -1,5 +1,10 @@
 'use client';
 
+// import { FaUmbrellaBeach } from "react-icons/fa";
+// import { MdPeopleAlt } from "react-icons/md";
+// import { FaRegCalendarAlt } from "react-icons/fa";
+import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowUp } from "react-icons/io";
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import dayjs, { Dayjs } from 'dayjs';
