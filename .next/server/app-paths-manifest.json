@@ -109,6 +109,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   "/main/page": "app/main/page.js",
 >>>>>>> 45abe6d (fix: merge conflict-def09234)
 >>>>>>> ff5ecdc (fix: merge conflict)
@@ -240,5 +241,16 @@
   "/favicon.ico/route": "app/favicon.ico/route.js"
 }
 >>>>>>> b0926d1 (rename: component의 banner 폴더 추가)
+<<<<<<< HEAD
 >>>>>>> def0923 (fix: merge conflict-40b2293b)
+<<<<<<< HEAD
 >>>>>>> 7328930 (fix: merge conflict)
+=======
+=======
+=======
+  "/main/page": "app/main/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js"
+}
+>>>>>>> 39b333c (gitignore test)
+>>>>>>> 7e79a47 (fix: merge conflict-28c44d60)
+>>>>>>> d32e418 (fix: merge conflict)

@@ -30,13 +30,10 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
-<<<<<<< HEAD
+
 next-env.d.ts
-<<<<<<< HEAD
 
 # End of https://www.toptal.com/developers/gitignore/api/nextjs
-=======
->>>>>>> 53d1f13 (fix: merge conflict)
-=======
-next-env.d.ts
->>>>>>> 4dbdf78 (fix: merge conflict)
+
+
+
