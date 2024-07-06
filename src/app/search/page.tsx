@@ -21,7 +21,7 @@ const Page = () => {
         </li>
       </div>
       <div>
-        <KakaoMap />
+        <KakaoMap latitude={0} longitude={0} />
       </div>
     </>
   );

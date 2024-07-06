@@ -644,6 +644,12 @@
 >>>>>>> 2f4311c (fix: merge conflict-52f8d155)
 =======
 {
+<<<<<<< HEAD
   "/search/page": "app/search/page.js"
 }
 >>>>>>> 77a4fb5 (fix: merge conflict)
+=======
+  "/search/page": "app/search/page.js",
+  "/_not-found/page": "app/_not-found/page.js"
+}
+>>>>>>> 3c21462 (fix: merge conflict)

@@ -55,7 +55,6 @@ module.exports = {
         unnamedComponents: 'arrow-function',
       },
     ],
-    // 특정 규칙 예외 처리
     'react/no-unstable-nested-components': 'off',
     'react/no-array-index-key': 'off',
     'import/order': 'off',
@@ -72,7 +71,7 @@ module.exports = {
     'jsx-a11y/control-has-associated-label': 'off',
     '@typescript-eslint/no-return-await': 'off',
   },
-  settings: {
+settings: {
     react: {
       version: 'detect',
     },

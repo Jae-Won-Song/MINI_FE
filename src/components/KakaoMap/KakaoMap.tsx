@@ -1,6 +1,4 @@
-'use client';
-
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import styled from 'styled-components';
@@ -37,56 +35,59 @@ const KakaoMap: React.FC<KakaoMapProps> = ({ latitude, longitude }) => {
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(true);
   const [selectedArea, setSelectedArea] = useState<string | null>(null);
-  const mapRef = useRef<any>(null);
+  const mapRef = useRef<never>(null);
 
   const ITEMS_PER_PAGE = 9;
 
-  const fetchAccommodations = async (page: number, area?: string) => {
-    setLoading(true);
-    try {
-      let url = `https://yusuengdo.ddns.net/open-api/accommodation?page=${page}`;
-      if (area) {
-        url += `&area=${encodeURIComponent(area)}`;
+  const fetchAccommodations = useCallback(
+    async (page: number, area?: string) => {
+      setLoading(true);
+      try {
+        let url = `https://yusuengdo.ddns.net/open-api/accommodation?page=${page}`;
+        if (area) {
+          url += `&area=${encodeURIComponent(area)}`;
+        }
+        const res = await fetch(url);
+        const data = await res.json();
+        if (data && data.data && data.data.content.length > 0) {
+          const fetchedAccommodations = data.data.content;
+          setAccommodationData(fetchedAccommodations.slice(0, ITEMS_PER_PAGE));
+          setTotalPages(Math.ceil(data.data.totalElements / ITEMS_PER_PAGE));
+          const lastAccommodation =
+            fetchedAccommodations[fetchedAccommodations.length - 1];
+          setMapCenter({
+            lat: lastAccommodation.latitude,
+            lng: lastAccommodation.longitude,
+          });
+        } else {
+          setAccommodationData([]);
+          setTotalPages(1);
+          setMapCenter({ lat: latitude, lng: longitude });
+        }
+      } catch (error) {
+        console.error('데이터 조회 실패: ', error);
+      } finally {
+        setLoading(false);
       }
-      const res = await fetch(url);
-      const data = await res.json();
-      if (data && data.data && data.data.content.length > 0) {
-        const fetchedAccommodations = data.data.content;
-        setAccommodationData(fetchedAccommodations.slice(0, ITEMS_PER_PAGE));
-        setTotalPages(Math.ceil(data.data.totalElements / ITEMS_PER_PAGE));
-      } else {
-        setAccommodationData([]);
-        setTotalPages(1);
-        setMapCenter({ lat: latitude, lng: longitude });
-      }
-    } catch (error) {
-      console.error('데이터 조회 실패: ', error);
-    } finally {
-      setLoading(false);
-    }
-  };
+    },
+    [latitude, longitude],
+  );
 
   useEffect(() => {
     setAccommodationData([]);
-    const keyword = searchParams.get('keyword');
+    const keyword = searchParams ? searchParams.get('keyword') : null;
     if (keyword) {
       setSelectedArea(keyword);
+      fetchAccommodations(1, keyword);
+    } else {
+      setSelectedArea(null);
+      fetchAccommodations(1);
     }
-    fetchAccommodations(currentPage, keyword as string);
-  }, [currentPage, searchParams]);
-
-  useEffect(() => {
-    if (accommodationData.length > 0) {
-      const lastAccommodation = accommodationData[accommodationData.length - 1];
-      setMapCenter({
-        lat: lastAccommodation.latitude,
-        lng: lastAccommodation.longitude,
-      });
-    }
-  }, [accommodationData]);
+  }, [searchParams, fetchAccommodations]);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
+    fetchAccommodations(page, selectedArea ?? undefined);
   };
 
   return (
@@ -121,24 +122,27 @@ const KakaoMap: React.FC<KakaoMapProps> = ({ latitude, longitude }) => {
         </AccommodationSection>
         <MapSection>
           {loading && <p>지도 로딩 중...</p>}
-          {!loading && (
+          {!loading && accommodationData.length > 0 && (
             <Map
               center={mapCenter}
               style={{ width: '100%', height: '100%' }}
-              level={5}
+              level={10}
               ref={mapRef}
             >
-              {accommodationData.map((accommodation) => (
-                <MapMarker
-                  key={accommodation.id}
-                  position={{
-                    lat: accommodation.latitude,
-                    lng: accommodation.longitude,
-                  }}
-                >
-                  <div>{accommodation.title}</div>
-                </MapMarker>
-              ))}
+              {accommodationData
+                .slice(0)
+                .reverse()
+                .map((accommodation) => (
+                  <MapMarker
+                    key={accommodation.id}
+                    position={{
+                      lat: accommodation.latitude,
+                      lng: accommodation.longitude,
+                    }}
+                  >
+                    <div>{accommodation.title}</div>
+                  </MapMarker>
+                ))}
             </Map>
           )}
         </MapSection>
@@ -169,7 +173,6 @@ const AccommodationSection = styled.section`
 
 const MapSection = styled.section`
   width: 40vw;
-  height: 80vh;
   position: relative;
 `;
 
