@@ -27,32 +27,45 @@ interface PaginationButtonsProps {
   totalItems: number;
   perPage: number;
   onPageChange: (page: number) => void;
+  currentPageGroup: number;
+  setCurrentPageGroup: (pageGroup: number) => void;
 }
 
-const PaginationButtons: React.FC<PaginationButtonsProps> = ({ page, totalItems, perPage, onPageChange }) => {
+const PaginationButtons: React.FC<PaginationButtonsProps> = ({ page, totalItems, perPage, onPageChange, currentPageGroup, setCurrentPageGroup }) => {
   const totalPages = Math.ceil(totalItems / perPage);
+  const pagesPerGroup = 10;  // 한 페이지 그룹에 포함될 페이지 수
 
-  const handleClick = (page: number) => {
-    if (page >= 1 && page <= totalPages) {
-      onPageChange(page);
+  const startPage = (currentPageGroup - 1) * pagesPerGroup + 1;
+  const endPage = Math.min(startPage + pagesPerGroup - 1, totalPages);
+
+  const handleClick = (newPage: number) => {
+    if (newPage >= 1 && newPage <= totalPages) {
+      onPageChange(newPage);
+      const newGroup = Math.ceil(newPage / pagesPerGroup);
+      if (newGroup !== currentPageGroup) {
+        setCurrentPageGroup(newGroup);
+      }
     }
   };
-
   return (
     <PaginationContainer>
-      <PaginationButton onClick={() => handleClick(1)}>&laquo;</PaginationButton>
-      <PaginationButton onClick={() => handleClick(page - 1)}>&lt;</PaginationButton>
-      {[...Array(totalPages)].map((_, index) => (
+      {currentPageGroup > 1 && (
+        <PaginationButton onClick={() => setCurrentPageGroup(currentPageGroup - 1)}>&laquo;</PaginationButton>
+      )}
+      <PaginationButton onClick={() => handleClick(page - 1)} disabled={page === 1}>&lt;</PaginationButton>
+      {Array.from({ length: endPage - startPage + 1 }, (_, index) => startPage + index).map((pageNumber) => (
         <PaginationButton
-          key={index + 1}
-          active={page === index + 1}
-          onClick={() => handleClick(index + 1)}
+          key={pageNumber}
+          active={page === pageNumber}
+          onClick={() => handleClick(pageNumber)}
         >
-          {index + 1}
+          {pageNumber}
         </PaginationButton>
       ))}
-      <PaginationButton onClick={() => handleClick(page + 1)}>&gt;</PaginationButton>
-      <PaginationButton onClick={() => handleClick(totalPages)}>&raquo;</PaginationButton>
+      <PaginationButton onClick={() => handleClick(page + 1)} disabled={page === totalPages}>&gt;</PaginationButton>
+      {currentPageGroup < Math.ceil(totalPages / pagesPerGroup) && (
+        <PaginationButton onClick={() => setCurrentPageGroup(currentPageGroup + 1)}>&raquo;</PaginationButton>
+      )}
     </PaginationContainer>
   );
 }

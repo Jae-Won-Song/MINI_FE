@@ -27,6 +27,7 @@ const AccomodationCard: React.FC<AccomodationCardProps> = ({ data }) => {
       <TextContainer>
         <h3>{data.title}</h3>
         <p>{data.address}</p>
+        <p>{data.price}원 / 1박</p>
       </TextContainer>
     </Card>
   );

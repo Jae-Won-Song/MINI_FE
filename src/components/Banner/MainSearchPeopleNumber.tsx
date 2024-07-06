@@ -1,16 +1,18 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import Link from 'next/link'
 import Buttons from '../Buttons'
 
-const PeopleAdultOrKid = ['성인', '어린이']
+interface MainSearchPeopleNumberProps {
+  onConfirm: (count: number) => void;
+}
 
-const MainSearchPeopleNumber = () => {
+const MainSearchPeopleNumber: React.FC<MainSearchPeopleNumberProps> = ({ onConfirm }) => {
 
   const [adultCount, setAdultCount] = useState(0)
   const [kidCount, setKidCount] = useState(0)
+  const [allPeopleCount, setAllPeopleCount] = useState(0)
 
   const incrementAdult = () => setAdultCount(adultCount +1)
   const decrementAdult = () => setAdultCount(adultCount > 0 ? adultCount - 1 : 0)
@@ -18,11 +20,19 @@ const MainSearchPeopleNumber = () => {
   const incrementKid = () => setKidCount(kidCount +1)
   const decrementKid = () => setKidCount(kidCount > 0 ? kidCount - 1 : 0)
 
+  useEffect(() => {
+    setAllPeopleCount(adultCount + kidCount)
+  }, [adultCount, kidCount])
+
+  const confirmPeople = () => {
+    onConfirm(allPeopleCount);
+  };
+
   return (
     <PeopleCounterWrapper>
       <PeopleCounter>
         <AdultAndKid>
-          <Lable>성인</Lable>
+          <Label>성인</Label>
           <CountWrapper>
             <CountButton onClick={decrementAdult}>–</CountButton>
               <CountNumber>{adultCount}</CountNumber>
@@ -30,15 +40,19 @@ const MainSearchPeopleNumber = () => {
           </CountWrapper>
         </AdultAndKid>
         <AdultAndKid>
-          <Lable>어린이</Lable>
+          <Label>어린이</Label>
           <CountWrapper>
             <CountButton onClick={decrementKid}>–</CountButton>
               <CountNumber>{kidCount}</CountNumber>
             <CountButton onClick={incrementKid}>+</CountButton>
           </CountWrapper>
         </AdultAndKid>
+        <CountWrapper>
+          <Label>총 인원</Label>
+          <CountNumber>{allPeopleCount}</CountNumber>
+        </CountWrapper>
       </PeopleCounter>
-      <Buttons label='인원 확인' fullWidth={false} fullHeight={false} />
+      <Buttons label='인원 확인' onClick={confirmPeople} fullWidth={false} fullHeight={false} />
     </PeopleCounterWrapper>
   )
 }
@@ -85,7 +99,7 @@ const CountButton = styled.div`
   cursor: pointer;
 
   &:hover {
-    background-color: #F6D6CD;
+    background-color: #D3D3D3;
   }
 `
 
@@ -94,13 +108,18 @@ const CountWrapper = styled.div`
   flex-direction: row;
   gap: 10px;
   align-items: center;
+
+  &:last-child {
+    justify-content: end;
+  }
 `
 
 const CountNumber = styled.div`
   width: 50px;
   text-align: center;
 `
-const Lable = styled.div`
+
+const Label = styled.div`
   width: 50px;
   font-weight: 700;
   white-space: nowrap;
