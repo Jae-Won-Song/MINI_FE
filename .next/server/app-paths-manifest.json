@@ -64,7 +64,9 @@
 >>>>>>> b7f20e2 (fix: layout 출력 오류 수정)
 =======
 {
+  "/_not-found/page": "app/_not-found/page.js",
   "/page": "app/page.js",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
   "/favicon.ico/route": "app/favicon.ico/route.js"
@@ -156,3 +158,7 @@
   "/page": "app/page.js"
 }
 >>>>>>> 9f98d0a (fix: merge conflict-81bb707f)
+=======
+  "/search/page": "app/search/page.js"
+}
+>>>>>>> 1eebba0 (fix: merge conflict-ba05f986)

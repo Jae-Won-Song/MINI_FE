@@ -38,6 +38,7 @@
       "static/chunks/main-app.js",
       "static/css/app/search/page.css",
       "static/chunks/app/search/page.js"
+<<<<<<< HEAD
 >>>>>>> 53d1f13 (fix: merge conflict)
     ],
     "/_not-found/page": [
@@ -92,6 +93,8 @@
       "static/chunks/app/main/page.js"
 >>>>>>> 20a01e5 (feat: Region Selector, Checkin and Checkout Selector)
 >>>>>>> f851510 (fix: merge conflict-cache)
+=======
+>>>>>>> 1eebba0 (fix: merge conflict-ba05f986)
     ]
   }
 =======
