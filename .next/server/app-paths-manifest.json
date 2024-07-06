@@ -20,6 +20,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   "/auth/login/page": "app/auth/login/page.js",
   "/auth/register/page": "app/auth/register/page.js",
@@ -189,3 +190,7 @@
   "/page": "app/page.js"
 }
 >>>>>>> c93b938 (fix: merge conflict-ec36e573)
+=======
+  "/page": "app/page.js"
+}
+>>>>>>> 7e92abb (fix: merge conflict-8ad1f9ae)
