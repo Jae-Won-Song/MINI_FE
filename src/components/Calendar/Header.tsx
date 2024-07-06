@@ -54,6 +54,10 @@ const HeaderContainer = styled.div`
   span {
     padding: 0 10px;
   }
+  span {
+    padding: 0 10px;
+  }
+
 `;
 
 const Button = styled.button<{ disabled?: boolean }>`
@@ -72,6 +76,10 @@ const Button = styled.button<{ disabled?: boolean }>`
   &:last-child {
     right: 0;
     text-align: end;
+  }
+  &:disabled {
+    cursor: default;
+    color: transparent;
   }
   &:disabled {
     cursor: default;

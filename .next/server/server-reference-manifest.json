@@ -5,6 +5,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   "encryptionKey": "vfa1xgWuLWbDcWiU/aHfB/8+7RxpGTRFkNC7CZAT0Zo="
 =======
   "encryptionKey": "PLAcyAZT/Qbt3c36brigHpSIocU3HvTvH51KxWghQmU="
@@ -18,4 +19,7 @@
 =======
   "encryptionKey": "QmCjuG7wI+YjfJCJdco1Ogk7A4rLS4+rP5QLFp/TyC8="
 >>>>>>> 66e8a51 (temporary save)
+=======
+  "encryptionKey": "PxnWtruGtU09SA5qctxdZfmnQ62EwZJ2lTuQ/+NdxNI="
+>>>>>>> a06828c (feat: 달력 숙박 날짜 선택 및 범위 표시 기능 추가)
 }

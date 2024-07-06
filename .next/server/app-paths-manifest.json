@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 {
+<<<<<<< HEAD
   "/page": "app/page.js",
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -15,6 +16,8 @@
 {}
 >>>>>>> 5050c65 (feat: add slidebutton, paginationbutton)
 =======
+=======
+>>>>>>> a06828c (feat: 달력 숙박 날짜 선택 및 범위 표시 기능 추가)
   "/main/page": "app/main/page.js"
 }
 >>>>>>> 60c071e (comment: 주석 정리)

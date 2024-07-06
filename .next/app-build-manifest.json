@@ -1,16 +1,18 @@
 {
 <<<<<<< HEAD
   "pages": {
-    "/page": [
+    "/main/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/page.js"
+      "static/css/app/main/page.css",
+      "static/chunks/app/main/page.js"
     ],
     "/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
+<<<<<<< HEAD
     ],
     "/main/page": [
       "static/chunks/webpack.js",
@@ -25,6 +27,8 @@
       "static/chunks/app/auth/register/page.js"
 =======
 >>>>>>> 20a01e5 (feat: Region Selector, Checkin and Checkout Selector)
+=======
+>>>>>>> a06828c (feat: 달력 숙박 날짜 선택 및 범위 표시 기능 추가)
     ]
   }
 =======
