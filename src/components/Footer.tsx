@@ -144,10 +144,7 @@ const FooterText = styled.div`
       padding: 0;
       white-space: nowrap;
     }
-  }
   p {
-    color: #111111;
-    line-height: 1.6;
     font-size: 0.874rem;
     text-align: end;
     white-space: nowrap;
@@ -219,11 +216,7 @@ const ApplicationContent = styled.div`
 
 const PartWrapper = styled.div`
   display: flex;
-  flex-direction: column;
   padding-bottom: 25px;
-`;
-
-const PartName = styled.div`
   font-size: 1.2rem;
   font-weight: 700;
   color: #111111;
