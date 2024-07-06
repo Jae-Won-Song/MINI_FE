@@ -3,7 +3,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
-import Link from 'next/link';
 import seoul from '../../../public/images/seoul.jpg';
 import jeonla from '../../../public/images/jeonla.jpg';
 import gangwon from '../../../public/images/gangwon.jpg';
@@ -34,12 +33,14 @@ const regionNames = [
   '세종',
 ];
 
-const MainSearchRegion = () => {
+const MainSearchRegion: React.FC<MainSearchRegionProps> = ({
+  onSelectRegion,
+}) => {
   return (
     <RegionWrapper>
       <RegionWithPhotoWrapper>
         {regionImages.map((region, index) => (
-          <Link key={index} href={`/search?keyword=${region.name}`} passHref>
+          <div key={index} onClick={() => onSelectRegion(region.name)}>
             <ImageWrapper>
               <Image
                 src={region.src}
@@ -50,14 +51,14 @@ const MainSearchRegion = () => {
               />
               <p>{region.name}</p>
             </ImageWrapper>
-          </Link>
+          </div>
         ))}
       </RegionWithPhotoWrapper>
       <RegionWithTextWrapper>
         {regionNames.map((region, index) => (
-          <StyledLink key={index} href={`/search?keyword=${region}`} passHref>
+          <StyledRegion key={index} onClick={() => onSelectRegion(region)}>
             {region}
-          </StyledLink>
+          </StyledRegion>
         ))}
       </RegionWithTextWrapper>
     </RegionWrapper>
@@ -67,11 +68,17 @@ const MainSearchRegion = () => {
 const RegionWrapper = styled.div`
   width: 590px;
   box-shadow: 4px 4px 5px 5px rgba(0, 0, 0, 0.05);
+  background-color: #f7f7f7;
   border-radius: 6px;
   padding: 45px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: auto;
+  position: absolute;
+  top: 70px;
+  right: 0;
+  z-index: 100;
 `;
 
 const RegionWithPhotoWrapper = styled.div`
@@ -97,8 +104,11 @@ const ImageWrapper = styled.div`
   padding: 5px;
   transition: 0.2s;
   cursor: pointer;
-
-  &:hover {
+  <<<<<<< HEAD ======= p {
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+  >>>>>>>c0adbf6 (fix: merge conflict) &:hover {
     background-color: #cccccc;
   }
 `;
@@ -109,7 +119,7 @@ const RegionWithTextWrapper = styled.div`
   gap: 18px;
 `;
 
-const StyledLink = styled(Link)`
+const StyledRegion = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -117,6 +127,7 @@ const StyledLink = styled(Link)`
   height: 40px;
   border: 1px solid #cccccc;
   transition: 0.2s;
+  cursor: pointer;
 
   &:hover {
     background-color: #cccccc;

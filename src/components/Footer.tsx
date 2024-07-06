@@ -77,6 +77,7 @@ const Footer = () => {
                   )
                 </li>
                 <li>
+                  이동희(
                   <Link href="https://github.com/Jae-Won-Song/MINI_FE">
                     깃허브
                   </Link>
@@ -93,6 +94,11 @@ const Footer = () => {
             </FooterText>
           </PartWrapper>
         </FooterContent2>
+      </FooterContent1and2wrapper>
+      <FooterContent3>
+        <FooterText>
+          <p style={{ fontSize: '1.8rem', fontWeight: '700' }}>1234-5678</p>
+          <ul>
             <li>오전 9시 ~ 오후 6시(토요일, 공휴일 휴무)</li>
             <li>
               <button>1:1 문의하기</button>
@@ -138,7 +144,10 @@ const FooterText = styled.div`
       padding: 0;
       white-space: nowrap;
     }
+  }
   p {
+    color: #111111;
+    line-height: 1.6;
     font-size: 0.874rem;
     text-align: end;
     white-space: nowrap;
@@ -149,12 +158,20 @@ const FooterContent1and2wrapper = styled.div`
   display: flex;
   gap: 3rem;
 `;
+const FooterContent1 = styled.div`
   display: flex;
   flex-direction: column;
   white-space: nowrap;
 `;
 
 const FooterContent2 = styled.div`
+  @media only screen and (max-width: 1080px) {
+    display: flex;
+    gap: 1rem;
+  }
+  ul {
+    display: flex;
+    flex-direction: row;
     gap: 1rem;
     @media only screen and (max-width: 1080px) {
       flex-direction: column;
@@ -202,7 +219,11 @@ const ApplicationContent = styled.div`
 
 const PartWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   padding-bottom: 25px;
+`;
+
+const PartName = styled.div`
   font-size: 1.2rem;
   font-weight: 700;
   color: #111111;

@@ -1,11 +1,14 @@
-import React from 'react';
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import '../styles/base/_reset.scss';
 import '../styles/constants/_colors.scss';
 import Script from 'next/script';
+import { AuthProvider } from 'src/contexts/AuthContext';
+import { DataContextProvider } from 'src/contexts/DataContext';
 import StyledComponentsRegistry from './lib/registry';
+import Navbar from '@/components/Navbar/Navbar';
+import Footer from '@/components/Footer';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -15,7 +18,11 @@ export const metadata: Metadata = {
     '패스트캠퍼스 부트캠프 미니프로젝트: 문화관광부 제공 API를 활용한 숙소 예약 시스템',
 };
 
-const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+type RootLayoutProps = {
+  children: React.ReactNode;
+};
+
+const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
   return (
     <html lang="en">
       <head>
@@ -24,7 +31,15 @@ const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         />
       </head>
       <body className={inter.className}>
-        <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+        <StyledComponentsRegistry>
+          <DataContextProvider>
+            <AuthProvider>
+              <Navbar />
+              {children}
+              <Footer />
+            </AuthProvider>
+          </DataContextProvider>
+        </StyledComponentsRegistry>
       </body>
     </html>
   );

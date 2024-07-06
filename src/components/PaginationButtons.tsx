@@ -46,7 +46,8 @@ const PaginationButtons: React.FC<PaginationButtonsProps> = ({
     const startPage = Math.max(1, currentPage - Math.floor(visiblePages / 2));
     const endPage = Math.min(totalPages, startPage + visiblePages - 1);
 
-    const pages = [];
+    const pages: React.ReactElement[] = []; // 타입 명시
+
     for (let i = startPage; i <= endPage; i += 1) {
       pages.push(
         <PaginationButton

@@ -57,7 +57,6 @@ const HeaderContainer = styled.div`
   span {
     padding: 0 10px;
   }
-
 `;
 
 const Button = styled.button<{ disabled?: boolean }>`

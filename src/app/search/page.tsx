@@ -1,8 +1,9 @@
 'use client';
 
+import React from 'react';
 import dynamic from 'next/dynamic';
-import './search.scss';
 import DateRegionDropdown from '../../components/DateRegionDropdown';
+import './search.scss';
 
 const Page = () => {
   const KakaoMap = dynamic(() => import('../../components/KakaoMap/KakaoMap'), {
@@ -17,7 +18,7 @@ const Page = () => {
     <>
       <div className="search-wrapper">
         <li className="togo-dropdown">
-          <DateRegionDropdown onClose={handleClose} />
+          <DateRegionDropdown onClose={() => handleClose()} />
         </li>
       </div>
       <div>

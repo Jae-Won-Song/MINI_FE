@@ -2,14 +2,13 @@
 
 import styled from 'styled-components';
 import Link from 'next/link';
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import Inputs from '@/components/Inputs';
 import Buttons from '@/components/Buttons';
 import useSWR from 'swr';
 
 // /open-api/user/login을 통해 로그인
 const LoginPage: React.FC = function LoginPage() {
-
   // const { data, error } = useSWR<APIResponse>(`https://yusuengdo.ddns.net/open-api//open-api/user/login`, fetcher);
   // console.log('Login Data', data)
 
@@ -184,7 +183,7 @@ const FormContainer = styled.div`
   flex-direction: column;
   width: 500px;
   gap: 20px;
-  margin: 0 auto;  
+  margin: 0 auto;
 `;
 
 const BigTitle = styled.div`

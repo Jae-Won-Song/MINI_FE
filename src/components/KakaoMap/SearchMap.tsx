@@ -1,6 +1,6 @@
-'use client';
+// src/components/KakaoMap/SearchMap.tsx
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import styled from 'styled-components';
@@ -25,62 +25,67 @@ interface Accommodation {
 interface SearchMapProps {
   latitude: number;
   longitude: number;
+  accommodationInfo: Accommodation[];
 }
 
-const SearchMap: React.FC<SearchMapProps> = ({ latitude, longitude }) => {
+const SearchMap: React.FC<SearchMapProps> = ({
+  latitude,
+  longitude,
+  accommodationInfo,
+}) => {
   const searchParams = useSearchParams();
   const [accommodationData, setAccommodationData] = useState<Accommodation[]>(
     [],
   );
   const [mapCenter, setMapCenter] = useState({ lat: latitude, lng: longitude });
   const [loading, setLoading] = useState(true);
-  const mapRef = useRef<any>(null);
+
+  const mapRef = useRef<never>(null);
 
   const ITEMS_PER_PAGE = 9;
 
-  const fetchAccommodations = async () => {
-    setLoading(true);
-    try {
-      const region = searchParams?.get('region');
-      const startDate = searchParams?.get('startDate');
-      const endDate = searchParams?.get('endDate');
-      const headcount = searchParams?.get('headcount');
-
-      if (!region || !startDate || !endDate || !headcount) {
-        console.log('Missing query parameters');
-        setLoading(false);
-        return;
-      }
-
-      const url = `https://yusuengdo.ddns.net/open-api/accommodation/condition?area=${encodeURIComponent(region)}&startDate=${encodeURIComponent(startDate)}&endDate=${encodeURIComponent(endDate)}&headcount=${encodeURIComponent(headcount)}`;
-
-      const res = await fetch(url);
-      const data = await res.json();
-
-      if (data && data.data && data.data.content.length > 0) {
-        const fetchedAccommodations = data.data.content;
-        setAccommodationData(fetchedAccommodations.slice(0, ITEMS_PER_PAGE));
-        const lastAccommodation =
-          fetchedAccommodations[fetchedAccommodations.length - 1];
-        setMapCenter({
-          lat: lastAccommodation.latitude,
-          lng: lastAccommodation.longitude,
-        });
-      } else {
-        setAccommodationData([]);
-        setMapCenter({ lat: latitude, lng: longitude });
-      }
-    } catch (error) {
-      console.error('데이터 조회 실패:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
-    setAccommodationData([]);
+    const fetchAccommodations = async () => {
+      setLoading(true);
+      try {
+        const region = searchParams?.get('region');
+        const startDate = searchParams?.get('startDate');
+        const endDate = searchParams?.get('endDate');
+        const headcount = searchParams?.get('headcount');
+
+        if (!region || !startDate || !endDate || !headcount) {
+          console.log('Missing query parameters');
+          setLoading(false);
+          return;
+        }
+
+        const url = `https://yusuengdo.ddns.net/open-api/accommodation/condition?area=${encodeURIComponent(region)}&startDate=${encodeURIComponent(startDate)}&endDate=${encodeURIComponent(endDate)}&headcount=${encodeURIComponent(headcount)}`;
+
+        const res = await fetch(url);
+        const data = await res.json();
+
+        if (data && data.data && data.data.content.length > 0) {
+          const fetchedAccommodations = data.data.content;
+          setAccommodationData(fetchedAccommodations.slice(0, ITEMS_PER_PAGE));
+          const lastAccommodation =
+            fetchedAccommodations[fetchedAccommodations.length - 1];
+          setMapCenter({
+            lat: lastAccommodation.latitude,
+            lng: lastAccommodation.longitude,
+          });
+        } else {
+          setAccommodationData([]);
+          setMapCenter({ lat: latitude, lng: longitude });
+        }
+      } catch (error) {
+        console.error('데이터 조회 실패:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchAccommodations();
-  }, [searchParams]);
+  }, [searchParams, latitude, longitude]);
 
   if (!searchParams) {
     return <div>Loading...</div>;
@@ -111,9 +116,9 @@ const SearchMap: React.FC<SearchMapProps> = ({ latitude, longitude }) => {
             </AccommodationGrid>
           )}
           <PaginationButtons
-            currentPage={0}
+            currentPage={0} // currentPage, totalPages 수정 필요
             totalPages={0}
-            onPageChange={function (page: number): void {
+            onPageChange={(page: number) => {
               throw new Error('Function not implemented.');
             }}
           />

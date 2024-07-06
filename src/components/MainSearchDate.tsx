@@ -13,18 +13,22 @@ dayjs.locale('ko');
 registerLocale('ko', ko as unknown as Locale);
 
 const MainSearchDate = () => {
-  const [startDate, setStartDate] = useState(dayjs().toDate());
-  const [endDate, setEndDate] = useState(dayjs().add(0, 'day').toDate());
-  const [startMonth, setStartMonth] = useState(dayjs().month());
-  const [endMonth, setEndMonth] = useState(dayjs().add(1, 'month').month());
+  const [startDate, setStartDate] = useState<Date>(dayjs().toDate()); // startDate의 타입을 Date로 명시
+  const [endDate, setEndDate] = useState<Date>(dayjs().add(0, 'day').toDate()); // endDate의 타입을 Date로 명시
+  const [startMonth, setStartMonth] = useState<number>(dayjs().month()); // startMonth의 타입을 number로 명시
+  const [endMonth, setEndMonth] = useState<number>(
+    dayjs().add(1, 'month').month(),
+  ); // endMonth의 타입을 number로 명시
 
-  const handleStartMonthChange = (date) => {
+  const handleStartMonthChange = (date: Date) => {
+    // date 인자의 타입을 Date로 명시
     const newMonth = dayjs(date).month();
     setStartMonth(newMonth);
     setEndMonth(newMonth);
   };
 
-  const handleEndMonthChange = (date) => {
+  const handleEndMonthChange = (date: Date) => {
+    // date 인자의 타입을 Date로 명시
     const newMonth = dayjs(date).month();
     setEndMonth(newMonth);
   };
@@ -36,14 +40,14 @@ const MainSearchDate = () => {
           <Label>숙박 시작일</Label>
           <DatePicker
             selected={startDate}
-            onChange={(date) => setStartDate(date)}
+            onChange={(date) => setStartDate(date as Date)} // date 인자를 Date 타입으로 캐스팅하여 전달
             selectsStart
             startDate={startDate}
             endDate={endDate}
             inline
             onMonthChange={handleStartMonthChange}
-            locale="ko" // locale prop 추가
-            dateFormat="yyyy년 MM월 dd일" // 한국어 형식으로 날짜 표시
+            locale="ko"
+            dateFormat="yyyy년 MM월 dd일"
           />
         </DatePickerWrapper>
       </DateWrapperForStart>
@@ -52,7 +56,7 @@ const MainSearchDate = () => {
           <Label>숙박 종료일</Label>
           <DatePicker
             selected={endDate}
-            onChange={(date) => setEndDate(date)}
+            onChange={(date) => setEndDate(date as Date)} // date 인자를 Date 타입으로 캐스팅하여 전달
             selectsEnd
             startDate={startDate}
             endDate={endDate}
@@ -60,8 +64,8 @@ const MainSearchDate = () => {
             inline
             onMonthChange={handleEndMonthChange}
             openToDate={new Date(dayjs(startDate).year(), endMonth)}
-            locale="ko" // locale prop 추가
-            dateFormat="yyyy년 MM월 dd일" // 한국어 형식으로 날짜 표시
+            locale="ko"
+            dateFormat="yyyy년 MM월 dd일"
           />
         </DatePickerWrapper>
       </DateWrapperForEnd>
@@ -78,6 +82,7 @@ const DateWrapperForStart = styled.div`
   flex-direction: row;
   align-items: center;
 `;
+
 const DateWrapperForEnd = styled.div`
   width: fit-content;
   box-shadow: 4px 4px 5px 5px rgba(0, 0, 0, 0.05);

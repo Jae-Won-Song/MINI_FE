@@ -2,23 +2,28 @@
 
 import React from 'react';
 import styled from 'styled-components';
+import { FieldValues, UseFormRegister } from 'react-hook-form';
 
 interface InputProps {
+  id: string;
   label: string;
   type?: string;
   placeholder?: string;
   value?: string;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   fullWidth?: boolean;
   errorMessage?: string;
   isValid?: boolean;
   required?: boolean;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
+  register?: UseFormRegister<FieldValues>;
+  maxLength?: number;
 }
 
 const Inputs: React.FC<InputProps> = ({
+  id,
   label,
-  type,
+  type = 'text',
   placeholder,
   value,
   onChange,
@@ -27,24 +32,31 @@ const Inputs: React.FC<InputProps> = ({
   onKeyDown,
   isValid = true,
   required = true,
-}) => (
-  <FormGroup>
-    <Label>{label}</Label>
-    <StyledInput
-      type={type}
-      placeholder={placeholder}
-      value={value}
-      onChange={onChange}
-      fullWidth={fullWidth}
-      isValid={isValid}
-      required={required}
-      onKeyDown={onKeyDown}
-    />
-    {errorMessage && (
-      <ErrorMessage isValid={isValid}>{errorMessage}</ErrorMessage>
-    )}
-  </FormGroup>
-);
+  register,
+  maxLength,
+}) => {
+  return (
+    <FormGroup>
+      <Label>{label}</Label>
+      <StyledInput
+        id={id}
+        type={type}
+        {...(register ? register(id, { required }) : {})}
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+        fullWidth={fullWidth}
+        isValid={isValid}
+        required={required}
+        onKeyDown={onKeyDown}
+        maxLength={maxLength}
+      />
+      {errorMessage && (
+        <ErrorMessage isValid={isValid}>{errorMessage}</ErrorMessage>
+      )}
+    </FormGroup>
+  );
+};
 
 export default Inputs;
 

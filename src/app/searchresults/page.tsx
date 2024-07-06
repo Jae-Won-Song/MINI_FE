@@ -1,28 +1,63 @@
 'use client';
 
-import React from 'react';
-import Navbar from '@/components/Navbar/Navbar';
-import SearchMap from '@/components/KakaoMap/SearchMap';
-import Footer from '@/components/Footer';
+import React, { useEffect, useState } from 'react';
+import dynamic from 'next/dynamic'; // dynamic import 사용
 import DateRegionDropdown from '@/components/DateRegionDropdown';
 
+const SearchMap = dynamic(
+  () => import('@/components/KakaoMap/SearchMap'),
+  { ssr: false }, // 클라이언트 사이드 렌더링으로 설정
+);
+
 const SearchResultsPage = () => {
+  const [accommodationData, setAccommodationData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   const handleClose = () => {
     console.log('Dropdown closed');
   };
 
+  useEffect(() => {
+    const fetchAccommodations = async () => {
+      try {
+        const res = await fetch(
+          'https://yusuengdo.ddns.net/open-api/accommodation',
+        );
+        const data = await res.json();
+        if (data && data.data && data.data.content.length > 0) {
+          setAccommodationData(data.data.content);
+          setLoading(false);
+        } else {
+          setAccommodationData([]);
+          setLoading(false);
+        }
+      } catch (error) {
+        console.error('Error fetching accommodations:', error);
+        setLoading(false);
+      }
+    };
+
+    fetchAccommodations();
+  }, []);
+
   return (
     <>
-      <Navbar />
       <div className="search-wrapper">
-        <li className="togo-dropdown">
+        <div className="togo-dropdown">
           <DateRegionDropdown onClose={handleClose} />
-        </li>
+        </div>
       </div>
       <div>
-        <SearchMap latitude={0} longitude={0} />
+        {loading ? (
+          <div>Loading...</div>
+        ) : (
+          <SearchMap
+            latitude={0}
+            longitude={0}
+            accommodationInfo={accommodationData}
+          />
+        )}
       </div>
-      <Footer />
     </>
   );
 };
