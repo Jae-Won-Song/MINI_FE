@@ -9,18 +9,30 @@
       "static/chunks/app/page.js"
 =======
   "pages": {
+<<<<<<< HEAD
+=======
+    "/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/page.js"
+    ],
+>>>>>>> 20a01e5 (feat: Region Selector, Checkin and Checkout Selector)
     "/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
+<<<<<<< HEAD
     "/main/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/main/page.css",
       "static/chunks/app/main/page.js"
     ],
+=======
+<<<<<<< HEAD
+>>>>>>> f851510 (fix: merge conflict-cache)
     "/search/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -69,7 +81,17 @@
 >>>>>>> b7f20e2 (fix: layout 출력 오류 수정)
 =======
       "static/chunks/app/_not-found/page.js"
+<<<<<<< HEAD
 >>>>>>> fe00e34 (fix: merge conflict-cache)
+=======
+=======
+    "/main/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/main/page.css",
+      "static/chunks/app/main/page.js"
+>>>>>>> 20a01e5 (feat: Region Selector, Checkin and Checkout Selector)
+>>>>>>> f851510 (fix: merge conflict-cache)
     ]
   }
 =======

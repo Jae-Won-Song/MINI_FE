@@ -14,6 +14,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   "/auth/login/page": "app/auth/login/page.js",
   "/auth/register/page": "app/auth/register/page.js",
@@ -119,9 +120,33 @@
 =======
 {
 <<<<<<< HEAD
+=======
+>>>>>>> f851510 (fix: merge conflict-cache)
   "/page": "app/page.js"
 =======
   "/search/page": "app/search/page.js"
 >>>>>>> bd4a616 (feat: add accommodation, map)
+<<<<<<< HEAD
 }
 >>>>>>> 53d1f13 (fix: merge conflict)
+=======
+=======
+  "/search/page": "app/search/page.js",
+  "/page": "app/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js"
+>>>>>>> df4a508 (fix: merge conflict search->search)
+=======
+  "/_not-found/page": "app/_not-found/page.js",
+  "/search/page": "app/search/page.js"
+>>>>>>> 2f4a577 (test)
+=======
+  "/_not-found/page": "app/_not-found/page.js",
+  "/search/page": "app/search/page.js"
+=======
+  "/page": "app/page.js",
+  "/main/page": "app/main/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js"
+>>>>>>> 20a01e5 (feat: Region Selector, Checkin and Checkout Selector)
+>>>>>>> 17dc99d (fix: merge conflict search->search)
+}
+>>>>>>> f851510 (fix: merge conflict-cache)

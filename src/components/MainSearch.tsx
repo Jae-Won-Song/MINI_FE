@@ -12,15 +12,19 @@ function MainSearch(): React.JSX.Element {
         <SearchTitle>검색하기</SearchTitle>
         <SearchElementsWrapper>
           <p>지역</p>
-          <SearchSelector>지역 선택하기</SearchSelector>
+          <SelectorWrapper><p>지역 선택하기</p></SelectorWrapper>
         </SearchElementsWrapper>
         <SearchElementsWrapper>
           <p>인원</p>
-          <SearchSelector>인원수 선택하기</SearchSelector>
+          <SelectorWrapper><p>인원수 선택하기</p></SelectorWrapper>
         </SearchElementsWrapper>
         <SearchElementsWrapper>
           <p>날짜</p>
-          <SearchSelector>체크인, 체크아웃 날짜 선택하기</SearchSelector>
+          <SelectorWrapper>
+            <SelectorDate>체크인</SelectorDate>
+            <p style={{textAlign: 'center'}}>~</p>
+            <SelectorDate>체크아웃</SelectorDate>
+          </SelectorWrapper>
         </SearchElementsWrapper>
       </SearchWrapper>
     </div>

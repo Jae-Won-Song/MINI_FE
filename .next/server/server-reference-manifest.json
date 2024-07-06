@@ -19,6 +19,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   "encryptionKey": "vfa1xgWuLWbDcWiU/aHfB/8+7RxpGTRFkNC7CZAT0Zo="
 =======
   "encryptionKey": "PLAcyAZT/Qbt3c36brigHpSIocU3HvTvH51KxWghQmU="
@@ -74,6 +75,8 @@
   "edge": {},
 <<<<<<< HEAD
 <<<<<<< HEAD
+=======
+>>>>>>> f851510 (fix: merge conflict-cache)
   "encryptionKey": "oUnCvr6qPOQNZ9kiw2c/X/XbwVBbggR+puujteTRPyI="
 <<<<<<< HEAD
 }
@@ -97,5 +100,21 @@
 =======
   "encryptionKey": "vlv0rJyscXuD82j8DXbVIlSJ5bojuNEgIxfatO9dtA8="
 >>>>>>> fa161fe (feat: add accommandation, map)
+<<<<<<< HEAD
 }
 >>>>>>> fe00e34 (fix: merge conflict-cache)
+=======
+=======
+  "encryptionKey": "yxTAPLkXU60jeaAkH0kGMXZAgYo58mqdsyaIe6O4sjY="
+>>>>>>> df4a508 (fix: merge conflict search->search)
+=======
+  "encryptionKey": "Cd41OGa6MZ+eldegWUpLQwCDeOdogYU62W1VWdbwY54="
+>>>>>>> 2f4a577 (test)
+=======
+  "encryptionKey": "Cd41OGa6MZ+eldegWUpLQwCDeOdogYU62W1VWdbwY54="
+=======
+  "encryptionKey": "PLAcyAZT/Qbt3c36brigHpSIocU3HvTvH51KxWghQmU="
+>>>>>>> 20a01e5 (feat: Region Selector, Checkin and Checkout Selector)
+>>>>>>> 17dc99d (fix: merge conflict search->search)
+}
+>>>>>>> f851510 (fix: merge conflict-cache)
