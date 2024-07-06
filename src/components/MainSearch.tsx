@@ -11,15 +11,19 @@ function MainSearch(): React.JSX.Element {
         <SearchTitle>검색하기</SearchTitle>
         <SearchElementsWrapper>
           <p>지역</p>
-          <SearchSelector>지역 선택하기</SearchSelector>
+          <SelectorWrapper><p>지역 선택하기</p></SelectorWrapper>
         </SearchElementsWrapper>
         <SearchElementsWrapper>
           <p>인원</p>
-          <SearchSelector>인원수 선택하기</SearchSelector>
+          <SelectorWrapper><p>인원수 선택하기</p></SelectorWrapper>
         </SearchElementsWrapper>
         <SearchElementsWrapper>
           <p>날짜</p>
-          <SearchSelector>체크인, 체크아웃 날짜 선택하기</SearchSelector>
+          <SelectorWrapper>
+            <SelectorDate>체크인</SelectorDate>
+            <p style={{textAlign: 'center'}}>~</p>
+            <SelectorDate>체크아웃</SelectorDate>
+          </SelectorWrapper>
         </SearchElementsWrapper>
         <div style={{display: 'flex', justifyContent: 'center'}}>
           <Buttons label="검색" fullWidth={false} />
@@ -81,22 +85,48 @@ const SearchElementsWrapper = styled.div`
   }
 `;
 
-const SearchSelector = styled.div`
+const SelectorWrapper = styled.div`
   width: 100%;
   height: 56px;
   font-size: 1.2rem;
   background-color: #ffffff;
-  padding-left: 1rem;
+  text-align: center;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  @media only screen and (max-width: 1440px) {
+    height: 3.1rem;
+  }
+  @media only screen and (max-width: 1080px) {
+    height: 3rem;
+  }
+  p {
+    font-size: 1.2rem;
+    font-weight: 400;
+    padding-left: 0.8rem;
+    width: max-content;
+    white-space: nowrap;
+    @media only screen and (max-width: 1440px) {
+      font-size: 1.1rem;
+    }
+    @media only screen and (max-width: 1080px) {
+    font-size: 1rem;
+    }
+  }
+`;
+
+const SelectorDate = styled.div`
+  width: 45%;  
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  padding-left: 0.8rem;
   @media only screen and (max-width: 1440px) {
     font-size: 1.1rem;
-    height: 3.1rem;
     padding-left: 0.5rem;
   }
   @media only screen and (max-width: 1080px) {
     font-size: 1rem;
-    height: 3rem;
     padding-left: 0.5rem;
   }
 `;

@@ -16,11 +16,14 @@
       "static/chunks/main-app.js",
       "static/css/app/main/page.css",
       "static/chunks/app/main/page.js"
+<<<<<<< HEAD
     ],
     "/auth/register/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/auth/register/page.js"
+=======
+>>>>>>> 20a01e5 (feat: Region Selector, Checkin and Checkout Selector)
     ]
   }
 }

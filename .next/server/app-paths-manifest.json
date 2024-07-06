@@ -1,5 +1,9 @@
 {
   "/page": "app/page.js",
   "/main/page": "app/main/page.js",
+<<<<<<< HEAD
   "/auth/register/page": "app/auth/register/page.js"
+=======
+  "/favicon.ico/route": "app/favicon.ico/route.js"
+>>>>>>> 20a01e5 (feat: Region Selector, Checkin and Checkout Selector)
 }
