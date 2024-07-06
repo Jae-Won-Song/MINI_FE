@@ -12,7 +12,10 @@ exports.modules = {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ed51394 (feat: 스와이퍼 슬라이드 추가)
 /***/ "./node_modules/next/dist/build/templates/helpers.js":
 /*!***********************************************************!*\
   !*** ./node_modules/next/dist/build/templates/helpers.js ***!
@@ -376,9 +379,12 @@ eval("\nObject.defineProperty(exports, \"__esModule\", ({\n    value: true\n}));
 
 /***/ }),
 
+<<<<<<< HEAD
 >>>>>>> 5f864cb (feat: 숙박업소 종류별 확인 추가)
 =======
 >>>>>>> 5ff6aed (feat:로그인 페이지 작성 중)
+=======
+>>>>>>> ed51394 (feat: 스와이퍼 슬라이드 추가)
 /***/ "(rsc)/./node_modules/next/font/google/target.css?{\"path\":\"src\\\\app\\\\layout.tsx\",\"import\":\"Inter\",\"arguments\":[{\"subsets\":[\"latin\"]}],\"variableName\":\"inter\"}":
 /*!**************************************************************************************************************************************************************!*\
   !*** ./node_modules/next/font/google/target.css?{"path":"src\\app\\layout.tsx","import":"Inter","arguments":[{"subsets":["latin"]}],"variableName":"inter"} ***!
