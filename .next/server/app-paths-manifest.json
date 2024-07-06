@@ -1,6 +1,7 @@
 <<<<<<< HEAD
 {
   "/page": "app/page.js",
+<<<<<<< HEAD
   "/main/page": "app/main/page.js",
 <<<<<<< HEAD
   "/auth/register/page": "app/auth/register/page.js"
@@ -11,3 +12,7 @@
 =======
 {}
 >>>>>>> 5050c65 (feat: add slidebutton, paginationbutton)
+=======
+  "/main/page": "app/main/page.js"
+}
+>>>>>>> 60c071e (comment: 주석 정리)
