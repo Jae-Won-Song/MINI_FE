@@ -2,6 +2,7 @@
 {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   "/page": "app/page.js",
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -34,3 +35,8 @@
   "/main/page": "app/main/page.js"
 }
 >>>>>>> 66e8a51 (temporary save)
+=======
+  "/main/page": "app/main/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js"
+}
+>>>>>>> 39b333c (gitignore test)

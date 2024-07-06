@@ -1,16 +1,17 @@
 {
 <<<<<<< HEAD
   "pages": {
-    "/page": [
+    "/main/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/page.js"
+      "static/chunks/app/main/page.js"
     ],
     "/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -34,6 +35,8 @@
 >>>>>>> a06828c (feat: 달력 숙박 날짜 선택 및 범위 표시 기능 추가)
 =======
 >>>>>>> cd0c691 (perf: 달력 기간 설정 수정, 버튼 높이 추가)
+=======
+>>>>>>> 39b333c (gitignore test)
     ]
   }
 =======
