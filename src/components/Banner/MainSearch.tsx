@@ -33,6 +33,9 @@ const MainSearch = (): React.JSX.Element => {
           <Buttons label="검색" fullWidth={false} />
         </div>
       </SearchWrapper>
+      
+      <MainSearchRegion />
+      <MainSearchDate />
     </div>
   );
 };

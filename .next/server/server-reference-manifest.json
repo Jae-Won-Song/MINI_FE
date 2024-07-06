@@ -10,6 +10,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   "encryptionKey": "vfa1xgWuLWbDcWiU/aHfB/8+7RxpGTRFkNC7CZAT0Zo="
 =======
   "encryptionKey": "PLAcyAZT/Qbt3c36brigHpSIocU3HvTvH51KxWghQmU="
@@ -38,4 +39,7 @@
 =======
   "encryptionKey": "Mus2l80FmyKzsoAt6w29rk+OMp2WRbTVvRMqEf7rPfY="
 >>>>>>> 54e9c52 (fix: styled-components iussue about SSR)
+=======
+  "encryptionKey": "v5yIWdYW8qmA1SAKL80bI8LzpokvEuod/v6tSiAoMV8="
+>>>>>>> 5f864cb (feat: 숙박업소 종류별 확인 추가)
 }
