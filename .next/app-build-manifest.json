@@ -2,6 +2,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 <<<<<<< HEAD
@@ -108,6 +109,14 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/page.js"
+=======
+  "pages": {
+    "/search/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/search/page.css",
+      "static/chunks/app/search/page.js"
+>>>>>>> 77a4fb5 (fix: merge conflict)
     ],
 >>>>>>> 70d35d0 (fix: merge conflict)
     "/layout": [
@@ -116,6 +125,7 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> a6d4821 (fix: merge conflict)
 =======
@@ -403,11 +413,18 @@
 >>>>>>> 0fa1d7c (fix: merge conflict-2eb4b36d)
 =======
 =======
+=======
+    "/not-found": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/not-found.js"
+>>>>>>> 77a4fb5 (fix: merge conflict)
     ],
     "/_not-found/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/_not-found/page.js"
+<<<<<<< HEAD
 =======
 >>>>>>> e6dde0b (fix: merge conflict-a42cf071)
     "/main/page": [
@@ -533,4 +550,8 @@
 >>>>>>> 86b07a4 (fix: merge conflict-f939ea91)
 >>>>>>> 619c281 (fix: merge conflict-cache)
 >>>>>>> ac86354 (fix: merge conflict-c3c4228b)
+=======
+    ]
+  }
+>>>>>>> 77a4fb5 (fix: merge conflict)
 }

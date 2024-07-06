@@ -5,6 +5,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 <<<<<<< HEAD
@@ -641,3 +642,8 @@
 >>>>>>> a7e77dc (fix: merge conflict-11bbc8e8)
 >>>>>>> 5819cb8 (fix: merge conflict-lint-rule)
 >>>>>>> 2f4311c (fix: merge conflict-52f8d155)
+=======
+{
+  "/search/page": "app/search/page.js"
+}
+>>>>>>> 77a4fb5 (fix: merge conflict)
