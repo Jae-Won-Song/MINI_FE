@@ -86,4 +86,5 @@ const BannerTextWrapper = styled.div`
     }
   }
 `;
+
 export default MainBanner;
