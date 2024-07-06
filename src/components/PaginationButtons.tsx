@@ -1,19 +1,11 @@
-'use client';
-
 import React from 'react';
 import styled from 'styled-components';
-
-interface PaginationButtonsProps {
-  currentPage: number;
-  totalPages: number;
-  onPageChange: (page: number) => void;
-}
 
 const PaginationContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 20px 0;
+  margin: 20px 0 0 0;
 `;
 
 const PaginationButton = styled.button<{ active?: boolean }>`
@@ -30,54 +22,78 @@ const PaginationButton = styled.button<{ active?: boolean }>`
   }
 `;
 
+interface PaginationButtonsProps {
+  page: number;
+  totalItems: number;
+  perPage: number;
+  onPageChange: (page: number) => void;
+  currentPageGroup: number;
+  setCurrentPageGroup: (pageGroup: number) => void;
+}
+
 const PaginationButtons: React.FC<PaginationButtonsProps> = ({
-  currentPage,
-  totalPages,
+  page,
+  totalItems,
+  perPage,
   onPageChange,
+  currentPageGroup,
+  setCurrentPageGroup,
 }) => {
-  const handleClick = (page: number) => {
-    if (page >= 1 && page <= totalPages) {
-      onPageChange(page);
+  const totalPages = Math.ceil(totalItems / perPage);
+  const pagesPerGroup = 10; // 한 페이지 그룹에 포함될 페이지 수
+
+  const startPage = (currentPageGroup - 1) * pagesPerGroup + 1;
+  const endPage = Math.min(startPage + pagesPerGroup - 1, totalPages);
+
+  const handleClick = (newPage: number) => {
+    if (newPage >= 1 && newPage <= totalPages) {
+      onPageChange(newPage);
+      const newGroup = Math.ceil(newPage / pagesPerGroup);
+      if (newGroup !== currentPageGroup) {
+        setCurrentPageGroup(newGroup);
+      }
     }
   };
-
-  const renderPaginationButtons = () => {
-    const visiblePages = 10;
-    const startPage = Math.max(1, currentPage - Math.floor(visiblePages / 2));
-    const endPage = Math.min(totalPages, startPage + visiblePages - 1);
-
-    const pages: React.ReactElement[] = []; // 타입 명시
-
-    for (let i = startPage; i <= endPage; i += 1) {
-      pages.push(
-        <PaginationButton
-          key={i}
-          active={currentPage === i}
-          onClick={() => handleClick(i)}
-        >
-          {i}
-        </PaginationButton>,
-      );
-    }
-
-    return pages;
-  };
-
   return (
     <PaginationContainer>
-      <PaginationButton onClick={() => handleClick(1)}>
-        &laquo;
-      </PaginationButton>
-      <PaginationButton onClick={() => handleClick(currentPage - 1)}>
+      {currentPageGroup > 1 && (
+        <PaginationButton
+          onClick={() => setCurrentPageGroup(currentPageGroup - 1)}
+        >
+          &laquo;
+        </PaginationButton>
+      )}
+      <PaginationButton
+        onClick={() => handleClick(page - 1)}
+        disabled={page === 1}
+      >
         &lt;
       </PaginationButton>
-      {renderPaginationButtons()}
-      <PaginationButton onClick={() => handleClick(currentPage + 1)}>
+      {Array.from(
+        { length: endPage - startPage + 1 },
+        (_, index) => startPage + index,
+      ).map((pageNumber) => (
+        <PaginationButton
+          key={pageNumber}
+          active={page === pageNumber}
+          onClick={() => handleClick(pageNumber)}
+        >
+          {pageNumber}
+        </PaginationButton>
+      ))}
+      <PaginationButton
+        onClick={() => handleClick(page + 1)}
+        disabled={page === totalPages}
+      >
         &gt;
       </PaginationButton>
-      <PaginationButton onClick={() => handleClick(totalPages)}>
-        &raquo;
-      </PaginationButton>
+      {currentPageGroup < Math.ceil(totalPages / pagesPerGroup) && (
+        <PaginationButton
+          onClick={() => setCurrentPageGroup(currentPageGroup + 1)}
+        >
+          &raquo;
+        </PaginationButton>
+      )}
     </PaginationContainer>
   );
 };

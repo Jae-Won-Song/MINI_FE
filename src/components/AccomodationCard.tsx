@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
 import {
   TiStarFullOutline,
@@ -24,8 +25,30 @@ interface AccomodationCardProps {
 }
 
 const AccomodationCard: React.FC<AccomodationCardProps> = ({ data }) => {
+  const router = useRouter();
+
+  const RatingStars = (rating: number) => {
+    const fullStars = Math.floor(rating);
+    const halfStars = rating % 1 > 0 ? 1 : 0;
+    const emptyStars = 5 - fullStars - halfStars;
+
+    return (
+      <RatingContainer>
+        {[...Array(fullStars)].map((_, index) => (
+          <TiStarFullOutline key={`full-${index}`} />
+        ))}
+        {[...Array(halfStars)].map((_, index) => (
+          <TiStarHalfOutline key={`half-${index}`} />
+        ))}
+        {[...Array(emptyStars)].map((_, index) => (
+          <TiStarOutline key={`empty-${index}`} />
+        ))}
+      </RatingContainer>
+    );
+  };
+
   return (
-    <Card>
+    <Card onClick={() => router.push(`/placedetail?id=${data.id}`)}>
       <ImageContainer>
         <img
           src={data.thumbnail}
@@ -52,6 +75,12 @@ const Card = styled.div`
   border: 1px solid #ddd;
   border-radius: 6px;
   overflow: hidden;
+  cursor: pointer; /* 마우스 커서를 포인터로 변경 */
+  transition: box-shadow 0.2s;
+
+  &:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
 
   h3 {
     font-size: 1.2rem;

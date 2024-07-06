@@ -94,3 +94,5 @@ const CellWrapper = styled.div<{
     font-weight: 900;
   }
 `;
+
+export default Cell;

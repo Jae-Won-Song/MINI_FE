@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import useSWR from 'swr';
-import PaginationButtons from './PaginationButtons copy';
+import PaginationButtons from './PaginationButtons copy.tsx';
 import Categories from './Categories/Categories';
 import EmptyState from './EmptyState';
 import AccomodationCard from './AccomodationCard';

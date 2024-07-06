@@ -7,40 +7,154 @@ import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import dayjs, { Dayjs } from 'dayjs';
 import Buttons from '../Buttons';
+import MainSearchRegion from '@/components/Banner/MainSearchRegion';
+import MainSearchDate from '@/components/Banner/MainSearchDate';
+import MainSearchPeopleNumber from './MainSearchPeopleNumber';
+import { useRouter } from 'next/navigation';
 
 const MainSearch = (): React.JSX.Element => {
-  return (
-    <div>
-      <SearchWrapper>
-        <SearchTitle>검색하기</SearchTitle>
-        <SearchElementsWrapper>
-          <p>지역</p>
-          <SelectorWrapper>
-            <p>지역 선택하기</p>
-          </SelectorWrapper>
-        </SearchElementsWrapper>
-        <SearchElementsWrapper>
-          <p>인원</p>
-          <SelectorWrapper>
-            <p>인원수 선택하기</p>
-          </SelectorWrapper>
-        </SearchElementsWrapper>
-        <SearchElementsWrapper>
-          <p>날짜</p>
-          <SelectorWrapper>
-            <SelectorDate>체크인</SelectorDate>
-            <p style={{ textAlign: 'center' }}>~</p>
-            <SelectorDate>체크아웃</SelectorDate>
-          </SelectorWrapper>
-        </SearchElementsWrapper>
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <Buttons label="검색" fullWidth={false} />
-        </div>
-      </SearchWrapper>
+  const router = useRouter();
 
-      <MainSearchRegion />
-      <MainSearchDate />
-    </div>
+  const [isRegionOpen, setIsRegionOpen] = useState(false);
+  const [selectedRegion, setSelectedRegion] = useState('');
+
+  const [isPeopleOpen, setIsPeopleOpen] = useState(false);
+  const [selectedPeople, setSelectedPeople] = useState('');
+
+  const [isDateOpen, setIsDateOpen] = useState(false);
+  const [selectedStartDate, setSelectedStartDate] = useState<Dayjs | null>(
+    null,
+  );
+  const [selectedEndDate, setSelectedEndDate] = useState<Dayjs | null>(null);
+
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+
+  const toggleRegion = () => {
+    setIsRegionOpen(!isRegionOpen);
+    setIsDateOpen(false); // 날짜 선택기 닫기
+    setIsPeopleOpen(false); // 인원 선택기 닫기
+  };
+
+  const toggleDate = () => {
+    setIsDateOpen(!isDateOpen);
+    setIsRegionOpen(false); // 지역 선택기 닫기
+    setIsPeopleOpen(false); // 인원 선택기 닫기
+  };
+
+  const togglePeople = () => {
+    setIsPeopleOpen(!isPeopleOpen);
+    setIsRegionOpen(false); // 지역 선택기 닫기
+    setIsDateOpen(false); // 날짜 선택기 닫기
+  };
+
+  const handleWrapperClick = (e: React.MouseEvent) => {
+    e.stopPropagation(); // 클릭이 선택기를 닫지 않도록 함
+  };
+
+  const handleRegionSelect = (region: string) => {
+    setSelectedRegion(region); // 선택된 지역 상태 업데이트
+    setIsRegionOpen(false); // 선택 후 드롭다운 닫기
+  };
+
+  const handleDateConfirm = (
+    startDate: dayjs.Dayjs | null,
+    endDate: dayjs.Dayjs | null,
+  ) => {
+    setSelectedStartDate(startDate);
+    setSelectedEndDate(endDate);
+    setIsDateOpen(false);
+  };
+
+  const handlePeopleConfirm = (peopleCount: number) => {
+    setSelectedPeople(`${peopleCount}`);
+    setIsPeopleOpen(false);
+  };
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      wrapperRef.current &&
+      !wrapperRef.current.contains(event.target as Node)
+    ) {
+      setIsRegionOpen(false);
+      setIsPeopleOpen(false);
+      setIsDateOpen(false);
+    }
+  };
+
+  // 상태가 변경될 때마다 콘솔에 출력
+  useEffect(() => {
+    console.log('Selected Region:', selectedRegion);
+  }, [selectedRegion]);
+
+  useEffect(() => {
+    console.log('Selected Start Date:', selectedStartDate);
+    console.log('Selected End Date:', selectedEndDate);
+  }, [selectedStartDate, selectedEndDate]);
+
+  useEffect(() => {
+    console.log('Selected People:', selectedPeople);
+  }, [selectedPeople]);
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  const handleSubmit = () => {
+    router.push(
+      `${API_BASE_URL}/accommodation?area=${selectedRegion}&startDate=${selectedStartDate?.format('YYYY:MM:DD')}&endDate=${selectedEndDate?.format('YYYY:MM:DD')}&headcount=${selectedPeople}`,
+    );
+  };
+
+  return (
+    <SearchWrapper ref={wrapperRef} onClick={handleWrapperClick}>
+      <SearchTitle>검색하기</SearchTitle>
+      <SearchElementsWrapper>
+        <p>지역</p>
+        <SelectorWrapper onClick={toggleRegion}>
+          <p>{selectedRegion || '지역을 선택하세요'}</p>
+          <p>{isRegionOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}</p>
+        </SelectorWrapper>
+        {isRegionOpen && (
+          <MainSearchRegion onSelectRegion={handleRegionSelect} />
+        )}
+      </SearchElementsWrapper>
+      <SearchElementsWrapper>
+        <p>날짜</p>
+        <SelectorWrapper onClick={toggleDate}>
+          <SelectorDate>
+            {selectedStartDate
+              ? selectedStartDate.format('YYYY년 M월 D일')
+              : '체크인'}
+          </SelectorDate>
+          <p style={{ textAlign: 'center' }}>~</p>
+          <SelectorDate>
+            {selectedEndDate
+              ? selectedEndDate.format('YYYY년 M월 D일')
+              : '체크아웃'}
+          </SelectorDate>
+          <p>{isDateOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}</p>
+          {isDateOpen && <MainSearchDate onConfirm={handleDateConfirm} />}
+        </SelectorWrapper>
+      </SearchElementsWrapper>
+      <SearchElementsWrapper>
+        <p>인원</p>
+        <SelectorWrapper onClick={togglePeople}>
+          <p>{selectedPeople || '인원 수 선택하기'}</p>
+          <p>{isPeopleOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}</p>
+        </SelectorWrapper>
+        {isPeopleOpen && (
+          <MainSearchPeopleNumber onConfirm={handlePeopleConfirm} />
+        )}
+      </SearchElementsWrapper>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <Buttons label="검색" fullWidth={false} onClick={handleSubmit} />
+      </div>
+    </SearchWrapper>
   );
 };
 
@@ -49,6 +163,9 @@ const SearchWrapper = styled.div`
   min-width: 500px;
   padding: 40px;
   background: rgba(255, 255, 255, 0.65);
+  position: relative;
+  z-index: 100;
+  overflow: visible;
   @media only screen and (max-width: 1440px) {
     width: 600px;
     padding: 30px;

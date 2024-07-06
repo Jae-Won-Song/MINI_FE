@@ -10,6 +10,12 @@ import gyeongi from '../../../public/images/gyeongi.jpg';
 import gyeongsang from '../../../public/images/gyeongsang.jpg';
 import chungcheong from '../../../public/images/chungcheong.jpg';
 
+interface MainSearchRegionProps {
+  onSelectRegion: (region: string) => void; // 선택된 지역을 전달하는 함수
+}
+
+// 지역에 따라 번호가 부여될 예정
+
 const regionImages = [
   { src: seoul, alt: 'Seoul', name: '서울' },
   { src: gyeongi, alt: 'Gyeongi', name: '경기' },
@@ -104,11 +110,13 @@ const ImageWrapper = styled.div`
   padding: 5px;
   transition: 0.2s;
   cursor: pointer;
-  <<<<<<< HEAD ======= p {
+
+  p {
     font-size: 1.1rem;
     font-weight: 700;
   }
-  >>>>>>>c0adbf6 (fix: merge conflict) &:hover {
+
+  &:hover {
     background-color: #cccccc;
   }
 `;

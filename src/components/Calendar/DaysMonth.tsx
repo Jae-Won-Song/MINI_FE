@@ -36,10 +36,9 @@ const Month: React.FC<MonthProps> = ({
         const isEndDate = endDate ? day.isSame(endDate, 'day') : false;
         const isCurrentMonth = day.isSame(month, 'month');
         const isInRange =
-          startDate &&
-          endDate &&
-          day.isAfter(startDate, 'day') &&
-          day.isBefore(endDate, 'day');
+          startDate && endDate
+            ? day.isAfter(startDate, 'day') && day.isBefore(endDate, 'day')
+            : false;
 
         days.push(
           <Cell
