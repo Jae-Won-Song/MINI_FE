@@ -16,6 +16,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 self.__RSC_SERVER_MANIFEST="{\n  \"node\": {},\n  \"edge\": {},\n  \"encryptionKey\": \"vfa1xgWuLWbDcWiU/aHfB/8+7RxpGTRFkNC7CZAT0Zo=\"\n}"
 =======
 self.__RSC_SERVER_MANIFEST="{\n  \"node\": {},\n  \"edge\": {},\n  \"encryptionKey\": \"PLAcyAZT/Qbt3c36brigHpSIocU3HvTvH51KxWghQmU=\"\n}"
@@ -71,3 +72,9 @@ self.__RSC_SERVER_MANIFEST="{\n  \"node\": {},\n  \"edge\": {},\n  \"encryptionK
 =======
 self.__RSC_SERVER_MANIFEST="{\n  \"node\": {},\n  \"edge\": {},\n  \"encryptionKey\": \"FB1yMHsgw97fMfpMCWnXZZek7zRWvjjZoonh1Fs4YdI=\"\n}"
 >>>>>>> 7fef63b (feat: add detailpage)
+=======
+self.__RSC_SERVER_MANIFEST="{\n  \"node\": {},\n  \"edge\": {},\n  \"encryptionKey\": \"oUnCvr6qPOQNZ9kiw2c/X/XbwVBbggR+puujteTRPyI=\"\n}"
+=======
+self.__RSC_SERVER_MANIFEST="{\n  \"node\": {},\n  \"edge\": {},\n  \"encryptionKey\": \"CyyhWKHzYIknmgjV7d6K+AOjPr0V5Dvn29J7O+c3ZgY=\"\n}"
+>>>>>>> bd4a616 (feat: add accommodation, map)
+>>>>>>> 53d1f13 (fix: merge conflict)

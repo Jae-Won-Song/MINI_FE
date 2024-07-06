@@ -1,6 +1,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 {
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -115,3 +116,12 @@
   "/favicon.ico/route": "app/favicon.ico/route.js"
 }
 >>>>>>> 7fef63b (feat: add detailpage)
+=======
+{
+<<<<<<< HEAD
+  "/page": "app/page.js"
+=======
+  "/search/page": "app/search/page.js"
+>>>>>>> bd4a616 (feat: add accommodation, map)
+}
+>>>>>>> 53d1f13 (fix: merge conflict)

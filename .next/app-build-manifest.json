@@ -1,17 +1,27 @@
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
   "pages": {
     "/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/page.css",
       "static/chunks/app/page.js"
+=======
+  "pages": {
+    "/search/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/search/page.css",
+      "static/chunks/app/search/page.js"
+>>>>>>> 53d1f13 (fix: merge conflict)
     ],
     "/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -49,4 +59,8 @@
 =======
   "pages": {}
 >>>>>>> 5050c65 (feat: add slidebutton, paginationbutton)
+=======
+    ]
+  }
+>>>>>>> 53d1f13 (fix: merge conflict)
 }
