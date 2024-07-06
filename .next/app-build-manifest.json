@@ -2,6 +2,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
   "pages": {
+<<<<<<< HEAD
     "/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -15,6 +16,17 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/page.js"
+=======
+    "/not-found": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/not-found.js"
+    ],
+    "/_not-found/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/_not-found/page.js"
+>>>>>>> 6c1b233 (fix: merge conflict-cache)
     ],
 >>>>>>> 20a01e5 (feat: Region Selector, Checkin and Checkout Selector)
     "/layout": [
@@ -27,8 +39,13 @@
     "/main/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
+<<<<<<< HEAD
       "static/css/app/main/page.css",
       "static/chunks/app/main/page.js"
+=======
+      "static/css/app/page.css",
+      "static/chunks/app/page.js"
+>>>>>>> 6c1b233 (fix: merge conflict-cache)
     ],
 =======
 <<<<<<< HEAD
@@ -38,6 +55,7 @@
       "static/chunks/main-app.js",
       "static/css/app/search/page.css",
       "static/chunks/app/search/page.js"
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> 53d1f13 (fix: merge conflict)
     ],
@@ -95,6 +113,8 @@
 >>>>>>> f851510 (fix: merge conflict-cache)
 =======
 >>>>>>> 1eebba0 (fix: merge conflict-ba05f986)
+=======
+>>>>>>> 6c1b233 (fix: merge conflict-cache)
     ]
   }
 =======
