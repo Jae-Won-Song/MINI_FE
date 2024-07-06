@@ -13,6 +13,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   "encryptionKey": "vfa1xgWuLWbDcWiU/aHfB/8+7RxpGTRFkNC7CZAT0Zo="
 =======
   "encryptionKey": "PLAcyAZT/Qbt3c36brigHpSIocU3HvTvH51KxWghQmU="
@@ -50,4 +51,7 @@
 =======
   "encryptionKey": "8UVAxcMIpCknN8IRvm51pQ2mn5uSV4KJiy6Fcevc3hQ="
 >>>>>>> c66a15e (perf: 로그인 페이지 유효성 검사 작성 중)
+=======
+  "encryptionKey": "zzbRjJLbm/1wGAT4ymNrZfBX09Xy+jySwkprv/YO1kw="
+>>>>>>> 410063f (feat: MainSearch에 People Counter 추가)
 }
