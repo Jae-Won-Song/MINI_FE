@@ -12,11 +12,11 @@ const Home: React.FC = () => {
     <div>
       <Navbar />
       <MainBanner />
+      <hr style={{ marginTop: '100px', marginBottom: '100px', width: '1500px'}}/>
       <ThemeSearch />
+      <hr style={{ marginTop: '100px', marginBottom: '100px', width: '1500px'}}/>
       <TravelPlaceKeywords />
       <Footer />
-      <SlideButtons arrowDirection="left" size="smallCircle" active={true} />
-      <SlideButtons arrowDirection="right" size="smallCircle" active={true} />
     </div>
   );
 };

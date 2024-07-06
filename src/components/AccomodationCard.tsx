@@ -21,19 +21,20 @@ const AccomodationCard: React.FC<AccomodationCardProps> = ({ data }) => {
       <ImageContainer>
         <img src={data.photo} alt={data.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
       </ImageContainer>
-      <h3>{data.name}</h3>
-      <p>{data.address}</p>
-      <p>Rooms: {data.rooms}</p>
-      <p>Contact: {data.contract}</p>
+      <TextContainer>
+        <h3>{data.name}</h3>
+        <p>{data.address}</p>
+        <p>남은 방 수: {data.rooms}</p>
+        <p>연락처: {data.contract}</p>
+      </TextContainer>
     </Card>
   );
 };
 
 const Card = styled.div`
   border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 16px;
-  text-align: center;
+  border-radius: 6px;
+  overflow: hidden;
 
   h3 {
     margin: 0;
@@ -45,12 +46,14 @@ const Card = styled.div`
   }
 `;
 
-const ImageContainer = styled.div`
-  position: relative;
+const ImageContainer = styled.div`  
   width: 100%;
   height: 200px;
-  margin-bottom: 16px;
-  border-radius: 8px;
+  overflow: hidden;
+`;
+const TextContainer = styled.div`  
+  width: 100%;  
+  padding: 16px;
   overflow: hidden;
 `;
 

@@ -42,7 +42,7 @@ const BannerWrapper = styled.div`
 
 const ComponentContainer = styled.div`
   width: 1500px;
-  margin: auto;
+  margin: auto;  
   position: relative;
   display: flex;
   justify-content: space-between;
