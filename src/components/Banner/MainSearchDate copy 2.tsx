@@ -8,6 +8,7 @@ import ko from 'date-fns/locale/ko'
 import dayjs from 'dayjs'
 import 'dayjs/locale/ko'
 import { Locale } from 'date-fns'
+import Calendar from '../Calendar/Calendar'
 
 dayjs.locale('ko')
 registerLocale('ko', ko as unknown as Locale)
@@ -31,7 +32,7 @@ const MainSearchDate = () => {
 
   return (
     <>
-      <DateWrapperForStart>
+      {/* <DateWrapperForStart>
         <DatePickerWrapper>
           <Label>숙박 시작일</Label>
           <DatePicker 
@@ -64,22 +65,29 @@ const MainSearchDate = () => {
             dateFormat="yyyy년 MM월 dd일" // 한국어 형식으로 날짜 표시
           />
         </DatePickerWrapper>
-      </DateWrapperForEnd>
+      </DateWrapperForEnd> */}
+      <DateWrapperForStart>
+        <DatePickerWrapper>
+          <Calendar />
+        </DatePickerWrapper>
+      </DateWrapperForStart>
     </>
   )
 }
 
 const DateWrapperForStart = styled.div`
-  width: fit-content;
+  width: 590px;
   box-shadow: 4px 4px 5px 5px rgba(0, 0, 0, 0.05);
   border-radius: 6px;
   padding: 45px;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
+  justify-content: center;
 `
 const DateWrapperForEnd = styled.div`
-  width: fit-content;
+  width: 590px;
+  height: 400px;
   box-shadow: 4px 4px 5px 5px rgba(0, 0, 0, 0.05);
   border-radius: 6px;
   padding: 45px;

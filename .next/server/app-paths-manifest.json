@@ -2,6 +2,7 @@
 {
   "/page": "app/page.js",
 <<<<<<< HEAD
+<<<<<<< HEAD
   "/main/page": "app/main/page.js",
 <<<<<<< HEAD
   "/auth/register/page": "app/auth/register/page.js"
@@ -16,3 +17,8 @@
   "/main/page": "app/main/page.js"
 }
 >>>>>>> 60c071e (comment: 주석 정리)
+=======
+  "/main/page": "app/main/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js"
+}
+>>>>>>> b0926d1 (rename: component의 banner 폴더 추가)

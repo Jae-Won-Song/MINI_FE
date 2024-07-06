@@ -27,7 +27,7 @@ const Calendar: React.FC<CalendarProps> = ({
   const [nextMonth, setNextMonth] = useState(dayjs().tz().add(1, 'month'));
   const maxMonth = dayjs().tz().add(24, 'month');
 
-  const prevMonth = () => {
+const prevMonth = () => {
     setCurrentMonth(currentMonth.subtract(1, 'month'));
     setNextMonth(nextMonth.subtract(1, 'month'));
   };
