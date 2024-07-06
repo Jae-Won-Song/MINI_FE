@@ -48,6 +48,28 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
+  const handleErrorResponse = useCallback((error: unknown) => {
+    if (axios.isAxiosError(error) && error.response) {
+      const errorMessage = error.response.data.message;
+      if (error.response.status === 400) {
+        if (errorMessage.includes('해당 이메일을 가진 유저가 없습니다')) {
+          alert('이메일 주소가 잘못되었습니다. 다시 확인해주세요.');
+        } else if (
+          errorMessage.includes('로그인 기한 만료. 다시 로그인해 주세요.')
+        ) {
+          alert('비밀번호가 잘못되었습니다. 다시 확인해주세요.');
+        } else {
+          alert(`로그인 실패: ${errorMessage}`);
+        }
+      } else {
+        alert('로그인 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
+      }
+    } else {
+      alert('로그인 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
+    }
+    return Promise.reject(error);
+  }, []);
+
   const logout = useCallback(async () => {
     try {
       const token = localStorage.getItem('accessToken');
@@ -75,9 +97,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       router.push('/');
     } catch (error) {
       console.error('Logout failed:', error);
-      handleErrorResponse(error);
+      await handleErrorResponse(error);
     }
-  }, [router, API_URL]);
+  }, [router, API_URL, handleErrorResponse]);
 
   useEffect(() => {
     const token = localStorage.getItem('accessToken');
@@ -96,7 +118,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       (config) => {
         const token = localStorage.getItem('accessToken');
         if (token) {
-          config.headers.Authorization = `Bearer ${token}`;
+          const newConfig = { ...config }; // config 객체 복제
+          newConfig.headers.Authorization = `Bearer ${token}`;
+          return newConfig;
         }
         return config;
       },
@@ -110,15 +134,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       (response) => response,
       async (error) => {
         const originalRequest = error.config;
-        if (error.response.status === 401 && !originalRequest._retry) {
-          originalRequest._retry = true;
+        if (error.response.status === 401 && !originalRequest.isRetry) {
+          originalRequest.isRetry = true; // isRetry 플래그 사용
           try {
             const refreshToken = localStorage.getItem('refreshToken');
             if (refreshToken) {
-              const response = await axios.post(
-                `${API_BASE_URL}/user/refresh`,
-                { refreshToken },
-              );
+              const response = await axios.post(`${API_BASE_URL}/user/login`, {
+                refreshToken,
+              });
               if (response.status === 200 && response.data) {
                 const { accessToken, refreshToken: newRefreshToken } =
                   response.data.data;
@@ -131,14 +154,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
                 console.log('디코드 액세스 토큰:', decoded);
 
                 originalRequest.headers.Authorization = `Bearer ${accessToken}`;
-                return axios(originalRequest);
+                return await axios(originalRequest); // await 추가
               }
             }
           } catch (err) {
             console.error('Token refresh failed:', err);
             if (axios.isAxiosError(err) && err.response) {
               alert('토큰 갱신에 실패했습니다. 다시 로그인해 주세요.');
-              logout();
+              await logout();
             }
           }
         }
@@ -173,7 +196,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         console.error('Token refresh failed:', error);
         if (axios.isAxiosError(error) && error.response) {
           alert('토큰 갱신에 실패했습니다. 다시 로그인해 주세요.');
-          logout();
+          await logout();
         }
       }
     },
@@ -220,7 +243,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       }
     } catch (error) {
       console.error('Login failed:', error);
-      handleErrorResponse(error);
+      await handleErrorResponse(error);
     }
   };
 
@@ -236,28 +259,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       }
     } catch (error) {
       console.error('회원가입 오류:', error);
-      handleErrorResponse(error);
-    }
-  };
-
-  const handleErrorResponse = (error: unknown) => {
-    if (axios.isAxiosError(error) && error.response) {
-      const errorMessage = error.response.data.message;
-      if (error.response.status === 400) {
-        if (errorMessage.includes('해당 이메일을 가진 유저가 없습니다')) {
-          alert('이메일 주소가 잘못되었습니다. 다시 확인해주세요.');
-        } else if (
-          errorMessage.includes('로그인 기한 만료. 다시 로그인해 주세요.')
-        ) {
-          alert('비밀번호가 잘못되었습니다. 다시 확인해주세요.');
-        } else {
-          alert(`로그인 실패: ${errorMessage}`);
-        }
-      } else {
-        alert('로그인 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
-      }
-    } else {
-      alert('로그인 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
+      await handleErrorResponse(error);
     }
   };
 

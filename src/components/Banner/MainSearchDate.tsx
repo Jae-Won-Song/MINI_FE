@@ -121,7 +121,7 @@ const LengthOfStayWrapper = styled.div`
   display: flex;
   flex-direction: row;
   gap: 25px;
-  align-items: center;  
+  align-items: center;
 `;
 
 const LengthOfStay = styled.div`
@@ -130,7 +130,7 @@ const LengthOfStay = styled.div`
   font-weight: 400;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;  
+  justify-content: space-between;
   border-bottom: 1px solid;
   p {
     font-size: 1rem;
