@@ -34,8 +34,8 @@ const SearchWrapper = styled.div`
 `;
 
 const SearchTitle = styled.div`
-  font-size: 30px;
-  font-weight: 700;
+  font-size: 1.875rem;
+  font-weight: 900;
   padding-bottom: 50px;
 `;
 
