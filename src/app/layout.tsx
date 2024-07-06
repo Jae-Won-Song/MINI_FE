@@ -3,7 +3,9 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import '../styles/base/_reset.scss';
 import '../styles/constants/_colors.scss';
+import Script from 'next/script';
 import { AuthProvider } from 'src/contexts/AuthContext';
+import { DataContextProvider } from 'src/contexts/DataContext';
 import StyledComponentsRegistry from './lib/registry';
 import Navbar from '@/components/Navbar/Navbar';
 import Footer from '@/components/Footer';
@@ -23,13 +25,20 @@ type RootLayoutProps = {
 const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
   return (
     <html lang="en">
+      <head>
+        <Script
+          src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_MAP_KEY}&libraries=services,clusterer&autoload=false`}
+        />
+      </head>
       <body className={inter.className}>
         <StyledComponentsRegistry>
-          <AuthProvider>
-            <Navbar />
-            {children}
-            <Footer />
-          </AuthProvider>
+          <DataContextProvider>
+            <AuthProvider>
+              <Navbar />
+              {children}
+              <Footer />
+            </AuthProvider>
+          </DataContextProvider>
         </StyledComponentsRegistry>
       </body>
     </html>
