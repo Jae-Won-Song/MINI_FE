@@ -3,10 +3,16 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
-import Inputs from '../../../components/Inputs';
-import Buttons from '../../../components/Buttons';
+import Inputs from '@/components/Inputs';
+import Buttons from '@/components/Buttons';
+import useSWR from 'swr';
 
+// /open-api/user/login을 통해 로그인
 const LoginPage: React.FC = function LoginPage() {
+
+  // const { data, error } = useSWR<APIResponse>(`https://yusuengdo.ddns.net/open-api//open-api/user/login`, fetcher);
+  // console.log('Login Data', data)
+
   const validateEmail = (email: string) => {
     const hasAtSign = /@/.test(email);
     if (!hasAtSign) {

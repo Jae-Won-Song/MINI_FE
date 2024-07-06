@@ -1,59 +1,59 @@
 import React from 'react';
 import styled from 'styled-components';
 
-interface Hotel {
-  name: string;
+interface Accomodation {
+  id: number;
+  title: string;
   address: string;
-  rooms: number;
-  contract: string;
+  category: string;
+  thumbnail: string;
+  price: number;
   latitude: number;
-  longtitude: number;
-  photo: string;
+  longitude: number;
+  likeCount: number;
+  rating: number;
 }
 
 interface AccomodationCardProps {
-  data: Hotel;
+  data: Accomodation;
 }
 
 const AccomodationCard: React.FC<AccomodationCardProps> = ({ data }) => {
   return (
     <Card>
       <ImageContainer>
-        <img src={data.photo} alt={data.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+        <img src={data.thumbnail} alt={data.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
       </ImageContainer>
       <TextContainer>
-        <h3>{data.name}</h3>
+        <h3>{data.title}</h3>
         <p>{data.address}</p>
-        <p>남은 방 수: {data.rooms}</p>
-        <p>연락처: {data.contract}</p>
       </TextContainer>
     </Card>
   );
 };
 
 const Card = styled.div`
-  border: 1px solid #ddd;
+  border: 1px solid #ddd;  
   border-radius: 6px;
   overflow: hidden;
 
-  h3 {
-    margin: 0;
-    font-size: 1.5rem;
+  h3 {    
+    font-size: 1.2rem;    
   }
 
   p {
-    margin: 0.5rem 0 0;
+    margin: 0.4rem 0 0;
+    font-size: 0.95rem;
   }
 `;
 
-const ImageContainer = styled.div`  
-  width: 100%;
+const ImageContainer = styled.div`    
   height: 200px;
   overflow: hidden;
 `;
 const TextContainer = styled.div`  
   width: 100%;  
-  padding: 16px;
+  padding: 15px;
   overflow: hidden;
 `;
 

@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Buttons from '../Buttons';
 
@@ -71,6 +71,8 @@ const SearchElementsWrapper = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  position: relative;
+
   @media only screen and (max-width: 1440px) {
     padding-bottom: 25px;
   }

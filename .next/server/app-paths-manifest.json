@@ -51,6 +51,7 @@
 {
   "/page": "app/page.js",
 <<<<<<< HEAD
+<<<<<<< HEAD
   "/favicon.ico/route": "app/favicon.ico/route.js"
 }
 >>>>>>> 5f864cb (feat: 숙박업소 종류별 확인 추가)
@@ -59,3 +60,8 @@
   "/auth/login/page": "app/auth/login/page.js"
 }
 >>>>>>> 5ff6aed (feat:로그인 페이지 작성 중)
+=======
+  "/auth/login/page": "app/auth/login/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js"
+}
+>>>>>>> c66a15e (perf: 로그인 페이지 유효성 검사 작성 중)
