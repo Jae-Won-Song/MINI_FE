@@ -53,6 +53,7 @@ self.__RSC_SERVER_MANIFEST="{\n  \"node\": {},\n  \"edge\": {},\n  \"encryptionK
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 self.__RSC_SERVER_MANIFEST="{\n  \"node\": {},\n  \"edge\": {},\n  \"encryptionKey\": \"3nk8Jlww5mztoa7fTRStocVHXFfB6G6YezjTeY64Y4A=\"\n}"
 >>>>>>> 5adf0f2 (fix: merge conflict)
 =======
@@ -208,4 +209,21 @@ self.__RSC_SERVER_MANIFEST="{\n  \"node\": {},\n  \"edge\": {},\n  \"encryptionK
 self.__RSC_SERVER_MANIFEST="{\n  \"node\": {},\n  \"edge\": {},\n  \"encryptionKey\": \"zzbRjJLbm/1wGAT4ymNrZfBX09Xy+jySwkprv/YO1kw=\"\n}"
 >>>>>>> 410063f (feat: MainSearch에 People Counter 추가)
 >>>>>>> 16d2da6 (fix: merge conflict-bcd13d1f)
+<<<<<<< HEAD
 >>>>>>> 60d8694 (fix: merge conflict)
+=======
+=======
+=======
+self.__RSC_SERVER_MANIFEST="{\n  \"node\": {},\n  \"edge\": {},\n  \"encryptionKey\": \"CelaXT4A3Hz+3UlZuHOU98/tQN/5Yjn4N8eDnq5uFXA=\"\n}"
+>>>>>>> 58fad2d (feat: register page function)
+<<<<<<< HEAD
+>>>>>>> 2eb4b36 (fix: merge conflict-e92652f1)
+=======
+=======
+self.__RSC_SERVER_MANIFEST="{\n  \"node\": {},\n  \"edge\": {},\n  \"encryptionKey\": \"CelaXT4A3Hz+3UlZuHOU98/tQN/5Yjn4N8eDnq5uFXA=\"\n}"
+=======
+self.__RSC_SERVER_MANIFEST="{\n  \"node\": {},\n  \"edge\": {},\n  \"encryptionKey\": \"CyyhWKHzYIknmgjV7d6K+AOjPr0V5Dvn29J7O+c3ZgY=\"\n}"
+>>>>>>> bd4a616 (feat: add accommodation, map)
+>>>>>>> cbbf9b5 (fix: merge conflict)
+>>>>>>> 0fa1d7c (fix: merge conflict-2eb4b36d)
+>>>>>>> aec0fe0 (fix: merge conflict-d258ab98)

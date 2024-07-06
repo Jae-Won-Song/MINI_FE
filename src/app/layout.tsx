@@ -26,6 +26,7 @@ const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       <body className={inter.className}>
         <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
       </body>
+      <Script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ca1983a7e9ea0a0fb399052c7a1659cd&libraries=services,clusterer&autoload=false" />
     </html>
   );
 };

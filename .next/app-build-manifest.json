@@ -1,6 +1,13 @@
 {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 0fa1d7c (fix: merge conflict-2eb4b36d)
+>>>>>>> aec0fe0 (fix: merge conflict-d258ab98)
   "pages": {
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -64,7 +71,18 @@
       "static/chunks/main-app.js",
       "static/css/app/page.css",
       "static/chunks/app/page.js"
+<<<<<<< HEAD
 >>>>>>> 4dbdf78 (fix: merge conflict)
+=======
+=======
+  "pages": {
+    "/search/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/search/page.css",
+      "static/chunks/app/search/page.js"
+>>>>>>> cbbf9b5 (fix: merge conflict)
+>>>>>>> aec0fe0 (fix: merge conflict-d258ab98)
     ],
 >>>>>>> 20a01e5 (feat: Region Selector, Checkin and Checkout Selector)
     "/layout": [
@@ -72,6 +90,14 @@
       "static/chunks/main-app.js",
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 0fa1d7c (fix: merge conflict-2eb4b36d)
     ],
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -213,11 +239,21 @@
 >>>>>>> f51c0b9 (fix: merge conflict-72ad3c71)
     ]
   }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> aec0fe0 (fix: merge conflict-d258ab98)
 =======
   "pages": {}
 >>>>>>> 5050c65 (feat: add slidebutton, paginationbutton)
 =======
     ]
   }
+<<<<<<< HEAD
 >>>>>>> 53d1f13 (fix: merge conflict)
+=======
+>>>>>>> cbbf9b5 (fix: merge conflict)
+>>>>>>> 0fa1d7c (fix: merge conflict-2eb4b36d)
+>>>>>>> aec0fe0 (fix: merge conflict-d258ab98)
 }

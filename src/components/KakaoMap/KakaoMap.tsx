@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
@@ -21,12 +22,17 @@ interface Accommodation {
   rating: number;
   price: number;
 }
+=======
+import React from 'react';
+import { Map, MapMarker } from 'react-kakao-maps-sdk';
+>>>>>>> cbbf9b5 (fix: merge conflict)
 
 interface KakaoMapProps {
   latitude: number;
   longitude: number;
 }
 
+<<<<<<< HEAD
 const KakaoMap: React.FC<KakaoMapProps> = ({ latitude, longitude }) => {
   const searchParams = useSearchParams();
   const [accommodationData, setAccommodationData] = useState<Accommodation[]>(
@@ -201,3 +207,19 @@ const AccommodationCard = styled.div`
     }
   }
 `;
+=======
+function KakaoMap({ latitude, longitude }: KakaoMapProps) {
+  return (
+    <Map
+      center={{ lat: latitude, lng: longitude }}
+      style={{ width: '100%', height: '100%' }}
+    >
+      <MapMarker position={{ lat: latitude, lng: longitude }}>
+        <div>map test</div>
+      </MapMarker>
+    </Map>
+  );
+}
+
+export default KakaoMap;
+>>>>>>> cbbf9b5 (fix: merge conflict)
