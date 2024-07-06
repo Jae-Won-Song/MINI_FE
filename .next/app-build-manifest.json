@@ -42,6 +42,7 @@
       "static/chunks/main-app.js",
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
+<<<<<<< HEAD
     ],
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -128,8 +129,17 @@
     "/not-found": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
+<<<<<<< HEAD
       "static/chunks/app/not-found.js"
+<<<<<<< HEAD
 >>>>>>> 4dbdf78 (fix: merge conflict)
+=======
+=======
+      "static/chunks/app/page.js"
+=======
+>>>>>>> a06828c (feat: 달력 숙박 날짜 선택 및 범위 표시 기능 추가)
+>>>>>>> 45abe6d (fix: merge conflict-def09234)
+>>>>>>> ff5ecdc (fix: merge conflict)
     ]
   }
 =======

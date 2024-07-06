@@ -23,6 +23,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   "/auth/login/page": "app/auth/login/page.js",
   "/auth/register/page": "app/auth/register/page.js",
@@ -103,6 +104,13 @@
 >>>>>>> 5db7c1d (build: 빌드 관련 코드 수정 중)
 =======
 >>>>>>> 2b26d5c (build: build 관련 eslint 에러 수정)
+=======
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+  "/main/page": "app/main/page.js",
+>>>>>>> 45abe6d (fix: merge conflict-def09234)
+>>>>>>> ff5ecdc (fix: merge conflict)
   "/page": "app/page.js"
 <<<<<<< HEAD
 }
@@ -218,6 +226,8 @@
 =======
   "/page": "app/page.js",
 <<<<<<< HEAD
+=======
+>>>>>>> a06828c (feat: 달력 숙박 날짜 선택 및 범위 표시 기능 추가)
   "/main/page": "app/main/page.js"
 }
 >>>>>>> 60c071e (comment: 주석 정리)

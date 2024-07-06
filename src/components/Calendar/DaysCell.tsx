@@ -94,3 +94,10 @@ const CellWrapper = styled.div<{
     font-weight: 900;
   }
 `;
+
+const CellWrapperInvisible = styled.div`
+  flex: 1;
+  display: flex;
+`;
+
+export default Cell;
