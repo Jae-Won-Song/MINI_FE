@@ -60,6 +60,7 @@ const StyledButton = styled.button<{
   display: flex;
   flex-direction: row;
   justify-content: center;
+  justify-content: center;
   align-items: center;
   padding: 16px;
   gap: 10px;
