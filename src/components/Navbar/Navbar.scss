@@ -15,7 +15,8 @@
 
 .nav-cat {
   display: flex;
-  font-size: 1.25rem;
+  gap: 10px;
+  font-size: 1.15rem;
   margin-right: 3.125rem;
 }
 
@@ -26,6 +27,8 @@ li {
 h1 {
   font-family: 'Cafe24Moyamoya-Face-v1.0';
   color: $primary;
+  line-height: 100;
+  font-size: 1.6rem;  
 }
 
 /* 새로 추가된 스타일 */

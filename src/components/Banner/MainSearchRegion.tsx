@@ -11,37 +11,32 @@ import gyeongsang from '../../../public/images/gyeongsang.jpg';
 import chungcheong from '../../../public/images/chungcheong.jpg';
 
 interface MainSearchRegionProps {
-  onSelectRegion: (region: string) => void; // 선택된 지역을 전달하는 함수 prop
+  onSelectRegion: (region: string) => void; // 선택된 지역을 전달하는 함수
 }
 
-// 추후 백엔드 데이터에 따라 내용 다르게 설정할 것.
 // 지역에 따라 번호가 부여될 예정
 
 const regionImages = [
   { src: seoul, alt: 'Seoul', name: '서울' },
   { src: gyeongi, alt: 'Gyeongi', name: '경기' },
   { src: gangwon, alt: 'Gangwon', name: '강원' },
-  { src: chungcheong, alt: 'Chungcheong', name: '충청' },
-  { src: jeonla, alt: 'Jeonla', name: '전라' },
-  { src: gyeongsang, alt: 'Gyeongsang', name: '경상' },
+  { src: chungcheong, alt: 'Chungcheong', name: '충북' },
+  { src: jeonla, alt: 'Jeonla', name: '전남' },
+  { src: gyeongsang, alt: 'Gyeongsang', name: '경남' },
 ];
 
 const regionNames = [
-  '서울',
-  '부산',
-  '속초',
-  '강릉',
-  '양양',
-  '전주',
-  '대구',
-  '경주',
-  '여수',
-  '천안',
-  '서귀포',
-  '대전',
   '제주',
+  '전북',
+  '부산',
+  '광주',
+  '경북',
+  '대구',
+  '대전',
   '인천',
-  '가평',
+  '울산',
+  '충남',
+  '세종',
 ];
 
 const MainSearchRegion: React.FC<MainSearchRegionProps> = ({

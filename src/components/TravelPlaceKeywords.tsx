@@ -63,7 +63,7 @@ const TravelPlaceKeywords = () => {
           {travelPlaceKeywords.map((region, index) => (
             <RegionSearch
               key={index}
-              onClick={() => router.push(`/search?region=${region}`)}
+              onClick={() => router.push(`/search?keyword=${region}`)}
             >
               {region}
             </RegionSearch>
@@ -76,7 +76,7 @@ const TravelPlaceKeywords = () => {
           {popularKeywords.map((region, index) => (
             <RegionSearch
               key={index}
-              onClick={() => router.push(`/search?region=${region}`)}
+              onClick={() => router.push(`/search?keyword=${region}`)}
             >
               {region}
             </RegionSearch>

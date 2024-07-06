@@ -48,7 +48,7 @@ const AccomodationCard: React.FC<AccomodationCardProps> = ({ data }) => {
   };
 
   return (
-    <Card onClick={() => router.push(`/placedetail=${data.id}`)}>
+    <Card onClick={() => router.push(`/placedetail?id=${data.id}`)}>
       <ImageContainer>
         <img
           src={data.thumbnail}
