@@ -54,6 +54,23 @@
   "pages": {
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 334bd9c (fix: merge conflict search->search)
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> a6d4821 (fix: merge conflict)
+=======
+>>>>>>> 27f6841 (fix: merge conflict search->search)
+>>>>>>> dfefb23 (fix: merge conflict-cache)
+>>>>>>> e6dde0b (fix: merge conflict-a42cf071)
     "/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -75,9 +92,87 @@
 >>>>>>> 1bb3c16 (fix: merge conflict-7e79a474)
 >>>>>>> 03e3d64 (fix: merge conflict)
 =======
+<<<<<<< HEAD
       "static/css/app/page.css",
       "static/chunks/app/page.js"
 >>>>>>> f51c0b9 (fix: merge conflict-72ad3c71)
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+=======
+=======
+    "/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/page.js"
+    ],
+>>>>>>> 70d35d0 (fix: merge conflict)
+    "/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/layout.css",
+      "static/chunks/app/layout.js"
+    ],
+<<<<<<< HEAD
+>>>>>>> a6d4821 (fix: merge conflict)
+=======
+<<<<<<< HEAD
+>>>>>>> 27f6841 (fix: merge conflict search->search)
+>>>>>>> dfefb23 (fix: merge conflict-cache)
+    "/main/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/main/page.css",
+      "static/chunks/app/main/page.js"
+>>>>>>> f9d84bf (fix: merge conflict search->search)
+>>>>>>> 1596774 (fix: merge conflict-cache)
+=======
+    "/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/page.js"
+<<<<<<< HEAD
+=======
+>>>>>>> bee774f (fix: merge conflict search->search)
+=======
+    "/main/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/main/page.js"
+>>>>>>> 89c7992 (fix: merge conflict search->search)
+=======
+    "/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/page.css",
+      "static/chunks/app/page.js"
+>>>>>>> 999ba53 (fix: merge conflict search->search)
+=======
+<<<<<<< HEAD
+=======
+=======
+    ],
+>>>>>>> b9a7269 (fix: merge conflict)
+<<<<<<< HEAD
+>>>>>>> a6d4821 (fix: merge conflict)
+=======
+=======
+>>>>>>> 70d35d0 (fix: merge conflict)
+>>>>>>> 27f6841 (fix: merge conflict search->search)
+>>>>>>> dfefb23 (fix: merge conflict-cache)
+    "/search/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/search/page.css",
+      "static/chunks/app/search/page.js"
+<<<<<<< HEAD
+>>>>>>> e335c11 (fix: merge conflict)
+>>>>>>> 334bd9c (fix: merge conflict search->search)
+>>>>>>> 1596774 (fix: merge conflict-cache)
+>>>>>>> e6dde0b (fix: merge conflict-a42cf071)
     ],
     "/_not-found/page": [
       "static/chunks/webpack.js",
@@ -233,6 +328,88 @@
 >>>>>>> fe00e34 (fix: merge conflict-cache)
 =======
 =======
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> f9d84bf (fix: merge conflict search->search)
+<<<<<<< HEAD
+>>>>>>> 21df811 (fix: merge conflict-c3be014e)
+=======
+=======
+    ],
+    "/main/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/main/page.css",
+      "static/chunks/app/main/page.js"
+>>>>>>> bee774f (fix: merge conflict search->search)
+<<<<<<< HEAD
+>>>>>>> b18c79a (fix: merge conflict-21df811e)
+=======
+=======
+>>>>>>> 89c7992 (fix: merge conflict search->search)
+<<<<<<< HEAD
+>>>>>>> f48a733 (fix: merge conflict-b18c79a1)
+=======
+=======
+=======
+>>>>>>> 334bd9c (fix: merge conflict search->search)
+    ],
+    "/auth/register/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/auth/register/page.js"
+<<<<<<< HEAD
+>>>>>>> 999ba53 (fix: merge conflict search->search)
+<<<<<<< HEAD
+>>>>>>> 8561adc (fix: merge conflict-f48a733b)
+=======
+=======
+=======
+>>>>>>> e335c11 (fix: merge conflict)
+>>>>>>> 334bd9c (fix: merge conflict search->search)
+>>>>>>> 9c6b12a (fix: merge conflict-cache)
+<<<<<<< HEAD
+>>>>>>> 1596774 (fix: merge conflict-cache)
+=======
+=======
+=======
+=======
+      "static/chunks/app/_not-found/page.js"
+>>>>>>> b9a7269 (fix: merge conflict)
+<<<<<<< HEAD
+>>>>>>> a6d4821 (fix: merge conflict)
+<<<<<<< HEAD
+>>>>>>> 629db70 (fix: merge conflict-cache)
+=======
+=======
+=======
+>>>>>>> 70d35d0 (fix: merge conflict)
+>>>>>>> 27f6841 (fix: merge conflict search->search)
+>>>>>>> 6a76ca1 (fix: merge conflict-cache)
+>>>>>>> dfefb23 (fix: merge conflict-cache)
+    ]
+  }
+<<<<<<< HEAD
+=======
+=======
+  "pages": {}
+>>>>>>> 5050c65 (feat: add slidebutton, paginationbutton)
+=======
+    ]
+  }
+>>>>>>> cbbf9b5 (fix: merge conflict)
+<<<<<<< HEAD
+>>>>>>> 0fa1d7c (fix: merge conflict-2eb4b36d)
+=======
+=======
+    ],
+    "/_not-found/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/_not-found/page.js"
+=======
+>>>>>>> e6dde0b (fix: merge conflict-a42cf071)
     "/main/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",

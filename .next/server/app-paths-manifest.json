@@ -477,4 +477,151 @@
 >>>>>>> 049d48e (fix: merge conflict search->search)
 >>>>>>> 86b07a4 (fix: merge conflict-f939ea91)
 >>>>>>> 619c281 (fix: merge conflict-cache)
+<<<<<<< HEAD
 >>>>>>> ac86354 (fix: merge conflict-c3c4228b)
+=======
+=======
+=======
+=======
+=======
+  "/page": "app/page.js",
+  "/main/page": "app/main/page.js"
+}
+>>>>>>> 60c071e (comment: 주석 정리)
+>>>>>>> beca970 (fix: 주석정리)
+>>>>>>> d189b88 (fix: merge conflict-617c8d9b)
+=======
+=======
+>>>>>>> 0138004 (fix: merge conflict-cache)
+{
+  "/search/page": "app/search/page.js",
+  "/page": "app/page.js"
+}
+<<<<<<< HEAD
+>>>>>>> a3442f6 (fix: merge conflict-d189b883)
+=======
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+{
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+  "/_not-found/page": "app/_not-found/page.js",
+  "/search/page": "app/search/page.js"
+=======
+  "/page": "app/page.js",
+  "/main/page": "app/main/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js"
+>>>>>>> 20a01e5 (feat: Region Selector, Checkin and Checkout Selector)
+}
+=======
+{}
+>>>>>>> 5050c65 (feat: add slidebutton, paginationbutton)
+=======
+  "/page": "app/page.js",
+<<<<<<< HEAD
+=======
+  "/page": "app/page.js",
+>>>>>>> cd0c691 (perf: 달력 기간 설정 수정, 버튼 높이 추가)
+  "/main/page": "app/main/page.js"
+}
+>>>>>>> 60c071e (comment: 주석 정리)
+=======
+  "/main/page": "app/main/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js"
+}
+>>>>>>> b0926d1 (rename: component의 banner 폴더 추가)
+=======
+{
+<<<<<<< HEAD
+  "/page": "app/page.js",
+<<<<<<< HEAD
+  "/main/page": "app/main/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js"
+}
+>>>>>>> 5db209a (rename: banner component들 Banner 폴더로 이동.)
+<<<<<<< HEAD
+>>>>>>> 16eb858 (fix: merge conflict search->search)
+<<<<<<< HEAD
+>>>>>>> 0138004 (fix: merge conflict-cache)
+=======
+=======
+=======
+=======
+>>>>>>> a06828c (feat: 달력 숙박 날짜 선택 및 범위 표시 기능 추가)
+  "/main/page": "app/main/page.js"
+}
+>>>>>>> 66e8a51 (temporary save)
+<<<<<<< HEAD
+>>>>>>> 5f23faf (fix: merge conflict search->search)
+<<<<<<< HEAD
+>>>>>>> c3be014 (fix: merge conflict-01380043)
+=======
+=======
+=======
+  "/main/page": "app/main/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js"
+}
+>>>>>>> 39b333c (gitignore test)
+<<<<<<< HEAD
+>>>>>>> 89c7992 (fix: merge conflict search->search)
+<<<<<<< HEAD
+>>>>>>> f48a733 (fix: merge conflict-b18c79a1)
+=======
+=======
+=======
+  "/page": "app/page.js",
+<<<<<<< HEAD
+  "/auth/register/page": "app/auth/register/page.js"
+}
+>>>>>>> b7f20e2 (fix: layout 출력 오류 수정)
+<<<<<<< HEAD
+>>>>>>> 999ba53 (fix: merge conflict search->search)
+<<<<<<< HEAD
+>>>>>>> 8561adc (fix: merge conflict-f48a733b)
+=======
+=======
+=======
+  "/auth/register/page": "app/auth/register/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js"
+}
+>>>>>>> 2fa8992 (-)
+<<<<<<< HEAD
+>>>>>>> ab9ab68 (fix: merge conflict search->search)
+<<<<<<< HEAD
+>>>>>>> b44b82b (fix: merge conflict-cache)
+=======
+=======
+=======
+{
+<<<<<<< HEAD
+=======
+  "/page": "app/page.js",
+>>>>>>> dfefb23 (fix: merge conflict-cache)
+  "/search/page": "app/search/page.js"
+<<<<<<< HEAD
+}
+<<<<<<< HEAD
+>>>>>>> e335c11 (fix: merge conflict)
+<<<<<<< HEAD
+>>>>>>> 334bd9c (fix: merge conflict search->search)
+<<<<<<< HEAD
+>>>>>>> 9c6b12a (fix: merge conflict-cache)
+<<<<<<< HEAD
+>>>>>>> 1596774 (fix: merge conflict-cache)
+=======
+=======
+=======
+=======
+=======
+}
+>>>>>>> 552134a (style: edit styled-components)
+>>>>>>> 70d35d0 (fix: merge conflict)
+>>>>>>> 27f6841 (fix: merge conflict search->search)
+>>>>>>> 6a76ca1 (fix: merge conflict-cache)
+>>>>>>> dfefb23 (fix: merge conflict-cache)
+>>>>>>> e6dde0b (fix: merge conflict-a42cf071)
