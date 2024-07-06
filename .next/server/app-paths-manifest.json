@@ -64,6 +64,7 @@
 >>>>>>> b7f20e2 (fix: layout 출력 오류 수정)
 =======
 {
+<<<<<<< HEAD
   "/_not-found/page": "app/_not-found/page.js",
   "/page": "app/page.js",
 <<<<<<< HEAD
@@ -162,3 +163,7 @@
   "/search/page": "app/search/page.js"
 }
 >>>>>>> 1eebba0 (fix: merge conflict-ba05f986)
+=======
+  "/page": "app/page.js"
+}
+>>>>>>> 5a582ea (fix: merge conflict-9d1a3cb8)
