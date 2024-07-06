@@ -22,7 +22,7 @@ function MainSearch(): React.JSX.Element {
           <SearchSelector>체크인, 체크아웃 날짜 선택하기</SearchSelector>
         </SearchElementsWrapper>
         <div style={{display: 'flex', justifyContent: 'center'}}>
-          <Buttons label="등록" fullWidth={false} />
+          <Buttons label="검색" fullWidth={false} />
         </div>
       </SearchWrapper>
     </div>
@@ -35,7 +35,8 @@ const SearchWrapper = styled.div`
   padding: 40px;
   background: rgba(255, 255, 255, 0.65);  
   @media only screen and (max-width: 1440px) {
-    width: 500px;
+    width: 600px;
+    padding: 30px;
   }
   @media only screen and (max-width: 1080px) {
     width: 100%;
@@ -44,11 +45,11 @@ const SearchWrapper = styled.div`
 `;
 
 const SearchTitle = styled.div`
-  font-size: 30px;
-  font-weight: 700;
+  font-size: 1.875rem;
+  font-weight: 900;
   padding-bottom: 50px;
-  @media only screen and (max-width: 1080px) {
-    font-size: 24px;
+  @media only screen and (max-width: 1440px) {
+    font-size: 1.5rem;
     padding-bottom: 30px;
   }
 `;
@@ -59,27 +60,42 @@ const SearchElementsWrapper = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  @media only screen and (max-width: 1440px) {
+    padding-bottom: 25px;
+  }
   @media only screen and (max-width: 1080px) {
     padding-bottom: 20px;
   }
   p {
     width: 80px;
-    font-size: 23px;
+    font-size: 1.438rem;
+    font-weight: 700;
+    @media only screen and (max-width: 1440px) {
+      width: 70px;
+      font-size: 1.25rem;
+    }
     @media only screen and (max-width: 1080px) {
       width: 70px;
-      font-size: 20px;
+      font-size: 1.2rem;
     }
   }
 `;
 
 const SearchSelector = styled.div`
   width: 100%;
-  height: 3.5rem;
+  height: 56px;
+  font-size: 1.2rem;
   background-color: #ffffff;
   padding-left: 1rem;
   display: flex;
   align-items: center;
+  @media only screen and (max-width: 1440px) {
+    font-size: 1.1rem;
+    height: 3.1rem;
+    padding-left: 0.5rem;
+  }
   @media only screen and (max-width: 1080px) {
+    font-size: 1rem;
     height: 3rem;
     padding-left: 0.5rem;
   }
