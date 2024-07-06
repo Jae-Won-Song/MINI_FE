@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { TiStarFullOutline, TiStarHalfOutline, TiStarOutline } from "react-icons/ti";
 
 interface Accomodation {
   id: number;
@@ -28,6 +29,7 @@ const AccomodationCard: React.FC<AccomodationCardProps> = ({ data }) => {
         <h3>{data.title}</h3>
         <p>{data.address}</p>
         <p>{data.price}원 / 1박</p>
+        <Rating>{RatingStars(data.rating)}<span>({data.rating})</span></Rating>
       </TextContainer>
     </Card>
   );
@@ -57,6 +59,23 @@ const TextContainer = styled.div`
   width: 100%;
   padding: 15px;
   overflow: hidden;
+`;
+
+const RatingContainer = styled.div`
+  display: flex;  
+  margin-top: 0.5rem;
+  font-size: 1.1rem;
+  color: #ffaa00;
+`;
+
+const Rating = styled.div`
+  display: flex;
+  align-items: end;  
+  color: #A7A7A7;
+  span {
+    margin-left: 0.3rem;
+    font-size: 0.9rem;
+  }
 `;
 
 export default AccomodationCard;

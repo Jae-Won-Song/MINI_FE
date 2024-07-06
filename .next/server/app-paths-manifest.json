@@ -6,6 +6,11 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+  "/auth/login/page": "app/auth/login/page.js",
+  "/auth/register/page": "app/auth/register/page.js",
+>>>>>>> 0ead873 (feat: accomodation card에 별점 표기 추가)
   "/page": "app/page.js",
 <<<<<<< HEAD
 <<<<<<< HEAD
