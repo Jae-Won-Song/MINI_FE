@@ -9,23 +9,34 @@
     "static/development/_ssgManifest.js"
   ],
 <<<<<<< HEAD
+<<<<<<< HEAD
   "rootMainFiles": [],
 =======
+=======
+>>>>>>> 2f4311c (fix: merge conflict-52f8d155)
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
   "rootMainFiles": [],
 =======
 >>>>>>> 27f6841 (fix: merge conflict search->search)
+=======
+>>>>>>> ff967a3 (fix: merge conflict search->search)
   "rootMainFiles": [
     "static/chunks/webpack.js",
     "static/chunks/main-app.js"
   ],
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 70d35d0 (fix: merge conflict)
 >>>>>>> 27f6841 (fix: merge conflict search->search)
+<<<<<<< HEAD
 >>>>>>> e6dde0b (fix: merge conflict-a42cf071)
+=======
+=======
+>>>>>>> ff967a3 (fix: merge conflict search->search)
+>>>>>>> 2f4311c (fix: merge conflict-52f8d155)
   "pages": {
     "/_app": []
   },

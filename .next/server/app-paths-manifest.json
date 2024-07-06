@@ -17,8 +17,11 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 60d8694 (fix: merge conflict)
 =======
+=======
+>>>>>>> 2f4311c (fix: merge conflict-52f8d155)
 <<<<<<< HEAD
 =======
 >>>>>>> 86b07a4 (fix: merge conflict-f939ea91)
@@ -493,6 +496,8 @@
 =======
 =======
 >>>>>>> 0138004 (fix: merge conflict-cache)
+=======
+>>>>>>> a7e77dc (fix: merge conflict-11bbc8e8)
 {
   "/search/page": "app/search/page.js",
   "/page": "app/page.js"
@@ -504,14 +509,13 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+=======
+>>>>>>> ff967a3 (fix: merge conflict search->search)
 {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
   "/_not-found/page": "app/_not-found/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
   "/search/page": "app/search/page.js"
+<<<<<<< HEAD
 =======
   "/page": "app/page.js",
   "/main/page": "app/main/page.js",
@@ -622,6 +626,18 @@
 >>>>>>> 552134a (style: edit styled-components)
 >>>>>>> 70d35d0 (fix: merge conflict)
 >>>>>>> 27f6841 (fix: merge conflict search->search)
+<<<<<<< HEAD
 >>>>>>> 6a76ca1 (fix: merge conflict-cache)
+<<<<<<< HEAD
 >>>>>>> dfefb23 (fix: merge conflict-cache)
+<<<<<<< HEAD
 >>>>>>> e6dde0b (fix: merge conflict-a42cf071)
+=======
+=======
+=======
+=======
+}
+>>>>>>> ff967a3 (fix: merge conflict search->search)
+>>>>>>> a7e77dc (fix: merge conflict-11bbc8e8)
+>>>>>>> 5819cb8 (fix: merge conflict-lint-rule)
+>>>>>>> 2f4311c (fix: merge conflict-52f8d155)
