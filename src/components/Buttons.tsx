@@ -12,10 +12,6 @@ interface ButtonProps {
   buttonColor?: 'default' | 'black' | 'gray';
 }
 
-// fullWidth는 기본적으로 양옆을 가득 채웁니다.
-// 사용하시는 페이지 또는 컴포넌트에서 fullWidth={false}로 설정하면 128px로 자동 조정됩니다.
-// 예시: <Buttons label="등록" onClick={handleSubmit} fullWidth={false}/>
-
 const Buttons: React.FC<ButtonProps> = ({
   label,
   onClick,
@@ -23,19 +19,37 @@ const Buttons: React.FC<ButtonProps> = ({
   fullWidth = true,
   fullHeight = true,
   buttonColor = 'default',
-}) => {
-  return (
-    <StyledButton
-      type="submit"
-      disabled={disabled}
-      onClick={onClick}
-      fullWidth={fullWidth}
-      fullHeight={fullHeight}
-      buttonColor={buttonColor}
-    >
-      {label}
-    </StyledButton>
-  );
+}) => (
+  <StyledButton
+    type="submit"
+    disabled={disabled}
+    onClick={onClick}
+    fullWidth={fullWidth}
+    fullHeight={fullHeight}
+    buttonColor={buttonColor}
+  >
+    {label}
+  </StyledButton>
+);
+
+const getBackgroundColor = (buttonColor: 'default' | 'black' | 'gray') => {
+  if (buttonColor === 'black') {
+    return '#111111';
+  }
+  if (buttonColor === 'gray') {
+    return '#D3D3D3';
+  }
+  return '#f85b2b';
+};
+
+const getColor = (buttonColor: 'default' | 'black' | 'gray') => {
+  if (buttonColor === 'black') {
+    return '#ffffff';
+  }
+  if (buttonColor === 'gray') {
+    return '#111111';
+  }
+  return '#ffffff';
 };
 
 const StyledButton = styled.button<{
@@ -43,7 +57,6 @@ const StyledButton = styled.button<{
   fullHeight: boolean;
   buttonColor: 'default' | 'black' | 'gray';
 }>`
-  /* 기본버튼 */
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -53,18 +66,8 @@ const StyledButton = styled.button<{
   gap: 10px;
   width: ${({ fullWidth }) => (fullWidth ? 'auto' : '128px')};
   height: ${({ fullHeight }) => (fullHeight ? '56px' : '40px')};
-  background: ${({ buttonColor }) =>
-    buttonColor === 'black'
-      ? '#111111'
-      : buttonColor === 'gray'
-        ? '#D3D3D3'
-        : '#f85b2b'};
-  color: ${({ buttonColor }) =>
-    buttonColor === 'black'
-      ? '#ffffff'
-      : buttonColor === 'gray'
-        ? '#111111'
-        : '#ffffff'};
+  background: ${({ buttonColor }) => getBackgroundColor(buttonColor)};
+  color: ${({ buttonColor }) => getColor(buttonColor)};
   border-radius: 6px;
   border: none;
   font-size: 1.1rem;

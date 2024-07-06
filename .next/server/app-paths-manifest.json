@@ -108,6 +108,7 @@
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   "/main/page": "app/main/page.js",
 >>>>>>> 45abe6d (fix: merge conflict-def09234)
 >>>>>>> ff5ecdc (fix: merge conflict)
@@ -228,6 +229,9 @@
 <<<<<<< HEAD
 =======
 >>>>>>> a06828c (feat: 달력 숙박 날짜 선택 및 범위 표시 기능 추가)
+=======
+  "/page": "app/page.js",
+>>>>>>> cd0c691 (perf: 달력 기간 설정 수정, 버튼 높이 추가)
   "/main/page": "app/main/page.js"
 }
 >>>>>>> 60c071e (comment: 주석 정리)
