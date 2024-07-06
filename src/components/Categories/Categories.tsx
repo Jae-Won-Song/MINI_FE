@@ -116,11 +116,11 @@ const Categories: React.FC<CategoriesProps> = ({
   );
 };
 
-const CategoryWrapper = styled.div`
+const CategoryWrapper = styled.div`  
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-between;  
   overflow-x: auto;
   margin: auto;
 `;
