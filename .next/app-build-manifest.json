@@ -5,12 +5,17 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     "/page": [
 =======
     "/main/page": [
 >>>>>>> d32e418 (fix: merge conflict)
+=======
+    "/page": [
+>>>>>>> 03e3d64 (fix: merge conflict)
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
       "static/css/app/page.css",
@@ -34,7 +39,14 @@
 =======
       "static/chunks/app/main/page.js"
 >>>>>>> 7e79a47 (fix: merge conflict-28c44d60)
+<<<<<<< HEAD
 >>>>>>> d32e418 (fix: merge conflict)
+=======
+=======
+      "static/css/app/page.css",
+      "static/chunks/app/page.js"
+>>>>>>> 1bb3c16 (fix: merge conflict-7e79a474)
+>>>>>>> 03e3d64 (fix: merge conflict)
     ],
     "/_not-found/page": [
       "static/chunks/webpack.js",
@@ -55,6 +67,7 @@
       "static/chunks/main-app.js",
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -175,8 +188,21 @@
 =======
 =======
 >>>>>>> 39b333c (gitignore test)
+<<<<<<< HEAD
 >>>>>>> 7e79a47 (fix: merge conflict-28c44d60)
+<<<<<<< HEAD
 >>>>>>> d32e418 (fix: merge conflict)
+=======
+=======
+=======
+    ],
+    "/auth/register/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/auth/register/page.js"
+>>>>>>> b7f20e2 (fix: layout 출력 오류 수정)
+>>>>>>> 1bb3c16 (fix: merge conflict-7e79a474)
+>>>>>>> 03e3d64 (fix: merge conflict)
     ]
   }
 =======

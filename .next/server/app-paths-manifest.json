@@ -110,6 +110,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   "/main/page": "app/main/page.js",
 >>>>>>> 45abe6d (fix: merge conflict-def09234)
 >>>>>>> ff5ecdc (fix: merge conflict)
@@ -252,5 +253,16 @@
   "/favicon.ico/route": "app/favicon.ico/route.js"
 }
 >>>>>>> 39b333c (gitignore test)
+<<<<<<< HEAD
 >>>>>>> 7e79a47 (fix: merge conflict-28c44d60)
+<<<<<<< HEAD
 >>>>>>> d32e418 (fix: merge conflict)
+=======
+=======
+=======
+  "/page": "app/page.js",
+  "/auth/register/page": "app/auth/register/page.js"
+}
+>>>>>>> b7f20e2 (fix: layout 출력 오류 수정)
+>>>>>>> 1bb3c16 (fix: merge conflict-7e79a474)
+>>>>>>> 03e3d64 (fix: merge conflict)
