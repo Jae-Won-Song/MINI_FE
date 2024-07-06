@@ -3,6 +3,7 @@
 <<<<<<< HEAD
   "pages": {
 <<<<<<< HEAD
+<<<<<<< HEAD
     "/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -27,6 +28,13 @@
       "static/chunks/main-app.js",
       "static/chunks/app/_not-found/page.js"
 >>>>>>> 6c1b233 (fix: merge conflict-cache)
+=======
+    "/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/page.css",
+      "static/chunks/app/page.js"
+>>>>>>> 4dbdf78 (fix: merge conflict)
     ],
 >>>>>>> 20a01e5 (feat: Region Selector, Checkin and Checkout Selector)
     "/layout": [
@@ -35,6 +43,7 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
+<<<<<<< HEAD
 <<<<<<< HEAD
     "/main/page": [
       "static/chunks/webpack.js",
@@ -115,6 +124,12 @@
 >>>>>>> 1eebba0 (fix: merge conflict-ba05f986)
 =======
 >>>>>>> 6c1b233 (fix: merge conflict-cache)
+=======
+    "/not-found": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/not-found.js"
+>>>>>>> 4dbdf78 (fix: merge conflict)
     ]
   }
 =======

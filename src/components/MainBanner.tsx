@@ -3,11 +3,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
-import bannerImage from '../../public/images/mainBannerImage.jpg';
-import bannerText from '../../public/svgs/bannerText.svg';
-import MainSearch from '@/components/MainSearch';
+import bannerImage from '../../../public/images/mainBannerImage.jpg';
+import MainSearch from './MainSearch';
 
-function MainBanner(): React.JSX.Element {
+const MainBanner = (): React.JSX.Element => {
   return (
     <BannerWrapper>
       <BannerImageWrapper
@@ -17,34 +16,38 @@ function MainBanner(): React.JSX.Element {
         objectFit="cover"
       />
       <ComponentContainer>
-        <BannerTextWrapper
-          src={bannerText}
-          alt="Banner Text"
-          objectFit="cover"
-        />
+        <BannerTextWrapper>
+          <p>
+            <span>국내 숙박업소</span>
+          </p>
+          <p>정보를</p>
+          <p>한눈에!</p>
+        </BannerTextWrapper>
         <MainSearch />
       </ComponentContainer>
     </BannerWrapper>
   );
-}
+};
 
 const BannerWrapper = styled.div`
+  width: 100%;
+  margin: auto;
   position: relative;
-  width: 100vw;
-  height: 800px;
-  overflow: hidden;
+  height: 700px;
+  overflow: visible;
+  padding: 50px;
   display: flex;
-  align-items: center;
+  justify-content: space-between;
   @media only screen and (max-width: 1440px) {
     height: 550px;
   }
-  z-index: -5;
 `;
 
 const ComponentContainer = styled.div`
   width: 1500px;
   margin: auto;
   position: relative;
+  overflow: visible;
   display: flex;
   justify-content: space-between;
   z-index: 1;
@@ -56,9 +59,11 @@ const ComponentContainer = styled.div`
 const BannerImageWrapper = styled(Image)`
   object-fit: cover;
 `;
-const BannerTextWrapper = styled(Image)`
-  object-fit: fill;
-  width: 600px;
+
+const BannerTextWrapper = styled.div`
+  width: 50%;
+  margin-right: 50px;
+  object-fit: contain;
   @media only screen and (max-width: 1440px) {
     width: 450px;
   }
