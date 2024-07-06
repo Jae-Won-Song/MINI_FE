@@ -8,6 +8,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   "/auth/login/page": "app/auth/login/page.js",
   "/auth/register/page": "app/auth/register/page.js",
@@ -75,6 +76,8 @@
 =======
 {
 <<<<<<< HEAD
+=======
+>>>>>>> 81af92b (feat: 404 에러 페이지 제작 완료)
   "/page": "app/page.js"
 }
 >>>>>>> 410063f (feat: MainSearch에 People Counter 추가)
