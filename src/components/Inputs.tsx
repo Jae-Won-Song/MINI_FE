@@ -16,7 +16,8 @@ interface InputProps {
   required?: boolean;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
-  register: UseFormRegister<FieldValues>;
+  register?: UseFormRegister<FieldValues>;
+  maxLength?: number;
 }
 
 const Inputs: React.FC<InputProps> = ({

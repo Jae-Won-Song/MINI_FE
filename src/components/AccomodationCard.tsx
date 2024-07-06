@@ -34,12 +34,12 @@ const AccomodationCard: React.FC<AccomodationCardProps> = ({ data }) => {
 };
 
 const Card = styled.div`
-  border: 1px solid #ddd;  
+  border: 1px solid #ddd;
   border-radius: 6px;
   overflow: hidden;
 
-  h3 {    
-    font-size: 1.2rem;    
+  h3 {
+    font-size: 1.2rem;
   }
 
   p {
@@ -48,12 +48,13 @@ const Card = styled.div`
   }
 `;
 
-const ImageContainer = styled.div`    
+const ImageContainer = styled.div`
   height: 200px;
   overflow: hidden;
 `;
-const TextContainer = styled.div`  
-  width: 100%;  
+
+const TextContainer = styled.div`
+  width: 100%;
   padding: 15px;
   overflow: hidden;
 `;

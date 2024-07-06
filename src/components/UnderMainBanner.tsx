@@ -6,16 +6,17 @@ import ThemeSearch from '@/components/ThemeSearch';
 import Events from '@/components/Events';
 import styled from 'styled-components';
 
-
 const UnderMainBanner = () => {
   return (
-    <UnderMainBannerWrapper>
-      <Events />
-      <Hr />
-      <ThemeSearch />
-      <Hr />
-      <TravelPlaceKeywords /> 
-    </UnderMainBannerWrapper>
+
+      <UnderMainBannerWrapper>
+        <Events />
+        <Hr />
+        <ThemeSearch />
+        <Hr />
+        <TravelPlaceKeywords /> 
+      </UnderMainBannerWrapper>
+
   )
 }
 

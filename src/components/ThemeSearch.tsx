@@ -39,30 +39,43 @@ const fetcher = (url: string) => fetch(url).then(res => res.json());
 const ThemeSearch: React.FC = () => {
   const [page, setPage] = useState(1);
   const [currentPageGroup, setCurrentPageGroup] = useState(1);
+  const [selectedCategory, setSelectedCategory] = useState('');
 
-  const { data, error } = useSWR<APIResponse>(`https://yusuengdo.ddns.net/open-api/accommodation?page=${page}`, fetcher);
-  console.log('Accomodation Data', data)
+  const apiUrl = selectedCategory
+    ? `http://yusuengdo.ddns.net/open-api/accommodation?category=${selectedCategory}&page=${page}`
+    : `http://yusuengdo.ddns.net/open-api/accommodation?page=${page}`;
 
-  // 모든 데이터를 가져와서 숙박업소 종류별로 볼 수 있게 해야 함.
+  const { data, error } = useSWR<APIResponse>(apiUrl, fetcher);
+  console.log('Accomodation Data', data);
 
   const handlePageChange = (newPage: number) => {
     setPage(newPage);
   };
 
-  if (error) return <div>Failed to load</div>;
-  if (!data) return <div>Loading...</div>;
+  const handleCategoryChange = (category: string) => {
+    setSelectedCategory(category);
+    setPage(1); // 카테고리 변경 시 페이지를 1로 초기화
+  };
 
-  // data.data가 undefined일 때를 대비해 기본값 설정. 이때는 '데이터 불러오기 실패' 문구만 출력되게 해야 함.
-  // 필터링했을 경우에만, 필터에 해당되는 데이터가 없으면 버튼이 EmptyState가 출력되게 함.
-  // 기본값은 전체 보기. 새로고침을 하면 기본값인 전체보기 필터링이 적용된다.
-  
-  const { content: accomodations = [], totalElements = 0 } = data.data || {};
+  const handleResetFilters = () => {
+    setSelectedCategory('');
+    setPage(1);
+  };
+
+  if (error) return <LoadingFail>로딩 실패!</LoadingFail>;
+  if (!data) return <Loading></Loading>;
+
+  const { content: accomodations = [], totalElements = 0, totalPages = 0 } = data.data || {};
+  const showEmptyState = data.resultCode === 404 || accomodations.length === 0;
+
+  console.log('Total Pages:', totalPages);
+  console.log('Total Items:', totalElements);
 
   return (
     <ThemeWrapper>
-      <Categories />
-      {accomodations.length === 0 ? (
-        <EmptyState showReset />
+      <Categories onCategoryChange={handleCategoryChange} selectedCategory={selectedCategory} />
+      {showEmptyState ? (
+        <EmptyState showReset onResetFilters={handleResetFilters} />
       ) : (
         <>
           <GridWrapper>
@@ -84,12 +97,12 @@ const ThemeSearch: React.FC = () => {
   );
 };
 
-
 const ThemeWrapper = styled.div`
+  width: 100%;
   margin: 0 auto;
-`
+`;
 
-const GridWrapper = styled.div`  
+const GridWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
@@ -99,5 +112,45 @@ const GridWrapper = styled.div`
     grid-template-columns: repeat(4, 1fr);
   }
 `;
+
+
+const Loading = styled.div`
+  width: 80px;
+  aspect-ratio: 2;
+  margin: auto;
+  --c:linear-gradient(#FFD412 25%,#ABD406 0 50%,#FF821C 0 75%,#FFD412 0);
+  background: var(--c), var(--c), var(--c), var(--c);
+  background-size: 26% 400%;
+  background-position: calc(0*100%/3) 100%,calc(1*100%/3) 100%,calc(2*100%/3) 100%,calc(3*100%/3) 100%;
+  background-repeat: no-repeat;
+  animation: l10 2s infinite; 
+
+  @keyframes l10 {
+    0%     {background-position: calc(0*100%/3) calc(3*100%/3),calc(1*100%/3) calc(3*100%/3),calc(2*100%/3) calc(3*100%/3),calc(3*100%/3) calc(3*100%/3)}
+    8.33%  {background-position: calc(0*100%/3) calc(2*100%/3),calc(1*100%/3) calc(3*100%/3),calc(2*100%/3) calc(3*100%/3),calc(3*100%/3) calc(3*100%/3)}
+    16.67% {background-position: calc(0*100%/3) calc(2*100%/3),calc(1*100%/3) calc(2*100%/3),calc(2*100%/3) calc(3*100%/3),calc(3*100%/3) calc(3*100%/3)}
+    25%    {background-position: calc(0*100%/3) calc(2*100%/3),calc(1*100%/3) calc(2*100%/3),calc(2*100%/3) calc(2*100%/3),calc(3*100%/3) calc(3*100%/3)}
+    30%,
+    33.33% {background-position: calc(0*100%/3) calc(2*100%/3),calc(1*100%/3) calc(2*100%/3),calc(2*100%/3) calc(2*100%/3),calc(3*100%/3) calc(2*100%/3)}
+    41.67% {background-position: calc(0*100%/3) calc(1*100%/3),calc(1*100%/3) calc(2*100%/3),calc(2*100%/3) calc(2*100%/3),calc(3*100%/3) calc(2*100%/3)}
+    50%    {background-position: calc(0*100%/3) calc(1*100%/3),calc(1*100%/3) calc(1*100%/3),calc(2*100%/3) calc(2*100%/3),calc(3*100%/3) calc(2*100%/3)}
+    58.33% {background-position: calc(0*100%/3) calc(1*100%/3),calc(1*100%/3) calc(1*100%/3),calc(2*100%/3) calc(1*100%/3),calc(3*100%/3) calc(2*100%/3)}
+    63%,
+    66.67% {background-position: calc(0*100%/3) calc(1*100%/3),calc(1*100%/3) calc(1*100%/3),calc(2*100%/3) calc(1*100%/3),calc(3*100%/3) calc(1*100%/3)}
+    75%    {background-position: calc(0*100%/3) calc(0*100%/3),calc(1*100%/3) calc(1*100%/3),calc(2*100%/3) calc(1*100%/3),calc(3*100%/3) calc(1*100%/3)}
+    83.33% {background-position: calc(0*100%/3) calc(0*100%/3),calc(1*100%/3) calc(0*100%/3),calc(2*100%/3) calc(1*100%/3),calc(3*100%/3) calc(1*100%/3)}
+    91.67% {background-position: calc(0*100%/3) calc(0*100%/3),calc(1*100%/3) calc(0*100%/3),calc(2*100%/3) calc(0*100%/3),calc(3*100%/3) calc(1*100%/3)}
+    97%,
+    100%   {background-position: calc(0*100%/3) calc(0*100%/3),calc(1*100%/3) calc(0*100%/3),calc(2*100%/3) calc(0*100%/3),calc(3*100%/3) calc(0*100%/3)}
+  }
+`;
+
+const LoadingFail = styled.div`  
+  font-size: 1.3rem;
+  font-weight: 700;
+  width: fit-content;
+  margin: auto;
+  color: #A7A7A7;
+`
 
 export default ThemeSearch;

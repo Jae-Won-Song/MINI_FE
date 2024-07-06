@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
+import { useForm, SubmitHandler, FieldValues } from 'react-hook-form';
 import Inputs from '../../../components/Inputs';
 import Buttons from '../../../components/Buttons';
 
@@ -17,8 +18,7 @@ const RegisterPage: React.FC = () => {
 
   const validatePassword = (password: string) => {
     const minLength = 8;
-    const hasLowerCase = /[a-z]/.test(password);
-    const hasUpperCase = /[A-Z]/.test(password);
+    const hasLowerCase = /[a-z]/.test(password);    
     const hasNumber = /\d/.test(password);
     const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
 
@@ -27,9 +27,6 @@ const RegisterPage: React.FC = () => {
     }
     if (!hasLowerCase) {
       return '비밀번호에는 영문 소문자가 포함되어야 합니다.';
-    }
-    if (!hasUpperCase) {
-      return '비밀번호에는 영문 대문자가 포함되어야 합니다.';
     }
     if (!hasNumber) {
       return '비밀번호에는 숫자가 포함되어야 합니다.';
@@ -78,9 +75,7 @@ const RegisterPage: React.FC = () => {
     validateConfirmPassword(newPassword, confirmPassword);
   };
 
-  const handleConfirmPasswordChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleConfirmPasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newConfirmPassword = event.target.value;
     setConfirmPassword(newConfirmPassword);
     validateConfirmPassword(password, newConfirmPassword);
@@ -102,20 +97,10 @@ const RegisterPage: React.FC = () => {
       'End',
     ];
 
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    console.log('data', data);
     if (
-      !/^\d$/.test(key) &&
-      !allowedKeys.includes(key) &&
-      !(ctrlKey && (key === 'a' || key === 'c' || key === 'v'))
-    ) {
-      event.preventDefault();
-    }
-  };
-
-  const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-    if (
-      !fullName ||
-      !username ||
+      !name ||
       !email ||
       !password ||
       !confirmPassword ||

@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import Inputs from '@/components/Inputs';
 import Buttons from '@/components/Buttons';
 import useSWR from 'swr';

@@ -6,12 +6,12 @@ import UnderMainBanner from '@/components/UnderMainBanner';
 
 const Home: React.FC = () => {
   return (
-    <div>
+    <>
       <Navbar />
       <MainBanner />
       <UnderMainBanner />
       <Footer />
-    </div>
+    </>
   );
 };
 

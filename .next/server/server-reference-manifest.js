@@ -11,6 +11,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 self.__RSC_SERVER_MANIFEST="{\n  \"node\": {},\n  \"edge\": {},\n  \"encryptionKey\": \"vfa1xgWuLWbDcWiU/aHfB/8+7RxpGTRFkNC7CZAT0Zo=\"\n}"
 =======
 self.__RSC_SERVER_MANIFEST="{\n  \"node\": {},\n  \"edge\": {},\n  \"encryptionKey\": \"PLAcyAZT/Qbt3c36brigHpSIocU3HvTvH51KxWghQmU=\"\n}"
@@ -51,3 +52,6 @@ self.__RSC_SERVER_MANIFEST="{\n  \"node\": {},\n  \"edge\": {},\n  \"encryptionK
 =======
 self.__RSC_SERVER_MANIFEST="{\n  \"node\": {},\n  \"edge\": {},\n  \"encryptionKey\": \"zzbRjJLbm/1wGAT4ymNrZfBX09Xy+jySwkprv/YO1kw=\"\n}"
 >>>>>>> 410063f (feat: MainSearch에 People Counter 추가)
+=======
+self.__RSC_SERVER_MANIFEST="{\n  \"node\": {},\n  \"edge\": {},\n  \"encryptionKey\": \"CelaXT4A3Hz+3UlZuHOU98/tQN/5Yjn4N8eDnq5uFXA=\"\n}"
+>>>>>>> 58fad2d (feat: register page function)
