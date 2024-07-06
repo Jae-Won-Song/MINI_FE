@@ -16,7 +16,13 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 60d8694 (fix: merge conflict)
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> 86b07a4 (fix: merge conflict-f939ea91)
+>>>>>>> ac86354 (fix: merge conflict-c3c4228b)
 {
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -451,8 +457,24 @@
   "/main/page": "app/main/page.js",
   "/favicon.ico/route": "app/favicon.ico/route.js"
 >>>>>>> 20a01e5 (feat: Region Selector, Checkin and Checkout Selector)
+<<<<<<< HEAD
 >>>>>>> 17dc99d (fix: merge conflict search->search)
 }
+<<<<<<< HEAD
 >>>>>>> f939ea9 (fix: merge conflict-7cac16cc)
+<<<<<<< HEAD
 >>>>>>> 965cdd7 (fix: merge conflict-cache)
+<<<<<<< HEAD
 >>>>>>> 45f1dbd (fix: merge conflict-d1d6cb14)
+=======
+=======
+=======
+=======
+}
+=======
+{}
+>>>>>>> 5050c65 (feat: add slidebutton, paginationbutton)
+>>>>>>> 049d48e (fix: merge conflict search->search)
+>>>>>>> 86b07a4 (fix: merge conflict-f939ea91)
+>>>>>>> 619c281 (fix: merge conflict-cache)
+>>>>>>> ac86354 (fix: merge conflict-c3c4228b)

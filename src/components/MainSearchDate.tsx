@@ -1,16 +1,16 @@
-'use client'
+'use client';
 
-import React, { useState } from 'react'
-import styled from 'styled-components'
-import DatePicker, { registerLocale } from 'react-datepicker'
-import '@/styles/stylesheetsfromdatepicker/datepicker.scss'
-import ko from 'date-fns/locale/ko'
-import dayjs from 'dayjs'
-import 'dayjs/locale/ko'
-import { Locale } from 'date-fns'
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import DatePicker, { registerLocale } from 'react-datepicker';
+import '@/styles/stylesheetsfromdatepicker/datepicker.scss';
+import ko from 'date-fns/locale/ko';
+import dayjs from 'dayjs';
+import 'dayjs/locale/ko';
+import { Locale } from 'date-fns';
 
-dayjs.locale('ko')
-registerLocale('ko', ko as unknown as Locale)
+dayjs.locale('ko');
+registerLocale('ko', ko as unknown as Locale);
 
 const MainSearchDate = () => {
   const [startDate, setStartDate] = useState(dayjs().toDate());
@@ -34,9 +34,9 @@ const MainSearchDate = () => {
       <DateWrapperForStart>
         <DatePickerWrapper>
           <Label>숙박 시작일</Label>
-          <DatePicker 
-            selected={startDate} 
-            onChange={date => setStartDate(date)} 
+          <DatePicker
+            selected={startDate}
+            onChange={(date) => setStartDate(date)}
             selectsStart
             startDate={startDate}
             endDate={endDate}
@@ -50,9 +50,9 @@ const MainSearchDate = () => {
       <DateWrapperForEnd>
         <DatePickerWrapper>
           <Label>숙박 종료일</Label>
-          <DatePicker 
-            selected={endDate} 
-            onChange={date => setEndDate(date)} 
+          <DatePicker
+            selected={endDate}
+            onChange={(date) => setEndDate(date)}
             selectsEnd
             startDate={startDate}
             endDate={endDate}
@@ -66,8 +66,8 @@ const MainSearchDate = () => {
         </DatePickerWrapper>
       </DateWrapperForEnd>
     </>
-  )
-}
+  );
+};
 
 const DateWrapperForStart = styled.div`
   width: fit-content;
@@ -77,7 +77,7 @@ const DateWrapperForStart = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-`
+`;
 const DateWrapperForEnd = styled.div`
   width: fit-content;
   box-shadow: 4px 4px 5px 5px rgba(0, 0, 0, 0.05);
@@ -86,7 +86,7 @@ const DateWrapperForEnd = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-`
+`;
 
 const DatePickerWrapper = styled.div`
   display: flex;
@@ -94,11 +94,11 @@ const DatePickerWrapper = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-`
+`;
 
 const Label = styled.label`
   margin-bottom: 8px;
   font-weight: bold;
-`
+`;
 
-export default MainSearchDate
+export default MainSearchDate;

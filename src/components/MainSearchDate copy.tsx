@@ -1,32 +1,32 @@
-'use client'
+'use client';
 
-import React, { useState } from 'react'
-import styled from 'styled-components'
-import DatePicker, { registerLocale } from 'react-datepicker'
-import '@/styles/stylesheetsfromdatepicker/datepicker.scss'
-import ko from 'date-fns/locale/ko' // 한국어 locale import
-import dayjs from 'dayjs'
-import 'dayjs/locale/ko' // 한국어 locale import
-import { Locale } from 'date-fns' // Locale 타입 import
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import DatePicker, { registerLocale } from 'react-datepicker';
+import '@/styles/stylesheetsfromdatepicker/datepicker.scss';
+import ko from 'date-fns/locale/ko'; // 한국어 locale import
+import dayjs from 'dayjs';
+import 'dayjs/locale/ko'; // 한국어 locale import
+import { Locale } from 'date-fns'; // Locale 타입 import
 
 // dayjs에 한국어 locale 적용
-dayjs.locale('ko')
+dayjs.locale('ko');
 
 // react-datepicker에 한국어 locale 등록
-registerLocale('ko', ko as unknown as Locale) // Locale 타입으로 변환
+registerLocale('ko', ko as unknown as Locale); // Locale 타입으로 변환
 
 const MainSearchDate = () => {
   const [startDate, setStartDate] = useState(dayjs().toDate());
   const [endDate, setEndDate] = useState(dayjs().toDate());
 
   return (
-    <DateWrapper>      
+    <DateWrapper>
       <DateWithTextWrapper>
         <DatePickerWrapper>
           <Label>숙박 시작일</Label>
-          <DatePicker 
-            selected={startDate} 
-            onChange={date => {
+          <DatePicker
+            selected={startDate}
+            onChange={(date) => {
               const newStartDate = dayjs(date).toDate();
               setStartDate(newStartDate);
               if (newStartDate > endDate) {
@@ -40,9 +40,9 @@ const MainSearchDate = () => {
         </DatePickerWrapper>
         <DatePickerWrapper>
           <Label>숙박 종료일</Label>
-          <DatePicker 
-            selected={endDate} 
-            onChange={date => setEndDate(dayjs(date).toDate())} 
+          <DatePicker
+            selected={endDate}
+            onChange={(date) => setEndDate(dayjs(date).toDate())}
             selectsEnd
             startDate={startDate}
             endDate={endDate}
@@ -54,8 +54,8 @@ const MainSearchDate = () => {
         </DatePickerWrapper>
       </DateWithTextWrapper>
     </DateWrapper>
-  )
-}
+  );
+};
 
 const DateWrapper = styled.div`
   width: 590px;
@@ -66,12 +66,12 @@ const DateWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-`
+`;
 const DateWithTextWrapper = styled.div`
-  display: grid;  
+  display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 18px;
-`
+`;
 
 const DatePickerWrapper = styled.div`
   display: flex;
@@ -79,11 +79,11 @@ const DatePickerWrapper = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-`
+`;
 
 const Label = styled.label`
   margin-bottom: 8px;
   font-weight: bold;
-`
+`;
 
-export default MainSearchDate
+export default MainSearchDate;

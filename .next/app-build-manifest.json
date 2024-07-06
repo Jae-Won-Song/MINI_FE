@@ -7,13 +7,19 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 0fa1d7c (fix: merge conflict-2eb4b36d)
 <<<<<<< HEAD
 >>>>>>> aec0fe0 (fix: merge conflict-d258ab98)
 =======
 =======
 >>>>>>> f50910c (fix: merge conflict-cache)
+<<<<<<< HEAD
 >>>>>>> 6bbc6ec (fix: merge conflict-cache)
+=======
+=======
+>>>>>>> 619c281 (fix: merge conflict-cache)
+>>>>>>> ac86354 (fix: merge conflict-c3c4228b)
   "pages": {
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -38,6 +44,13 @@
       "static/chunks/app/page.js"
 =======
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+  "pages": {
+=======
+=======
+>>>>>>> 86b07a4 (fix: merge conflict-f939ea91)
+>>>>>>> ac86354 (fix: merge conflict-c3c4228b)
   "pages": {
 <<<<<<< HEAD
 =======
@@ -328,7 +341,19 @@
       "static/chunks/app/_not-found/page.js"
     ]
   }
+<<<<<<< HEAD
 >>>>>>> f04f5a6 (fix: merge conflict-7fe0589a)
+<<<<<<< HEAD
 >>>>>>> f50910c (fix: merge conflict-cache)
+<<<<<<< HEAD
 >>>>>>> 6bbc6ec (fix: merge conflict-cache)
+=======
+=======
+=======
+=======
+  "pages": {}
+>>>>>>> 5050c65 (feat: add slidebutton, paginationbutton)
+>>>>>>> 86b07a4 (fix: merge conflict-f939ea91)
+>>>>>>> 619c281 (fix: merge conflict-cache)
+>>>>>>> ac86354 (fix: merge conflict-c3c4228b)
 }
