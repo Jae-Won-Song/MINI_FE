@@ -7,19 +7,35 @@
   align-items: center;
   box-shadow: 0 0 4px 0 black;
 }
+
 .title {
   display: flex;
   margin-left: 3.125rem;
 }
+
 .nav-cat {
-    display: flex;
-    font-size: 1.25rem;
-    margin-right: 3.125rem;
+  display: flex;
+  font-size: 1.25rem;
+  margin-right: 3.125rem;
 }
+
 li {
   padding: 0 10px 0 10px;
 }
+
 h1 {
   font-family: 'Cafe24Moyamoya-Face-v1.0';
   color: $primary;
+}
+
+/* 새로 추가된 스타일 */
+.icon-button {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
 }

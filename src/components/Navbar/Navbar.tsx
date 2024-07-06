@@ -16,19 +16,19 @@ export default function Navbar() {
         </div>
         <div className="nav-cat">
           <Link href="/mypage">
-            <li>
+            <button className="icon-button" aria-label="My Page">
               <BsFillPersonFill />
-            </li>
+            </button>
           </Link>
           <Link href="/myreservation">
-            <li>
+            <button className="icon-button" aria-label="My Reservation">
               <HiOutlineShoppingBag />
-            </li>
+            </button>
           </Link>
           <Link href="/wishlist">
-            <li>
+            <button className="icon-button" aria-label="Wishlist">
               <CiHeart />
-            </li>
+            </button>
           </Link>
           <Link href="auth/login">
             <li>로그인</li>
@@ -41,4 +41,6 @@ export default function Navbar() {
       </div>
     </header>
   );
-}
+};
+
+export default Navbar;

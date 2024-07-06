@@ -28,7 +28,7 @@ const Month: React.FC<MonthProps> = ({
     let day = startDateOfMonth;
 
     while (day.isBefore(endDateOfMonth, 'day')) {
-      for (let i = 0; i < 7; i++) {
+      for (let i = 0; i < 7; i += 1) {
         const formattedDate = day.format('D');
         const cloneDay = day;
         const isPast = day.isBefore(dayjs(), 'day');

@@ -14,10 +14,10 @@ const StyledComponentsRegistry: React.FC<{ children: React.ReactNode }> = ({
   useServerInsertedHTML(() => {
     const styles = styledComponentsStyleSheet.getStyleElement();
     styledComponentsStyleSheet.instance.clearTag();
-    return <>{styles}</>;
+    return styles; // Fragment 제거
   });
 
-  if (typeof window !== 'undefined') return <>{children}</>;
+  if (typeof window !== 'undefined') return children;
 
   return (
     <StyleSheetManager sheet={styledComponentsStyleSheet.instance}>

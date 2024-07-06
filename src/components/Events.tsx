@@ -71,7 +71,7 @@ const Events = () => {
 
   useEffect(() => {
     if (swiperContainerRef.current) {
-      new Swiper(swiperContainerRef.current, {
+      const swiperInstance = new Swiper(swiperContainerRef.current, {
         modules: [Navigation, Pagination, Autoplay],
         spaceBetween: 20,
         slidesPerView: 6,

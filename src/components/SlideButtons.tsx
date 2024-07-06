@@ -61,7 +61,7 @@ const getBorderRadius = (size: string, arrowDirection: string) => {
   return '0';
 };
 
-const SlideButtons = ({
+const SlideButtons: React.FC<SlideButtonsProps> = ({
   arrowDirection,
   onClick,
   active,
@@ -80,17 +80,19 @@ const CreateBtn = styled.button<SlideButtonsProps>`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${(props) => (props.active ? '#555555' : '#cccccc')};
+  background-color: ${(props) =>
+    props.disabled ? '#e0e0e0' : props.active ? '#555555' : '#cccccc'};
   border: none;
   border-radius: ${(props) =>
     getBorderRadius(props.size || 'rectangle', props.arrowDirection)};
-  cursor: pointer;
+  cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
 
   &:hover {
-    background-color: ${(props) => (props.active ? '#333333' : '#aaaaaa')};
+    background-color: ${(props) =>
+      props.disabled ? '#e0e0e0' : props.active ? '#333333' : '#aaaaaa'};
   }
 
   svg {
-    fill: white;
+    fill: ${(props) => (props.disabled ? '#9e9e9e' : 'white')};
   }
 `;

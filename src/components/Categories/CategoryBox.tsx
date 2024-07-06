@@ -5,7 +5,6 @@ import { IconType } from 'react-icons';
 interface CategoryBoxProps {
   icon: IconType;
   label: string;
-  path: string;
   onClick: () => void;
   selected?: boolean;
 }
