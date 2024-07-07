@@ -51,7 +51,6 @@ const PaginationButtons: React.FC<PaginationButtonsProps> = ({
       if (newGroup !== currentPageGroup) {
         setCurrentPageGroup(newGroup);
       }
-
     }
   };
 
