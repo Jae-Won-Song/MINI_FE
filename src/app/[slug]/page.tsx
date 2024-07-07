@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import React, { useEffect } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
-import styled from 'styled-components';
-import useSWR from 'swr';
-import Image from 'next/image';
-import KakaoMapRender from '../../components/KakaoMapRender';
-import SelectRoom from '../../components/SelectRoom';
-import Star from '../../../public/icons/star.png';
+import React, { useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import styled from "styled-components";
+import useSWR from "swr";
+import Image from "next/image";
+import KakaoMapRender from "../../components/KakaoMapRender";
+import SelectRoom from "../../components/SelectRoom";
+import Star from "../../../public/icons/star.png";
 
 interface Accommodation {
   id: number;
@@ -53,7 +53,7 @@ const accommodationURL = `https://yusuengdo.ddns.net/open-api/accommodation/`;
 const Page = ({ params }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const id = searchParams.get('id');
+  const id = searchParams.get("id");
 
   const { data: accommodationData, error: accommodationError } = useSWR<{
     data: Accommodation;
@@ -61,17 +61,17 @@ const Page = ({ params }) => {
 
   const { data: roomData, error: roomError } = useSWR<{ data: Room[] }>(
     `${accommodationURL}${id}/room`,
-    fetcher,
+    fetcher
   );
 
   useEffect(() => {
-    if (params.slug !== 'placedetail') {
+    if (params.slug !== "placedetail") {
       // 원하는 페이지로 리다이렉트
-      router.push('/not-found');
+      router.push("/not-found");
     }
   }, [params.slug, router]);
 
-  if (params.slug !== 'placedetail') {
+  if (params.slug !== "placedetail") {
     return null; // slug가 맞지 않으면 아무것도 렌더링하지 않음
   }
 
@@ -84,8 +84,8 @@ const Page = ({ params }) => {
   const handleCopyAddress = () => {
     navigator.clipboard
       .writeText(accommodation.address)
-      .then(() => alert('주소가 클립보드에 복사되었습니다!'))
-      .catch(() => alert('주소 복사에 실패했습니다.'));
+      .then(() => alert("주소가 클립보드에 복사되었습니다!"))
+      .catch(() => alert("주소 복사에 실패했습니다."));
   };
 
   return (

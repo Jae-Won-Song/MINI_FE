@@ -3,6 +3,7 @@
 import styled from 'styled-components';
 import Image from 'next/image';
 import src from '../../../public/images/mainBannerImage.jpg';
+import useRequireSelection from '../../hooks/useRequireSelection';
 
 interface InformationRowProps {
   title: string;
@@ -10,6 +11,12 @@ interface InformationRowProps {
 }
 
 const Page = () => {
+  const { isLoggedIn, accommodationId } = useRequireSelection();
+
+  if (!isLoggedIn || !accommodationId) {
+    return null; // 조건이 만족되지 않을 때는 아무것도 렌더링하지 않음
+  }
+
   return (
     <PageContainer>
       <ReservationText>예약해 주셔서 감사합니다</ReservationText>
