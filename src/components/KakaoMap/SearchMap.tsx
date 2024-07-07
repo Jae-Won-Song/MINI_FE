@@ -38,8 +38,8 @@ const SearchMap: React.FC<SearchMapProps> = ({
   );
   const [mapCenter, setMapCenter] = useState({ lat: latitude, lng: longitude });
   const [loading, setLoading] = useState(true);
-  const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 상태 추가
-  const [currentPageGroup, setCurrentPageGroup] = useState(1); // 현재 페이지 그룹 상태 추가
+  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPageGroup, setCurrentPageGroup] = useState(1);
 
   const mapRef = useRef<any>(null);
 
@@ -120,8 +120,8 @@ const SearchMap: React.FC<SearchMapProps> = ({
             currentPage={currentPage}
             totalPages={Math.ceil(accommodationInfo.length / ITEMS_PER_PAGE)}
             onPageChange={(page: number) => setCurrentPage(page)}
-            currentPageGroup={currentPageGroup} // 추가
-            setCurrentPageGroup={setCurrentPageGroup} // 추가
+            currentPageGroup={currentPageGroup}
+            setCurrentPageGroup={setCurrentPageGroup}
           />
         </AccommodationSection>
         <MapSection>
@@ -130,7 +130,7 @@ const SearchMap: React.FC<SearchMapProps> = ({
             <Map
               center={mapCenter}
               style={{ width: '100%', height: '100%' }}
-              level={5}
+              level={10}
               ref={mapRef}
             >
               {accommodationData.map((accommodation) => (

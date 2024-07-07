@@ -1,13 +1,12 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import dynamic from 'next/dynamic'; // dynamic import 사용
+import dynamic from 'next/dynamic';
 import DateRegionDropdown from '@/components/DateRegionDropdown';
 
-const SearchMap = dynamic(
-  () => import('@/components/KakaoMap/SearchMap'),
-  { ssr: false }, // 클라이언트 사이드 렌더링으로 설정
-);
+const SearchMap = dynamic(() => import('@/components/KakaoMap/SearchMap'), {
+  ssr: false,
+});
 
 const SearchResultsPage = () => {
   const [accommodationData, setAccommodationData] = useState([]);
