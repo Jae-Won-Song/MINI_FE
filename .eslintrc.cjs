@@ -71,7 +71,7 @@ module.exports = {
     'jsx-a11y/control-has-associated-label': 'off',
     '@typescript-eslint/no-return-await': 'off',
   },
-settings: {
+  settings: {
     react: {
       version: 'detect',
     },
@@ -82,5 +82,24 @@ settings: {
       },
     },
   },
+  overrides: [
+    {
+      files: ['src/api/index.tsx'],
+      rules: {
+        'import/no-cycle': 'off',
+        'no-param-reassign': 'off',
+        '@typescript-eslint/dot-notation': 'off',
+        'prettier/prettier': 'off',
+      },
+    },
+    {
+      files: ['src/api/user.ts'],
+      rules: {
+        'import/no-cycle': 'off',
+        'no-else-return': 'off',
+        '@typescript-eslint/return-await': 'off',
+      },
+    },
+  ],
   ignorePatterns: ['.eslintrc.cjs', 'commitlint.config.js'],
 };

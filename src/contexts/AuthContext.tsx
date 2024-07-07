@@ -5,11 +5,9 @@ import React, {
   useContext,
   useState,
   ReactNode,
-  useEffect,
   useCallback,
 } from 'react';
 import { useRouter } from 'next/navigation';
-import axios from 'axios';
 import { Api } from 'src/api';
 import Service from 'src/service';
 
@@ -45,8 +43,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [accessToken, setAccessToken] = useState<string | null>(null);
   const [userId, setUserId] = useState<string | null>(null);
   const router = useRouter();
-  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   const logout = useCallback(async () => {
     try {
@@ -56,8 +52,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setUserId(null);
       alert('로그아웃 되었습니다.');
       router.push('/');
-    } catch (error) {}
-  }, [router, API_URL]);
+    } catch (error) {
+      // Handle the error or add a comment to indicate intentional empty block
+    }
+  }, [router]);
 
   const refreshTokens = useCallback(async () => {
     try {
@@ -68,7 +66,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       console.error('Token refresh failed:', error);
       await logout();
     }
-  }, [API_BASE_URL, logout]);
+  }, [logout]);
 
   const login = async (data: LoginData) => {
     try {
@@ -76,7 +74,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setIsLoggedIn(true);
       alert('로그인 성공! 메인 페이지로 이동합니다.');
       router.push('/');
-    } catch (error) {}
+    } catch (error) {
+      // Handle the error or add a comment to indicate intentional empty block
+    }
   };
 
   const register = async (data: RegisterData) => {

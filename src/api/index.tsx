@@ -56,8 +56,8 @@ function getCookie(name: string): string | null {
 
 async function refreshToken(): Promise<string> {
   // TODO : 이 곳을 열면 다른곳도 열어야 함
-  // const refreshToken = getCookie("refresh-token");
-  // if (!refreshToken) throw new Error("No refresh token available");
+  const refreshToken = getCookie('refresh-token');
+  if (!refreshToken) throw new Error('No refresh token available');
   const response = await Api.User.refreshTokens();
   console.error(response);
   alert(response);
@@ -79,7 +79,7 @@ apiWithToken.interceptors.response.use(
       if (!isRefreshing) {
         isRefreshing = true;
         try {
-          alert('요청 보냄');
+          // alert('요청 보냄');
           const newToken = await refreshToken();
           isRefreshing = false;
           onRrefreshed(newToken);

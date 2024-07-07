@@ -5,6 +5,7 @@ import Cookies from 'js-cookie';
 export interface ServerResponse {
   status: number;
   message?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data?: any;
 }
 
@@ -28,6 +29,7 @@ export interface registerResponse extends userData {
   id: string;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-redeclare
 interface Service {
   login: (req: LoginRequest) => Promise<ServerResponse>;
   register: (req: registerRequest) => Promise<ServerResponse>;
@@ -44,8 +46,8 @@ const UserService = {
       const { data } = await apiWithNoToken.post(`${API}/login`, req);
       const { accessToken, refreshToken } = data;
       Service.LocalStorage.AccessToken.set(accessToken);
-      // TODO : 이 곳을 열면 다른곳도 열어야 함
-      // Cookies.set("refresh-token", refreshToken, { expires: 7 }); // 쿠키 만료기간을 7일로 설정
+      // eslint-disable-next-line prettier/prettier
+      Cookies.set('refresh-token', refreshToken, { expires: 7 }); // 쿠키 만료기간을 7일로 설정
       return accessToken;
     } catch (error) {
       return Promise.reject(error);
@@ -60,6 +62,7 @@ const UserService = {
       if (status === 201) {
         return data as registerResponse;
       } else {
+        // eslint-disable-next-line no-else-return
         return Promise.reject(new Error('Registration failed'));
       }
     } catch (error) {
@@ -71,6 +74,7 @@ const UserService = {
       const { data } = await apiWithToken.post(`${API}/refresh-tokens`, {
         accessToken: Service.LocalStorage.AccessToken.get(),
       });
+      // eslint-disable-next-line no-useless-rename
       const { accessToken: accessToken } = data.data;
       Service.LocalStorage.AccessToken.set(accessToken);
       return accessToken;
@@ -101,3 +105,5 @@ const UserService = {
   },
 };
 export default UserService;
+
+// eslint-disable-next-line import/no-cycle

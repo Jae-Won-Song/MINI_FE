@@ -45,14 +45,6 @@ const Navbar: React.FC = () => {
         </div>
         {!hideNavCat && (
           <div className="nav-cat">
-            {isLoggedIn && (
-              <>
-                <p className="user-email">
-                  <span>{name}</span> 님, 안녕하세요!
-                </p>
-                <p>&nbsp;|&nbsp;</p>
-              </>
-            )}
             <Link href="/mypage">
               <button className="icon-button" aria-label="My Page">
                 <BsFillPersonFill />

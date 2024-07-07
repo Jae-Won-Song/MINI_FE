@@ -6,15 +6,8 @@ import { useRouter } from 'next/navigation';
 import BookingInformation from '../../components/BookingInformation';
 import AccommodationName from '../../components/AccommodationName';
 import PaymentInformation from '../../components/PaymentInformation';
-import useRequireSelection from '../../hooks/useRequireSelection';
 
 const Page = () => {
-  const { isLoggedIn, accommodationId } = useRequireSelection();
-
-  if (!isLoggedIn || !accommodationId) {
-    return null;
-  }
-
   const { setStringState, setNumberState, setObjectState } =
     useDataContext() as DataContextProps;
   const router = useRouter();
