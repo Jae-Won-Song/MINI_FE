@@ -1,9 +1,18 @@
 const accessTokenStr = 'access-token';
 
 export const AccessTokenService = {
-  get: () => localStorage.getItem(accessTokenStr),
-  set: (token) => localStorage.setItem(accessTokenStr, token),
-  remove: () => localStorage.removeItem(accessTokenStr),
+  get: () =>
+    typeof window !== 'undefined' ? localStorage.getItem(accessTokenStr) : null,
+  set: (token) => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(accessTokenStr, token);
+    }
+  },
+  remove: () => {
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem(accessTokenStr);
+    }
+  },
 };
 
 export const LocalStorageService = {
