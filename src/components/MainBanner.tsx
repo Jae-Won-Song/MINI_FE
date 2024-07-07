@@ -3,8 +3,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
-import bannerImage from '../../../public/images/mainBannerImage.jpg';
-import MainSearch from './MainSearch';
+import bannerImage from '../../public/images/mainBannerImage.jpg';
+import MainSearch from './Banner/MainSearch';
 
 const MainBanner = (): React.JSX.Element => {
   return (
@@ -50,7 +50,7 @@ const ComponentContainer = styled.div`
   overflow: visible;
   display: flex;
   justify-content: space-between;
-  z-index: 10;
+  z-index: 1;
   @media only screen and (max-width: 1440px) {
     width: 1250px;
   }
