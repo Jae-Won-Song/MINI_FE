@@ -13,22 +13,25 @@ interface SlideButtonsProps {
     | 'smallSquare'
     | 'smallCircle';
   onClick?: () => void;
-  // eslint-disable-next-line react/no-unused-prop-types
   disabled?: boolean;
   active?: boolean;
 }
 
-const ArrowLeft = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24">
-    <path d="M15 6l-6 6 6 6V6z" />
-  </svg>
-);
+const ArrowLeft = () => {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24">
+      <path d="M15 6l-6 6 6 6V6z" />
+    </svg>
+  );
+};
 
-const ArrowRight = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24">
-    <path d="M9 18l6-6-6-6v12z" />
-  </svg>
-);
+const ArrowRight = () => {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24">
+      <path d="M9 18l6-6-6-6v12z" />
+    </svg>
+  );
+};
 
 const getDimensions = (size: string) => {
   switch (size) {
@@ -45,7 +48,7 @@ const getDimensions = (size: string) => {
     case 'smallCircle':
       return { width: '48px', height: '48px' };
     default:
-      return { width: '56px', height: '80px' }; // default size
+      return { width: '56px', height: '80px' };
   }
 };
 
@@ -66,12 +69,21 @@ const SlideButtons: React.FC<SlideButtonsProps> = ({
   arrowDirection,
   onClick,
   active,
-  size,
-}: SlideButtonsProps) => (
-  <CreateBtn active={active} size={size} arrowDirection={arrowDirection}>
-    {arrowDirection === 'left' ? <ArrowLeft /> : <ArrowRight />}
-  </CreateBtn>
-);
+  size = 'rectangle',
+  disabled = false,
+}) => {
+  return (
+    <CreateBtn
+      active={active}
+      size={size}
+      arrowDirection={arrowDirection}
+      onClick={onClick}
+      disabled={disabled}
+    >
+      {arrowDirection === 'left' ? <ArrowLeft /> : <ArrowRight />}
+    </CreateBtn>
+  );
+};
 
 export default SlideButtons;
 

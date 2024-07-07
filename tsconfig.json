@@ -16,19 +16,18 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true,
     "baseUrl": ".",
+    "paths": {
+      "@/components/*": [
+        "src/components/*"
+      ]
+    },
     "plugins": [
       {
         "name": "next"
       }
     ],
-    "paths": {
-      "@/*": ["./src/*"]
-    },
-    "types": [
-      "kakao.maps.d.ts"
-    ]
+    "strictNullChecks": true
   },
   "include": [
     "next-env.d.ts",

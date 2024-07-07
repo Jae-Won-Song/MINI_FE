@@ -164,7 +164,7 @@ const SearchWrapper = styled.div`
   padding: 40px;
   background: rgba(255, 255, 255, 0.65);
   position: relative;
-  z-index: 100;
+  z-index: 20;
   overflow: visible;
   @media only screen and (max-width: 1440px) {
     width: 600px;

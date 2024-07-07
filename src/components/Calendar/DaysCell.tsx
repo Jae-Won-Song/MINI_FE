@@ -43,6 +43,8 @@ const Cell: React.FC<CellProps> = ({
   );
 };
 
+export default Cell;
+
 const CellWrapper = styled.div<{
   isDisabled: boolean;
   isStartDate: boolean;
@@ -68,6 +70,8 @@ const CellWrapper = styled.div<{
           : ''};
   color: ${({ isStartDate, isEndDate }) =>
     isStartDate ? '#ffffff' : isEndDate ? '#ffffff' : ''};
+  font-weight: ${({ isStartDate, isEndDate }) =>
+    isStartDate ? '700' : isEndDate ? '700' : ''};
   border-top-left-radius: ${({ isStartDate }) => (isStartDate ? '6px' : '')};
   border-bottom-left-radius: ${({ isStartDate }) => (isStartDate ? '6px' : '')};
   border-top-right-radius: ${({ isEndDate }) => (isEndDate ? '6px' : '')};
@@ -94,5 +98,3 @@ const CellWrapper = styled.div<{
     font-weight: 900;
   }
 `;
-
-export default Cell;

@@ -6,26 +6,28 @@ import Image from 'next/image';
 import bannerImage from '../../../public/images/mainBannerImage.jpg';
 import MainSearch from './MainSearch';
 
-const MainBanner: React.FC = () => (
-  <BannerWrapper>
-    <BannerImageWrapper
-      src={bannerImage}
-      alt="Main Banner"
-      layout="fill"
-      objectFit="cover"
-    />
-    <ComponentContainer>
-      <BannerTextWrapper>
-        <p>
-          <span>국내 숙박업소</span>
-        </p>
-        <p>정보를</p>
-        <p>한눈에!</p>
-      </BannerTextWrapper>
-      <MainSearch />
-    </ComponentContainer>
-  </BannerWrapper>
-);
+const MainBanner = (): React.JSX.Element => {
+  return (
+    <BannerWrapper>
+      <BannerImageWrapper
+        src={bannerImage}
+        alt="Main Banner"
+        layout="fill"
+        objectFit="cover"
+      />
+      <ComponentContainer>
+        <BannerTextWrapper>
+          <p>
+            <span>국내 숙박업소</span>
+          </p>
+          <p>정보를</p>
+          <p>한눈에!</p>
+        </BannerTextWrapper>
+        <MainSearch />
+      </ComponentContainer>
+    </BannerWrapper>
+  );
+};
 
 const BannerWrapper = styled.div`
   width: 100%;
@@ -48,7 +50,7 @@ const ComponentContainer = styled.div`
   overflow: visible;
   display: flex;
   justify-content: space-between;
-  z-index: 1;
+  z-index: 10;
   @media only screen and (max-width: 1440px) {
     width: 1250px;
   }
@@ -64,6 +66,9 @@ const BannerTextWrapper = styled.div`
   object-fit: contain;
   @media only screen and (max-width: 1440px) {
     width: 450px;
+  }
+  @media only screen and (max-width: 1080px) {
+    width: 370px;
   }
   @media only screen and (max-width: 1080px) {
     width: 370px;
@@ -86,5 +91,4 @@ const BannerTextWrapper = styled.div`
     }
   }
 `;
-
 export default MainBanner;

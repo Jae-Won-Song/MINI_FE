@@ -1,186 +1,96 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import Image from 'next/image';
+import { useAuth } from 'src/contexts/AuthContext';
 import Inputs from '@/components/Inputs';
 import Buttons from '@/components/Buttons';
+import LoginBackground from '../../../../public/images/login_background.jpg';
+
+// 로그인, 회원가입 페이지에 진입했을 때는 NavBar의 로그인, 회원 가입 링크가 보이지 않게 만들기
 
 const LoginPage: React.FC = () => {
-  const [email, setEmail] = useState('');
-  const [emailError, setEmailError] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [passwordError, setPasswordError] = useState('');
-  const [confirmPasswordError, setConfirmPasswordError] = useState('');
-  const [fullName, setFullName] = useState('');
-  const [username, setUsername] = useState('');
-  const [birthdate, setBirthdate] = useState('');
+  const { login } = useAuth();
+  const { register, handleSubmit } = useForm<FieldValues>();
 
-  const validateEmail = (email: string) => {
-    const hasAtSign = /@/.test(email);
-    if (!hasAtSign) {
-      return '이메일에는 @ 문자가 포함되어야 합니다.';
-    }
-    return '';
-  };
-
-  const validatePassword = (password: string) => {
-    const minLength = 8;
-    const hasLowerCase = /[a-z]/.test(password);
-    const hasUpperCase = /[A-Z]/.test(password);
-    const hasNumber = /\d/.test(password);
-    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-
-    if (password.length < minLength) {
-      return '비밀번호는 최소 8자 이상이어야 합니다.';
-    }
-    if (!hasLowerCase) {
-      return '비밀번호에는 영문 소문자가 포함되어야 합니다.';
-    }
-    if (!hasUpperCase) {
-      return '비밀번호에는 영문 대문자가 포함되어야 합니다.';
-    }
-    if (!hasNumber) {
-      return '비밀번호에는 숫자가 포함되어야 합니다.';
-    }
-    if (!hasSpecialChar) {
-      return '비밀번호에는 특수문자가 포함되어야 합니다.';
-    }
-    return '아주 좋은 비밀번호입니다!';
-  };
-
-  const validateConfirmPassword = (
-    password: string,
-    confirmPassword: string,
-  ) => {
-    if (confirmPassword === '') {
-      setConfirmPasswordError('');
-    } else if (password === confirmPassword) {
-      setConfirmPasswordError('입력한 비밀번호와 일치합니다!');
-    } else {
-      setConfirmPasswordError('입력한 비밀번호와 일치하지 않습니다.');
-    }
-  };
-
-  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newEmail = event.target.value;
-    setEmail(newEmail);
-    const error = validateEmail(newEmail);
-    setEmailError(error);
-  };
-
-  const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newPassword = event.target.value;
-    setPassword(newPassword);
-    const error = validatePassword(newPassword);
-    setPasswordError(error);
-    validateConfirmPassword(newPassword, confirmPassword);
-  };
-
-  const handleConfirmPasswordChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    const newConfirmPassword = event.target.value;
-    setConfirmPassword(newConfirmPassword);
-    validateConfirmPassword(password, newConfirmPassword);
-  };
-
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    const { key, ctrlKey } = event;
-    const allowedKeys = [
-      'Backspace',
-      'Tab',
-      'Enter',
-      'Alt',
-      'ArrowLeft',
-      'ArrowRight',
-      'ArrowUp',
-      'ArrowDown',
-      'Delete',
-      'Home',
-      'End',
-    ];
-
-    if (
-      !/^\d$/.test(key) &&
-      !allowedKeys.includes(key) &&
-      !(ctrlKey && (key === 'a' || key === 'c' || key === 'v'))
-    ) {
-      event.preventDefault();
-    }
-  };
-
-  const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-    if (
-      !fullName ||
-      !username ||
-      !email ||
-      !password ||
-      !confirmPassword ||
-      !birthdate
-    ) {
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    if (!data.email || !data.password) {
       alert('모든 필수 입력란을 채워주세요.');
-    } else if (password !== confirmPassword) {
-      alert('비밀번호와 비밀번호 확인이 일치하지 않습니다.');
-    } else {
-      // Form submission logic here
-      alert('폼이 제출되었습니다.');
+      return;
     }
+    login(data as { email: string; password: string });
   };
 
   return (
-    <FormContainer>
-      <BigTitle>로그인</BigTitle>
-      <Section>
-        <Inputs
-          label="아이디"
-          type="username"
-          placeholder="아이디"
-          fullWidth
-          required
-          id=""
-        />
-        <Inputs
-          label="비밀번호"
-          type="password"
-          placeholder="비밀번호"
-          value={password}
-          onChange={handlePasswordChange}
-          fullWidth
-          errorMessage={passwordError}
-          isValid={passwordError === '아주 좋은 비밀번호입니다!'}
-          required
-          id=""
-        />
-      </Section>
-      <Section>
-        <Label>
-          <input type="checkbox" />
-          아이디 저장
-        </Label>
-        <Label>
-          <input type="checkbox" />
-          로그인 유지
-        </Label>
-      </Section>
-      <Buttons label="로그인" onClick={handleSubmit} />
-      <LoginLink>
-        아직 아이디가 없다면? <Link href="/auth/register">회원가입</Link>
-      </LoginLink>
-    </FormContainer>
+    <LoginPageWrapper>
+      <StyledImage src={LoginBackground} alt="로그인 페이지 배경" />
+      <FormContainer onSubmit={handleSubmit(onSubmit)}>
+        <BigTitle>로그인</BigTitle>
+        <Section>
+          <Inputs
+            id="email"
+            label="이메일"
+            placeholder="이메일"
+            fullWidth
+            required
+            register={register}
+          />
+          <Inputs
+            id="password"
+            label="비밀번호"
+            type="password"
+            placeholder="비밀번호"
+            fullWidth
+            required
+            register={register}
+          />
+        </Section>
+        <Buttons label="로그인" />
+        <RegisterLink>
+          아직 아이디가 없다면?{' '}
+          <Link
+            href="/auth/register"
+            style={{ fontWeight: 700, borderBottom: '1px solid #111111' }}
+          >
+            회원가입
+          </Link>
+        </RegisterLink>
+      </FormContainer>
+    </LoginPageWrapper>
   );
 };
 
 export default LoginPage;
 
-const FormContainer = styled.div`
+const LoginPageWrapper = styled.div`
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+`;
+
+const StyledImage = styled(Image)`
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  filter: blur(3px) opacity(0.5);
+`;
+
+const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
-  width: 500px;
   gap: 20px;
-  margin: 0 auto;
+  width: 500px;
+  padding: 40px;
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 const BigTitle = styled.div`
@@ -196,13 +106,7 @@ const Section = styled.div`
   margin-bottom: 10px;
 `;
 
-const Label = styled.label`
-  display: flex;
-  align-items: center;
-  gap: 8px;
-`;
-
-const LoginLink = styled.div`
+const RegisterLink = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;

@@ -1,11 +1,13 @@
-import React from 'react';
+'use client';
+
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const PaginationContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 20px 0 0 0;
+  margin: 20px 0;
 `;
 
 const PaginationButton = styled.button<{ active?: boolean }>`
@@ -49,6 +51,7 @@ const PaginationButtons: React.FC<PaginationButtonsProps> = ({
       if (newGroup !== currentPageGroup) {
         setCurrentPageGroup(newGroup);
       }
+
     }
   };
 
