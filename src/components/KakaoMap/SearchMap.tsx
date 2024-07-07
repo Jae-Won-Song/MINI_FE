@@ -130,7 +130,7 @@ const SearchMap: React.FC<SearchMapProps> = ({
             <Map
               center={mapCenter}
               style={{ width: '100%', height: '100%' }}
-              level={5}
+              level={10}
               ref={mapRef}
             >
               {accommodationData.map((accommodation) => (
