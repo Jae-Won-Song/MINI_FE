@@ -24,7 +24,9 @@ const DateRegionDropdown: React.FC<DateRegionDropdownProps> = ({ onClose }) => {
   const [routerReady, setRouterReady] = useState(false);
   const [showDateWarning, setShowDateWarning] = useState(false);
   const [dateSelected, setDateSelected] = useState(false);
-  const [selectedPart, setSelectedPart] = useState<'지역' | '날짜' | '인원'>('지역');
+  const [selectedPart, setSelectedPart] = useState<
+    '지역' | '날짜' | '인원' | '검색'
+  >('지역');
 
   useEffect(() => {
     setRouterReady(true);
@@ -35,18 +37,15 @@ const DateRegionDropdown: React.FC<DateRegionDropdownProps> = ({ onClose }) => {
     setIsOpen(!isOpen);
   };
 
-  const handleClickOutside = useCallback(
-    (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
-        setIsAnimating(true);
-        setIsOpen(false);
-      }
-    },
-    [],
-  );
+  const handleClickOutside = useCallback((event: MouseEvent) => {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target as Node)
+    ) {
+      setIsAnimating(true);
+      setIsOpen(false);
+    }
+  }, []);
 
   useEffect(() => {
     if (isOpen) {
@@ -68,22 +67,22 @@ const DateRegionDropdown: React.FC<DateRegionDropdownProps> = ({ onClose }) => {
   const handleSelectDates = (start: string, end: string) => {
     setStartDate(start);
     setEndDate(end);
-    setDateSelected(true); // 날짜 선택됨
-    setShowDateWarning(false); // 경고 메시지 숨김
+    setDateSelected(true);
+    setShowDateWarning(false);
     setSelectedPart('인원');
-    setIsAnimating(true); // 다음 단계로 애니메이션 시작
+    setIsAnimating(true);
   };
 
   const handleSelectPeopleNumber = (adults: number, kids: number) => {
     setAdultCount(adults);
     setKidCount(kids);
     setSelectedPart('검색');
-    setIsAnimating(true); // 다음 단계로 애니메이션 시작
+    setIsAnimating(true);
   };
 
   const handleSearch = async () => {
     if (!dateSelected) {
-      setShowDateWarning(true); // 날짜 선택하지 않았을 때 경고 메시지 표시
+      setShowDateWarning(true);
       return;
     }
     const query = `/searchresults?region=${encodeURIComponent(
@@ -96,7 +95,6 @@ const DateRegionDropdown: React.FC<DateRegionDropdownProps> = ({ onClose }) => {
     }
   };
 
-  // 검색 버튼을 보여주는 조건 설정
   const isSearchButtonVisible = selectedRegion && startDate && endDate;
 
   return (
@@ -104,9 +102,19 @@ const DateRegionDropdown: React.FC<DateRegionDropdownProps> = ({ onClose }) => {
       <Overlay isOpen={isOpen} />
       <DropdownWrapper ref={dropdownRef}>
         <DropdownButton onClick={handleToggle}>
-          <ButtonText selected={selectedPart === '지역'}>{selectedRegion || '지역'}</ButtonText>
-          <ButtonText selected={selectedPart === '날짜'}>{startDate && endDate ? `${startDate} ~ ${endDate}` : '날짜'}</ButtonText>
-          <ButtonText selected={selectedPart === '인원'}>{adultCount || kidCount ? `성인 ${adultCount}명, 어린이 ${kidCount}명` : '인원'}</ButtonText>
+          <ButtonText selected={selectedPart === '지역'}>
+            {selectedRegion || '지역'}
+          </ButtonText>
+          <Divider />
+          <ButtonText selected={selectedPart === '날짜'}>
+            {startDate && endDate ? `${startDate} ~ ${endDate}` : '날짜'}
+          </ButtonText>
+          <Divider />
+          <ButtonText selected={selectedPart === '인원'}>
+            {adultCount || kidCount
+              ? `성인 ${adultCount}명, 어린이 ${kidCount}명`
+              : '인원'}
+          </ButtonText>
         </DropdownButton>
         <DropdownContentWrapper
           isOpen={isOpen}
@@ -123,7 +131,6 @@ const DateRegionDropdown: React.FC<DateRegionDropdownProps> = ({ onClose }) => {
               <SearchPeopleNumberWrapper visible={selectedPart === '인원'}>
                 <SearchPeopleNumber onConfirm={handleSelectPeopleNumber} />
               </SearchPeopleNumberWrapper>
-              {/* 검색 버튼이 항상 보이도록 설정 */}
               {selectedPart === '검색' && isSearchButtonVisible && (
                 <Buttons
                   label="검색"
@@ -132,7 +139,6 @@ const DateRegionDropdown: React.FC<DateRegionDropdownProps> = ({ onClose }) => {
                   onClick={handleSearch}
                 />
               )}
-              {/* 날짜 선택 경고 메시지 */}
               {showDateWarning && (
                 <WarningMessage>여행 일정을 확인해주세요.</WarningMessage>
               )}
@@ -174,36 +180,26 @@ const DropdownButton = styled.div`
   width: 40vw;
   height: 80px;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   padding: 10px 0;
   border-radius: 16px;
-  border: 1px solid $lightgrey;
   margin: 10% 0 10% 0;
   box-shadow: 0px 4px 4px 5px rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  position: relative; /* 부모 요소로 설정 */
+  position: relative;
 `;
 
 const ButtonText = styled.span<{ selected: boolean }>`
   position: relative;
   padding: 0 10px;
   cursor: pointer;
+`;
 
-  ::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    right: -10px;
-    transform: translateY(-50%);
-    width: 1px;
-    height: 60%;
-    background-color: ${({ selected }) => (selected ? 'black' : 'transparent')};
-  }
-
-  &:last-child::after {
-    display: none; /* 마지막 버튼 뒤에는 구분선을 표시하지 않음 */
-  }
+const Divider = styled.div`
+  width: 1px;
+  height: 60%;
+  background-color: #ececec;
 `;
 
 const DropdownContentWrapper = styled.div<{ isOpen: boolean }>`
@@ -219,16 +215,11 @@ const DropdownContentWrapper = styled.div<{ isOpen: boolean }>`
 
 const DropdownContent = styled.div`
   position: absolute;
-  /* display: flex; */
   flex-direction: column;
   align-items: center;
-  /* top: 50px; */
   left: 50%;
   transform: translateX(-50%);
-  /* background-color: white; */
-  /* border: 1px solid #ddd; */
   border-radius: 5px;
-  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
   padding: 20px;
   z-index: 100;
 `;
