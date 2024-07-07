@@ -110,6 +110,7 @@ const ImageWrapper = styled.div`
   padding: 5px;
   transition: 0.2s;
   cursor: pointer;
+  font-size: 1.1rem;
 
   p {
     font-size: 1.1rem;

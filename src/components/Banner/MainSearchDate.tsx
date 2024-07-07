@@ -132,6 +132,7 @@ const LengthOfStay = styled.div`
   flex-direction: row;
   justify-content: space-between;
   border-bottom: 1px solid;
+  font-size: 1rem;
   p {
     font-size: 1rem;
     margin-left: -12px;
