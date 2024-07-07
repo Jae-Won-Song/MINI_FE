@@ -13,6 +13,7 @@ interface SlideButtonsProps {
     | 'smallSquare'
     | 'smallCircle';
   onClick?: () => void;
+  // eslint-disable-next-line react/no-unused-prop-types
   disabled?: boolean;
   active?: boolean;
 }

@@ -1,5 +1,4 @@
-// src/components/KakaoMap/SearchMap.tsx
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
@@ -39,8 +38,10 @@ const SearchMap: React.FC<SearchMapProps> = ({
   );
   const [mapCenter, setMapCenter] = useState({ lat: latitude, lng: longitude });
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 상태 추가
+  const [currentPageGroup, setCurrentPageGroup] = useState(1); // 현재 페이지 그룹 상태 추가
 
-  const mapRef = useRef<never>(null);
+  const mapRef = useRef<any>(null);
 
   const ITEMS_PER_PAGE = 9;
 
@@ -116,11 +117,11 @@ const SearchMap: React.FC<SearchMapProps> = ({
             </AccommodationGrid>
           )}
           <PaginationButtons
-            currentPage={0} // currentPage, totalPages 수정 필요
-            totalPages={0}
-            onPageChange={(page: number) => {
-              throw new Error('Function not implemented.');
-            }}
+            currentPage={currentPage}
+            totalPages={Math.ceil(accommodationInfo.length / ITEMS_PER_PAGE)}
+            onPageChange={(page: number) => setCurrentPage(page)}
+            currentPageGroup={currentPageGroup} // 추가
+            setCurrentPageGroup={setCurrentPageGroup} // 추가
           />
         </AccommodationSection>
         <MapSection>

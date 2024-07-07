@@ -1,16 +1,21 @@
 'use client';
 
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import Inputs from '@/components/Inputs';
 import Buttons from '@/components/Buttons';
-import useSWR from 'swr';
 
-// /open-api/user/login을 통해 로그인
-const LoginPage: React.FC = function LoginPage() {
-  // const { data, error } = useSWR<APIResponse>(`https://yusuengdo.ddns.net/open-api//open-api/user/login`, fetcher);
-  // console.log('Login Data', data)
+const LoginPage: React.FC = () => {
+  const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [confirmPasswordError, setConfirmPasswordError] = useState('');
+  const [fullName, setFullName] = useState('');
+  const [username, setUsername] = useState('');
+  const [birthdate, setBirthdate] = useState('');
 
   const validateEmail = (email: string) => {
     const hasAtSign = /@/.test(email);
@@ -57,16 +62,6 @@ const LoginPage: React.FC = function LoginPage() {
       setConfirmPasswordError('입력한 비밀번호와 일치하지 않습니다.');
     }
   };
-
-  const [email, setEmail] = useState('');
-  const [emailError, setEmailError] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [passwordError, setPasswordError] = useState('');
-  const [confirmPasswordError, setConfirmPasswordError] = useState('');
-  const [fullName, setFullName] = useState('');
-  const [username, setUsername] = useState('');
-  const [birthdate, setBirthdate] = useState('');
 
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newEmail = event.target.value;
@@ -145,6 +140,7 @@ const LoginPage: React.FC = function LoginPage() {
           placeholder="아이디"
           fullWidth
           required
+          id=""
         />
         <Inputs
           label="비밀번호"
@@ -156,6 +152,7 @@ const LoginPage: React.FC = function LoginPage() {
           errorMessage={passwordError}
           isValid={passwordError === '아주 좋은 비밀번호입니다!'}
           required
+          id=""
         />
       </Section>
       <Section>
@@ -168,7 +165,7 @@ const LoginPage: React.FC = function LoginPage() {
           로그인 유지
         </Label>
       </Section>
-      <Buttons label="로그인" onclick={handleSubmit} />
+      <Buttons label="로그인" onClick={handleSubmit} />
       <LoginLink>
         아직 아이디가 없다면? <Link href="/auth/register">회원가입</Link>
       </LoginLink>

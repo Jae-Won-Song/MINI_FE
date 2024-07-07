@@ -23,23 +23,20 @@ const PaginationButton = styled.button<{ active?: boolean }>`
 `;
 
 interface PaginationButtonsProps {
-  page: number;
-  totalItems: number;
-  perPage: number;
+  currentPage: number;
+  totalPages: number;
   onPageChange: (page: number) => void;
   currentPageGroup: number;
   setCurrentPageGroup: (pageGroup: number) => void;
 }
 
 const PaginationButtons: React.FC<PaginationButtonsProps> = ({
-  page,
-  totalItems,
-  perPage,
+  currentPage,
+  totalPages,
   onPageChange,
   currentPageGroup,
   setCurrentPageGroup,
 }) => {
-  const totalPages = Math.ceil(totalItems / perPage);
   const pagesPerGroup = 10; // 한 페이지 그룹에 포함될 페이지 수
 
   const startPage = (currentPageGroup - 1) * pagesPerGroup + 1;
@@ -54,6 +51,7 @@ const PaginationButtons: React.FC<PaginationButtonsProps> = ({
       }
     }
   };
+
   return (
     <PaginationContainer>
       {currentPageGroup > 1 && (
@@ -64,8 +62,8 @@ const PaginationButtons: React.FC<PaginationButtonsProps> = ({
         </PaginationButton>
       )}
       <PaginationButton
-        onClick={() => handleClick(page - 1)}
-        disabled={page === 1}
+        onClick={() => handleClick(currentPage - 1)}
+        disabled={currentPage === 1}
       >
         &lt;
       </PaginationButton>
@@ -75,15 +73,15 @@ const PaginationButtons: React.FC<PaginationButtonsProps> = ({
       ).map((pageNumber) => (
         <PaginationButton
           key={pageNumber}
-          active={page === pageNumber}
+          active={currentPage === pageNumber}
           onClick={() => handleClick(pageNumber)}
         >
           {pageNumber}
         </PaginationButton>
       ))}
       <PaginationButton
-        onClick={() => handleClick(page + 1)}
-        disabled={page === totalPages}
+        onClick={() => handleClick(currentPage + 1)}
+        disabled={currentPage === totalPages}
       >
         &gt;
       </PaginationButton>

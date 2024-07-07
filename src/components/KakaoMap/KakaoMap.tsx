@@ -35,7 +35,9 @@ const KakaoMap: React.FC<KakaoMapProps> = ({ latitude, longitude }) => {
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(true);
   const [selectedArea, setSelectedArea] = useState<string | null>(null);
-  const mapRef = useRef<never>(null);
+  const [currentPageGroup, setCurrentPageGroup] = useState(1);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const mapRef = useRef<any>(null);
 
   const ITEMS_PER_PAGE = 9;
 
@@ -118,6 +120,8 @@ const KakaoMap: React.FC<KakaoMapProps> = ({ latitude, longitude }) => {
             currentPage={currentPage}
             totalPages={totalPages}
             onPageChange={handlePageChange}
+            currentPageGroup={currentPageGroup}
+            setCurrentPageGroup={setCurrentPageGroup}
           />
         </AccommodationSection>
         <MapSection>

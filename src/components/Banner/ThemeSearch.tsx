@@ -3,12 +3,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import useSWR from 'swr';
-import PaginationButtons from '../PaginationButtons copy.tsx';
+import PaginationButtons from '../PaginationButtons'; // PaginationButtons 컴포넌트 임포트
 import Categories from '../Categories/Categories';
 import EmptyState from '../EmptyState';
-import AccomodationCard from '../AccomodationCard';
+import AccommodationCard from '../AccomodationCard';
 
-interface Accomodation {
+interface Accommodation {
   id: number;
   title: string;
   address: string;
@@ -30,7 +30,7 @@ interface APIResponse {
     totalPages: number;
     size: number;
     currentPage: number;
-    content: Accomodation[];
+    content: Accommodation[];
   };
 }
 
@@ -46,7 +46,7 @@ const ThemeSearch: React.FC = () => {
     : `https://yusuengdo.ddns.net/open-api/accommodation?page=${page}`;
 
   const { data, error } = useSWR<APIResponse>(apiUrl, fetcher);
-  console.log('Accomodation Data', data);
+  console.log('Accommodation Data', data);
 
   const handlePageChange = (newPage: number) => {
     setPage(newPage);
@@ -66,11 +66,11 @@ const ThemeSearch: React.FC = () => {
   if (!data) return <Loading />;
 
   const {
-    content: accomodations = [],
+    content: accommodations = [], // accomodations -> accommodations로 수정
     totalElements = 0,
     totalPages = 0,
   } = data.data || {};
-  const showEmptyState = data.resultCode === 404 || accomodations.length === 0;
+  const showEmptyState = data.resultCode === 404 || accommodations.length === 0;
 
   console.log('Total Pages:', totalPages);
   console.log('Total Items:', totalElements);
@@ -86,14 +86,13 @@ const ThemeSearch: React.FC = () => {
       ) : (
         <>
           <GridWrapper>
-            {accomodations.map((accomodation) => (
-              <AccomodationCard key={accomodation.id} data={accomodation} />
+            {accommodations.map((accommodation) => (
+              <AccommodationCard key={accommodation.id} data={accommodation} />
             ))}
           </GridWrapper>
           <PaginationButtons
-            page={page}
-            totalItems={totalElements}
-            perPage={data.data.size}
+            currentPage={page}
+            totalPages={totalPages}
             onPageChange={handlePageChange}
             currentPageGroup={currentPageGroup}
             setCurrentPageGroup={setCurrentPageGroup}
@@ -211,8 +210,8 @@ const Loading = styled.div`
     83.33% {
       background-position:
         calc(0 * 100% / 3) calc(0 * 100% / 3),
-        calc(1 * 100% / 3) calc(0 * 100% / 3),
-        calc(2 * 100% / 3) calc(1 * 100% / 3),
+        calc(1 * 100% / 3) calc(1 * 100% / 3),
+        calc(2 * 100% / 3) calc(0 * 100% / 3),
         calc(3 * 100% / 3) calc(1 * 100% / 3);
     }
     91.67% {
@@ -222,7 +221,6 @@ const Loading = styled.div`
         calc(2 * 100% / 3) calc(0 * 100% / 3),
         calc(3 * 100% / 3) calc(1 * 100% / 3);
     }
-    97%,
     100% {
       background-position:
         calc(0 * 100% / 3) calc(0 * 100% / 3),
@@ -232,7 +230,6 @@ const Loading = styled.div`
     }
   }
 `;
-
 const LoadingFail = styled.div`
   font-size: 1.3rem;
   font-weight: 700;
