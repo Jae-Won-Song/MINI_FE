@@ -7,20 +7,33 @@ import { HiOutlineShoppingBag } from 'react-icons/hi2';
 import { CiHeart } from 'react-icons/ci';
 import Link from 'next/link';
 import { useAuth } from 'src/contexts/AuthContext';
-import { usePathname } from 'next/navigation';
+import { useRouter } from 'next/navigation';
+import { Api } from 'src/api';
 
 const Navbar: React.FC = () => {
   const { isLoggedIn, logout } = useAuth();
   const [hideNavCat, setHideNavCat] = useState(false);
-  const pathname = usePathname();
+  const router = useRouter();
+
+  const [name, setName] = useState<string>('');
+
+  const fetchUserInfo = async () => {
+    const data = await Api.User.profile();
+    setName(data.name);
+  };
 
   useEffect(() => {
-    if (pathname === '/auth/login' || pathname === '/auth/register') {
-      setHideNavCat(true);
-    } else {
-      setHideNavCat(false);
+    if (typeof window !== 'undefined') {
+      const { pathname } = window.location; // 객체 구조 분해 사용
+      setHideNavCat(
+        () => pathname === '/auth/login' || pathname === '/auth/register',
+      );
     }
-  }, [pathname]);
+  }, [router]);
+
+  useEffect(() => {
+    fetchUserInfo();
+  }, []);
 
   return (
     <header>
@@ -32,6 +45,14 @@ const Navbar: React.FC = () => {
         </div>
         {!hideNavCat && (
           <div className="nav-cat">
+            {isLoggedIn && (
+              <>
+                <p className="user-email">
+                  <span>{name}</span> 님, 안녕하세요!
+                </p>
+                <p>&nbsp;|&nbsp;</p>
+              </>
+            )}
             <Link href="/mypage">
               <button className="icon-button" aria-label="My Page">
                 <BsFillPersonFill />
@@ -47,6 +68,7 @@ const Navbar: React.FC = () => {
                 <CiHeart />
               </button>
             </Link>
+            <p>&nbsp;|&nbsp;</p>
             {isLoggedIn ? (
               <button
                 onClick={logout}

@@ -31,15 +31,15 @@ const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
         />
       </head>
       <body className={inter.className}>
-        <StyledComponentsRegistry>
-          <DataContextProvider>
-            <AuthProvider>
+        <AuthProvider>
+          <StyledComponentsRegistry>
+            <DataContextProvider>
               <Navbar />
               {children}
               <Footer />
-            </AuthProvider>
-          </DataContextProvider>
-        </StyledComponentsRegistry>
+            </DataContextProvider>
+          </StyledComponentsRegistry>
+        </AuthProvider>
       </body>
     </html>
   );

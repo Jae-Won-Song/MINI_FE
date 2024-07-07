@@ -41,9 +41,11 @@ const ThemeSearch: React.FC = () => {
   const [currentPageGroup, setCurrentPageGroup] = useState(1);
   const [selectedCategory, setSelectedCategory] = useState('');
 
+  const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
+
   const apiUrl = selectedCategory
-    ? `https://yusuengdo.ddns.net/open-api/accommodation?category=${selectedCategory}&page=${page}`
-    : `https://yusuengdo.ddns.net/open-api/accommodation?page=${page}`;
+    ? `${baseURL}/accommodation?category=${selectedCategory}&page=${page}`
+    : `${baseURL}/accommodation?page=${page}`;
 
   const { data, error } = useSWR<APIResponse>(apiUrl, fetcher);
   console.log('Accomodation Data', data);
