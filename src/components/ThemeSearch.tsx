@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import styled from "styled-components";
-import useSWR from "swr";
-import PaginationButtons from "./PaginationButtons copy";
-import Categories from "./Categories/Categories";
-import EmptyState from "./EmptyState";
-import AccomodationCard from "./AccomodationCard";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import useSWR from 'swr';
+import PaginationButtons from './PaginationButtons copy';
+import Categories from './Categories/Categories';
+import EmptyState from './EmptyState';
+import AccomodationCard from './AccomodationCard';
 
 interface Accomodation {
   id: number;
@@ -39,7 +39,7 @@ const fetcher = (url: string) => fetch(url).then((res) => res.json());
 const ThemeSearch: React.FC = () => {
   const [page, setPage] = useState(1);
   const [currentPageGroup, setCurrentPageGroup] = useState(1);
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState('');
 
   const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -48,7 +48,7 @@ const ThemeSearch: React.FC = () => {
     : `${baseURL}/accommodation?page=${page}`;
 
   const { data, error } = useSWR<APIResponse>(apiUrl, fetcher);
-  console.log("Accomodation Data", data);
+  console.log('Accomodation Data', data);
 
   const handlePageChange = (newPage: number) => {
     setPage(newPage);
@@ -60,7 +60,7 @@ const ThemeSearch: React.FC = () => {
   };
 
   const handleResetFilters = () => {
-    setSelectedCategory("");
+    setSelectedCategory('');
     setPage(1);
   };
 
@@ -74,8 +74,8 @@ const ThemeSearch: React.FC = () => {
   } = data.data || {};
   const showEmptyState = data.resultCode === 404 || accomodations.length === 0;
 
-  console.log("Total Pages:", totalPages);
-  console.log("Total Items:", totalElements);
+  console.log('Total Pages:', totalPages);
+  console.log('Total Items:', totalElements);
 
   return (
     <ThemeWrapper>
@@ -129,89 +129,105 @@ const Loading = styled.div`
   --c: linear-gradient(#ffd412 25%, #abd406 0 50%, #ff821c 0 75%, #ffd412 0);
   background: var(--c), var(--c), var(--c), var(--c);
   background-size: 26% 400%;
-  background-position: calc(0 * 100% / 3) 100%, calc(1 * 100% / 3) 100%,
-    calc(2 * 100% / 3) 100%, calc(3 * 100% / 3) 100%;
+  background-position:
+    calc(0 * 100% / 3) 100%,
+    calc(1 * 100% / 3) 100%,
+    calc(2 * 100% / 3) 100%,
+    calc(3 * 100% / 3) 100%;
   background-repeat: no-repeat;
   animation: l10 2s infinite;
 
   @keyframes l10 {
     0% {
-      background-position: calc(0 * 100% / 3) calc(3 * 100% / 3),
+      background-position:
+        calc(0 * 100% / 3) calc(3 * 100% / 3),
         calc(1 * 100% / 3) calc(3 * 100% / 3),
         calc(2 * 100% / 3) calc(3 * 100% / 3),
         calc(3 * 100% / 3) calc(3 * 100% / 3);
     }
     8.33% {
-      background-position: calc(0 * 100% / 3) calc(2 * 100% / 3),
+      background-position:
+        calc(0 * 100% / 3) calc(2 * 100% / 3),
         calc(1 * 100% / 3) calc(3 * 100% / 3),
         calc(2 * 100% / 3) calc(3 * 100% / 3),
         calc(3 * 100% / 3) calc(3 * 100% / 3);
     }
     16.67% {
-      background-position: calc(0 * 100% / 3) calc(2 * 100% / 3),
+      background-position:
+        calc(0 * 100% / 3) calc(2 * 100% / 3),
         calc(1 * 100% / 3) calc(2 * 100% / 3),
         calc(2 * 100% / 3) calc(3 * 100% / 3),
         calc(3 * 100% / 3) calc(3 * 100% / 3);
     }
     25% {
-      background-position: calc(0 * 100% / 3) calc(2 * 100% / 3),
+      background-position:
+        calc(0 * 100% / 3) calc(2 * 100% / 3),
         calc(1 * 100% / 3) calc(2 * 100% / 3),
         calc(2 * 100% / 3) calc(2 * 100% / 3),
         calc(3 * 100% / 3) calc(3 * 100% / 3);
     }
     30%,
     33.33% {
-      background-position: calc(0 * 100% / 3) calc(2 * 100% / 3),
+      background-position:
+        calc(0 * 100% / 3) calc(2 * 100% / 3),
         calc(1 * 100% / 3) calc(2 * 100% / 3),
         calc(2 * 100% / 3) calc(2 * 100% / 3),
         calc(3 * 100% / 3) calc(2 * 100% / 3);
     }
     41.67% {
-      background-position: calc(0 * 100% / 3) calc(1 * 100% / 3),
+      background-position:
+        calc(0 * 100% / 3) calc(1 * 100% / 3),
         calc(1 * 100% / 3) calc(2 * 100% / 3),
         calc(2 * 100% / 3) calc(2 * 100% / 3),
         calc(3 * 100% / 3) calc(2 * 100% / 3);
     }
     50% {
-      background-position: calc(0 * 100% / 3) calc(1 * 100% / 3),
+      background-position:
+        calc(0 * 100% / 3) calc(1 * 100% / 3),
         calc(1 * 100% / 3) calc(1 * 100% / 3),
         calc(2 * 100% / 3) calc(2 * 100% / 3),
         calc(3 * 100% / 3) calc(2 * 100% / 3);
     }
     58.33% {
-      background-position: calc(0 * 100% / 3) calc(1 * 100% / 3),
+      background-position:
+        calc(0 * 100% / 3) calc(1 * 100% / 3),
         calc(1 * 100% / 3) calc(1 * 100% / 3),
         calc(2 * 100% / 3) calc(1 * 100% / 3),
         calc(3 * 100% / 3) calc(2 * 100% / 3);
     }
     63%,
     66.67% {
-      background-position: calc(0 * 100% / 3) calc(1 * 100% / 3),
+      background-position:
+        calc(0 * 100% / 3) calc(1 * 100% / 3),
         calc(1 * 100% / 3) calc(1 * 100% / 3),
         calc(2 * 100% / 3) calc(1 * 100% / 3),
         calc(3 * 100% / 3) calc(1 * 100% / 3);
     }
     75% {
-      background-position: calc(0 * 100% / 3) calc(0 * 100% / 3),
+      background-position:
+        calc(0 * 100% / 3) calc(0 * 100% / 3),
         calc(1 * 100% / 3) calc(1 * 100% / 3),
         calc(2 * 100% / 3) calc(1 * 100% / 3),
         calc(3 * 100% / 3) calc(1 * 100% / 3);
     }
     83.33% {
-      background-position: calc(0 * 100% / 3) calc(0 * 100% / 3),
+      background-position:
+        calc(0 * 100% / 3) calc(0 * 100% / 3),
         calc(1 * 100% / 3) calc(0 * 100% / 3),
         calc(2 * 100% / 3) calc(1 * 100% / 3),
         calc(3 * 100% / 3) calc(1 * 100% / 3);
     }
     91.67% {
-      background-position: calc(0 * 100% / 3) calc(0 * 100% / 3),
+      background-position:
+        calc(0 * 100% / 3) calc(0 * 100% / 3),
         calc(1 * 100% / 3) calc(0 * 100% / 3),
         calc(2 * 100% / 3) calc(0 * 100% / 3),
         calc(3 * 100% / 3) calc(1 * 100% / 3);
     }
     97%,
     100% {
-      background-position: calc(0 * 100% / 3) calc(0 * 100% / 3),
+      background-position:
+        calc(0 * 100% / 3) calc(0 * 100% / 3),
         calc(1 * 100% / 3) calc(0 * 100% / 3),
         calc(2 * 100% / 3) calc(0 * 100% / 3),
         calc(3 * 100% / 3) calc(0 * 100% / 3);

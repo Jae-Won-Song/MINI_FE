@@ -2,9 +2,9 @@ import axios, {
   AxiosInstance,
   InternalAxiosRequestConfig,
   AxiosResponse,
-} from "axios";
-import UserService from "./user";
-import Service from "src/service";
+} from 'axios';
+import UserService from './user';
+import Service from 'src/service';
 
 const openURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -17,7 +17,7 @@ apiWithNoToken.interceptors.response.use(
   (res: AxiosResponse) => res.data,
   (err) => {
     return Promise.reject(err.response.data);
-  }
+  },
 );
 
 const closedURL = process.env.NEXT_PUBLIC_API_URL;
@@ -31,7 +31,7 @@ export const apiWithToken: AxiosInstance = axios.create({
 apiWithToken.interceptors.request.use((req: InternalAxiosRequestConfig) => {
   const token = Service.LocalStorage.AccessToken.get();
   if (!token) return req;
-  req.headers["Authorization"] = `Bearer ${token}`;
+  req.headers['Authorization'] = `Bearer ${token}`;
   req.withCredentials = true;
   return req;
 });
@@ -50,16 +50,19 @@ function addRefreshSubscriber(callback: (token: string) => void) {
 function getCookie(name: string): string | null {
   const value = `; ${document.cookie}`;
   const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop()?.split(";").shift() ?? null;
+  if (parts.length === 2) return parts.pop()?.split(';').shift() ?? null;
   return null;
 }
 
 async function refreshToken(): Promise<string> {
+  // TODO : 이 곳을 열면 다른곳도 열어야 함
+  // const refreshToken = getCookie("refresh-token");
+  // if (!refreshToken) throw new Error("No refresh token available");
   const response = await Api.User.refreshTokens();
-  console.error(response)
-  alert(response)
+  console.error(response);
+  alert(response);
   const { accessToken } = response.data;
-  Service.LocalStorage.AccessToken.set(accessToken)
+  Service.LocalStorage.AccessToken.set(accessToken);
   return accessToken;
 }
 
@@ -76,7 +79,7 @@ apiWithToken.interceptors.response.use(
       if (!isRefreshing) {
         isRefreshing = true;
         try {
-          alert("요청 보냄")
+          alert('요청 보냄');
           const newToken = await refreshToken();
           isRefreshing = false;
           onRrefreshed(newToken);
@@ -89,14 +92,14 @@ apiWithToken.interceptors.response.use(
 
       return new Promise((resolve) => {
         addRefreshSubscriber((token: string) => {
-          originalRequest.headers["Authorization"] = `Bearer ${token}`;
+          originalRequest.headers['Authorization'] = `Bearer ${token}`;
           resolve(axios(originalRequest));
         });
       });
     }
 
     return Promise.reject(err.response.data);
-  }
+  },
 );
 
 export const Api = {

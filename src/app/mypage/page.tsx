@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
-import { useAuth } from "../../contexts/AuthContext";
-import { Api } from "src/api";
-import { userData } from "src/api/user";
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import { useAuth } from '../../contexts/AuthContext';
+import { Api } from 'src/api';
+import { userData } from 'src/api/user';
 
 const Page = () => {
   const [userInfo, setUserInfo] = useState<userData>();

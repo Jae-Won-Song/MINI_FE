@@ -1,6 +1,6 @@
-import Service from "src/service";
-import { apiWithNoToken, apiWithToken } from ".";
-import Cookies from "js-cookie";
+import Service from 'src/service';
+import { apiWithNoToken, apiWithToken } from '.';
+import Cookies from 'js-cookie';
 
 export interface ServerResponse {
   status: number;
@@ -36,7 +36,7 @@ interface Service {
   profile: () => Promise<ServerResponse>;
 }
 
-const API = "/user";
+const API = '/user';
 
 const UserService = {
   login: async (req: LoginRequest) => {
@@ -44,6 +44,8 @@ const UserService = {
       const { data } = await apiWithNoToken.post(`${API}/login`, req);
       const { accessToken, refreshToken } = data;
       Service.LocalStorage.AccessToken.set(accessToken);
+      // TODO : 이 곳을 열면 다른곳도 열어야 함
+      // Cookies.set("refresh-token", refreshToken, { expires: 7 }); // 쿠키 만료기간을 7일로 설정
       return accessToken;
     } catch (error) {
       return Promise.reject(error);
@@ -53,12 +55,12 @@ const UserService = {
     try {
       const { status, data } = await apiWithNoToken.post(
         `${API}/register`,
-        req
+        req,
       );
       if (status === 201) {
         return data as registerResponse;
       } else {
-        return Promise.reject(new Error("Registration failed"));
+        return Promise.reject(new Error('Registration failed'));
       }
     } catch (error) {
       return Promise.reject(error);
@@ -81,7 +83,7 @@ const UserService = {
     try {
       const { message } = (await apiWithToken.post(
         `${API}/logout`,
-        {}
+        {},
       )) as ServerResponse;
       Service.LocalStorage.AccessToken.remove();
       return message;

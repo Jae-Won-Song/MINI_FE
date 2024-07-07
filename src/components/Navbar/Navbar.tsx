@@ -1,21 +1,21 @@
-"use client";
+'use client';
 
-import React, { useEffect, useState } from "react";
-import "./Navbar.scss";
-import { BsFillPersonFill } from "react-icons/bs";
-import { HiOutlineShoppingBag } from "react-icons/hi2";
-import { CiHeart } from "react-icons/ci";
-import Link from "next/link";
-import { useAuth } from "src/contexts/AuthContext";
-import { useRouter } from "next/navigation";
-import { Api } from "src/api";
+import React, { useEffect, useState } from 'react';
+import './Navbar.scss';
+import { BsFillPersonFill } from 'react-icons/bs';
+import { HiOutlineShoppingBag } from 'react-icons/hi2';
+import { CiHeart } from 'react-icons/ci';
+import Link from 'next/link';
+import { useAuth } from 'src/contexts/AuthContext';
+import { useRouter } from 'next/navigation';
+import { Api } from 'src/api';
 
 const Navbar: React.FC = () => {
   const { isLoggedIn, logout } = useAuth();
   const [hideNavCat, setHideNavCat] = useState(false);
   const router = useRouter();
 
-  const [name, setName] = useState<string>("");
+  const [name, setName] = useState<string>('');
 
   const fetchUserInfo = async () => {
     const data = await Api.User.profile();
@@ -23,10 +23,10 @@ const Navbar: React.FC = () => {
   };
 
   useEffect(() => {
-    if (typeof window !== "undefined") { 
+    if (typeof window !== 'undefined') {
       const { pathname } = window.location; // 객체 구조 분해 사용
       setHideNavCat(
-        () => pathname === "/auth/login" || pathname === "/auth/register"
+        () => pathname === '/auth/login' || pathname === '/auth/register',
       );
     }
   }, [router]);
@@ -73,7 +73,7 @@ const Navbar: React.FC = () => {
               <button
                 onClick={logout}
                 className="icon-button"
-                style={{ cursor: "pointer" }}
+                style={{ cursor: 'pointer' }}
                 aria-label="Logout"
               >
                 로그아웃

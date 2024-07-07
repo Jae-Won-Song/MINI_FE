@@ -1,4 +1,4 @@
-const accessTokenStr = "access-token";
+const accessTokenStr = 'access-token';
 
 export const AccessTokenService = {
   get: () => localStorage.getItem(accessTokenStr),
