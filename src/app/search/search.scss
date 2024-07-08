@@ -1,0 +1,39 @@
+@import '../../styles/constants/colors';
+@import '../../styles/constants/typography';
+
+.search-wrapper {
+  display: flex;
+  justify-content: center;
+}
+.main-wrapper {
+  display: flex;
+  justify-content: space-evenly;
+}
+.accommodation {
+  width: 40vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+  gap: 5%;
+}
+.map {
+  width: 40vw;
+  height: 80vh;
+  position: sticky;
+}
+img {
+  height: 150px;
+  border-radius: 8px;
+}
+.accommodation-title {
+  display: flex;
+  justify-content: space-between;
+  font-size: $font-size-18;
+  font-weight: 600;
+}
+p {
+  font-size: $font-size-14;
+}
+

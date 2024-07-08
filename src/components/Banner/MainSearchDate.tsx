@@ -79,7 +79,7 @@ const MainSearchDate: React.FC<MainSearchDateProps> = ({ onConfirm }) => {
         <TotalNightsWrapper>
           <TotalNights>숙박일 수</TotalNights>
           {startDate && endDate && (
-            <TotalNights style={{ fontSize: '1rem' }}>
+            <TotalNights style={{ fontSize: '1rem', fontWeight: 700 }}>
               {calculateNights() === 0 ? '당일' : `${calculateNights()}박`}
             </TotalNights>
           )}
@@ -132,9 +132,10 @@ const LengthOfStay = styled.div`
   flex-direction: row;
   justify-content: space-between;
   border-bottom: 1px solid;
+  font-size: 1rem;
   p {
     font-size: 1rem;
-    margin-left: -10px;
+    margin-left: -12px;
   }
 `;
 
@@ -165,7 +166,7 @@ const TotalNights = styled.p`
     font-size: 1rem;
     width: fit-content;
     font-weight: 400;
-    margin-left: -10px;
+    margin-left: -12px;
   }
 `;
 

@@ -55,7 +55,6 @@ module.exports = {
         unnamedComponents: 'arrow-function',
       },
     ],
-    // 특정 규칙 예외 처리
     'react/no-unstable-nested-components': 'off',
     'react/no-array-index-key': 'off',
     'import/order': 'off',
@@ -83,5 +82,24 @@ module.exports = {
       },
     },
   },
+  overrides: [
+    {
+      files: ['src/api/index.tsx'],
+      rules: {
+        'import/no-cycle': 'off',
+        'no-param-reassign': 'off',
+        '@typescript-eslint/dot-notation': 'off',
+        'prettier/prettier': 'off',
+      },
+    },
+    {
+      files: ['src/api/user.ts'],
+      rules: {
+        'import/no-cycle': 'off',
+        'no-else-return': 'off',
+        '@typescript-eslint/return-await': 'off',
+      },
+    },
+  ],
   ignorePatterns: ['.eslintrc.cjs', 'commitlint.config.js'],
 };

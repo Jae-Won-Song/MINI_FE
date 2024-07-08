@@ -1,7 +1,5 @@
 'use client';
 
-// import { FaUmbrellaBeach, FaRegCalendarAlt } from "react-icons/fa";
-// import { MdPeopleAlt } from "react-icons/md";
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
@@ -28,8 +26,6 @@ const MainSearch = (): React.JSX.Element => {
   const [selectedEndDate, setSelectedEndDate] = useState<Dayjs | null>(null);
 
   const wrapperRef = useRef<HTMLDivElement>(null);
-
-  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
   const toggleRegion = () => {
     setIsRegionOpen(!isRegionOpen);
@@ -105,8 +101,12 @@ const MainSearch = (): React.JSX.Element => {
   }, []);
 
   const handleSubmit = () => {
+    const startDate = selectedStartDate?.format('YYYY-MM-DD') || '';
+    const endDate = selectedEndDate?.format('YYYY-MM-DD') || '';
+    const headcount = selectedPeople || '0';
+
     router.push(
-      `${API_BASE_URL}/accommodation?area=${selectedRegion}&startDate=${selectedStartDate?.format('YYYY:MM:DD')}&endDate=${selectedEndDate?.format('YYYY:MM:DD')}&headcount=${selectedPeople}`,
+      `/searchresults?region=${selectedRegion}&startDate=${startDate}&endDate=${endDate}&headcount=${headcount}`,
     );
   };
 
