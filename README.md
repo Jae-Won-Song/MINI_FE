@@ -40,12 +40,11 @@ PW : 123456
         <td style="text-align: center">
             <p align="center"><img src="https://pbs.twimg.com/media/D4uU-i7U4AEyiZX.jpg" width="100px" height="100px"/></p>
             <a href="https://github.com/ldh9669">이동희</a>
-            <div>동희</div>
+            <div>- 여기에 구현 사항 입력</div>
             <div>- 여기에 구현 사항 입력</div>
         </td>
         <td style="text-align: center">
-            <p align="center"><img src="https://pbs.twimg.com/media/EnXJUgGXMAUIB77.jpg" width="100px" height="100px"/></p>
-            <a href="https://github.com/Hyun-EG">임헤정</a>
+            <p align="center"><img src="https://pbs.twimg.com/media/EnXJUgGXMAUIB77.jpg" width="100px" height="100px"/></p>            
             <a href="https://github.com/spoonbill40082">임혜정</a>
             <div>- 메인 페이지, 숙소 카테고리별 확인 기능 구현</div>
             <div>- 회원 가입/로그인 페이지, 로그인, 로그아웃 기능 구현</div>
