@@ -76,8 +76,11 @@ PW : 123456
 
 ### 메인 페이지
 ![메인 페이지-검색](https://github.com/Jae-Won-Song/MINI_FE/assets/159132230/4811508c-a5df-4968-9573-5c62b2a999ca)
-![메인 페이지-카테고리](https://github.com/Jae-Won-Song/MINI_FE/assets/159132230/b238a36c-e882-4e7d-ab25-bfeed4990759)
-![메인페이지-카테고리에 해당하지 않음](https://github.com/Jae-Won-Song/MINI_FE/assets/159132230/dc582be4-903b-4522-a87a-0fbe2f074252)
+
+<div style="display: flex;">
+    <img src="[image/메인 페이지-카테고리.png](https://github.com/Jae-Won-Song/MINI_FE/assets/159132230/b238a36c-e882-4e7d-ab25-bfeed4990759)" alt="메인 페이지-카테고리" style="width: 50%;">
+    <img src="[image/메인페이지-카테고리에 해당하지 않음](https://github.com/Jae-Won-Song/MINI_FE/assets/159132230/dc582be4-903b-4522-a87a-0fbe2f074252).png" alt="메인페이지-카테고리에 해당하지 않음" style="width: 50%;">
+</div>
 
 - 메인 페이지는 지역, 체크인/체크아웃 검색을 할 수 있는 검색 컴포넌트를 넣었습니다.
 - 숙소의 종류별로 목록을 확인할 수 있도록 카테고리 바를 넣고, 특정 카테고리를 클릭했을 경우 해당 선택에 알맞은 숙소 목록을 출력할 수 있게 했습니다.
