@@ -40,8 +40,11 @@ PW : 123456
         <td style="text-align: center">
             <p align="center"><img src="https://pbs.twimg.com/media/D4uU-i7U4AEyiZX.jpg" width="100px" height="100px"/></p>
             <a href="https://github.com/ldh9669">이동희</a>
-            <div>- 여기에 구현 사항 입력</div>
-            <div>- 여기에 구현 사항 입력</div>
+            <div>- 숙소 상세 페이지 제작</div>
+            <div>- 날짜 입력시 객실 예약 여부 확인 가능</div>
+            <div>- 예약 및 결제 페이지 제작</div>
+            <div>- 예약 완료 페이지 제작</div>
+            <div>- 슬라이드 버튼, 페이지네이션 버튼 제작</div>
         </td>
         <td style="text-align: center">
             <p align="center"><img src="https://pbs.twimg.com/media/EnXJUgGXMAUIB77.jpg" width="100px" height="100px"/></p>            
