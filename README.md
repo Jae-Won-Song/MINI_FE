@@ -27,17 +27,6 @@ PW : 123456
 
 ## 👨🏻팀원 소개 및 분담👩🏻
 
-<style>
-    table {
-        width: 100%;
-        table-layout: fixed;
-    }
-    td {
-        text-align: center;
-        vertical-align: top;
-        padding: 10px;
-    }
-</style>
 
 <table>
     <tr>
