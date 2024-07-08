@@ -108,8 +108,6 @@ PW : 123456
 
 ![main](https://github.com/Jae-Won-Song/MINI_FE/assets/120430844/c74e7c9e-36fc-46b9-9277-b029f8e3ee29)
 <img width="100%" alt="main_modal" src="https://github.com/Jae-Won-Song/MINI_FE/assets/120430844/23949bc9-3828-49bd-b552-cd9b9f5b0837">
-
-<img width="100%" alt="main_modal" src="https://github.com/Jae-Won-Song/MINI_FE/assets/120430844/23949bc9-3828-49bd-b552-cd9b9f5b0837">
 <img width="100%" alt="main_modal" src="https://github.com/Jae-Won-Song/MINI_FE/assets/120430844/db72b312-045b-4a9f-aea0-0cb1eb247cb9">
 
 <hr/>
