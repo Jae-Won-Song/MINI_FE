@@ -27,22 +27,21 @@ PW : 123456
 
 ## 👨🏻팀원 소개 및 분담👩🏻
 
-
-<table>
+<table style="width: 100%">
     <tr>
-        <td>
+        <td style="text-align: center">
             <p align="center"><img src="https://i.pinimg.com/236x/69/0d/28/690d288b651b78ecf09e776c05d977e3.jpg" width="100px" height="100px"/></p>
             <a href="https://github.com/Jae-Won-Song">송재원</a>
             <div>숙소 검색페이지 제작</div>
             <div>카테고리별 검색창 구현</div>
         </td>
-        <td>
+        <td style="text-align: center">
             <p align="center"><img src="https://pbs.twimg.com/media/D4uU-i7U4AEyiZX.jpg" width="100px" height="100px"/></p>
             <a href="https://github.com/ldh9669">이동희</a>
             <div>동희</div>
             <div>동희</div>
         </td>
-        <td>
+        <td style="text-align: center">
             <p align="center"><img src="https://pbs.twimg.com/media/EnXJUgGXMAUIB77.jpg" width="100px" height="100px"/></p>
             <a href="https://github.com/Hyun-EG">임헤정</a>
             <div>혜정</div>
