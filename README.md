@@ -79,6 +79,8 @@ PW : 123456
 <br>
 
 ### 메인 페이지
+<img src="https://github.com/Jae-Won-Song/MINI_FE/assets/159132230/e2ab4e62-c96e-460c-9112-07fb9a9ab5e8" alt="전체 메인 페이지" style="width: 30%;">
+
 ![메인 페이지-검색](https://github.com/Jae-Won-Song/MINI_FE/assets/159132230/4811508c-a5df-4968-9573-5c62b2a999ca)
 
 <div style="display: flex">
