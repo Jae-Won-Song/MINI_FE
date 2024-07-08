@@ -9,7 +9,7 @@ import KakaoMapRender from '../../components/KakaoMapRender';
 import SelectRoom from '../../components/SelectRoom';
 import Star from '../../../public/icons/star.png';
 
-interface Accommodation {
+export interface Accommodation {
   id: number;
   rating: number;
   category: string;
@@ -22,7 +22,7 @@ interface Accommodation {
   image: string;
 }
 
-interface Room {
+export interface Room {
   roomId: number;
   roomTitle: string;
   roomMaxCount: number;
@@ -47,6 +47,13 @@ interface Room {
   roomHairdryer: string;
 }
 
+export interface RoomData {
+  roomToiletries: string;
+  resultCode: number;
+  resultMessage: string;
+  data: Room[] | { message: string };
+}
+
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 const accommodationURL = `https://yusuengdo.ddns.net/open-api/accommodation/`;
 
@@ -59,27 +66,26 @@ const Page = ({ params }) => {
     data: Accommodation;
   }>(`${accommodationURL}${id}`, fetcher);
 
-  const { data: roomData, error: roomError } = useSWR<{ data: Room[] }>(
+  const { data: roomData, error: roomError } = useSWR<RoomData>(
     `${accommodationURL}${id}/room`,
     fetcher,
   );
 
   useEffect(() => {
     if (params.slug !== 'placedetail') {
-      // 원하는 페이지로 리다이렉트
       router.push('/not-found');
     }
   }, [params.slug, router]);
 
   if (params.slug !== 'placedetail') {
-    return null; // slug가 맞지 않으면 아무것도 렌더링하지 않음
+    return null;
   }
 
   if (accommodationError || roomError) return <div>Failed to load</div>;
   if (!accommodationData || !roomData) return <div>Loading...</div>;
 
   const { data: accommodation } = accommodationData;
-  const { data: rooms } = roomData;
+  const { resultCode, data: roomsOrMessage } = roomData;
 
   const handleCopyAddress = () => {
     navigator.clipboard
@@ -91,16 +97,12 @@ const Page = ({ params }) => {
   return (
     <Container>
       <TextContainer>
-        {/* <h3>모텔</h3>
-        <h2>서울의 방</h2>
-        <br />
-        <div>소개 글 내용</div>
-        <h1>Data fetched using SWR</h1>
-        <pre>{JSON.stringify(accommodationData, null, 2)}</pre>
-        <h1>Data fetched using SWR</h1>
-        <pre>{JSON.stringify(roomData, null, 2)}</pre> */}
-
         <div>
+          {/* <h1>Data fetched using SWR</h1>
+         <pre>{JSON.stringify(accommodationData, null, 2)}</pre>
+         <h1>Data fetched using SWR</h1>
+         <pre>{JSON.stringify(roomData, null, 2)}</pre> */}
+
           <h3>{accommodation.category}</h3>
           <h2>{accommodation.title}</h2>
           <div>
@@ -125,36 +127,45 @@ const Page = ({ params }) => {
         </MapContainer>
       </ImageContainer>
 
-      {rooms.map((room) => (
-        <SelectRoom
-          key={room.roomId}
-          title={room.roomTitle}
-          MaxCount={room.roomMaxCount}
-          fee={room.roomOffseasonMinfee1}
-          images={[
-            room.roomImg1,
-            room.roomImg2,
-            room.roomImg3,
-            room.roomImg4,
-            room.roomImg5,
-          ]}
-          icons={{
-            bath: room.roomBath,
-            hometheater: room.roomHometheater,
-            aircondition: room.roomAircondition,
-            tv: room.roomTv,
-            pc: room.roomPc,
-            cable: room.roomCable,
-            internet: room.roomInternet,
-            refrigerator: room.roomRefrigerator,
-            toiletries: room.roomToiletries,
-            sofa: room.roomSofa,
-            cook: room.roomCook,
-            table: room.roomTable,
-            hairdryer: room.roomHairdryer,
-          }}
-        />
-      ))}
+      {resultCode === 404 ? (
+        <NoRoomsMessage>현재 남아있는 객실이 없습니다</NoRoomsMessage>
+      ) : (
+        Array.isArray(roomsOrMessage) &&
+        roomsOrMessage.map((room) => (
+          <SelectRoom
+            key={room.roomId}
+            accommodationId={accommodation.id}
+            roomId={room.roomId}
+            accommodationTitle={accommodation.title}
+            accommodationImage={accommodation.image}
+            title={room.roomTitle}
+            MaxCount={room.roomMaxCount}
+            fee={room.roomOffseasonMinfee1}
+            images={[
+              room.roomImg1,
+              room.roomImg2,
+              room.roomImg3,
+              room.roomImg4,
+              room.roomImg5,
+            ]}
+            icons={{
+              bath: room.roomBath,
+              hometheater: room.roomHometheater,
+              aircondition: room.roomAircondition,
+              tv: room.roomTv,
+              pc: room.roomPc,
+              cable: room.roomCable,
+              internet: room.roomInternet,
+              refrigerator: room.roomRefrigerator,
+              toiletries: room.roomToiletries,
+              sofa: room.roomSofa,
+              cook: room.roomCook,
+              table: room.roomTable,
+              hairdryer: room.roomHairdryer,
+            }}
+          />
+        ))
+      )}
     </Container>
   );
 };
@@ -219,4 +230,10 @@ const CopyButton = styled.button`
 
 const TextContainer = styled.div`
   width: 1680px;
+`;
+
+const NoRoomsMessage = styled.div`
+  font-size: 25px;
+  color: red;
+  margin: 100px;
 `;

@@ -1,23 +1,17 @@
 'use client';
 
 import styled from 'styled-components';
-import { useDataContext, DataContextProps } from '../../contexts/DataContext';
-import { useRouter } from 'next/navigation';
 import BookingInformation from '../../components/BookingInformation';
 import AccommodationName from '../../components/AccommodationName';
 import PaymentInformation from '../../components/PaymentInformation';
+import { useDataContext } from '../../contexts/DataContext';
 
 const Page = () => {
-  const { setStringState, setNumberState, setObjectState } =
-    useDataContext() as DataContextProps;
-  const router = useRouter();
+  const { objectState } = useDataContext();
 
-  const handleSubmit = () => {
-    setStringState('새로운 문자열');
-    setNumberState(43);
-    setObjectState({ key: '새로운 값' });
-    router.push('/download');
-  };
+  if (!objectState) {
+    return <div>데이터를 불러오는 중입니다...</div>;
+  }
 
   return (
     <PageContainer>
@@ -26,7 +20,6 @@ const Page = () => {
         <AccommodationName />
         <PaymentInformation />
       </AccommodationInformation>
-      <button onClick={handleSubmit}>데이터 설정 후 이동</button>
     </PageContainer>
   );
 };
@@ -34,6 +27,7 @@ const Page = () => {
 export default Page;
 
 const PageContainer = styled.div`
+  margin-top: 20px;
   display: flex;
 `;
 

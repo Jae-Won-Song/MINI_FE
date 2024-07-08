@@ -3,11 +3,35 @@
 import styled from 'styled-components';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useDataContext } from '../contexts/DataContext';
+import dayjs from 'dayjs';
+import weekday from 'dayjs/plugin/weekday';
+import localeData from 'dayjs/plugin/localeData';
+import updateLocale from 'dayjs/plugin/updateLocale';
 import PaymentButton from './PaymentButton';
 import Buttons from './Buttons';
 import Banner from '../../public/icons/elite_img_PC.png';
 
+// Plugins 사용 설정
+dayjs.extend(weekday);
+dayjs.extend(localeData);
+dayjs.extend(updateLocale);
+
+// 한국어 요일 설정
+dayjs.updateLocale('ko', {
+  weekdays: ['일', '월', '화', '수', '목', '금', '토'],
+});
+
 const BookingInformation = () => {
+  const { objectState } = useDataContext();
+
+  // checkInDate와 checkOutDate가 이미 문자열 형식인 경우 바로 사용
+  const dateCheckIn = dayjs(objectState.checkInDate as string);
+  const dateCheckOut = dayjs(objectState.checkOutDate as string);
+
+  const formattedCheckInDate = dateCheckIn.format('YYYY년 M월 D일 (ddd)');
+  const formattedCheckOutDate = dateCheckOut.format('YYYY년 M월 D일 (ddd)');
+
   return (
     <BookingInformationContainer>
       <TitleContainer>
@@ -16,11 +40,14 @@ const BookingInformation = () => {
       <TextBoxContainer>
         <TextBox>
           <TextTitle>예약일</TextTitle>
-          <Text>2024년 6월 18일 (화) 14:00 ~ 2024년 6월 19일 (수) 11:00</Text>
+          <Text>
+            {formattedCheckInDate} ~ {formattedCheckOutDate}
+          </Text>
         </TextBox>
         <TextBox>
           <TextTitle>인원</TextTitle>
-          <Text>4명</Text>
+          <Text>{objectState.selectPerson as string}명</Text>
+          {/* <pre>Object State: {JSON.stringify(objectState)}</pre> */}
         </TextBox>
         <EventBannerBox>
           <EventBannerTextBox>
@@ -120,7 +147,7 @@ const EventBannerText = styled.div`
 
 const PaymentMethodContainer = styled.div`
   width: 1000px;
-  height: 280px;
+  min-height: max-content;
   margin: 30px auto;
 `;
 
@@ -131,6 +158,6 @@ const PaymentMethodText = styled.h3`
 
 const PaymetMethodButtonContainer = styled.div`
   width: 1000px;
-  height: 180px;
+  min-height: max-content;
   margin: 30px auto;
 `;

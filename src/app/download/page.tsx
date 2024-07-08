@@ -2,11 +2,9 @@
 
 import styled from 'styled-components';
 import Image from 'next/image';
-import { useDataContext } from '../../contexts/DataContext';
 import qrCode from '../../../public/images/qrCode.png';
 
 const Page = () => {
-  const { stringState, numberState, objectState } = useDataContext();
   return (
     <Container>
       <ApplicationContent>
@@ -14,9 +12,6 @@ const Page = () => {
           <Title>지금 APP을 다운로드 해보세요</Title>
           <Subtitle>스마트폰으로 QR코드 스캔</Subtitle>
         </TextContainer>
-        <h1>String State: {stringState}</h1>
-        <h1>Number State: {numberState}</h1>
-        <h1>Object State: {JSON.stringify(objectState)}</h1>
         <ImageContainer>
           <Image src={qrCode} alt="QR Code" layout="fill" objectFit="cover" />
         </ImageContainer>
