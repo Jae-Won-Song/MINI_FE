@@ -75,11 +75,9 @@ PW : 123456
 <br>
 
 ### 메인 페이지
-![alt text](<image/메인 페이지-검색.png>)
-<div style="display: flex;">
-    <img src="image/메인 페이지-카테고리.png" alt="메인 페이지-카테고리" style="width: 50%;">
-    <img src="image/메인페이지-카테고리에 해당하지 않음.png" alt="메인페이지-카테고리에 해당하지 않음" style="width: 50%;">
-</div>
+![메인 페이지-검색](https://github.com/Jae-Won-Song/MINI_FE/assets/159132230/4811508c-a5df-4968-9573-5c62b2a999ca)
+![메인 페이지-카테고리](https://github.com/Jae-Won-Song/MINI_FE/assets/159132230/b238a36c-e882-4e7d-ab25-bfeed4990759)
+![메인페이지-카테고리에 해당하지 않음](https://github.com/Jae-Won-Song/MINI_FE/assets/159132230/dc582be4-903b-4522-a87a-0fbe2f074252)
 
 - 메인 페이지는 지역, 체크인/체크아웃 검색을 할 수 있는 검색 컴포넌트를 넣었습니다.
 - 숙소의 종류별로 목록을 확인할 수 있도록 카테고리 바를 넣고, 특정 카테고리를 클릭했을 경우 해당 선택에 알맞은 숙소 목록을 출력할 수 있게 했습니다.
@@ -88,15 +86,10 @@ PW : 123456
 
 <hr/>
 
-![로그인](https://github.com/Jae-Won-Song/MINI_FE/assets/159132230/a953fe51-62a7-432c-921c-c75afb2dbb25)
-![메인 페이지-검색](https://github.com/Jae-Won-Song/MINI_FE/assets/159132230/4811508c-a5df-4968-9573-5c62b2a999ca)
-![메인 페이지-카테고리](https://github.com/Jae-Won-Song/MINI_FE/assets/159132230/b238a36c-e882-4e7d-ab25-bfeed4990759)
-![메인페이지-카테고리에 해당하지 않음](https://github.com/Jae-Won-Song/MINI_FE/assets/159132230/dc582be4-903b-4522-a87a-0fbe2f074252)
+### 회원 가입
 ![회원 가입](https://github.com/Jae-Won-Song/MINI_FE/assets/159132230/7920691a-44f8-4c64-9bcd-0b492dd5baf9)
 ![회원 정보 확인](https://github.com/Jae-Won-Song/MINI_FE/assets/159132230/0a05c0e4-4c1b-48fb-9df4-ab9b31b17ae2)
 
-### 회원 가입
-![alt text](<image/회원 가입.png>)
 - 회원가입 페이지에서는 메일 주소, 비밀번호, 전화번호에 유효성 검사를 넣었습니다. 
 - 유효성 검사를 통과한 뒤 '등록' 버튼을 클릭할 경우, '회원 가입이 완료되었습니다' 알림창을 출력하며 자동으로 로그인 페이지로 이동할 수 있게 해두었습니다.
 - 메일 주소 유효성 검사: '@' 표시가 없을 경우 에러 메시지 출력
@@ -108,7 +101,7 @@ PW : 123456
 <hr/>
 
 ### 로그인
-![alt text](image/로그인.png)
+![로그인](https://github.com/Jae-Won-Song/MINI_FE/assets/159132230/a953fe51-62a7-432c-921c-c75afb2dbb25)
 - 로그인 페이지에서는 회원 가입 당시 입력한 정보를 정확히 입력했을 경우 '로그인 성공! 메인 페이지로 이동합니다'라는 알림창을 출력한 뒤 자동으로 메인 페이지로 이동할 수 있게 해두었습니다.
 
 <hr/>
