@@ -449,7 +449,7 @@ const DropdownItem = styled.div`
 `;
 
 const MessageContainer = styled.div`
-  margin-top: 20px;
+  margin-top: 60px;
   padding: 10px;
   border: 1px solid #d9d9d9;
   border-radius: 15px;

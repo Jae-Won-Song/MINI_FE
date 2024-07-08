@@ -3,18 +3,131 @@
 import styled from 'styled-components';
 import Image from 'next/image';
 import src from '../../../public/images/mainBannerImage.jpg';
+import { useDataContext } from '../../contexts/DataContext';
+import dayjs from 'dayjs';
+import weekday from 'dayjs/plugin/weekday';
+import localeData from 'dayjs/plugin/localeData';
+import updateLocale from 'dayjs/plugin/updateLocale';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 interface InformationRowProps {
   title: string;
   content: string;
 }
 
+interface ObjectStateType {
+  title: string;
+  accommodationTitle: string;
+  stayDays: number;
+  price: number;
+  accommodationId: number;
+  roomId: number;
+  checkInDate: string;
+  checkOutDate: string;
+  selectPerson: number;
+}
+
+const getTokenFromLocalStorage = () => {
+  return localStorage.getItem('accessToken');
+};
+
+const getObjectStateFromLocalStorage = (): ObjectStateType | null => {
+  const data = localStorage.getItem('objectState');
+  return data ? JSON.parse(data) : null;
+};
+
 const Page = () => {
+  const { objectState, setObjectState } = useDataContext() as unknown as {
+    objectState: ObjectStateType;
+    setObjectState: (state: ObjectStateType) => void;
+  };
+
+  const [token, setToken] = useState<string | null>(null);
+  const [response, setResponse] = useState<unknown>(null);
+  const todayDate = dayjs().format('YYYY년 M월 D일');
+
+  useEffect(() => {
+    const storedToken = getTokenFromLocalStorage();
+    const storedObjectState = getObjectStateFromLocalStorage();
+
+    if (storedToken) {
+      setToken(storedToken);
+    }
+
+    if (storedObjectState) {
+      setObjectState(storedObjectState);
+    }
+  }, [setObjectState]);
+
+  useEffect(() => {
+    if (token && objectState) {
+      const makeReservation = async () => {
+        const formattedCheckInDate = dayjs(objectState.checkInDate).format(
+          'YYYY-MM-DD',
+        );
+        const formattedCheckOutDate = dayjs(objectState.checkOutDate).format(
+          'YYYY-MM-DD',
+        );
+
+        const url = `https://yusuengdo.ddns.net/api/reservation/${objectState.accommodationId}/room/${objectState.roomId}/reserve`;
+
+        const requestData = {
+          headcount: objectState.selectPerson,
+          startDate: formattedCheckInDate,
+          endDate: formattedCheckOutDate,
+          price: objectState.price,
+        };
+
+        const config = {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        };
+
+        try {
+          const response = await axios.post(url, requestData, config);
+          console.log('예약 요청 성공:', response.data);
+          setResponse(response.data); // 응답 데이터를 상태에 저장
+        } catch (error) {
+          if (error.response) {
+            console.log('에러 응답:', error.response.data);
+            setResponse(error.response.data); // 에러 응답을 상태에 저장
+          } else if (error.request) {
+            console.log('응답 없음:', error.request);
+            setResponse({ status: 500, message: '응답을 받지 못했습니다' }); // 일반적인 에러 응답 설정
+          } else {
+            console.log('요청 설정 에러:', error.message);
+            setResponse({
+              status: 500,
+              message: '요청 설정 중 문제가 발생했습니다',
+            }); // 일반적인 에러 응답 설정
+          }
+        }
+      };
+
+      makeReservation();
+    }
+  }, [token, objectState]);
+
+  if (!objectState) {
+    return <div>데이터를 불러오는 중입니다...</div>;
+  }
+
+  const formattedCheckInDate = dayjs(objectState.checkInDate).format(
+    'YYYY-MM-DD',
+  );
+  const formattedCheckOutDate = dayjs(objectState.checkOutDate).format(
+    'YYYY-MM-DD',
+  );
+
   return (
     <PageContainer>
       <ReservationText>예약해 주셔서 감사합니다</ReservationText>
       <RoomInfoContainer>
-        <RoomName>숙박업소 이름</RoomName>
+        <RoomName>
+          {objectState.accommodationTitle || '객실 제목 없음'}
+        </RoomName>
         <StyledImage
           src={src}
           alt="임시 이미지"
@@ -23,14 +136,23 @@ const Page = () => {
         />
       </RoomInfoContainer>
       <InformationWrapper>
-        <InformationRow title="예약 구매 일자" content="2024년 6월 20일" />
-        <InformationRow title="예약 인원" content="5명" />
-        <InformationRow title="객실명" content="A-1" />
+        <InformationRow title="예약 구매 일자" content={todayDate} />
+        <InformationRow
+          title="예약 인원"
+          content={`${objectState.selectPerson ?? 0}명`}
+        />
+        <InformationRow
+          title="객실명"
+          content={`${objectState.title || '정보 없음'}`}
+        />
         <InformationRow
           title="체크인 / 체크아웃 일자"
-          content="2024년 6월 27일 ~ 2024년 6월 27일"
+          content={`${formattedCheckInDate} ~ ${formattedCheckOutDate}`}
         />
-        <InformationRow title="결제 금액" content="250,000원" />
+        <InformationRow
+          title="결제 금액"
+          content={`${(objectState.price ?? 0).toLocaleString()}원`}
+        />
       </InformationWrapper>
       <CancellationPolicy>
         <PolicyTitle>취소 및 환불 규정</PolicyTitle>
@@ -86,7 +208,7 @@ const PageContainer = styled.div`
   box-sizing: border-box;
 `;
 
-const ReservationText = styled.h1`
+const ReservationText = styled.div`
   text-align: center;
   font-size: 2rem;
   font-weight: bold;

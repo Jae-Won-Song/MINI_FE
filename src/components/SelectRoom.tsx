@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 import dayjs, { Dayjs } from 'dayjs';
@@ -8,12 +8,18 @@ import Buttons from './Buttons';
 import ImageModal from './ImageModal';
 import IconsImport from './IconsImport';
 import MainSearchDate from './Banner/MainSearchDate';
+import RoomAvailability from './RoomAvailability';
+import { useDataContext, DataContextProps } from '../contexts/DataContext';
 
 interface SelectRoomProps {
   title: string;
   MaxCount: number;
   fee: number;
   images: string[];
+  accommodationId: number;
+  roomId: number;
+  accommodationTitle: string;
+  accommodationImage: string;
   icons: {
     bath: string;
     hometheater: string;
@@ -36,19 +42,29 @@ const SelectRoom = ({
   MaxCount,
   fee,
   images,
+  accommodationId,
+  accommodationTitle,
+  roomId,
+  accommodationImage,
   icons,
 }: SelectRoomProps) => {
+  const { setNumberState, setObjectState }: DataContextProps = useDataContext();
+
   const [isDateOpen, setIsDateOpen] = useState(false);
   const [selectedStartDate, setSelectedStartDate] = useState<Dayjs | null>(
     null,
   );
   const [selectedEndDate, setSelectedEndDate] = useState<Dayjs | null>(null);
+  const [stayDays, setStayDays] = useState<number>(0);
 
-  const wrapperRef = useRef<HTMLDivElement>(null);
+  const dateRef = useRef<HTMLDivElement>(null);
 
   const [selectPerson, setSelectPerson] = useState<number>(2);
   const [ModalOpen, setModalOpen] = useState<boolean>(false);
   const [currentPrice, setcurrentPrice] = useState<number>(fee);
+  const [showRoomAvailability, setShowRoomAvailability] =
+    useState<boolean>(false);
+  const [isReservable, setIsReservable] = useState<boolean>(false);
 
   const handlePlus = () => {
     if (selectPerson < MaxCount) {
@@ -83,7 +99,49 @@ const SelectRoom = ({
     setSelectedStartDate(startDate);
     setSelectedEndDate(endDate);
     setIsDateOpen(false);
+    if (startDate && endDate) {
+      setStayDays(endDate.diff(startDate, 'day'));
+      setShowRoomAvailability(true);
+    }
   };
+
+  const handleAvailabilityCheck = (isAvailable: boolean) => {
+    setIsReservable(isAvailable);
+  };
+
+  const handleReserve = () => {
+    if (isReservable) {
+      setObjectState({
+        accommodationId,
+        roomId,
+        checkInDate: selectedStartDate,
+        checkOutDate: selectedEndDate,
+        stayDays,
+        selectPerson,
+        price: currentPrice,
+        title,
+        accommodationTitle,
+        accommodationImage,
+      });
+    }
+  };
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dateRef.current && !dateRef.current.contains(event.target as Node)) {
+        setIsDateOpen(false);
+      }
+    }
+    if (isDateOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isDateOpen]);
+
   return (
     <Container>
       <ImageContainer>
@@ -109,7 +167,19 @@ const SelectRoom = ({
       </Content>
       <PriceSection>
         <Price>{currentPrice.toLocaleString()}원</Price>
-        <DateSelection>
+        {showRoomAvailability && (
+          <RoomAvailability
+            accommodationId={accommodationId}
+            roomId={roomId}
+            checkInDate={selectedStartDate}
+            checkOutDate={selectedEndDate}
+            onAvailabilityCheck={handleAvailabilityCheck}
+          />
+        )}
+        {selectedStartDate && selectedEndDate && (
+          <StayInfo>숙박일 수: {stayDays}박</StayInfo>
+        )}
+        <DateSelection ref={dateRef}>
           <SearchElementsWrapper>
             <p>날짜</p>
             <SelectorWrapper onClick={toggleDate}>
@@ -130,15 +200,30 @@ const SelectRoom = ({
         </DateSelection>
         <GuestSelection>
           <GuestCounter>
-            <h4>인원 수</h4>
+            <GuestCounterText>인원 수</GuestCounterText>
             <Button onClick={handleMinus}>-</Button>
             <GuestCount>{selectPerson} 인</GuestCount>
             <Button onClick={handlePlus}>+</Button>
           </GuestCounter>
         </GuestSelection>
         <PaymentButtonContainer>
-          <Link href="/detail">
-            <Buttons label="예약하기" fullWidth={false} />
+          <Link
+            href={
+              selectedStartDate && selectedEndDate && isReservable
+                ? '/detail'
+                : '#'
+            }
+          >
+            <Buttons
+              label="예약 하기"
+              fullWidth={false}
+              onClick={handleReserve}
+              buttonColor={
+                selectedStartDate && selectedEndDate && isReservable
+                  ? 'default'
+                  : 'gray'
+              }
+            />
           </Link>
         </PaymentButtonContainer>
       </PriceSection>
@@ -159,7 +244,8 @@ const Container = styled.div`
   border: 1px solid #7d7d7d;
   box-shadow: 5px 5px 10px 0 #e5e5ec;
   padding: 10px;
-  width: 1680px;
+  width: 100%;
+  max-width: 1680px;
   margin: 40px;
 `;
 
@@ -262,6 +348,7 @@ const DateSelection = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 10px;
+  flex-basis: 50%;
 
   .react-datepicker-wrapper {
     width: auto;
@@ -271,10 +358,11 @@ const DateSelection = styled.div`
 const GuestSelection = styled.div`
   display: flex;
   align-items: center;
+  flex-basis: 50%;
 `;
 
 const PaymentButtonContainer = styled.div`
-  margin: 10px;
+  margin: 10px 0;
 `;
 
 const GuestCounter = styled.div`
@@ -282,16 +370,18 @@ const GuestCounter = styled.div`
   font-weight: 700;
   display: flex;
   align-items: center;
-  margin-left: 10px;
+`;
+
+const GuestCounterText = styled.div`
+  margin-right: 30px;
 `;
 
 const Button = styled.button`
-  width: 45px;
+  width: 60px;
   height: 30px;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 16px;
-  margin: 0 10px;
   padding: 5px 10px;
   &:hover {
     background-color: #0070f3;
@@ -300,7 +390,7 @@ const Button = styled.button`
 `;
 
 const GuestCount = styled.div`
-  width: 200px;
+  width: 230px;
   height: 30px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -311,9 +401,11 @@ const GuestCount = styled.div`
   justify-content: center;
   display: flex;
 `;
+
 const SearchElementsWrapper = styled.div`
-  width: 400px;
-  padding-bottom: 40px;
+  min-width: 440px;
+  flex-grow: 1;
+  padding-bottom: 10px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -389,4 +481,11 @@ const SelectorDate = styled.div`
   @media only screen and (max-width: 1080px) {
     font-size: 1rem;
   }
+`;
+
+const StayInfo = styled.div`
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #0070f3;
 `;

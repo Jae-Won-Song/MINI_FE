@@ -17,7 +17,7 @@ import RoomCook from '../../public/icons/cooking.png';
 import RoomTable from '../../public/icons/round-table.png';
 import RoomHairdryer from '../../public/icons/hairdryer.png';
 
-interface IconsImportProps {
+export interface IconsImportProps {
   icons: {
     bath: string;
     hometheater: string;

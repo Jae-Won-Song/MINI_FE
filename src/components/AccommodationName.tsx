@@ -2,30 +2,84 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import Image from 'next/image';
-import src from '../../public/images/mainBannerImage.jpg';
+import useSWR from 'swr';
+import { useDataContext } from '../contexts/DataContext';
+import { Accommodation, Room, RoomData } from '../app/[slug]/page';
+import IconsImport from './IconsImport';
+
+interface ObjectStateType {
+  accommodationId: number;
+  roomId: number;
+  selectPerson: number;
+}
+
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
+const accommodationURL = `https://yusuengdo.ddns.net/open-api/accommodation/`;
 
 const AccommodationName = () => {
+  const { objectState } = useDataContext() as unknown as {
+    objectState: ObjectStateType;
+  };
+
+  const { data: accommodationData, error: accommodationError } = useSWR<{
+    data: Accommodation;
+  }>(`${accommodationURL}${objectState.accommodationId}`, fetcher);
+
+  const { data: roomData, error: roomError } = useSWR<RoomData>(
+    `${accommodationURL}${objectState.accommodationId}/room/${objectState.roomId}`,
+    fetcher,
+  );
+
+  if (accommodationError || roomError) return <div>Failed to load</div>;
+  if (!accommodationData || !roomData) return <div>Loading...</div>;
+
+  const { data: accommodation } = accommodationData;
+
+  // roomData가 Room 배열인지 객체인지 확인
+  const isRoomArray = Array.isArray(roomData.data);
+  const roomsOrMessage = isRoomArray ? roomData.data : [roomData.data];
+
+  // 속성 접근 전에 undefined나 비어 있는지 체크
+  if (!roomsOrMessage[0]) return <div>객실 데이터를 찾을 수 없습니다.</div>;
   return (
     <AccommodationNameContainer>
       <TitleContainer>
-        <Title>숙소 이름</Title>
+        <Title>{accommodation.title}</Title>
       </TitleContainer>
-      <AccommodationImage src={src} alt="숙소이미지" />
+      <AccommodationImage image={accommodation.image} />
       <InformationContainer>
         <InformationTitle>객실명</InformationTitle>
-        <InformationText>A-1</InformationText>
+        <InformationText>{roomsOrMessage[0]?.roomTitle}</InformationText>
       </InformationContainer>
       <InformationContainer>
         <InformationTitle>객실 정보</InformationTitle>
-        <InformationText>더블침대 1개 객실 + 욕실 / 12.1평</InformationText>
+        <InformationText>
+          {roomsOrMessage[0]?.roomSize}평 / {roomsOrMessage[0]?.roomMaxCount}인
+          객실 / {'\n'}
+          {roomsOrMessage[0].roomIntro.replace(/(<([^>]+)>)/gi, '')}
+        </InformationText>
       </InformationContainer>
       <InformationContainer>
         <InformationTitle>편의 시설</InformationTitle>
-        <InformationText>
-          Tv, 냉장고, 전기주전자, 찻잔, 티백, 물컵, 전화기, 금고, 슬리퍼,
-          욕실용품, 드라이기
-        </InformationText>
+        <IconsContainer>
+          <IconsImport
+            icons={{
+              bath: roomsOrMessage[0]?.roomBath,
+              hometheater: roomsOrMessage[0]?.roomHometheater,
+              aircondition: roomsOrMessage[0]?.roomAircondition,
+              tv: roomsOrMessage[0]?.roomTv,
+              pc: roomsOrMessage[0]?.roomPc,
+              cable: roomsOrMessage[0]?.roomCable,
+              internet: roomsOrMessage[0]?.roomInternet,
+              refrigerator: roomsOrMessage[0]?.roomRefrigerator,
+              toiletries: roomsOrMessage[0]?.roomToiletries,
+              sofa: roomsOrMessage[0]?.roomSofa,
+              cook: roomsOrMessage[0]?.roomCook,
+              table: roomsOrMessage[0]?.roomTable,
+              hairdryer: roomsOrMessage[0]?.roomHairdryer,
+            }}
+          />
+        </IconsContainer>
       </InformationContainer>
     </AccommodationNameContainer>
   );
@@ -35,10 +89,13 @@ export default AccommodationName;
 
 const AccommodationNameContainer = styled.div`
   width: 650px;
-  height: 530px;
   border: 1px solid #7d7d7d;
   border-radius: 25px;
   margin: 0 20px 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const TitleContainer = styled.div`
@@ -52,26 +109,37 @@ const Title = styled.h2`
   line-height: 60px;
 `;
 
-const AccommodationImage = styled(Image)`
-  width: 600px;
+const AccommodationImage = styled.div<{ image: string }>`
+  width: 100%;
   height: 180px;
-  margin: 10px 20px;
+  margin-bottom: 20px;
+  background-image: url(${(props) => props.image});
+  background-size: cover;
+  background-position: center;
 `;
 
 const InformationContainer = styled.div`
-  width: 600px;
-  height: 45px;
-  margin: 15px auto;
+  width: 100%;
+  margin-bottom: 20px;
   display: flex;
+  align-items: flex-start; /* 텍스트와 아이콘 상단 정렬 */
 `;
 
 const InformationTitle = styled.h4`
-  width: 150px;
-  margin: 10px auto;
+  width: 100px;
+  margin: 10px 0; /* 상하 마진만 적용 */
   font-size: 20px;
 `;
+
 const InformationText = styled.div`
-  width: 450px;
-  margin: 10px auto;
+  width: 80%;
+  margin: 10px 0;
   font-size: 16px;
+  white-space: pre-line; /* 줄바꿈 문자 (\n) 인식 */
+`;
+
+const IconsContainer = styled.div`
+  display: flex;
+  gap: 10px; /* 아이콘들 사이의 간격 설정 */
+  align-self: flex-start; /* 아이콘들 상단 정렬 */
 `;

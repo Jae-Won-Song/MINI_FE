@@ -1,25 +1,81 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import dayjs from 'dayjs';
+import { useDataContext } from '../contexts/DataContext';
 import Buttons from './Buttons';
+import { useRouter } from 'next/navigation';
+
+interface ObjectStateType {
+  stayDays: number;
+  price: number;
+  accommodationId: number;
+  roomId: number;
+  checkInDate: string;
+  checkOutDate: string;
+  selectPerson: number;
+}
+
+const getTokenFromLocalStorage = () => {
+  return localStorage.getItem('accessToken');
+};
 
 const PaymentInformation = () => {
+  const { objectState } = useDataContext() as unknown as {
+    objectState: ObjectStateType;
+  }; // useDataContext에서 numberState를 가져오도록 수정해야 합니다.
+  const [token, setToken] = useState<string | null>(null);
+  const router = useRouter();
+
+  useEffect(() => {
+    const storedToken = getTokenFromLocalStorage();
+    if (storedToken) {
+      setToken(storedToken);
+    }
+  }, []);
+
+  // objectState.price가 undefined인 경우를 대비한 조건부 렌더링
+  if (!objectState || !objectState.price) {
+    return <LoadingMessage>데이터를 불러오는 중입니다...</LoadingMessage>;
+  }
+
+  const formattedCheckInDate = dayjs(objectState.checkInDate).format(
+    'YYYY-MM-DD',
+  );
+  const formattedCheckOutDate = dayjs(objectState.checkOutDate).format(
+    'YYYY-MM-DD',
+  );
+
+  const handleReservation = () => {
+    router.push('/complete'); // ./test 페이지로 이동
+  };
+
   return (
     <PaymentInformationContainer>
       <Information>결제 정보</Information>
       <InformationContainer>
-        <InformationTitle>객실 가격 (1박)</InformationTitle>
-        <InformationText>250,000원</InformationText>
+        <InformationTitle>
+          객실 가격 ({objectState.stayDays}박)
+        </InformationTitle>
+        <InformationText>
+          {objectState.price.toLocaleString()}원
+        </InformationText>
       </InformationContainer>
       <DivisionLine />
       <TotalInformationContainer>
         <TotalInformationTitle>총 결제 금액</TotalInformationTitle>
-        <TotalInformationText>250,000원</TotalInformationText>
+        <TotalInformationText>
+          {objectState.price.toLocaleString()}원
+        </TotalInformationText>
       </TotalInformationContainer>
       <ButtonContainer>
-        <Buttons label="뒤로가기" buttonColor="gray" fullWidth={false} />
-        <Buttons label="등록" fullWidth={false} />
+        <Buttons label="취소하기" buttonColor="gray" fullWidth={false} />
+        <Buttons
+          label="결제하기"
+          fullWidth={false}
+          onClick={handleReservation}
+        />
       </ButtonContainer>
     </PaymentInformationContainer>
   );
@@ -93,4 +149,11 @@ const ButtonContainer = styled.div`
   justify-content: center;
   align-items: center;
   gap: 40px;
+`;
+
+const LoadingMessage = styled.div`
+  margin: 20px;
+  font-size: 18px;
+  text-align: center;
+  color: #333;
 `;
