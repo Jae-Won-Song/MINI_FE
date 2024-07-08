@@ -44,8 +44,8 @@ PW : 123456
         <td>
             <p align="center"><img src="https://i.pinimg.com/236x/69/0d/28/690d288b651b78ecf09e776c05d977e3.jpg" width="100px" height="100px"/></p>
             <a href="https://github.com/Jae-Won-Song">송재원</a>
-            <div>재원</div>
-            <div>재원</div>
+            <div>숙소 검색페이지 제작</div>
+            <div>카테고리별 검색창 구현</div>
         </td>
         <td>
             <p align="center"><img src="https://pbs.twimg.com/media/D4uU-i7U4AEyiZX.jpg" width="100px" height="100px"/></p>
