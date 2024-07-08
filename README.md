@@ -34,6 +34,8 @@ PW : 123456
             <a href="https://github.com/Jae-Won-Song">송재원</a>
             <div>숙소 검색페이지 제작</div>
             <div>카테고리별 검색창 구현</div>
+            <div>내비게이션 바 컴포넌트 제작</div>
+            <div>개발환경 세팅</div>
         </td>
         <td style="text-align: center">
             <p align="center"><img src="https://pbs.twimg.com/media/D4uU-i7U4AEyiZX.jpg" width="100px" height="100px"/></p>
@@ -45,7 +47,10 @@ PW : 123456
             <p align="center"><img src="https://pbs.twimg.com/media/EnXJUgGXMAUIB77.jpg" width="100px" height="100px"/></p>
             <a href="https://github.com/Hyun-EG">임헤정</a>
             <div>혜정</div>
-            <div>혜정</div>
+            <div>메인 페이지, 숙소 카테고리별 확인 기능 구현</div>
+            <div>회원 가입/로그인 페이지, 로그인, 로그아웃 기능 구현</div>
+            <div>회원 정보 페이지</div>
+            <div>푸터, 인풋, 버튼 컴포넌트 제작</div>
         </td>
     </tr>
 </table>
