@@ -142,8 +142,8 @@ const RegisterPage: React.FC = () => {
       return;
     }
     registerUser({
-      email,
       name,
+      email,
       password,
       phoneNumber,
     });

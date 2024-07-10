@@ -46,7 +46,6 @@ const UserService = {
       const { data } = await apiWithNoToken.post(`${API}/login`, req);
       const { accessToken, refreshToken } = data;
       Service.LocalStorage.AccessToken.set(accessToken);
-      // eslint-disable-next-line prettier/prettier
       Cookies.set('refresh-token', refreshToken, { expires: 7 }); // 쿠키 만료기간을 7일로 설정
       return accessToken;
     } catch (error) {
@@ -55,18 +54,16 @@ const UserService = {
   },
   register: async (req: registerRequest) => {
     try {
-      const { status, data } = await apiWithNoToken.post(
-        `${API}/register`,
-        req,
-      );
-      if (status === 201) {
+      const response = await apiWithNoToken.post(`${API}/register`, req);
+      const { status, data } = response;
+
+      if (status === 201 || data.userId) {
         return data as registerResponse;
       } else {
-        // eslint-disable-next-line no-else-return
-        return Promise.reject(new Error('Registration failed'));
+        return Promise.reject(new Error(data.message || 'Registration failed'));
       }
     } catch (error) {
-      return Promise.reject(error);
+      return Promise.reject(error.response?.data || error); // 에러 객체를 그대로 reject에 포함
     }
   },
   refreshTokens: async () => {
@@ -74,8 +71,7 @@ const UserService = {
       const { data } = await apiWithToken.post(`${API}/refresh-tokens`, {
         accessToken: Service.LocalStorage.AccessToken.get(),
       });
-      // eslint-disable-next-line no-useless-rename
-      const { accessToken: accessToken } = data.data;
+      const { accessToken } = data.data;
       Service.LocalStorage.AccessToken.set(accessToken);
       return accessToken;
     } catch (error) {
@@ -104,6 +100,5 @@ const UserService = {
     }
   },
 };
-export default UserService;
 
-// eslint-disable-next-line import/no-cycle
+export default UserService;

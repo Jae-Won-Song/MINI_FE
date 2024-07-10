@@ -75,31 +75,46 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       alert('로그인 성공! 메인 페이지로 이동합니다.');
       router.push('/');
     } catch (error) {
-      // Handle the error or add a comment to indicate intentional empty block
+      console.error('Login error:', error); // 디버깅용 로그
+      alert('로그인 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
     }
   };
 
   const register = async (data: RegisterData) => {
     try {
       await Api.User.register(data);
+      alert('회원가입 성공! 로그인 페이지로 이동합니다.');
       router.push(`/auth/login`);
     } catch (error) {
-      const errorMessage = error.response.data.message;
+      // 에러 구조를 디버깅하기 위한 로그 추가
+      console.error('Registration error:', error);
 
-      if (error.response.status === 400) {
-        if (errorMessage.includes('해당 이메일을 가진 유저가 없습니다')) {
+      // 에러 응답 구조에서 메시지를 안전하게 추출
+      const errorMessage =
+        error?.resultMessage ||
+        '회원가입 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.';
+      const errorStatus = error?.status;
+
+      if (errorStatus === 400) {
+        if (errorMessage.includes('중복된 이메일')) {
+          alert('이메일이 중복되었습니다. 다른 이메일을 사용해주세요.');
+        } else if (errorMessage.includes('중복된 전화번호')) {
+          alert('전화번호가 중복되었습니다. 다른 전화번호를 사용해주세요.');
+        } else if (
+          errorMessage.includes('해당 이메일을 가진 유저가 없습니다')
+        ) {
           alert('이메일 주소가 잘못되었습니다. 다시 확인해주세요.');
         } else if (
           errorMessage.includes('로그인 기한 만료. 다시 로그인해 주세요.')
         ) {
           alert('비밀번호가 잘못되었습니다. 다시 확인해주세요.');
         } else {
-          alert(`로그인 실패: ${errorMessage}`);
+          alert(`회원가입 실패: ${errorMessage}`);
         }
-      } else if (error.response.status === 500) {
+      } else if (errorStatus === 500) {
         alert('서버 에러! 백엔드에게 문의해봅시다.');
       } else {
-        alert('로그인 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
+        alert('회원가입 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
       }
     }
   };
