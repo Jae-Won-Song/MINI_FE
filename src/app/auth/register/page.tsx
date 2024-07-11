@@ -254,7 +254,8 @@ export default RegisterPage;
 const RegisterPageWrapper = styled.div`
   position: relative;
   width: 100vw;
-  height: 100vh;
+  height: 120vh;
+  display: flex;
 `;
 
 const StyledImage = styled(Image)`
@@ -263,7 +264,6 @@ const StyledImage = styled(Image)`
   height: 100%;
   z-index: -1;
   filter: blur(3px) opacity(0.6);
-  position: fixed;
 `;
 
 const FormContainer = styled.form`

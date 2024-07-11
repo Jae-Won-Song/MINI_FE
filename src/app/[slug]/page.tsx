@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams, notFound } from 'next/navigation';
 import styled from 'styled-components';
 import useSWR from 'swr';
 import Image from 'next/image';
@@ -61,6 +61,12 @@ const Page = ({ params }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const id = searchParams.get('id');
+
+  useEffect(() => {
+    if (params.slug !== 'placedetail') {
+      notFound();
+    }
+  }, [params.slug]);
 
   const { data: accommodationData, error: accommodationError } = useSWR<{
     data: Accommodation;

@@ -66,11 +66,32 @@ const UserService = {
       return Promise.reject(error.response?.data || error); // 에러 객체를 그대로 reject에 포함
     }
   },
+  // refreshTokens: async () => {
+  //   try {
+  //     const { data } = await apiWithToken.post(`${API}/refresh-tokens`, {
+  //       accessToken: Service.LocalStorage.AccessToken.get(),
+  //     });
+  //     const { accessToken } = data.data;
+  //     Service.LocalStorage.AccessToken.set(accessToken);
+  //     return accessToken;
+  //   } catch (error) {
+  //     console.error(error);
+  //     return Promise.reject(error);
+  //   }
+  // },
   refreshTokens: async () => {
     try {
-      const { data } = await apiWithToken.post(`${API}/refresh-tokens`, {
-        accessToken: Service.LocalStorage.AccessToken.get(),
-      });
+      const refreshToken = Cookies.get('refresh-token');
+      if (!refreshToken) throw new Error('No refresh token available');
+      const { data } = await apiWithNoToken.post(
+        `${API}/refresh-tokens`,
+        {},
+        {
+          headers: {
+            'Refresh-Token': refreshToken,
+          },
+        },
+      );
       const { accessToken } = data.data;
       Service.LocalStorage.AccessToken.set(accessToken);
       return accessToken;

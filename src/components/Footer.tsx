@@ -133,6 +133,7 @@ const FooterWrapper = styled.div`
   display: flex;
   justify-content: space-around;
   padding-top: 2rem;
+  background-color: #f7f7f7;
 `;
 
 const FooterText = styled.div`

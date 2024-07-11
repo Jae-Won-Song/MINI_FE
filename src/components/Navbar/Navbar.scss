@@ -2,10 +2,11 @@
 
 .navbar {
   height: 5rem;
+  width: 100%;
+  background-color: #F7F7F7;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #D3D3D3;
 }
 
 .title {
