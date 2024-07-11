@@ -5,8 +5,9 @@ import styled from 'styled-components';
 import { useAuth } from '../../contexts/AuthContext';
 import { Api } from 'src/api';
 import { userData } from 'src/api/user';
+import withAuth from 'src/contexts/WithAuth';
 
-const Page = () => {
+const MyPage = () => {
   const [userInfo, setUserInfo] = useState<userData>();
 
   const fetchUserInfo = async () => {
@@ -45,7 +46,7 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default withAuth(MyPage);
 
 const Container = styled.div`
   display: flex;
