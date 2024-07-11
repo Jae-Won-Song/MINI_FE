@@ -57,6 +57,7 @@ function getCookie(name: string): string | null {
 async function refreshToken(): Promise<string> {
   // TODO : 이 곳을 열면 다른곳도 열어야 함
   const refreshToken = getCookie('refresh-token');
+  console.log('refreshToken', refreshToken);
   if (!refreshToken) throw new Error('No refresh token available');
   const response = await Api.User.refreshTokens();
   console.error(response);
@@ -76,11 +77,11 @@ apiWithToken.interceptors.response.use(
     const originalRequest = config;
 
     if (status === 401) {
+      // 401 오류가 발생한 경우
       if (!isRefreshing) {
         isRefreshing = true;
         try {
-          // alert('요청 보냄');
-          const newToken = await refreshToken();
+          const newToken = await UserService.refreshTokens(); // 토큰 갱신을 시도합니다.
           isRefreshing = false;
           onRrefreshed(newToken);
           refreshSubscribers = [];
@@ -90,10 +91,11 @@ apiWithToken.interceptors.response.use(
         }
       }
 
+      // 새로운 토큰이 갱신될 때까지 요청을 대기합니다.
       return new Promise((resolve) => {
         addRefreshSubscriber((token: string) => {
           originalRequest.headers['Authorization'] = `Bearer ${token}`;
-          resolve(axios(originalRequest));
+          resolve(axios(originalRequest)); // 원래의 요청을 재시도합니다.
         });
       });
     }

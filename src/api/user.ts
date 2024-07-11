@@ -81,25 +81,58 @@ const UserService = {
   // },
   refreshTokens: async () => {
     try {
-      const refreshToken = Cookies.get('refresh-token');
-      if (!refreshToken) throw new Error('No refresh token available');
+      const accessToken = Service.LocalStorage.AccessToken.get();
+      if (!accessToken) throw new Error('No access token available');
+
       const { data } = await apiWithNoToken.post(
         `${API}/refresh-tokens`,
         {},
         {
           headers: {
-            'Refresh-Token': refreshToken,
+            Authorization: `Bearer ${accessToken}`, // 토큰을 Authorization 헤더에 포함
           },
         },
       );
-      const { accessToken } = data.data;
-      Service.LocalStorage.AccessToken.set(accessToken);
-      return accessToken;
+
+      const { newAccessToken } = data.data;
+      Service.LocalStorage.AccessToken.set(newAccessToken);
+      return newAccessToken;
     } catch (error) {
-      console.error(error);
+      console.error('Error refreshing token:', error);
+      if (error.response) {
+        console.error('Error response data:', error.response.data);
+        console.error('Error response status:', error.response.status);
+        console.error('Error response headers:', error.response.headers);
+      } else if (error.request) {
+        console.error('Error request:', error.request);
+      } else {
+        console.error('Error message:', error.message);
+      }
       return Promise.reject(error);
     }
   },
+
+  // refreshTokens: async () => {
+  //   try {
+  //     const refreshToken = Cookies.get('refresh-token');
+  //     if (!refreshToken) throw new Error('No refresh token available');
+  //     const { data } = await apiWithNoToken.post(
+  //       `${API}/refresh-tokens`,
+  //       {},
+  //       {
+  //         headers: {
+  //           'Refresh-Token': refreshToken,
+  //         },
+  //       },
+  //     );
+  //     const { accessToken } = data.data;
+  //     Service.LocalStorage.AccessToken.set(accessToken);
+  //     return accessToken;
+  //   } catch (error) {
+  //     console.error(error);
+  //     return Promise.reject(error);
+  //   }
+  // },
   logout: async () => {
     try {
       const { message } = (await apiWithToken.post(
