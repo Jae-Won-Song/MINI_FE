@@ -27,7 +27,7 @@ export const apiWithToken: AxiosInstance = axios.create({
   baseURL: closedURL,
 });
 
-// 인터셉터가 모든 api 호출에 대해 헤더정보를 삽입합니다.
+// 인터셉터가 모든 api 호출에 대해 헤더 정보를 삽입합니다.
 apiWithToken.interceptors.request.use((req: InternalAxiosRequestConfig) => {
   const token = Service.LocalStorage.AccessToken.get();
   if (!token) return req;
@@ -41,6 +41,7 @@ let refreshSubscribers: ((token: string) => void)[] = [];
 
 function onRrefreshed(token: string) {
   refreshSubscribers.forEach((cb) => cb(token));
+  refreshSubscribers = [];
 }
 
 function addRefreshSubscriber(callback: (token: string) => void) {
@@ -55,10 +56,9 @@ function getCookie(name: string): string | null {
 }
 
 async function refreshToken(): Promise<string> {
-  // TODO : 이 곳을 열면 다른곳도 열어야 함
-  const refreshToken = getCookie('refresh-token');
-  console.log('refreshToken', refreshToken);
-  if (!refreshToken) throw new Error('No refresh token available');
+  const token = Service.LocalStorage.AccessToken.get();
+  console.log('액세스 토큰', token);
+  if (!token) throw new Error('액세스 토큰 사용 불가');
   const response = await Api.User.refreshTokens();
   console.error(response);
   alert(response);
@@ -81,6 +81,7 @@ apiWithToken.interceptors.response.use(
       if (!isRefreshing) {
         isRefreshing = true;
         try {
+          // const newToken = await refreshToken(); // 토큰 갱신을 시도합니다.
           const newToken = await UserService.refreshTokens(); // 토큰 갱신을 시도합니다.
           isRefreshing = false;
           onRrefreshed(newToken);

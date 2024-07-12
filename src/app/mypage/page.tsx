@@ -5,15 +5,8 @@ import styled from 'styled-components';
 import { Api } from 'src/api';
 import { userData } from 'src/api/user';
 import withAuth from 'src/contexts/WithAuth';
-import { jwtDecode } from 'jwt-decode';
 
 const MyPage = () => {
-  const token = localStorage.getItem('accessToken');
-  if (token) {
-    const decodedToken = jwtDecode(token);
-    console.log('Decoded Token:', decodedToken); // 콘솔에 디코딩된 토큰 정보를 출력합니다.
-  }
-
   const [userInfo, setUserInfo] = useState<userData>();
 
   const fetchUserInfo = async () => {

@@ -6,10 +6,10 @@ import styled from 'styled-components';
 const NotFound = () => {
   return (
     <Container>
-      <Title>
+      <Title>페이지를 찾을 수 없습니다</Title>
+      <Message>
         <span>404</span> Page Not Found
-      </Title>
-      <Message>페이지를 찾을 수 없습니다.</Message>
+      </Message>
       <StyledLink href="/">메인 페이지로 돌아가기</StyledLink>
     </Container>
   );
@@ -30,17 +30,18 @@ const Title = styled.div`
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 1rem;
-  span {
-    font-size: 2.3rem;
-    font-family: 'Cafe24Moyamoya-Face-v1.0';
-    color: #f85b2b;
-    margin-right: 1rem;
-  }
 `;
 
 const Message = styled.p`
   font-size: 1.5rem;
   margin-bottom: 2rem;
+  font-weight: 700;
+  span {
+    font-size: 1.8rem;
+    font-family: 'Cafe24Moyamoya-Face-v1.0';
+    color: #f85b2b;
+    margin-right: 0.5rem;
+  }
 `;
 
 const StyledLink = styled(Link)`

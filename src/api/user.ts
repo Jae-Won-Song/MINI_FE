@@ -68,7 +68,7 @@ const UserService = {
   },
   // refreshTokens: async () => {
   //   try {
-  //     const { data } = await apiWithToken.post(`${API}/refresh-tokens`, {
+  //     const { data } = await apiWithNoToken.post(`${API}/refresh-tokens`, {
   //       accessToken: Service.LocalStorage.AccessToken.get(),
   //     });
   //     const { accessToken } = data.data;
@@ -82,57 +82,103 @@ const UserService = {
   refreshTokens: async () => {
     try {
       const accessToken = Service.LocalStorage.AccessToken.get();
-      if (!accessToken) throw new Error('No access token available');
+      const refreshToken = Cookies.get('refresh-token');
+      if (!accessToken) throw new Error('액세스 토큰이 없습니다.');
+      if (!refreshToken) throw new Error('리프레시 토큰이 없습니다.');
 
       const { data } = await apiWithNoToken.post(
         `${API}/refresh-tokens`,
-        {},
+        { refreshToken },
         {
           headers: {
-            Authorization: `Bearer ${accessToken}`, // 토큰을 Authorization 헤더에 포함
+            Authorization: `Bearer ${accessToken}`,
+            'Content-Type': 'application/json',
           },
         },
       );
 
-      const { newAccessToken } = data.data;
+      const { accessToken: newAccessToken, refreshToken: newRefreshToken } =
+        data.data;
       Service.LocalStorage.AccessToken.set(newAccessToken);
+      Cookies.set('refresh-token', newRefreshToken, { expires: 7 });
       return newAccessToken;
     } catch (error) {
       console.error('Error refreshing token:', error);
-      if (error.response) {
-        console.error('Error response data:', error.response.data);
-        console.error('Error response status:', error.response.status);
-        console.error('Error response headers:', error.response.headers);
-      } else if (error.request) {
-        console.error('Error request:', error.request);
-      } else {
-        console.error('Error message:', error.message);
-      }
       return Promise.reject(error);
     }
   },
 
   // refreshTokens: async () => {
   //   try {
-  //     const refreshToken = Cookies.get('refresh-token');
-  //     if (!refreshToken) throw new Error('No refresh token available');
+  //     const token = Service.LocalStorage.AccessToken.get();
+  //     if (!token) throw new Error('액세스 토큰이 없습니다.');
+
   //     const { data } = await apiWithNoToken.post(
   //       `${API}/refresh-tokens`,
+  //       // { token },
   //       {},
   //       {
   //         headers: {
-  //           'Refresh-Token': refreshToken,
+  //           Authorization: `Bearer ${token}`, // 액세스 토큰을 Authorization 헤더에 포함
+  //           'Content-Type': 'application/json',
   //         },
   //       },
   //     );
+
+  //     const { accessToken } = data.data;
+  //     Service.LocalStorage.AccessToken.set(accessToken);
+  //     // Cookies.set('refresh-token', accessToken, { expires: 7 });
+  //     return accessToken;
+  //   } catch (error) {
+  //     console.error('Error refreshing token:', error);
+  //     if (error.response) {
+  //       console.error('Error response data:', error.response.data);
+  //       console.error('Error response status:', error.response.status);
+  //       console.error('Error response headers:', error.response.headers);
+  //     } else if (error.request) {
+  //       console.error('Error request:', error.request);
+  //     } else {
+  //       console.error('Error message:', error.message);
+  //     }
+  //     return Promise.reject(error);
+  //   }
+  // },
+
+  // refreshTokens: async () => {
+  //   try {
+  //     const refreshToken = Cookies.get('refresh-token');
+  //     if (!refreshToken) throw new Error('No refresh token available');
+
+  //     const { data } = await apiWithNoToken.post(
+  //       `${API}/refresh-tokens`,
+  //       // { refreshToken },
+  //       {},
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${refreshToken}`, // 리프레시 토큰을 Authorization 헤더에 포함
+  //           'Content-Type': 'application/json',
+  //         },
+  //       },
+  //     );
+
   //     const { accessToken } = data.data;
   //     Service.LocalStorage.AccessToken.set(accessToken);
   //     return accessToken;
   //   } catch (error) {
-  //     console.error(error);
+  //     console.error('Error refreshing token:', error);
+  //     if (error.response) {
+  //       console.error('Error response data:', error.response.data);
+  //       console.error('Error response status:', error.response.status);
+  //       console.error('Error response headers:', error.response.headers);
+  //     } else if (error.request) {
+  //       console.error('Error request:', error.request);
+  //     } else {
+  //       console.error('Error message:', error.message);
+  //     }
   //     return Promise.reject(error);
   //   }
   // },
+
   logout: async () => {
     try {
       const { message } = (await apiWithToken.post(
