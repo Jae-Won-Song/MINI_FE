@@ -1,11 +1,9 @@
 import Service from 'src/service';
 import { apiWithNoToken, apiWithToken } from '.';
-import Cookies from 'js-cookie';
 
 export interface ServerResponse {
   status: number;
   message?: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data?: any;
 }
 
@@ -43,17 +41,20 @@ const API = '/user';
 const UserService = {
   login: async (req: LoginRequest) => {
     try {
+      console.log('Login Request:', req);
       const { data } = await apiWithNoToken.post(`${API}/login`, req);
-      const { accessToken, refreshToken } = data;
+      // console.log('Login Response Headers:', data.headers);
+      const { accessToken } = data;
       Service.LocalStorage.AccessToken.set(accessToken);
-      Cookies.set('refresh-token', refreshToken, { expires: 7 }); // 쿠키 만료기간을 7일로 설정
       return accessToken;
     } catch (error) {
+      console.error('Login Error:', error);
       return Promise.reject(error);
     }
   },
   register: async (req: registerRequest) => {
     try {
+      console.log('Register Request:', req);
       const response = await apiWithNoToken.post(`${API}/register`, req);
       const { status, data } = response;
 
@@ -63,7 +64,8 @@ const UserService = {
         return Promise.reject(new Error(data.message || 'Registration failed'));
       }
     } catch (error) {
-      return Promise.reject(error.response?.data || error); // 에러 객체를 그대로 reject에 포함
+      console.error('Register Error:', error);
+      return Promise.reject(error.response?.data || error);
     }
   },
   // refreshTokens: async () => {
@@ -71,7 +73,8 @@ const UserService = {
   //     const { data } = await apiWithNoToken.post(`${API}/refresh-tokens`, {
   //       accessToken: Service.LocalStorage.AccessToken.get(),
   //     });
-  //     const { accessToken } = data.data;
+  //     // eslint-disable-next-line no-useless-rename
+  //     const { accessToken: accessToken } = data.data;
   //     Service.LocalStorage.AccessToken.set(accessToken);
   //     return accessToken;
   //   } catch (error) {
@@ -82,103 +85,29 @@ const UserService = {
   refreshTokens: async () => {
     try {
       const accessToken = Service.LocalStorage.AccessToken.get();
-      const refreshToken = Cookies.get('refresh-token');
+      console.log('액세스 토큰', accessToken);
       if (!accessToken) throw new Error('액세스 토큰이 없습니다.');
-      if (!refreshToken) throw new Error('리프레시 토큰이 없습니다.');
 
       const { data } = await apiWithNoToken.post(
         `${API}/refresh-tokens`,
-        { refreshToken },
+        {},
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,
             'Content-Type': 'application/json',
           },
+          withCredentials: true,
         },
       );
-
-      const { accessToken: newAccessToken, refreshToken: newRefreshToken } =
-        data.data;
+      const { accessToken: newAccessToken } = data.data;
+      console.log('새로운 액세스 토큰:', newAccessToken);
       Service.LocalStorage.AccessToken.set(newAccessToken);
-      Cookies.set('refresh-token', newRefreshToken, { expires: 7 });
       return newAccessToken;
     } catch (error) {
       console.error('Error refreshing token:', error);
       return Promise.reject(error);
     }
   },
-
-  // refreshTokens: async () => {
-  //   try {
-  //     const token = Service.LocalStorage.AccessToken.get();
-  //     if (!token) throw new Error('액세스 토큰이 없습니다.');
-
-  //     const { data } = await apiWithNoToken.post(
-  //       `${API}/refresh-tokens`,
-  //       // { token },
-  //       {},
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${token}`, // 액세스 토큰을 Authorization 헤더에 포함
-  //           'Content-Type': 'application/json',
-  //         },
-  //       },
-  //     );
-
-  //     const { accessToken } = data.data;
-  //     Service.LocalStorage.AccessToken.set(accessToken);
-  //     // Cookies.set('refresh-token', accessToken, { expires: 7 });
-  //     return accessToken;
-  //   } catch (error) {
-  //     console.error('Error refreshing token:', error);
-  //     if (error.response) {
-  //       console.error('Error response data:', error.response.data);
-  //       console.error('Error response status:', error.response.status);
-  //       console.error('Error response headers:', error.response.headers);
-  //     } else if (error.request) {
-  //       console.error('Error request:', error.request);
-  //     } else {
-  //       console.error('Error message:', error.message);
-  //     }
-  //     return Promise.reject(error);
-  //   }
-  // },
-
-  // refreshTokens: async () => {
-  //   try {
-  //     const refreshToken = Cookies.get('refresh-token');
-  //     if (!refreshToken) throw new Error('No refresh token available');
-
-  //     const { data } = await apiWithNoToken.post(
-  //       `${API}/refresh-tokens`,
-  //       // { refreshToken },
-  //       {},
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${refreshToken}`, // 리프레시 토큰을 Authorization 헤더에 포함
-  //           'Content-Type': 'application/json',
-  //         },
-  //       },
-  //     );
-
-  //     const { accessToken } = data.data;
-  //     Service.LocalStorage.AccessToken.set(accessToken);
-  //     return accessToken;
-  //   } catch (error) {
-  //     console.error('Error refreshing token:', error);
-  //     if (error.response) {
-  //       console.error('Error response data:', error.response.data);
-  //       console.error('Error response status:', error.response.status);
-  //       console.error('Error response headers:', error.response.headers);
-  //     } else if (error.request) {
-  //       console.error('Error request:', error.request);
-  //     } else {
-  //       console.error('Error message:', error.message);
-  //     }
-  //     return Promise.reject(error);
-  //   }
-  // },
-
   logout: async () => {
     try {
       const { message } = (await apiWithToken.post(
@@ -188,14 +117,17 @@ const UserService = {
       Service.LocalStorage.AccessToken.remove();
       return message;
     } catch (error) {
+      console.error('Logout Error:', error);
       return Promise.reject(error);
     }
   },
   profile: async () => {
     try {
       const { data } = (await apiWithToken.get(`${API}`)) as ServerResponse;
+      console.log('Profile Data:', data);
       return data;
     } catch (error) {
+      console.error('Profile Error:', error);
       return Promise.reject(error);
     }
   },

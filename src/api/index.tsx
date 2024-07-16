@@ -25,6 +25,7 @@ const closedURL = process.env.NEXT_PUBLIC_API_URL;
 // 사용자 인증(accessToken)이 필요한 api를 호출 시 사용합니다.
 export const apiWithToken: AxiosInstance = axios.create({
   baseURL: closedURL,
+  withCredentials: true,
 });
 
 // 인터셉터가 모든 api 호출에 대해 헤더 정보를 삽입합니다.
@@ -48,20 +49,11 @@ function addRefreshSubscriber(callback: (token: string) => void) {
   refreshSubscribers.push(callback);
 }
 
-function getCookie(name: string): string | null {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop()?.split(';').shift() ?? null;
-  return null;
-}
-
 async function refreshToken(): Promise<string> {
   const token = Service.LocalStorage.AccessToken.get();
   console.log('액세스 토큰', token);
   if (!token) throw new Error('액세스 토큰 사용 불가');
   const response = await Api.User.refreshTokens();
-  console.error(response);
-  alert(response);
   const { accessToken } = response.data;
   Service.LocalStorage.AccessToken.set(accessToken);
   return accessToken;
@@ -81,8 +73,7 @@ apiWithToken.interceptors.response.use(
       if (!isRefreshing) {
         isRefreshing = true;
         try {
-          // const newToken = await refreshToken(); // 토큰 갱신을 시도합니다.
-          const newToken = await UserService.refreshTokens(); // 토큰 갱신을 시도합니다.
+          const newToken = await refreshToken(); // 토큰 갱신을 시도합니다.
           isRefreshing = false;
           onRrefreshed(newToken);
           refreshSubscribers = [];

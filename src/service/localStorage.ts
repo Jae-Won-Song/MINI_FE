@@ -1,4 +1,4 @@
-const accessTokenStr = 'access-token';
+const accessTokenStr = 'accessToken';
 
 export const AccessTokenService = {
   get: () =>
