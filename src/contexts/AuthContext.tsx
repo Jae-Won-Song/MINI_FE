@@ -53,7 +53,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       alert('로그아웃 되었습니다.');
       router.push('/');
     } catch (error) {
-      // Handle the error or add a comment to indicate intentional empty block
+      console.error(error);
     }
   }, [router]);
 
@@ -61,7 +61,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     try {
       const { accessToken } = await Api.User.refreshTokens();
       setAccessToken(accessToken);
-      console.log('Token refreshed successfully'); // 디버깅용 로그
+      console.log('Token refreshed successfully');
     } catch (error) {
       console.error('Token refresh failed:', error);
       await logout();
@@ -75,7 +75,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       alert('로그인 성공! 메인 페이지로 이동합니다.');
       router.push('/');
     } catch (error) {
-      console.error('Login error:', error); // 디버깅용 로그
+      console.error('Login error:', error);
       alert('로그인 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
     }
   };
@@ -86,10 +86,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       alert('회원가입 성공! 로그인 페이지로 이동합니다.');
       router.push(`/auth/login`);
     } catch (error) {
-      // 에러 구조를 디버깅하기 위한 로그 추가
       console.error('Registration error:', error);
 
-      // 에러 응답 구조에서 메시지를 안전하게 추출
+      // 에러 응답 구조에서 메시지를 추출
       const errorMessage =
         error?.resultMessage ||
         '회원가입 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.';
