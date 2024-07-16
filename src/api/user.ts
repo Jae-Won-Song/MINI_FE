@@ -43,8 +43,9 @@ const UserService = {
   login: async (req: LoginRequest) => {
     try {
       console.log('Login Request:', req);
-      const { data } = await apiWithNoToken.post(`${API}/login`, req);
-      // console.log('Login Response Headers:', data.headers);
+      const { data } = await apiWithNoToken.post(`${API}/login`, req, {
+        withCredentials: true,
+      });
       const { accessToken } = data;
       Service.LocalStorage.AccessToken.set(accessToken);
       return accessToken;
