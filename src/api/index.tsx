@@ -11,6 +11,7 @@ const openURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 // 오픈된 api를 호출 시 사용합니다.
 export const apiWithNoToken: AxiosInstance = axios.create({
   baseURL: openURL,
+  withCredentials: true,
 });
 
 apiWithNoToken.interceptors.response.use(
