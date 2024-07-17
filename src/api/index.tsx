@@ -73,7 +73,7 @@ apiWithToken.interceptors.response.use(
       if (!isRefreshing) {
         isRefreshing = true;
         try {
-          const newToken = await refreshToken(); // 토큰 갱신을 시도합니다.
+          const newToken = await UserService.refreshTokens(); // 토큰 갱신을 시도합니다.
           isRefreshing = false;
           onRrefreshed(newToken);
           refreshSubscribers = [];
