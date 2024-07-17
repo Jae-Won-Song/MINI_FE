@@ -70,46 +70,46 @@ const UserService = {
       return Promise.reject(error.response?.data || error);
     }
   },
-  // refreshTokens: async () => {
-  //   try {
-  //     const { data } = await apiWithNoToken.post(`${API}/refresh-tokens`, {
-  //       accessToken: Service.LocalStorage.AccessToken.get(),
-  //     });
-  //     // eslint-disable-next-line no-useless-rename
-  //     const { accessToken: accessToken } = data.data;
-  //     Service.LocalStorage.AccessToken.set(accessToken);
-  //     return accessToken;
-  //   } catch (error) {
-  //     console.error(error);
-  //     return Promise.reject(error);
-  //   }
-  // },
   refreshTokens: async () => {
     try {
-      const accessToken = Service.LocalStorage.AccessToken.get();
-      console.log('액세스 토큰', accessToken);
-      if (!accessToken) throw new Error('액세스 토큰이 없습니다.');
-
-      const { data } = await apiWithNoToken.post(
-        `${API}/refresh-tokens`,
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-            'Content-Type': 'application/json',
-          },
-          withCredentials: true,
-        },
-      );
-      const { accessToken: newAccessToken } = data.data;
-      console.log('새로운 액세스 토큰:', newAccessToken);
-      Service.LocalStorage.AccessToken.set(newAccessToken);
-      return newAccessToken;
+      const { data } = await apiWithNoToken.post(`${API}/refresh-tokens`, {
+        accessToken: Service.LocalStorage.AccessToken.get(),
+      });
+      // eslint-disable-next-line no-useless-rename
+      const { accessToken: accessToken } = data.data;
+      Service.LocalStorage.AccessToken.set(accessToken);
+      return accessToken;
     } catch (error) {
-      console.error('Error refreshing token:', error);
+      console.error(error);
       return Promise.reject(error);
     }
   },
+  // refreshTokens: async () => {
+  //   try {
+  //     const accessToken = Service.LocalStorage.AccessToken.get();
+  //     console.log('액세스 토큰', accessToken);
+  //     if (!accessToken) throw new Error('액세스 토큰이 없습니다.');
+
+  //     const { data } = await apiWithNoToken.post(
+  //       `${API}/refresh-tokens`,
+  //       {},
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${accessToken}`,
+  //           'Content-Type': 'application/json',
+  //         },
+  //         withCredentials: true,
+  //       },
+  //     );
+  //     const { accessToken: newAccessToken } = data.data;
+  //     console.log('새로운 액세스 토큰:', newAccessToken);
+  //     Service.LocalStorage.AccessToken.set(newAccessToken);
+  //     return newAccessToken;
+  //   } catch (error) {
+  //     console.error('Error refreshing token:', error);
+  //     return Promise.reject(error);
+  //   }
+  // },
   logout: async () => {
     try {
       const { message } = (await apiWithToken.post(
