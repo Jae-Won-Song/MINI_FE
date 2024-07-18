@@ -1,8 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import styled, { css } from 'styled-components';
 import Image from 'next/image';
+import { useDataContext, DataContextProps } from '../contexts/DataContext';
 import KbLogo from '../../public/icons/1200x600wa.png';
 import TossLogo from '../../public/icons/images.png';
 
@@ -76,187 +77,212 @@ const PaymentButtons = () => {
   const [isDropdownOpen2, setIsDropdownOpen2] = useState<boolean>(false);
   const [selectedDropdown1, setSelectedDropdown1] =
     useState<string>('카드를 선택해주세요.');
+
   const [selectedDropdown2, setSelectedDropdown2] = useState<string>('일시불');
+  const { setObjectState }: DataContextProps = useDataContext();
 
-  const buttons = [
-    {
-      text: '카카오pay',
-      font: 'Arial',
-      fontSize: '14px',
-      fontColor: '#000',
-      fontWeight: 'bold',
-      message: (
-        <>
-          <p>
-            <Tag>선착순</Tag> 카카오pay
-          </p>
-          <p>호텔/펜션 - 7만원 이상, 10% 할인 (오전10시, 일 1300명)</p>
-          <p>최대 할인금액 1만원</p>
-          <p>모텔 - 2만원 이상, 2천원 할인 (오전10시, 일 1100명)</p>
-        </>
-      ),
-      hasBenefit: true,
-    },
-    {
-      text: 'toss pay',
-      font: 'Arial',
-      fontSize: '14px',
-      fontColor: '#000',
-      fontWeight: 'bold',
-      message: (
-        <>
-          <p>
-            <Tag>선착순</Tag> 토스페이
-          </p>
-          <p>3만원 이상, 10% 최대 1만원 할인 (오전10시, 일 500명)</p>
-          <p>2만원 이상, 2천원 할인 (오후 4시, 일 1200명)</p>
-          <p>+생애 첫결제 시, 5천원 캐시백</p>
-        </>
-      ),
-      hasBenefit: true,
-    },
-    {
-      text: '신용/체크 카드',
-      font: 'Arial',
-      fontSize: '14px',
-      fontColor: '#000',
-      fontWeight: 'bold',
-      message: (
-        <>
-          <p>
-            <Tag>선착순</Tag> 신용/체크 카드
-          </p>
-          <p>국내숙소 - 7만원 이상, 5천원 할인</p>
-          <p>오전 0시 우리 (일 80명), 농협 (일 300명)</p>
-          <p>삼성 (일 220명), 하나 (일 100명)</p>
-          <p>국내숙소 - 현대카드 M포인트 10% 사용, 0.5% 적립</p>
-          <p>최대 5,000P 사용가능</p>
-        </>
-      ),
-      hasBenefit: true,
-      hasDropdown: true,
-      dropdownItems1: [
-        '카드를 선택해주세요.',
-        '우리',
-        '신한',
-        '비씨(페이북)',
-        '현대',
-        '삼성',
-        '롯데',
-        'KB국민',
-        'NH농협',
-        '하나(외환)',
-        '씨티',
-        '광주',
-        '제주',
-        '신협체크',
-        '전북',
-        'MG새마을금고',
-        '저축은행체크',
-        '우체국카드',
-        '카카오뱅크',
-        'KDB산업은행',
-        '케이뱅크',
-      ],
-      dropdownItems2: [
-        '일시불',
-        '2개월 (무이자 할부)',
-        '3개월 (무이자 할부)',
-        '4개월 (무이자 할부)',
-        '5개월 (무이자 할부)',
-        '6개월',
-        '7개월',
-        '8개월',
-        '9개월',
-        '10개월',
-        '11개월',
-        '12개월',
-      ],
-    },
-    {
-      text: 'KB Pay',
-      font: 'Arial',
-      fontSize: '14px',
-      fontColor: '#000',
-      fontWeight: 'normal',
-      message: <p>KB Pay를 선택했습니다</p>,
-      hasBenefit: false,
-      hasDropdown: true,
-      dropdownItems2: [
-        '일시불',
-        '2개월 (무이자 할부)',
-        '3개월 (무이자 할부)',
-        '4개월 (무이자 할부)',
-        '5개월 (무이자 할부)',
-        '6개월',
-        '7개월',
-        '8개월',
-        '9개월',
-        '10개월',
-        '11개월',
-        '12개월',
-      ],
-    },
-    {
-      text: '🅝 Pay',
-      font: 'Yu Gothic',
-      fontSize: '14px',
-      fontColor: '#000',
-      fontWeight: 'bold',
-      message: (
-        <>
-          <p>
-            <Tag>선착순</Tag> 네이버페이
-          </p>
-          <p>국내숙소 - 10만원 이상, 7% 최대 1만원 할일</p>
-          <p>(오전 0시, 일700명)</p>
-        </>
-      ),
-      hasBenefit: true,
-    },
-    {
-      text: 'PAYCO',
-      font: 'Arial',
-      fontSize: '14px',
-      fontColor: '#FA2928',
-      fontWeight: 'bold',
-      message: <p>PAYCO를 선택했습니다</p>,
-      hasBenefit: false,
-    },
-    {
-      text: '법인 카드',
-      font: 'Arial',
-      fontSize: '14px',
-      fontColor: '#000',
-      fontWeight: 'bold',
-      message: <p>법인 카드를 선택했습니다</p>,
-      hasBenefit: false,
-    },
-    {
-      text: '휴대폰 결제',
-      font: 'Arial',
-      fontSize: '14px',
-      fontColor: '#000',
-      fontWeight: 'bold',
-      message: <p>휴대폰 결제를 선택했습니다</p>,
-      hasBenefit: false,
-    },
-  ];
+  const [selectedCardCompany, setSelectedCardCompany] = useState<string | null>(
+    null,
+  );
+  const [selectedInstallment, setSelectedInstallment] = useState<string | null>(
+    null,
+  );
+  const [isPaymentMethodSelected, setIsPaymentMethodSelected] =
+    useState<boolean>(false);
 
+  const buttons = useMemo(
+    () => [
+      {
+        text: '카카오pay',
+        font: 'Arial',
+        fontSize: '14px',
+        fontColor: '#000',
+        fontWeight: 'bold',
+        message: (
+          <>
+            <p>
+              <Tag>선착순</Tag> 카카오pay
+            </p>
+            <p>호텔/펜션 - 7만원 이상, 10% 할인 (오전10시, 일 1300명)</p>
+            <p>최대 할인금액 1만원</p>
+            <p>모텔 - 2만원 이상, 2천원 할인 (오전10시, 일 1100명)</p>
+          </>
+        ),
+        hasBenefit: true,
+      },
+      {
+        text: 'toss pay',
+        font: 'Arial',
+        fontSize: '14px',
+        fontColor: '#000',
+        fontWeight: 'bold',
+        message: (
+          <>
+            <p>
+              <Tag>선착순</Tag> 토스페이
+            </p>
+            <p>3만원 이상, 10% 최대 1만원 할인 (오전10시, 일 500명)</p>
+            <p>2만원 이상, 2천원 할인 (오후 4시, 일 1200명)</p>
+            <p>+생애 첫결제 시, 5천원 캐시백</p>
+          </>
+        ),
+        hasBenefit: true,
+      },
+      {
+        text: '신용/체크 카드',
+        font: 'Arial',
+        fontSize: '14px',
+        fontColor: '#000',
+        fontWeight: 'bold',
+        message: (
+          <>
+            <p>
+              <Tag>선착순</Tag> 신용/체크 카드
+            </p>
+            <p>국내숙소 - 7만원 이상, 5천원 할인</p>
+            <p>오전 0시 우리 (일 80명), 농협 (일 300명)</p>
+            <p>삼성 (일 220명), 하나 (일 100명)</p>
+            <p>국내숙소 - 현대카드 M포인트 10% 사용, 0.5% 적립</p>
+            <p>최대 5,000P 사용가능</p>
+          </>
+        ),
+        hasBenefit: true,
+        hasDropdown: true,
+        dropdownItems1: [
+          '카드를 선택해주세요.',
+          '우리',
+          '신한',
+          '비씨(페이북)',
+          '현대',
+          '삼성',
+          '롯데',
+          'KB국민',
+          'NH농협',
+          '하나(외환)',
+          '씨티',
+          '광주',
+          '제주',
+          '신협체크',
+          '전북',
+          'MG새마을금고',
+          '저축은행체크',
+          '우체국카드',
+          '카카오뱅크',
+          'KDB산업은행',
+          '케이뱅크',
+        ],
+        dropdownItems2: [
+          '일시불',
+          '2개월 (무이자 할부)',
+          '3개월 (무이자 할부)',
+          '4개월 (무이자 할부)',
+          '5개월 (무이자 할부)',
+          '6개월',
+          '7개월',
+          '8개월',
+          '9개월',
+          '10개월',
+          '11개월',
+          '12개월',
+        ],
+      },
+      {
+        text: 'KB Pay',
+        font: 'Arial',
+        fontSize: '14px',
+        fontColor: '#000',
+        fontWeight: 'normal',
+        message: <p>KB Pay를 선택했습니다</p>,
+        hasBenefit: false,
+        hasDropdown: true,
+        dropdownItems2: [
+          '일시불',
+          '2개월 (무이자 할부)',
+          '3개월 (무이자 할부)',
+          '4개월 (무이자 할부)',
+          '5개월 (무이자 할부)',
+          '6개월',
+          '7개월',
+          '8개월',
+          '9개월',
+          '10개월',
+          '11개월',
+          '12개월',
+        ],
+      },
+      {
+        text: '🅝 Pay',
+        font: 'Yu Gothic',
+        fontSize: '14px',
+        fontColor: '#000',
+        fontWeight: 'bold',
+        message: (
+          <>
+            <p>
+              <Tag>선착순</Tag> 네이버페이
+            </p>
+            <p>국내숙소 - 10만원 이상, 7% 최대 1만원 할인</p>
+            <p>(오전 0시, 일700명)</p>
+          </>
+        ),
+        hasBenefit: true,
+      },
+      {
+        text: 'PAYCO',
+        font: 'Arial',
+        fontSize: '14px',
+        fontColor: '#FA2928',
+        fontWeight: 'bold',
+        message: <p>PAYCO를 선택했습니다</p>,
+        hasBenefit: false,
+      },
+      {
+        text: '법인 카드',
+        font: 'Arial',
+        fontSize: '14px',
+        fontColor: '#000',
+        fontWeight: 'bold',
+        message: <p>법인 카드를 선택했습니다</p>,
+        hasBenefit: false,
+      },
+      {
+        text: '휴대폰 결제',
+        font: 'Arial',
+        fontSize: '14px',
+        fontColor: '#000',
+        fontWeight: 'bold',
+        message: <p>휴대폰 결제를 선택했습니다</p>,
+        hasBenefit: false,
+      },
+    ],
+    [],
+  );
+
+  // Modify handleClick function
   const handleClick = (index: number) => {
     if (activeIndex === index) {
       setActiveIndex(null);
       setIsDropdownOpen1(false);
       setIsDropdownOpen2(false);
+      setSelectedCardCompany(null);
+      setSelectedInstallment(null);
+      setIsPaymentMethodSelected(false);
     } else {
       setActiveIndex(index);
       setIsDropdownOpen1(false);
       setIsDropdownOpen2(false);
       setSelectedDropdown1('카드를 선택해주세요.');
       setSelectedDropdown2('일시불');
+      setSelectedCardCompany(null);
+      setSelectedInstallment(null);
+      setIsPaymentMethodSelected(
+        buttons[index].text !== '신용/체크 카드' &&
+          buttons[index].text !== 'KB Pay',
+      );
     }
   };
 
+  // Update dropdown handlers to manage state
   const handleDropdownToggle1 = () => {
     setIsDropdownOpen1(!isDropdownOpen1);
   };
@@ -267,13 +293,50 @@ const PaymentButtons = () => {
 
   const handleDropdownSelect1 = (item: string) => {
     setSelectedDropdown1(item);
+    setSelectedCardCompany(item); // Update selected card company
     setIsDropdownOpen1(false);
+    if (activeIndex !== null && buttons[activeIndex].text === 'KB Pay') {
+      setIsPaymentMethodSelected(true);
+    }
   };
 
   const handleDropdownSelect2 = (item: string) => {
     setSelectedDropdown2(item);
+    setSelectedInstallment(item); // Update selected installment
     setIsDropdownOpen2(false);
+    if (activeIndex !== null && buttons[activeIndex].text === 'KB Pay') {
+      setIsPaymentMethodSelected(true);
+    }
+    if (
+      activeIndex !== null &&
+      buttons[activeIndex].text === '신용/체크 카드' &&
+      selectedDropdown1 !== '카드를 선택해주세요.'
+    ) {
+      setIsPaymentMethodSelected(true);
+    }
   };
+
+  // Use useEffect to update context state
+  useEffect(() => {
+    if (activeIndex !== null) {
+      setObjectState((prevState) => ({
+        ...prevState,
+        isPaymentMethodSelected,
+        paymentDetails: {
+          method: buttons[activeIndex].text,
+          cardCompany: selectedCardCompany,
+          installment: selectedInstallment,
+        },
+      }));
+    }
+  }, [
+    activeIndex,
+    selectedCardCompany,
+    selectedInstallment,
+    isPaymentMethodSelected,
+    buttons,
+    setObjectState,
+  ]);
 
   return (
     <div>

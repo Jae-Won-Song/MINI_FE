@@ -48,7 +48,7 @@ const SelectRoom = ({
   accommodationImage,
   icons,
 }: SelectRoomProps) => {
-  const { setNumberState, setObjectState }: DataContextProps = useDataContext();
+  const { setObjectState }: DataContextProps = useDataContext();
 
   const [isDateOpen, setIsDateOpen] = useState(false);
   const [selectedStartDate, setSelectedStartDate] = useState<Dayjs | null>(
@@ -118,7 +118,7 @@ const SelectRoom = ({
         checkOutDate: selectedEndDate,
         stayDays,
         selectPerson,
-        price: currentPrice,
+        price: totalPrice,
         title,
         accommodationTitle,
         accommodationImage,
@@ -142,6 +142,8 @@ const SelectRoom = ({
     };
   }, [isDateOpen]);
 
+  const totalPrice = currentPrice * (stayDays || 1);
+
   return (
     <Container>
       <ImageContainer>
@@ -159,14 +161,14 @@ const SelectRoom = ({
       <Content>
         <Title>{title}</Title>
         <Subtitle>2인 기준, 최대 {MaxCount}인</Subtitle>
-        <Description>기준 인원 초과 시 1인 50,000원 추가</Description>
+        <Description>기준 인원 초과 시 금액이 추가됩니다</Description>
         <Amenities>
           편의시설:
           <IconsImport icons={icons} />
         </Amenities>
       </Content>
       <PriceSection>
-        <Price>{currentPrice.toLocaleString()}원</Price>
+        <Price>{totalPrice.toLocaleString()}원</Price>
         {showRoomAvailability && (
           <RoomAvailability
             accommodationId={accommodationId}
@@ -179,33 +181,31 @@ const SelectRoom = ({
         {selectedStartDate && selectedEndDate && (
           <StayInfo>숙박일 수: {stayDays}박</StayInfo>
         )}
-        <DateSelection ref={dateRef}>
-          <SearchElementsWrapper>
-            <p>날짜</p>
-            <SelectorWrapper onClick={toggleDate}>
-              <SelectorDate>
-                {selectedStartDate
-                  ? selectedStartDate.format('YYYY년 M월 D일')
-                  : '체크인'}
-              </SelectorDate>
-              <p style={{ textAlign: 'center' }}>~</p>
-              <SelectorDate>
-                {selectedEndDate
-                  ? selectedEndDate.format('YYYY년 M월 D일')
-                  : '체크아웃'}
-              </SelectorDate>
-              {isDateOpen && <MainSearchDate onConfirm={handleDateConfirm} />}
-            </SelectorWrapper>
-          </SearchElementsWrapper>
-        </DateSelection>
-        <GuestSelection>
+        <SelectionWrapper ref={dateRef}>
+          <SelectionLabel>날짜</SelectionLabel>
+          <SelectorWrapper onClick={toggleDate}>
+            <SelectorDate>
+              {selectedStartDate
+                ? selectedStartDate.format('YYYY년 M월 D일')
+                : '체크인'}
+            </SelectorDate>
+            <p style={{ textAlign: 'center' }}>~</p>
+            <SelectorDate>
+              {selectedEndDate
+                ? selectedEndDate.format('YYYY년 M월 D일')
+                : '체크아웃'}
+            </SelectorDate>
+            {isDateOpen && <MainSearchDate onConfirm={handleDateConfirm} />}
+          </SelectorWrapper>
+        </SelectionWrapper>
+        <SelectionWrapper>
+          <SelectionLabel>인원 수</SelectionLabel>
           <GuestCounter>
-            <GuestCounterText>인원 수</GuestCounterText>
             <Button onClick={handleMinus}>-</Button>
             <GuestCount>{selectPerson} 인</GuestCount>
             <Button onClick={handlePlus}>+</Button>
           </GuestCounter>
-        </GuestSelection>
+        </SelectionWrapper>
         <PaymentButtonContainer>
           <Link
             href={
@@ -215,14 +215,18 @@ const SelectRoom = ({
             }
           >
             <Buttons
-              label="예약 하기"
-              fullWidth={false}
+              label={
+                selectedStartDate && selectedEndDate && isReservable
+                  ? '예약 하기'
+                  : '날짜를 선택해주세요'
+              }
               onClick={handleReserve}
               buttonColor={
                 selectedStartDate && selectedEndDate && isReservable
                   ? 'default'
                   : 'gray'
               }
+              disabled={!selectedStartDate || !selectedEndDate || !isReservable}
             />
           </Link>
         </PaymentButtonContainer>
@@ -242,10 +246,11 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   border: 1px solid #7d7d7d;
+  border-radius: 20px;
   box-shadow: 5px 5px 10px 0 #e5e5ec;
   padding: 10px;
   width: 100%;
-  max-width: 1680px;
+  max-width: 1700px;
   margin: 40px;
 `;
 
@@ -344,21 +349,23 @@ const Price = styled.div`
   margin-bottom: 10px;
 `;
 
-const DateSelection = styled.div`
+const SelectionWrapper = styled.div`
+  width: 500px;
+  height: 80px;
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
-  flex-basis: 50%;
-
+  justify-content: center;
+  position: relative;
   .react-datepicker-wrapper {
     width: auto;
   }
 `;
-
-const GuestSelection = styled.div`
-  display: flex;
-  align-items: center;
-  flex-basis: 50%;
+const SelectionLabel = styled.p`
+  font-size: 1.438rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  margin-right: 30px;
+  margin: 0 auto;
 `;
 
 const PaymentButtonContainer = styled.div`
@@ -366,23 +373,20 @@ const PaymentButtonContainer = styled.div`
 `;
 
 const GuestCounter = styled.div`
+  width: 400px;
   font-size: 1.438rem;
   font-weight: 700;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-`;
-
-const GuestCounterText = styled.div`
-  margin-right: 30px;
 `;
 
 const Button = styled.button`
   width: 60px;
-  height: 30px;
+  height: 40px;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 16px;
-  padding: 5px 10px;
   &:hover {
     background-color: #0070f3;
     color: white;
@@ -390,51 +394,18 @@ const Button = styled.button`
 `;
 
 const GuestCount = styled.div`
-  width: 230px;
-  height: 30px;
+  width: 225px;
+  height: 40px;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 16px;
-  margin: 0 10px;
-  padding: 0 10px;
   align-items: center;
   justify-content: center;
   display: flex;
-`;
-
-const SearchElementsWrapper = styled.div`
-  min-width: 440px;
-  flex-grow: 1;
-  padding-bottom: 10px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-
-  @media only screen and (max-width: 1440px) {
-    padding-bottom: 25px;
-  }
-  @media only screen and (max-width: 1080px) {
-    padding-bottom: 20px;
-  }
-  p {
-    width: 80px;
-    font-size: 1.438rem;
-    font-weight: 700;
-    @media only screen and (max-width: 1440px) {
-      width: 70px;
-      font-size: 1.25rem;
-    }
-    @media only screen and (max-width: 1080px) {
-      width: 70px;
-      font-size: 1.2rem;
-    }
-  }
 `;
 
 const SelectorWrapper = styled.div`
-  width: 100%;
+  width: 400px;
   height: 56px;
   font-size: 1.2rem;
   text-align: center;
@@ -450,7 +421,6 @@ const SelectorWrapper = styled.div`
     font-size: 1.2rem;
     font-weight: 700;
     width: 80px;
-    margin: 0;
   }
 
   @media only screen and (max-width: 1440px) {

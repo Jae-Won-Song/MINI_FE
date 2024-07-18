@@ -6,6 +6,7 @@ import dayjs from 'dayjs';
 import { useDataContext } from '../contexts/DataContext';
 import Buttons from './Buttons';
 import { useRouter } from 'next/navigation';
+import TermsModal from './TermsModal'; // TermsModal 컴포넌트 추가
 
 interface ObjectStateType {
   stayDays: number;
@@ -15,6 +16,7 @@ interface ObjectStateType {
   checkInDate: string;
   checkOutDate: string;
   selectPerson: number;
+  isPaymentMethodSelected: boolean;
 }
 
 const getTokenFromLocalStorage = () => {
@@ -26,6 +28,14 @@ const PaymentInformation = () => {
     objectState: ObjectStateType;
   }; // useDataContext에서 numberState를 가져오도록 수정해야 합니다.
   const [token, setToken] = useState<string | null>(null);
+  const [isAllChecked, setIsAllChecked] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState('');
+  const [checkedItems, setCheckedItems] = useState({
+    terms1: false,
+    terms2: false,
+    terms3: false,
+  });
   const router = useRouter();
 
   useEffect(() => {
@@ -48,7 +58,40 @@ const PaymentInformation = () => {
   );
 
   const handleReservation = () => {
-    router.push('/complete'); // ./test 페이지로 이동
+    if (
+      Object.values(checkedItems).every((item) => item) &&
+      objectState.isPaymentMethodSelected
+    ) {
+      router.push('/complete'); // ./test 페이지로 이동
+    } else {
+      alert('필수값을 모두 입력해주세요.');
+    }
+  };
+
+  const handleAllChecked = () => {
+    const newState = !isAllChecked;
+    setIsAllChecked(newState);
+    setCheckedItems({
+      terms1: newState,
+      terms2: newState,
+      terms3: newState,
+    });
+  };
+
+  const handleChecked = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCheckedItems({
+      ...checkedItems,
+      [e.target.name]: e.target.checked,
+    });
+  };
+
+  const openModal = (content: string) => {
+    setModalContent(content);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -69,14 +112,56 @@ const PaymentInformation = () => {
           {objectState.price.toLocaleString()}원
         </TotalInformationText>
       </TotalInformationContainer>
+      <TermsContainer>
+        <CheckboxContainer>
+          <Checkbox
+            type="checkbox"
+            checked={isAllChecked}
+            onChange={handleAllChecked}
+          />
+          <h5>전체 동의</h5>
+        </CheckboxContainer>
+        <CheckboxContainer>
+          <Checkbox
+            type="checkbox"
+            name="terms1"
+            checked={checkedItems.terms1}
+            onChange={handleChecked}
+          />
+          <h5>숙소 이용규칙 및 취소/환불규정 동의 (필수)</h5>
+          <ArrowButton onClick={() => openModal('terms')}>{'>'}</ArrowButton>
+        </CheckboxContainer>
+        <CheckboxContainer>
+          <Checkbox
+            type="checkbox"
+            name="terms2"
+            checked={checkedItems.terms2}
+            onChange={handleChecked}
+          />
+          <h5>개인정보 수집 및 이용 (필수)</h5>
+          <ArrowButton onClick={() => openModal('privacy')}>{'>'}</ArrowButton>
+        </CheckboxContainer>
+        <CheckboxContainer>
+          <Checkbox
+            type="checkbox"
+            name="terms3"
+            checked={checkedItems.terms3}
+            onChange={handleChecked}
+          />
+          <h5>만 14세 이상 확인 (필수)</h5>
+          <ArrowButton onClick={() => openModal('age')}>{'>'}</ArrowButton>
+        </CheckboxContainer>
+      </TermsContainer>
       <ButtonContainer>
-        <Buttons label="취소하기" buttonColor="gray" fullWidth={false} />
         <Buttons
           label="결제하기"
           fullWidth={false}
           onClick={handleReservation}
         />
       </ButtonContainer>
+      {isModalOpen && (
+        <TermsModal onClose={closeModal} content={modalContent} />
+      )}
     </PaymentInformationContainer>
   );
 };
@@ -85,7 +170,7 @@ export default PaymentInformation;
 
 const PaymentInformationContainer = styled.div`
   width: 650px;
-  height: 440px;
+  height: 540px;
   border: 1px solid #7d7d7d;
   margin: 40px auto;
 `;
@@ -141,6 +226,31 @@ const TotalInformationText = styled.div`
   font-size: 22px;
   text-align: right;
 `;
+
+const TermsContainer = styled.div`
+  width: 580px;
+  margin: 30px auto;
+`;
+
+const CheckboxContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+`;
+
+const Checkbox = styled.input`
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+`;
+const ArrowButton = styled.button`
+  background: none;
+  border: none;
+  font-size: 20px;
+  margin-left: auto;
+  cursor: pointer;
+`;
+
 const ButtonContainer = styled.div`
   width: 350px;
   height: 140px;
