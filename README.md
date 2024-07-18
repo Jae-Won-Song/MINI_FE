@@ -74,10 +74,23 @@ PW : 123456
 |    배포    | <img src="https://img.shields.io/badge/vercel-black?style=for-the-badge&logo=vercel&logoColor=white">                                                                                                                                                                                                    |
 |   협업툴   | <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=Git&logoColor=white"> <img src="https://img.shields.io/badge/Github-181717?style=for-the-badge&logo=Github&logoColor=white"> <img src="https://img.shields.io/badge/notion-181717?style=for-the-badge&logo=notion&logoColor=white"> <img src="https://img.shields.io/badge/slack-4a154b?style=for-the-badge&logo=slack&logoColor=white">                                                                                                         |
 
+## ✨리팩토링 진행
+
+리팩토링: `2024.07.08 ~ 2024.07.18`
+참여인원: `3명 [송재원 이동희 임혜정]`
+
+임혜정
+- 로그인 기능을 개선했습니다.
+- 숙소의 종류별로 목록을 확인할 수 있도록 카테고리 바를 넣고, 특정 카테고리를 클릭했을 경우 해당 선택에 알맞은 숙소 목록을 출력할 수 있게 했습니다.
+
+<hr/>
+
 ## ✨프로젝트 소개
 
-제작기간 : `2024.06.17 ~ 2024.07.07`
-제작인원 : `3명 [송재원 이동희 임혜정]`
+제작기간: `2024.06.17 ~ 2024.07.07`
+제작인원: `3명 [송재원 이동희 임혜정]`
+
+리팩토링: `2024.07.08 ~ 2024.07.18`
 
 <br>
 
