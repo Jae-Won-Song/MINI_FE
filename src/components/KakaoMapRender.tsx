@@ -32,5 +32,6 @@ export default KakaoMapRender;
 const MapWrapper = styled.div`
   width: 100%;
   height: 100%;
+  border: 1px solid black;
   border-radius: 20px;
 `;

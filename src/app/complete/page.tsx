@@ -220,9 +220,12 @@ export default Page;
 
 const PageContainer = styled.div`
   width: 1920px;
-  margin: 0 auto;
   padding: 20px;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 const ReservationText = styled.div`
