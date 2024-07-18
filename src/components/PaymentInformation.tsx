@@ -64,7 +64,7 @@ const PaymentInformation = () => {
     ) {
       router.push('/complete'); // ./test 페이지로 이동
     } else {
-      alert('필수값을 모두 입력해주세요.');
+      alert('결제 수단과 약관 동의를 모두 입력하세요.');
     }
   };
 
@@ -173,6 +173,7 @@ const PaymentInformationContainer = styled.div`
   height: 540px;
   border: 1px solid #7d7d7d;
   margin: 40px auto;
+  border-radius: 25px;
 `;
 
 const InformationContainer = styled.div`
