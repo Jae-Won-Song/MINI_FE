@@ -79,10 +79,18 @@ const Page = () => {
       if (cookieObjectState) {
         setObjectState(JSON.parse(cookieObjectState));
       } else {
+        // objectState가 없으면 홈페이지로 리디렉션
         router.push('/');
       }
     }
   }, [setObjectState, router]);
+
+  useEffect(() => {
+    if (!objectState) {
+      // objectState가 없으면 홈페이지로 리디렉션
+      router.push('/');
+    }
+  }, [objectState, router]);
 
   if (!objectState) {
     return <LoadingContainer>데이터를 불러오는 중입니다...</LoadingContainer>;
