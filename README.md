@@ -159,9 +159,9 @@ PW : 123456
 
 
 
-<img width="100%" alt="apply" src="https://github.com/Jae-Won-Song/MINI_FE/assets/120430844/b8a81ff1-3060-4c7c-aee7-32fd7000aa99">
+<img width="100%" alt="apply" src="https://github.com/user-attachments/assets/d444fd75-40e0-48e0-98a0-d0bc078c3685">
 
-<img width="100%" alt="applylist" src="https://github.com/Jae-Won-Song/MINI_FE/assets/120430844/3b33f01d-dbe0-480c-ab16-8033d5355035 ">
+<img width="100%" alt="applylist" src="https://github.com/user-attachments/assets/c30dd0c5-d151-420b-8342-164272ea6ffc">
 
 <hr/>
 
