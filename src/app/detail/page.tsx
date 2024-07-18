@@ -56,7 +56,7 @@
 
 'use client';
 
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
 import BookingInformation from '../../components/BookingInformation';
@@ -70,16 +70,19 @@ const Page = () => {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      // 쿠키에서 objectState를 가져오는 로직 (예시)
-      const cookieObjectState = document.cookie
-        .split('; ')
-        .find((row) => row.startsWith('objectState='))
-        ?.split('=')[1];
+      try {
+        const cookieObjectState = document.cookie
+          .split('; ')
+          .find((row) => row.startsWith('objectState='))
+          ?.split('=')[1];
 
-      if (cookieObjectState) {
-        setObjectState(JSON.parse(cookieObjectState));
-      } else {
-        // objectState가 없으면 홈페이지로 리디렉션
+        if (cookieObjectState) {
+          setObjectState(JSON.parse(cookieObjectState));
+        } else {
+          throw new Error('objectState not found in cookies');
+        }
+      } catch (error) {
+        console.error('Error parsing objectState from cookies:', error);
         router.push('/');
       }
     }
@@ -87,7 +90,6 @@ const Page = () => {
 
   useEffect(() => {
     if (!objectState) {
-      // objectState가 없으면 홈페이지로 리디렉션
       router.push('/');
     }
   }, [objectState, router]);
