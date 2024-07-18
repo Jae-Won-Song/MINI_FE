@@ -2,12 +2,10 @@
 
 import styled from 'styled-components';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import src from '../../../public/images/mainBannerImage.jpg';
 import { useDataContext } from '../../contexts/DataContext';
 import dayjs from 'dayjs';
-import weekday from 'dayjs/plugin/weekday';
-import localeData from 'dayjs/plugin/localeData';
-import updateLocale from 'dayjs/plugin/updateLocale';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -46,6 +44,14 @@ const Page = () => {
   const [token, setToken] = useState<string | null>(null);
   const [response, setResponse] = useState<unknown>(null);
   const todayDate = dayjs().format('YYYY년 M월 D일');
+  const router = useRouter();
+
+  useEffect(() => {
+    // objectState가 없을 때 홈페이지로 리디렉션
+    if (!objectState) {
+      router.push('/');
+    }
+  }, [objectState, router]);
 
   useEffect(() => {
     const storedToken = getTokenFromLocalStorage();

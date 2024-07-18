@@ -102,22 +102,6 @@ const Page = ({ params }) => {
 
   return (
     <Container>
-      <TextContainer>
-        <div>
-          {/* <h1>Data fetched using SWR</h1>
-         <pre>{JSON.stringify(accommodationData, null, 2)}</pre>
-         <h1>Data fetched using SWR</h1>
-         <pre>{JSON.stringify(roomData, null, 2)}</pre> */}
-
-          <h3>{accommodation.category}</h3>
-          <h2>{accommodation.title}</h2>
-          <div>
-            <StarImage src={Star} alt="평점이미지" />: {accommodation.rating}
-          </div>
-          <div>전화번호: {accommodation.tel}</div>
-        </div>
-      </TextContainer>
-
       <ImageContainer>
         <StyledImage image={accommodation.image} />
         <MapContainer>
@@ -132,7 +116,17 @@ const Page = ({ params }) => {
           </AddressContainer>
         </MapContainer>
       </ImageContainer>
-
+      <StylingLine />
+      <TextContainer>
+        <div>
+          <h3>{accommodation.category}</h3>
+          <h2>{accommodation.title}</h2>
+          <div>
+            <StarImage src={Star} alt="평점이미지" />: {accommodation.rating}
+          </div>
+          <div>전화번호: {accommodation.tel}</div>
+        </div>
+      </TextContainer>
       {resultCode === 404 ? (
         <NoRoomsMessage>현재 남아있는 객실이 없습니다</NoRoomsMessage>
       ) : (
@@ -199,6 +193,7 @@ const StyledImage = styled.div<{ image: string }>`
   background-image: url(${(props) => props.image});
   background-size: cover;
   background-position: center;
+  border-radius: 20px;
 `;
 
 const ImageContainer = styled.div`
@@ -213,6 +208,13 @@ const MapContainer = styled.div`
   font-size: 25px;
   font-weight: 600;
   line-height: 55px;
+`;
+
+const StylingLine = styled.hr`
+  border: none;
+  border-top: 3px solid #ccc;
+  margin: 20px 0;
+  width: 1680px;
 `;
 
 const AddressContainer = styled.div`
@@ -236,6 +238,7 @@ const CopyButton = styled.button`
 
 const TextContainer = styled.div`
   width: 1680px;
+  line-height: 35px;
 `;
 
 const NoRoomsMessage = styled.div`
