@@ -51,7 +51,6 @@ import AccommodationName from '../../components/AccommodationName';
 import PaymentInformation from '../../components/PaymentInformation';
 
 const Page = () => {
-
   return (
     <PageContainer>
       <BookingInformation />
